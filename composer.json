@@ -1,0 +1,16 @@
+{
+    "name": "mwb/mwb-woocommerce-wishlist",
+    "type": "wordpress-plugin",
+    "description": "mwb WooCommerce Wishlist gives your users the possibility to create, fill, manage and share their wishlists allowing you to analyze their interests and needs to improve your marketing strategies.",
+    "keywords": [
+        "wishlist",
+        "woocommerce",
+        "products",
+        "e-commerce",
+        "shop",
+        "ecommerce",
+        "mwb"
+    ],
+    "homepage": "https://mwbemes.com/themes/plugins/mwb-woocommerce-wishlist/",
+    "license": "GPL-3.0"
+}
