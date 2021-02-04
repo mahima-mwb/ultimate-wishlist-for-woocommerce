@@ -110,6 +110,18 @@ class Wishlist_For_Woo_Admin {
 		 */
 		if( self::is_valid_screen() ) {
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-admin.js', array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( $this->plugin_name . 'swal-alert', plugin_dir_url( __FILE__ ) . 'js/swal.js', array( 'jquery' ), $this->version, false );
+			wp_localize_script(
+				$this->plugin_name,
+				'mwb_wfw_obj',
+				array(
+					'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
+					'mobileView'   => wp_is_mobile(),
+					'authNonce'    => wp_create_nonce( 'mwb_wfw_nonce' ),
+					'notfoundErrorMessage'    => esc_html__( 'Settings Panel Not Found.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+					'criticalErrorMessage'    => esc_html__( 'Internal Server Error.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+				)
+			);	
 		}
 	}
 
@@ -238,6 +250,54 @@ class Wishlist_For_Woo_Admin {
 			'',
 			$this->admin_path
 		);	
+	}
+
+	/**
+ 	 *  Get screen ajax callback.
+	 * 
+	 * @throws $error If something interesting cannot happen while registering the portal.
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return html
+	 */
+	public function getCurrentScreen() {
+		
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
+
+		$hashScreen = ! empty( $_POST[ 'hashScreen' ] ) ? str_replace( '#', '', $_POST[ 'hashScreen' ] ) : false;
+		$hashScreen = ! empty( $_POST[ 'hashScreen' ] ) ? str_replace( '_', '-', $hashScreen ) : false;
+
+		try {
+			$config_settings = Wishlist_For_Woo_Configuration::get_config_settings();
+			
+			$template_path = 'partials/templates/' . $hashScreen . '-template.php';
+			
+			// If template not found!
+			if( false == file_exists( $this->admin_path . $template_path ) ) {
+				$result = array(
+					'status'	=>	404,
+					'content'	=>	false,
+				);
+			}
+
+			else {
+				
+				$result = array(
+					'status'	=>	200,
+					'content'	=>	file_get_contents( $this->admin_path . $template_path ),
+				);
+			}
+			
+		} catch (\Throwable $error ) {
+
+			$result = array(
+				'status'	=>	500,
+				'content'	=>	$error->getMessage(),
+			);	
+		}
+		
+		echo json_encode( $result );
+		wp_die();
 	}
 
 # End of class.

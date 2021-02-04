@@ -121,7 +121,7 @@ class Wishlist_For_Woo {
 		/**
 		 * The class responsible for defining all admin portal templates.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-template-manger.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-template-manager.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
@@ -171,6 +171,9 @@ class Wishlist_For_Woo {
 
 		// Add a admin menu for accessing plugin features.
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_config_menu' );
+		
+		// Ajax Callbacks.
+		$this->loader->add_action( 'wp_ajax_getCurrentScreen', $plugin_admin, 'getCurrentScreen' );
 	}
 
 	/**
@@ -246,5 +249,4 @@ class Wishlist_For_Woo {
 	public function get_version() {
 		return $this->version;
 	}
-
 }
