@@ -79,6 +79,7 @@ class Wishlist_For_Woo {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_template_hooks();
 
 	}
 
@@ -116,6 +117,11 @@ class Wishlist_For_Woo {
 		 * The class responsible for defining all datasets and settings regarding configuration.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-configuration.php';
+
+		/**
+		 * The class responsible for defining all admin portal templates.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-template-manger.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
@@ -181,6 +187,24 @@ class Wishlist_For_Woo {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+	}
+
+	/**
+	 * Register all of the hooks related to the admin area functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_template_hooks() {
+
+		$plugin_template = new Wishlist_For_Woo_Template_Manager();
+
+		$this->loader->add_action( 'mwb_wfw_header_start', $plugin_template, 'render_header_content_start' );
+		$this->loader->add_action( 'mwb_wfw_nav_tab', $plugin_template, 'render_navigation_tab' );
+		$this->loader->add_action( 'mwb_wfw_output_screen', $plugin_template, 'render_settings_screen' );
+		$this->loader->add_action( 'mwb_wfw_helpdesk', $plugin_template, 'render_helpdesk_sidebar' );
+		$this->loader->add_action( 'mwb_wfw_header_end', $plugin_template, 'render_header_content_end' );
 	}
 
 	/**

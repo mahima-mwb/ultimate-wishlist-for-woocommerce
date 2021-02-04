@@ -29,7 +29,25 @@ class Wishlist_For_Woo_Configuration {
 	 * @access   protected
 	 * @var      Wishlist_For_Woo_Configuration    $loader    Maintains and retrieve all configuration settings for the plugin.
 	 */
-	public $config = array();
+	private static $config = array();
+
+	/**
+	 * The basic and initial level settings are saved in this property.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      Wishlist_For_Woo_Configuration    $loader    Maintains and retrieve all configuration settings for the plugin.
+	 */
+	private static $reporting = array();
+
+	/**
+	 * The basic and initial level settings are saved in this property.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      Wishlist_For_Woo_Configuration    $loader    Maintains and retrieve all configuration settings for the plugin.
+	 */
+	private static $overview = array();
 
 	/**
  	 *  Retrieve the configuration settings.
@@ -41,7 +59,33 @@ class Wishlist_For_Woo_Configuration {
 	 */
 	public static function get_config_settings( $tab='basic' ) {
 		
-		return $config;
+		return self::$config;
+	}
+
+	/**
+ 	 *  Retrieve the reporting settings.
+	 *
+	 * @param string $tab Which tab cofiguration settings need to fetch.
+	 * @throws Some_Exception_Class If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return array()
+	 */
+	public static function get_reporting_settings( $tab='' ) {
+		
+		return self::$reporting;
+	}
+
+	/**
+ 	 *  Retrieve the reporting settings.
+	 *
+	 * @param string $tab Which tab cofiguration settings need to fetch.
+	 * @throws Some_Exception_Class If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return array()
+	 */
+	public static function get_overview_settings() {
+		
+		return self::$overview;
 	}
 
 # End of class.

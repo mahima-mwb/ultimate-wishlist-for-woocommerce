@@ -13,4 +13,8 @@
  */
 ?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<!-- Add required templates -->
+<?php  do_action( 'mwb_wfw_header_start' ); ?>
+<?php  do_action( 'mwb_wfw_nav_tab' ); ?>
+<?php  do_action( 'mwb_wfw_output_screen' ); ?>
+<?php  do_action( 'mwb_wfw_header_end' ); ?>
