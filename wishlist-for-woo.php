@@ -36,6 +36,8 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'WISHLIST_FOR_WOO_VERSION', '1.0.0' );
+define( 'WISHLIST_FOR_WOO_TEXTDOMAIN', 'wishlist-for-woo' );
+define( 'WISHLIST_FOR_WOO_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.

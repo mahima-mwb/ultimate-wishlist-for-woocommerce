@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Provide a public-facing view for the plugin
+ * Provide a admin area view for the plugin
  *
- * This file is used to markup the public-facing aspects of the plugin.
+ * This file is used to markup the admin-facing aspects of the plugin.
  *
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
  * @package    Wishlist_For_Woo
- * @subpackage Wishlist_For_Woo/public/partials
+ * @subpackage Wishlist_For_Woo/admin/partials
  */
 ?>
 

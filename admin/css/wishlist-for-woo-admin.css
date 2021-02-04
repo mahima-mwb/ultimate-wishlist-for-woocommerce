@@ -2,3 +2,379 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+
+/* font include start */
+
+@font-face {
+    font-family: 'orbitronBold';
+    src: url('../fonts/orbitron/Orbitron-Bold.eot');
+    src: url('../fonts/orbitron/Orbitron-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/orbitron/Orbitron-Bold.woff2') format('woff2'), url('../fonts/orbitron/Orbitron-Bold.woff') format('woff'), url('../fonts/orbitron/Orbitron-Bold.ttf') format('truetype'), url('../fonts/orbitron/Orbitron-Bold.svg#Orbitron-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'orbitronRegular';
+    src: url('../fonts/orbitron/Orbitron-Medium.eot');
+    src: url('../fonts/orbitron/Orbitron-Medium.eot?#iefix') format('embedded-opentype'), url('../fonts/orbitron/Orbitron-Medium.woff2') format('woff2'), url('../fonts/orbitron/Orbitron-Medium.woff') format('woff'), url('../fonts/orbitron/Orbitron-Medium.ttf') format('truetype'), url('../fonts/orbitron/Orbitron-Medium.svg#Orbitron-Medium') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* font include end */
+
+main.mwb-wfw-main {
+    margin-left: -19px;
+}
+
+
+/* HEADER SECTION START */
+
+.mwb-wfw-header {
+    background-color: #9B5C8F;
+    display: flex;
+    font-family: 'orbitronBold', sans-serif;
+    justify-content: space-between;
+    margin: 0px 0 0 -1px;
+    padding: 10px 15px;
+}
+
+.mwb-wfw-header .mwb-wfw-header__title {
+    color: #FFFFFF;
+    line-height: 100%;
+}
+
+.mwb-wfw-header .mwb-wfw-version {
+    color: #FFFFFF;
+    font-size: 30px;
+    line-height: 100%;
+    padding: 15px;
+}
+
+
+/* HEADER SECTION END */
+
+
+/*  NAV SECTION START */
+
+.mwb-wfw-navbar {
+    display: flex;
+    padding: 10px 0;
+    position: relative;
+}
+
+.mwb-wfw-toggler__wrap .mwb-wfw-toggler {
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: 2px solid #F1DEDE;
+    cursor: pointer;
+    display: none;
+    padding: 5px;
+}
+
+.mwb-wfw-toggler__wrap .mwb-wfw-toggler .icon-bar {
+    background-color: #9EA3A8;
+    border-radius: 4px;
+    display: block;
+    height: 5px;
+    margin: 0 0 4px;
+    width: 25px;
+}
+
+.mwb-wfw-toggler__wrap .mwb-wfw-toggler:focus {
+    outline: none;
+}
+
+.mwb-wfw-nav-collapse {
+    flex: 0 0 100%;
+}
+
+.mwb-wfw-nav-collapse .mwb-wfw-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0px;
+    padding: 0 15px;
+}
+
+.mwb-wfw-nav li a {
+    color: #9B5C8F;
+    font-family: 'orbitronBold', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+}
+
+.mwb-wfw-nav li a:hover {
+    color: #9B5C8F;
+}
+
+.mwb-wfw-nav li a:focus {
+    box-shadow: none;
+}
+
+.mwb-wfw-nav-link {
+    position: relative;
+}
+
+.mwb-wfw-nav-link--active::before {
+    position: absolute;
+    content: '';
+    height: 3px;
+    top: 25px;
+    left: -14px;
+    right: -9px;
+    background-color: #9B5C8F;
+    border-radius: 2px;
+}
+
+
+/* NAV SECTION END */
+
+
+/* ARTICLE SECTION START */
+
+.mwb-wfw-container {
+    overflow: hidden;
+    padding: 0 15px;
+}
+
+.mwb-wfw-container .mwb-wfw-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 -15px;
+}
+
+.mwb-wfw-desc {
+    border: 1px solid #9EA3A8;
+    box-sizing: border-box;
+    flex: 0 0 100%;
+    height: calc(100vh - 190px);
+    margin: 0 10px;
+    max-width: calc(100% - 220px);
+    overflow: auto;
+    padding: 15px;
+    position: relative;
+    transition: 0.3s linear all;
+}
+
+.mwb-wfw-desc .mwb-wfw-desc--preloader {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    min-height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+}
+
+.mwb-wfw-desc--preloader img {
+    transform: scaleX(-1);
+}
+
+.mwb-wfw-desc .mwb-wfw-desc--preloader h4 {
+    color: #9B5C8F;
+    font-family: 'orbitronRegular', sans-serif;
+    letter-spacing: 2px;
+}
+
+
+/* ARTICLE SECTION END */
+
+
+/* SIDEBAR CSS START */
+
+.mwb-wfw-sidebar {
+    align-items: center;
+    background-color: #f1f1f1;
+    border: 1px solid #9EA3A8;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 190px);
+    margin-right: 10px;
+    padding: 10px;
+    position: relative;
+    transition: 0.3s linear all;
+    width: 200px;
+    z-index: 2;
+}
+
+.mwb-wfw-sidebar .mwb-wfw-helpdesk__icon {
+    left: -40px;
+    position: absolute;
+    top: -1px;
+    z-index: 10;
+    visibility: hidden;
+}
+
+.mwb-wfw-sidebar .mwb-wfw-helpdesk__icon img {
+    height: 40px;
+    width: 40px;
+    border-radius: 4px 0 0 4px;
+}
+
+.mwb-wfw-sidebar h2 {
+    color: #9B5C8F;
+    font-family: 'orbitronBold', sans-serif;
+    margin: 0px 0 30px 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.mwb-wfw-sidebar .mwb-wfw-sidebar__items {
+    width: 100%;
+    max-width: 190px;
+}
+
+.mwb-wfw-sidebar .mwb-wfw-sidebar__items li {
+    margin-bottom: 20px;
+}
+
+.mwb-wfw-sidebar .mwb-wfw-sidebar__items li a {
+    border: 1px solid #9B5C8F;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    color: #9B5C8F;
+    display: flex;
+    font-family: 'orbitronRegular', sans-serif;
+    font-size: 11px;
+    justify-content: center;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.mwb-wfw-sidebar .mwb-wfw-sidebar__items li span {
+    font-size: 20px;
+    margin-top: -3px;
+}
+
+.mwb-wfw-sidebar__connect {
+    bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    left: 10px;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+}
+
+.mwb-wfw-sidebar__connect a {
+    font-family: 'orbitronRegular', sans-serif;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.mwb-wfw-sidebar__connect .mwb-wfw-skype__icon {
+    border: 1px solid #9b5c8f;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    color: #00AAF2;
+    display: flex;
+    font-size: 16px;
+    justify-content: space-evenly;
+    margin-top: 5px;
+    padding:5px 0px;
+}
+
+.mwb-wfw-sidebar__connect .mwb-wfw-skype__icon:focus {
+    box-shadow: none;
+    color: #00AAF2;
+}
+
+.mwb-wfw-sidebar__connect .mwb-wfw-skype__icon img {
+    width: auto;
+    height: 26px;
+    margin-top: 1px;
+}
+
+.mwb-wfw-sidebar__connect .mwb-wfw-skype__icon span {
+    margin: 5px 0px;
+    font-size: 16px;
+}
+
+
+/* SIDEBAR CSS END */
+
+
+/* media query start */
+
+@media only screen and (max-width:768px) {
+    /* HEADER SECTION START */
+    .mwb-wfw-header .mwb-wfw-header__title {
+        max-width: 200px;
+    }
+    .mwb-wfw-header .mwb-wfw-version {
+        display: none;
+    }
+    /* HEADER SECTION END */
+    /* NAV SECTION END */
+    .mwb-wfw-toggler__wrap {
+        position: absolute;
+        right: 15px;
+        top: -80px;
+    }
+    .mwb-wfw-toggler__wrap .mwb-wfw-toggler {
+        display: block;
+    }
+    .mwb-wfw-nav-collapse {
+        display: none;
+    }
+    .mwb-wfw-nav li {
+        flex: 0 0 100%;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+    /* NAV SECTION END */
+    /* ARTICLE SECTION START */
+    .mwb-wfw-overlay--active {
+        background: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        z-index: 2;
+        width: calc(100% + 15px);
+    }
+    .mwb-wfw-desc {
+        max-width: calc(100% - 20px);
+        padding: 15px;
+    }
+    .active .mwb-wfw-desc {
+        max-width: calc(66% - 15px);
+    }
+    /* ARTICLE SECTION END */
+    /* SIDEBAR SECTION START */
+    .mwb-wfw-sidebar {
+        margin-right: 0px;
+        max-width: 60%;
+        position: fixed;
+        right: 10px;
+        top: 163px;
+        transform: translateX(104%);
+    }
+    .mwb-wfw-sidebar .mwb-wfw-helpdesk__icon {
+        visibility: visible;
+    }
+    .active .mwb-wfw-sidebar {
+        transform: translateX(0);
+    }
+    .mwb-wfw-sidebar .mwb-wfw-sidebar__links {
+        margin: 10px;
+    }
+    .mwb-wfw-sidebar .mwb-wfw-sidebar__links a {
+        padding: 10px;
+    }
+    .mwb-wfw-sidebar .mwb-wfw-skype__icon span {
+        font-size: 13px;
+    }
+    /* SIDEBAR SECTION  END */
+}
+
+
+/* media query end */

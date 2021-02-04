@@ -57,6 +57,7 @@ class Wishlist_For_Woo {
 	 */
 	protected $version;
 
+
 	/**
 	 * Define the core functionality of the plugin.
 	 *
@@ -112,6 +113,11 @@ class Wishlist_For_Woo {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-i18n.php';
 
 		/**
+		 * The class responsible for defining all datasets and settings regarding configuration.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-configuration.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wishlist-for-woo-admin.php';
@@ -157,6 +163,8 @@ class Wishlist_For_Woo {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		// Add a admin menu for accessing plugin features.
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_config_menu' );
 	}
 
 	/**

@@ -41,6 +41,15 @@ class Wishlist_For_Woo_Admin {
 	private $version;
 
 	/**
+	 * The current version of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $admin_path    The current version of the plugin.
+	 */
+	protected $admin_path;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -51,7 +60,7 @@ class Wishlist_For_Woo_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
+		$this->admin_path = plugin_dir_path( __FILE__ );
 	}
 
 	/**
@@ -73,8 +82,12 @@ class Wishlist_For_Woo_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-admin.css', array(), $this->version, 'all' );
-
+		/**
+		 * Scripts and Stylesheets need to be accessed and enqueued on configuration panels only. 
+		 */
+		if( self::is_valid_screen() ) {
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-admin.css', array(), $this->version, 'all' );
+		}
 	}
 
 	/**
@@ -95,9 +108,125 @@ class Wishlist_For_Woo_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		if( self::is_valid_screen() ) {
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-admin.js', array( 'jquery' ), $this->version, false );
+		}
+	}
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-admin.js', array( 'jquery' ), $this->version, false );
+	/**
+	 * Register all of the hooks related to the public-facing functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @author 	 MakeWebBetter <plugins@makewebbetter.com>
+	 * @return   bool true|fase
+	 */
+	private static function is_valid_screen() {
+
+		$result = false;
+		$valid_screens = array(
+			'toplevel_page_wfw-config-portal',
+			'wishlist-for-woocommerce_page_wfw-performance-reporting',
+			'wishlist-for-woocommerce_page_wfw-plugin-overview',
+		);
+
+		$screen = get_current_screen();
+
+		if ( ! empty( $screen->id ) ) {
+
+			$pagescreen = $screen->id;
+
+			if ( in_array( $pagescreen, $valid_screens ) ) {
+				$result = true;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+ 	 *  Add a admin menu for accessing plugin features.
+	 * 
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function add_config_menu() {
+
+		add_menu_page(
+			esc_html__( 'Wishlist For Woocommerce', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			esc_html__( 'Wishlist For Woocommerce', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'manage_woocommerce',
+			'wfw-config-portal',
+			array( $this, 'add_config_screen' ),
+			'dashicons-yes-alt',
+			57
+		);
+
+		/**
+		 * Add sub-menu for Configuration settings.
+		 */
+		add_submenu_page( 'wfw-config-portal', esc_html__( 'Configuration & Settings', WISHLIST_FOR_WOO_TEXTDOMAIN ), esc_html__( 'Configuration & Settings', WISHLIST_FOR_WOO_TEXTDOMAIN ), 'manage_options', 'wfw-config-portal' );
+
+		/**
+		 * Add sub-menu for Reportings settings.
+		 */
+		add_submenu_page( 'wfw-config-portal', esc_html__( 'Reports & Analytics', WISHLIST_FOR_WOO_TEXTDOMAIN ), esc_html__( 'Reports & Analytics', WISHLIST_FOR_WOO_TEXTDOMAIN ), 'manage_options', 'wfw-performance-reporting', array( $this, 'add_reporting_screen' ) );
+		
+		/**
+		 * Add sub-menu for Plugin Overview.
+		 */
+		add_submenu_page( 'wfw-config-portal', esc_html__( 'Overview', WISHLIST_FOR_WOO_TEXTDOMAIN ), esc_html__( 'Overview', WISHLIST_FOR_WOO_TEXTDOMAIN ), 'manage_options', 'wfw-plugin-overview', array( $this, 'add_overview_screen' ) );
+	}
+
+
+	/**
+ 	 *  Add a admin menu for accessing config portal.
+	 * 
+	 * @throws $error If something interesting cannot happen while registering the portal.
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function add_config_screen() {
+
+		$config_settings = Wishlist_For_Woo_Configuration::get_config_settings();
+	//	wc_get_template( 'partials/wishlist-for-woo-config-portal.php', array( 'config_settings' => $config_settings ) );
+
+		wc_get_template(
+			'partials/wishlist-for-woo-config-portal.php',
+			array(
+				'config_settings' => $config_settings,
+			),
+			'',
+			$this->admin_path
+		);
+
 
 	}
 
+	/**
+ 	 *  Add a admin menu for accessing reporting portal.
+	 * 
+	 * @throws $error If something interesting cannot happen while registering the portal.
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function add_reporting_screen() {
+
+		
+	}
+
+	/**
+ 	 *  Add a admin menu for accessing overview portal.
+	 * 
+	 * @throws $error If something interesting cannot happen while registering the portal.
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function add_overview_screen() {
+
+		
+	}
+
+# End of class.
 }
