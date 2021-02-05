@@ -22,6 +22,7 @@ jQuery(document).ready(function() {
     /**==================================================
                     Literal Functionalities.
     ====================================================*/
+    
     // Open/shut Helpdesk button.
     jQuery( '.mwb-wfw-helpdesk-btn' ).on('click', function() {
         jQuery(this).parents('.mwb-wfw-row').toggleClass('active');
@@ -39,10 +40,13 @@ jQuery(document).ready(function() {
    
     /**
      * On selection of new tab get the concerned template.
-     * @param {*} hashScreen  index of selected tab.
+     * @param {string} hashScreen  index of selected tab.
      */
-    function getCurrentScreens( hashScreen="" ) {
+    function getCurrentScreens( hashScreen = false ) {
         
+        // Default tab : General Settings.
+        hashScreen = hashScreen.length ? hashScreen : '#general';
+
         /**
          * Step 1 : Before requesting the screen get the preloader on.
          * Step 2 : Handle Current Active Tab.
@@ -64,17 +68,17 @@ jQuery(document).ready(function() {
             success: function( result ) {
                 processResult( result );
             },
-             error : function( xhr, textStatus, errorThrown ){
+            error : function( xhr, textStatus, errorThrown ){
                 if( 'error' == textStatus ) {
                     swal( textStatus.toUpperCase(), errorThrown, 'error' );
                 }
-             }
+            }
         });
     }
 
     /**
      * Toggle active class within nav bars.
-     * @param {*} hashScreen  index of selected tab.
+     * @param {string} hashScreen  index of selected tab.
      */
     function handleNavLinks( hashScreen ) {
         jQuery( '.mwb-wfw-nav-link' ).removeClass( 'mwb-wfw-nav-link--active' );
@@ -82,8 +86,8 @@ jQuery(document).ready(function() {
     }
 
     /**
-     * 
-     * @param {*} result The result of template upon ajax call.
+     * Result Ajax callback.
+     * @param {object} result The result of template upon ajax call.
      */
     function processResult( result ) {
         
@@ -99,7 +103,7 @@ jQuery(document).ready(function() {
 
         // In case of any critical error.
         else {
-            swal( '500', mwb_wfw_obj.criticalErrorMessage, 'error' );                 
+            swal( result.status.toString(), mwb_wfw_obj.criticalErrorMessage, 'error' );                 
         }
 
         // Hide Preloader.

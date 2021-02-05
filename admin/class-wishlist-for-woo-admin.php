@@ -249,7 +249,7 @@ class Wishlist_For_Woo_Admin {
 			),
 			'',
 			$this->admin_path
-		);	
+		);
 	}
 
 	/**
@@ -268,12 +268,11 @@ class Wishlist_For_Woo_Admin {
 		$hashScreen = ! empty( $_POST[ 'hashScreen' ] ) ? str_replace( '_', '-', $hashScreen ) : false;
 
 		try {
-			$config_settings = Wishlist_For_Woo_Configuration::get_config_settings();
 			
-			$template_path = 'partials/templates/' . $hashScreen . '-template.php';
-			
+			$template_path = $this->admin_path . 'partials/templates/' . $hashScreen . '-template.php';
+
 			// If template not found!
-			if( false == file_exists( $this->admin_path . $template_path ) ) {
+			if( false == file_exists( $template_path ) ) {
 				$result = array(
 					'status'	=>	404,
 					'content'	=>	false,
@@ -284,7 +283,7 @@ class Wishlist_For_Woo_Admin {
 				
 				$result = array(
 					'status'	=>	200,
-					'content'	=>	file_get_contents( $this->admin_path . $template_path ),
+					'content'	=>	file_get_contents( $template_path ),
 				);
 			}
 			
