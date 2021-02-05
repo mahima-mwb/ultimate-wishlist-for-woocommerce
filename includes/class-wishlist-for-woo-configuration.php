@@ -27,7 +27,7 @@ class Wishlist_For_Woo_Configuration {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Wishlist_For_Woo_Configuration    $loader    Maintains and retrieve all configuration settings for the plugin.
+	 * @var      Wishlist_For_Woo_Configuration    $config    Maintains and retrieve all configuration settings for the plugin.
 	 */
 	private static $config = array();
 
@@ -36,7 +36,7 @@ class Wishlist_For_Woo_Configuration {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Wishlist_For_Woo_Configuration    $loader    Maintains and retrieve all configuration settings for the plugin.
+	 * @var      Wishlist_For_Woo_Configuration    $reporting    Maintains and retrieve all configuration settings for the plugin.
 	 */
 	private static $reporting = array();
 
@@ -45,7 +45,7 @@ class Wishlist_For_Woo_Configuration {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Wishlist_For_Woo_Configuration    $loader    Maintains and retrieve all configuration settings for the plugin.
+	 * @var      Wishlist_For_Woo_Configuration    $overview    Maintains and retrieve all configuration settings for the plugin.
 	 */
 	private static $overview = array();
 

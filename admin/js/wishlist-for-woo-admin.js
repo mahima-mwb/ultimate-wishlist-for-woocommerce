@@ -9,7 +9,7 @@
 jQuery(document).ready(function() {
 
     const preloader = jQuery( '.mwb-wfw-desc--preloader' );
-    const outputScreen = jQuery( '.mwb-wfw-desc' );
+    const outputScreen = jQuery( '.mwb-wfw-output-form' );
 
     // Update Screen Upon hashchange.
     jQuery(window).bind( 'hashchange', function() {
@@ -22,7 +22,7 @@ jQuery(document).ready(function() {
     /**==================================================
                     Literal Functionalities.
     ====================================================*/
-    
+
     // Open/shut Helpdesk button.
     jQuery( '.mwb-wfw-helpdesk-btn' ).on('click', function() {
         jQuery(this).parents('.mwb-wfw-row').toggleClass('active');
@@ -46,15 +46,17 @@ jQuery(document).ready(function() {
         
         // Default tab : General Settings.
         hashScreen = hashScreen.length ? hashScreen : '#general';
-
+    
         /**
          * Step 1 : Before requesting the screen get the preloader on.
          * Step 2 : Handle Current Active Tab.
-         * Step 3 : Get current template.
+         * Step 3 : Empty current template.
+         * Step 4 : Get current template.
          */
         preloader.css( 'display', 'flex' );
         handleNavLinks( hashScreen );
         jQuery( '.mwb-wfw-output-container' ).remove();
+        outputScreen.empty();
 
         jQuery.ajax({
             type: 'post',
@@ -93,7 +95,10 @@ jQuery(document).ready(function() {
         
         // Successfully add template.
         if( 200 == result.status ) {
-            outputScreen.append( result.content );
+            outputScreen.html( result.content );
+            
+            // Enable select2 fields.
+            jQuery( '.mwb-wfw-multi-select' ).select2();
         }
 
         // Template not Found.
@@ -103,7 +108,9 @@ jQuery(document).ready(function() {
 
         // In case of any critical error.
         else {
-            swal( result.status.toString(), mwb_wfw_obj.criticalErrorMessage, 'error' );                 
+
+            message = result.content.length ? result.content : mwb_wfw_obj.criticalErrorMessage;
+            swal( result.status.toString(), message, 'error' );                
         }
 
         // Hide Preloader.

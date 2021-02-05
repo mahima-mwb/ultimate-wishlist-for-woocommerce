@@ -87,6 +87,7 @@ class Wishlist_For_Woo_Admin {
 		 */
 		if( self::is_valid_screen() ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-admin.css', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name . '-select2', plugin_dir_url( __FILE__ ) . 'css/select2.min.css', array(), $this->version, 'all' );
 		}
 	}
 
@@ -110,7 +111,8 @@ class Wishlist_For_Woo_Admin {
 		 */
 		if( self::is_valid_screen() ) {
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-admin.js', array( 'jquery' ), $this->version, false );
-			wp_enqueue_script( $this->plugin_name . 'swal-alert', plugin_dir_url( __FILE__ ) . 'js/swal.js', array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( $this->plugin_name . '-swal-alert', plugin_dir_url( __FILE__ ) . 'js/swal.js', array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( $this->plugin_name . '-select2', plugin_dir_url( __FILE__ ) . 'js/select2.min.js', array( 'jquery' ), $this->version, false );
 			wp_localize_script(
 				$this->plugin_name,
 				'mwb_wfw_obj',
@@ -265,38 +267,78 @@ class Wishlist_For_Woo_Admin {
 		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
 
 		$hashScreen = ! empty( $_POST[ 'hashScreen' ] ) ? str_replace( '#', '', $_POST[ 'hashScreen' ] ) : false;
-		$hashScreen = ! empty( $_POST[ 'hashScreen' ] ) ? str_replace( '_', '-', $hashScreen ) : false;
-
+		
 		try {
-			
-			$template_path = $this->admin_path . 'partials/templates/' . $hashScreen . '-template.php';
 
-			// If template not found!
-			if( false == file_exists( $template_path ) ) {
-				$result = array(
-					'status'	=>	404,
-					'content'	=>	false,
-				);
-			}
-
-			else {
-				
-				$result = array(
-					'status'	=>	200,
-					'content'	=>	file_get_contents( $template_path ),
-				);
-			}
+			$result = array(
+				'status'	=>	200,
+				'content'	=>	self::get_selected_template_content( $hashScreen ),
+			);
 			
 		} catch (\Throwable $error ) {
 
 			$result = array(
 				'status'	=>	500,
 				'content'	=>	$error->getMessage(),
-			);	
+			);
 		}
 		
 		echo json_encode( $result );
 		wp_die();
+	}
+
+	/**
+ 	 *  Return Html content for required tab.
+	 *
+	 * @param string $template_part the key for section which we need.
+	 * 
+	 * @throws Some_Exception_Class If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return html
+	 */
+	public static function get_selected_template_content( $template_part=false ) {
+	
+		if( ! empty( $template_part ) ) {
+			switch ( $template_part ) {
+				case 'general':
+					$settings = Wishlist_For_Woo_Template_Manager::get_general_sections_settings();
+					break;
+
+				case 'social_sharing':
+					$settings = Wishlist_For_Woo_Template_Manager::get_social_sharing_sections_settings();
+					break;
+
+				case 'push_notify':
+					$settings = Wishlist_For_Woo_Template_Manager::get_push_notify_sections_settings();
+					break;
+
+				case 'advance_feature':
+					$settings = Wishlist_For_Woo_Template_Manager::get_advance_feature_sections_settings();
+					break;
+
+				case 'crm':
+					$settings = Wishlist_For_Woo_Template_Manager::get_crm_sections_settings();
+					break;
+				
+				default:
+					$settings[] = array(
+						'title' => esc_html__( 'Undefined Portal Encountered', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+						'class'    => 'mwb-wfw-sub-heading',
+						'type'  => 'title',
+						'id'    => 'mwb-wfw-heading',
+					);
+					break;
+			}	
+		}
+
+		if( ! empty( $settings ) && is_array( $settings ) ) {
+			ob_start();
+				woocommerce_admin_fields( $settings );
+			$output = ob_get_contents();
+			ob_end_clean();
+
+			return $output;
+		}
 	}
 
 # End of class.

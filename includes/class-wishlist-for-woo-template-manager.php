@@ -87,6 +87,7 @@ class Wishlist_For_Woo_Template_Manager {
 		<div class="mwb-wfw-container">
 			<div class="mwb-wfw-row">
 				<div class="mwb-wfw-desc">
+					<form method="post" action="#" class="mwb-wfw-output-form"></form>
 					<div class="mwb-wfw-desc--preloader">
 						<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/preloader.gif' ) ?>" alt="loader">
 						<h4><?php esc_html_e( 'Loading settings please wait...', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></h4>
@@ -182,6 +183,213 @@ class Wishlist_For_Woo_Template_Manager {
 		}
 
 		return apply_filters( $current_screen . '-tab', $tabs );
+	}
+
+	/**
+ 	 *  Get all settings of General Tab.
+	 *
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return array
+	 */
+	public static function get_general_sections_settings() {
+		
+		$settings = array();
+		$settings[] = array(
+			'title' => esc_html__( 'This will be heading for General Tab.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-sub-heading',
+			'type'  => 'title',
+			'id'    => 'mwb-wfw-heading',
+		);
+
+		$settings[] = array(
+			'title'             => esc_html__( 'Enable Select2', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'type'              => 'multiselect',
+			'desc'              => esc_html__( 'This will be a select2 desctiption', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'options'           => array( 
+									''	=>	esc_html__( 'Options default', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'one'	=>	esc_html__( 'Options 1', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'two'	=>	esc_html__( 'Options 2', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+								),
+			'desc_tip'          => true,
+			'class'		        => 'mwb-wfw-multi-select',
+			'id'   				=> 'mwb-wfw-multi-select-field-id',
+			'custom_attributes' => array(
+				'data-keytype' => esc_html__( 'user-role', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			),
+		);
+
+		$settings[] = array(
+			'title'             => esc_html__( 'Enable Select', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'type'              => 'select',
+			'desc'              => esc_html__( 'This will be a select desctiption', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'options'           => array( 
+									''	=>	esc_html__( 'Options default', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'one'	=>	esc_html__( 'Options 1', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'two'	=>	esc_html__( 'Options 2', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+								),
+			'desc_tip'          => true,
+			'name'          	=> 'true',
+			'class'		        => 'mwb-wfw-select',
+			'id'   				=> 'mwb-wfw-select-field-id',
+			'custom_attributes' => array(
+				'data-keytype' => esc_html__( 'user-role', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			),
+		);
+
+		$settings[] = array(
+			'title' => esc_html__( 'Enable /Disable Toggle', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class' => 'mwb-wfw-toggle-checkbox',
+			'type'  => 'checkbox',
+			'desc_tip'          => true,
+			'id'    => 'mwb-wfw-checkbox-field-id',
+			'desc'  => esc_html__( 'Enable /Disable Toggle for any settings', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		$settings[] = array(
+			'title' => esc_html__( 'classic checkbox', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class' => 'mwb-wfw-classic-checkbox',
+			'type'  => 'checkbox',
+			'name'  => 'gender',
+			'desc_tip'          => true,
+			'id'    => 'mwb-wfw-checkbox-classic-id',
+			'desc'  => esc_html__( 'Checkbox for any settings', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+		
+
+		$settings[] = array(
+			'title'             => esc_html__( 'Input type Text', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'id'                => 'mwb-wfw-input-field-id',
+			'type'              => 'text',
+			'placeholder'       => 'Place holder here',
+			'default'           => '',
+			'desc'              => esc_html__( 'input fields', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'desc_tip'          => true,
+			'class'             => 'mwb-wfw-input-field',
+			'custom_attributes' => array(
+				'data-keytype' => esc_html__( 'input-field', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			),
+		);
+
+		$settings[] = array(
+			'title'             => esc_html__( 'password type Text', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'id'                => 'mwb-wfw-password-field-id',
+			'type'              => 'password',
+			'placeholder'       => 'Place holder here',
+			'default'           => '',
+			'desc'              => esc_html__( 'password', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'desc_tip'          => true,
+			'class'             => 'mwb-wfw-password-field',
+			'custom_attributes' => array(
+				'data-keytype' => esc_html__( 'password-field', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			),
+		);
+
+		$settings[] = array(
+			'title'             => esc_html__( 'Textarea', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'id'                => 'mwb-wfw-textarea-field-id',
+			'type'              => 'textarea',
+			'placeholder'       => 'Place holder here',
+			'default'           => '',
+			'desc'              => esc_html__( 'textarea', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'desc_tip'          => true,
+			'class'             => 'mwb-wfw-textarea-field',
+			'custom_attributes' => array(
+				'data-keytype' => esc_html__( 'textarea-field', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			),
+		);
+
+		$settings[] = array(
+			'type' => 'sectionend',
+		);
+		return $settings;
+	}
+
+	/**
+ 	 *  Get all settings of Social Sharing Tab.
+	 *
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return array
+	 */
+	public static function get_social_sharing_sections_settings() {
+		
+		$settings = array();
+		$settings[] = array(
+			'title' => esc_html__( 'This will be heading for Social Sharing Tab.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-sub-heading',
+			'type'  => 'title',
+			'id'    => 'mwb-wfw-heading',
+		);
+
+		$settings[] = array(
+			'type' => 'sectionend',
+		);
+		return $settings;
+	}
+
+	/**
+ 	 *  Get all settings of Push Notification Tab.
+	 *
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return array
+	 */
+	public static function get_push_notify_sections_settings() {
+		
+		$settings = array();
+		$settings[] = array(
+			'title' => esc_html__( 'This will be heading for any Push Notification section seperation', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-sub-heading',
+			'type'  => 'title',
+			'id'    => 'mwb-wfw-heading',
+		);
+
+		$settings[] = array(
+			'type' => 'sectionend',
+		);
+		return $settings;
+	}
+
+	/**
+ 	 *  Get all settings of Advance Features Tab.
+	 *
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return array
+	 */
+	public static function get_advance_feature_sections_settings() {
+		
+		$settings = array();
+		$settings[] = array(
+			'title' => esc_html__( 'This will be heading for Advance Features section.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-sub-heading',
+			'type'  => 'title',
+			'id'    => 'mwb-wfw-heading',
+		);
+
+		$settings[] = array(
+			'type' => 'sectionend',
+		);
+		return $settings;
+	}
+
+	/**
+ 	 *  Get all settings of CRM Tab.
+	 *
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return array
+	 */
+	public static function get_crm_sections_settings() {
+		
+		$settings = array();
+		$settings[] = array(
+			'title' => esc_html__( 'This will be heading for CRM section', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-sub-heading',
+			'type'  => 'title',
+			'id'    => 'mwb-wfw-heading',
+		);
+
+		$settings[] = array(
+			'type' => 'sectionend',
+		);
+		return $settings;
 	}
 
 # End of class.
