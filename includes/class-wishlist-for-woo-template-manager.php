@@ -136,6 +136,11 @@ class Wishlist_For_Woo_Template_Manager {
 		
 		ob_start(); ?>
 		<!-- Header Section -->
+		<div class="mwb-wfw_save-wrapper">
+			<span><a href="#" class="mwb-wfw_save-link">SAVE</a>
+			<a href="#" class="mwb-wfw_cancel-link">CANCEL</a></span>
+			<span class="mwb-wfw_save-text">You have saved your data!</span>
+		</div>
 		</main>
 		<!-- End of Header Section -->
 		<?php echo ob_get_clean();
@@ -194,13 +199,27 @@ class Wishlist_For_Woo_Template_Manager {
 	public static function get_general_sections_settings() {
 		
 		$settings = array();
+
+
 		$settings[] = array(
 			'title' => esc_html__( 'This will be heading for General Tab.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'class'    => 'mwb-wfw-sub-heading',
 			'type'  => 'title',
 			'id'    => 'mwb-wfw-heading',
 		);
-
+		$settings[] = array(
+			'title'             => esc_html__( 'Textarea', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'id'                => 'mwb-wfw-textarea-field-id',
+			'type'              => 'textarea',
+			'placeholder'       => 'Place holder here',
+			'default'           => '',
+			'desc'              => esc_html__( 'textarea', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'desc_tip'          => true,
+			'class'             => 'mwb-wfw-textarea-field',
+			'custom_attributes' => array(
+				'data-keytype' => esc_html__( 'textarea-field', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			),
+		);
 		$settings[] = array(
 			'title'             => esc_html__( 'Enable Select2', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'              => 'multiselect',
