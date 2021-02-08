@@ -54,8 +54,7 @@ jQuery(document).ready(function() {
          * Step 4 : Get current template.
          */
         preloader.css('display', 'flex');
-        handleNavLinks(hashScreen);
-        jQuery('.mwb-wfw-output-container').remove();
+        handleNavLinks( hashScreen );
         outputScreen.empty();
 
         jQuery.ajax({
@@ -95,10 +94,10 @@ jQuery(document).ready(function() {
 
         // Successfully add template.
         if (200 == result.status) {
-            outputScreen.html(result.content);
+            outputScreen.html( result.content );
 
             // Enable select2 fields.
-            jQuery('.mwb-wfw-multi-select').select2();
+           // jQuery('.mwb-wfw-multi-select').select2();
         }
 
         // Template not Found.

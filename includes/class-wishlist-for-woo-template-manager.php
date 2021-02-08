@@ -29,6 +29,7 @@ class Wishlist_For_Woo_Template_Manager {
 
 		ob_start(); ?>
 		<!-- Header Section -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<main class="mwb-wfw-main">
@@ -136,11 +137,11 @@ class Wishlist_For_Woo_Template_Manager {
 		
 		ob_start(); ?>
 		<!-- Header Section -->
-		<div class="mwb-wfw_save-wrapper">
-			<span><a href="#" class="mwb-wfw_save-link">SAVE</a>
-			<a href="#" class="mwb-wfw_cancel-link">CANCEL</a></span>
-			<span class="mwb-wfw_save-text">You have saved your data!</span>
-		</div>
+			<div class="mwb-wfw_save-wrapper is-hidden">
+				<span><a href="#" class="mwb-wfw_save-link"><?php esc_html_e( 'SAVE', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></a>
+				<a href="#" class="mwb-wfw_cancel-link"><?php esc_html_e( 'CANCEL', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></a></span>
+				<span class="mwb-wfw_save-text is-hidden"><?php esc_html_e( 'You have saved your data!', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></span>
+			</div>
 		</main>
 		<!-- End of Header Section -->
 		<?php echo ob_get_clean();
@@ -200,126 +201,81 @@ class Wishlist_For_Woo_Template_Manager {
 		
 		$settings = array();
 
-
+		// Section start.
 		$settings[] = array(
-			'title' => esc_html__( 'This will be heading for General Tab.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'class'    => 'mwb-wfw-sub-heading',
+			'title' => esc_html__( 'General Settings', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'  => 'title',
-			'id'    => 'mwb-wfw-heading',
 		);
+
+		// Enable/Disable Plugin.
 		$settings[] = array(
-			'title'             => esc_html__( 'Textarea', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'id'                => 'mwb-wfw-textarea-field-id',
-			'type'              => 'textarea',
-			'placeholder'       => 'Place holder here',
-			'default'           => '',
-			'desc'              => esc_html__( 'textarea', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'desc_tip'          => true,
-			'class'             => 'mwb-wfw-textarea-field',
-			'custom_attributes' => array(
-				'data-keytype' => esc_html__( 'textarea-field', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			),
+			'title' 				=> esc_html__( 'Enable /Disable Plugin', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class' 				=> 'mwb-wfw-toggle-checkbox',
+			'type'  				=> 'checkbox',
+			'desc_tip' 				=> true,
+			'value'   				=> get_option( 'wfw-enable-plugin', 'yes' ),
+			'name'    				=> 'wfw-enable-plugin',
+			'desc'  				=> esc_html__( 'Enable/Disable the complete plugin functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
-		$settings[] = array(
-			'title'             => esc_html__( 'Enable Select2', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'type'              => 'multiselect',
-			'desc'              => esc_html__( 'This will be a select2 desctiption', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'options'           => array( 
-									''	=>	esc_html__( 'Options default', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'one'	=>	esc_html__( 'Options 1', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'two'	=>	esc_html__( 'Options 2', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-								),
-			'desc_tip'          => true,
-			'class'		        => 'mwb-wfw-multi-select',
-			'id'   				=> 'mwb-wfw-multi-select-field-id',
-			'custom_attributes' => array(
-				'data-keytype' => esc_html__( 'user-role', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			),
+
+		$settings[]		=	array(
+			'type'	=>	'sub-heading',
+			'value'	=>	esc_html__( 'Wishlist Interface Settings', WISHLIST_FOR_WOO_TEXTDOMAIN )
 		);
 
 		$settings[] = array(
-			'title'             => esc_html__( 'Enable Select', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'title'             => esc_html__( 'Wishlist View Type', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'              => 'select',
-			'desc'              => esc_html__( 'This will be a select desctiption', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'options'           => array( 
-									''	=>	esc_html__( 'Options default', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'one'	=>	esc_html__( 'Options 1', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'two'	=>	esc_html__( 'Options 2', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'desc'              => esc_html__( 'Select how you want to show the wishlist interface.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'options'           => array(
+									''			=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'icon'		=>	esc_html__( 'Icon over Product Image', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'button'	=>	esc_html__( 'Add to Wishlist button', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 								),
 			'desc_tip'          => true,
-			'name'          	=> 'true',
 			'class'		        => 'mwb-wfw-select',
-			'id'   				=> 'mwb-wfw-select-field-id',
-			'custom_attributes' => array(
-				'data-keytype' => esc_html__( 'user-role', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			),
+			'name'   			=> 'wfw-view-type',
+			'value'   			=> get_option( 'wfw-view-type', '' ),
 		);
 
 		$settings[] = array(
-			'title' => esc_html__( 'Enable /Disable Toggle', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'class' => 'mwb-wfw-toggle-checkbox',
-			'type'  => 'checkbox',
+			'title'             => esc_html__( 'Wishlist Interface Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'type'              => 'select',
+			'desc'              => esc_html__( 'Select which icon you want for the wishlist interface.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'options'           => array(
+									''			=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'heart'		=>	esc_html__( 'Heart Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'shopping'		=>	esc_html__( 'Shopping Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'cart'		=>	esc_html__( 'Cart Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'bag'		=>	esc_html__( 'Bag Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+								),
 			'desc_tip'          => true,
-			'id'    => 'mwb-wfw-checkbox-field-id',
-			'desc'  => esc_html__( 'Enable /Disable Toggle for any settings', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'		        => 'mwb-wfw-select' . $maybe_hidden_icon,
+			'name'   			=> 'wfw-icon-view',
+			'value'   			=> get_option( 'wfw-icon-view', '' ),
 		);
 
 		$settings[] = array(
-			'title' => esc_html__( 'classic checkbox', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'class' => 'mwb-wfw-classic-checkbox',
-			'type'  => 'checkbox',
-			'name'  => 'gender',
+			'title'             => esc_html__( 'Wishlist Button Position', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'type'              => 'select',
+			'desc'              => esc_html__( 'Select where wishlist button should be shown.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'options'           => array(
+									''						=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'before_add_to_cart'	=>	esc_html__( 'Before Add To Cart Button', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'after_add_to_cart'		=>	esc_html__( 'Before Add To Cart Button', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'before_product_name'	=>	esc_html__( 'Before Product Title', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'after_product_name'	=>	esc_html__( 'After Product Title', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+								),
 			'desc_tip'          => true,
-			'id'    => 'mwb-wfw-checkbox-classic-id',
-			'desc'  => esc_html__( 'Checkbox for any settings', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-		);
-		
-
-		$settings[] = array(
-			'title'             => esc_html__( 'Input type Text', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'id'                => 'mwb-wfw-input-field-id',
-			'type'              => 'text',
-			'placeholder'       => 'Place holder here',
-			'default'           => '',
-			'desc'              => esc_html__( 'input fields', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'desc_tip'          => true,
-			'class'             => 'mwb-wfw-input-field',
-			'custom_attributes' => array(
-				'data-keytype' => esc_html__( 'input-field', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			),
-		);
-
-		$settings[] = array(
-			'title'             => esc_html__( 'password type Text', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'id'                => 'mwb-wfw-password-field-id',
-			'type'              => 'password',
-			'placeholder'       => 'Place holder here',
-			'default'           => '',
-			'desc'              => esc_html__( 'password', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'desc_tip'          => true,
-			'class'             => 'mwb-wfw-password-field',
-			'custom_attributes' => array(
-				'data-keytype' => esc_html__( 'password-field', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			),
-		);
-
-		$settings[] = array(
-			'title'             => esc_html__( 'Textarea', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'id'                => 'mwb-wfw-textarea-field-id',
-			'type'              => 'textarea',
-			'placeholder'       => 'Place holder here',
-			'default'           => '',
-			'desc'              => esc_html__( 'textarea', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'desc_tip'          => true,
-			'class'             => 'mwb-wfw-textarea-field',
-			'custom_attributes' => array(
-				'data-keytype' => esc_html__( 'textarea-field', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			),
+			'class'		        => 'mwb-wfw-select' . $maybe_hidden_button,
+			'name'   			=> 'wfw-button-view',
+			'value'   			=> get_option( 'wfw-button-view', '' ),
 		);
 
 		$settings[] = array(
 			'type' => 'sectionend',
 		);
+		
 		return $settings;
 	}
 

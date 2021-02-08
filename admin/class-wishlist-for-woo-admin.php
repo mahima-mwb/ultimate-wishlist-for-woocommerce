@@ -328,14 +328,25 @@ class Wishlist_For_Woo_Admin {
 						'id'    => 'mwb-wfw-heading',
 					);
 					break;
-			}	
+			}
 		}
 
 		if( ! empty( $settings ) && is_array( $settings ) ) {
-			ob_start();
-				woocommerce_admin_fields( $settings );
-			$output = ob_get_contents();
-			ob_end_clean();
+
+			$output = '';
+			foreach ( $settings as $index => $setting ) {
+
+				if( ! empty( $setting[ 'type' ] ) && 'sub-heading' == $setting[ 'type' ] ) {
+					$output .= sprintf( '<tr valign="top"><td colspan="2" class="forminp"><h2 class="mwb-wfw-subheading">%s</h2></td></tr>', esc_html( $setting[ 'value' ] ) );
+				}
+
+				else {
+					ob_start();
+						woocommerce_admin_fields( array( $setting ) );
+					$output .= ob_get_contents();
+					ob_end_clean();		
+				}
+			}
 
 			return $output;
 		}
