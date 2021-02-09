@@ -344,6 +344,10 @@ main.mwb-wfw-main {
     color: #9B5C8F;
 }
 
+.mwb-wfw-output-form .description {
+    display: inline-flex;
+}
+
 /*Applying fonts to elements*/
 .mwb-wfw-output-form h2,
 .mwb-wfw-output-form .titledesc,

@@ -352,5 +352,62 @@ class Wishlist_For_Woo_Admin {
 		}
 	}
 
+	/**
+ 	 *  Save form data ajax callback.
+	 * 
+	 * @throws $error If something interesting cannot happen while registering the portal.
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return json
+	 */
+	public function saveFormOutput() {
+		
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
+
+		$checkbox_settings = array(
+			'wfw-enable-plugin'
+		);
+
+		$formdata = array();
+		isset( $_POST['data'] ) ? parse_str( sanitize_text_field( $_POST['data'] ), $formdata ) : '';
+		$formdata = ! empty( $formdata ) ?  map_deep( wp_unslash( $formdata ), 'sanitize_text_field' ) : false;
+		
+		try {
+
+			foreach ( $checkbox_settings as $key => $data_key ) {
+
+				if( ! array_key_exists( $data_key, $formdata ) ) {
+					$formdata[ $data_key ] = '';
+				}
+				else {
+
+					$formdata[ $data_key ] = 'yes';
+				}
+			}
+
+			if ( count( $formdata ) ) {
+
+				foreach ( $formdata as $data_key => $data_value ) {
+					update_option( $data_key, $data_value );
+				}
+
+				$result = array(
+					'status'	=>	200,
+					'content'	=>	'success',
+				);
+			}
+			
+		} catch (\Throwable $error ) {
+
+			$result = array(
+				'status'	=>	500,
+				'content'	=>	$error->getMessage(),
+			);
+		}
+		
+		echo json_encode( $result );
+		wp_die();
+	}
+
 # End of class.
 }

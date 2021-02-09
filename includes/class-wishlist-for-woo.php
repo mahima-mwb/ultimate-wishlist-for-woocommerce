@@ -174,6 +174,7 @@ class Wishlist_For_Woo {
 		
 		// Ajax Callbacks.
 		$this->loader->add_action( 'wp_ajax_getCurrentScreen', $plugin_admin, 'getCurrentScreen' );
+		$this->loader->add_action( 'wp_ajax_saveFormOutput', $plugin_admin, 'saveFormOutput' );
 	}
 
 	/**

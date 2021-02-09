@@ -115,13 +115,13 @@ class Wishlist_For_Woo_Template_Manager {
                 </div>
                 <h2>help desk </h2>
                 <ul class="mwb-wfw-sidebar__items">
-                    <li class="mwb-wfw-sidebar__links"><a href="#"><?php esc_html_e( 'go pro', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?><span> &#8594;</span></a></li>
-                    <li class="mwb-wfw-sidebar__links"><a href="#"><?php esc_html_e( 'see docs', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?><span> &#8594;</span></a></li>
-                    <li class="mwb-wfw-sidebar__links"><a href="#"><?php esc_html_e( 'see tutorial', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?> <span> &#8594;</span></a></li>
+                    <li class="mwb-wfw-sidebar__links"><a href="javascript:void(0)"><?php esc_html_e( 'go pro', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?><span> &#8594;</span></a></li>
+                    <li class="mwb-wfw-sidebar__links"><a href="javascript:void(0)"><?php esc_html_e( 'see docs', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?><span> &#8594;</span></a></li>
+                    <li class="mwb-wfw-sidebar__links"><a href="javascript:void(0)"><?php esc_html_e( 'see tutorial', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?> <span> &#8594;</span></a></li>
                 </ul>
                 <div class="mwb-wfw-sidebar__connect">
-                    <a href="#"><?php esc_html_e( 'connect with us in one click', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></a>
-                    <a href="#" class="mwb-wfw-skype__icon"><img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/skype_logo.png' ) ?>" alt="skype-log"><span>connect</span></a>
+                    <a href="javascript:void(0)"><?php esc_html_e( 'connect with us in one click', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></a>
+                    <a href="javascript:void(0)" class="mwb-wfw-skype__icon"><img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/skype_logo.png' ) ?>" alt="skype-log"><span>connect</span></a>
                 </div>
             </div>
 		<?php echo ob_get_clean();
@@ -138,8 +138,8 @@ class Wishlist_For_Woo_Template_Manager {
 		ob_start(); ?>
 		<!-- Header Section -->
 			<div class="mwb-wfw_save-wrapper is-hidden">
-				<span><a href="#" class="mwb-wfw_save-link"><?php esc_html_e( 'SAVE', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></a>
-				<a href="#" class="mwb-wfw_cancel-link"><?php esc_html_e( 'CANCEL', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></a></span>
+				<span><a href="javascript:void(0);" class="mwb-wfw_save-link"><?php esc_html_e( 'SAVE', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></a>
+				<a href="javascript:void(0);" class="mwb-wfw_cancel-link"><?php esc_html_e( 'CANCEL', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></a></span>
 				<span class="mwb-wfw_save-text is-hidden"><?php esc_html_e( 'You have saved your data!', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></span>
 			</div>
 		</main>
@@ -214,19 +214,19 @@ class Wishlist_For_Woo_Template_Manager {
 			'type'  				=> 'checkbox',
 			'desc_tip' 				=> true,
 			'value'   				=> get_option( 'wfw-enable-plugin', 'yes' ),
-			'name'    				=> 'wfw-enable-plugin',
+			'id'    				=> 'wfw-enable-plugin',
 			'desc'  				=> esc_html__( 'Enable/Disable the complete plugin functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
 
 		$settings[]		=	array(
 			'type'	=>	'sub-heading',
-			'value'	=>	esc_html__( 'Wishlist Interface Settings', WISHLIST_FOR_WOO_TEXTDOMAIN )
+			'value'	=>	esc_html__( 'Wishlist at Loops', WISHLIST_FOR_WOO_TEXTDOMAIN )
 		);
 
 		$settings[] = array(
 			'title'             => esc_html__( 'Wishlist View Type', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'              => 'select',
-			'desc'              => esc_html__( 'Select how you want to show the wishlist interface.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'desc'              => esc_html__( 'Select how you want to show the wishlist interface on the loops like shop and related products.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'options'           => array(
 									''			=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 									'icon'		=>	esc_html__( 'Icon over Product Image', WISHLIST_FOR_WOO_TEXTDOMAIN ),
@@ -234,8 +234,9 @@ class Wishlist_For_Woo_Template_Manager {
 								),
 			'desc_tip'          => true,
 			'class'		        => 'mwb-wfw-select',
-			'name'   			=> 'wfw-view-type',
-			'value'   			=> get_option( 'wfw-view-type', '' ),
+			'id'   				=> 'wfw-loop-view-type',
+			'value'   			=> get_option( 'wfw-loop-view-type', '' ),
+			'custom_attributes' => array( 'view-type' => 'loop' ),
 		);
 
 		$settings[] = array(
@@ -250,9 +251,9 @@ class Wishlist_For_Woo_Template_Manager {
 									'bag'		=>	esc_html__( 'Bag Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 								),
 			'desc_tip'          => true,
-			'class'		        => 'mwb-wfw-select' . $maybe_hidden_icon,
-			'name'   			=> 'wfw-icon-view',
-			'value'   			=> get_option( 'wfw-icon-view', '' ),
+			'class'		        => 'mwb-wfw-select mwb-wfw-select-loop',
+			'id'   				=> 'wfw-loop-icon-view',
+			'value'   			=> get_option( 'wfw-loop-icon-view', '' ),
 		);
 
 		$settings[] = array(
@@ -267,9 +268,64 @@ class Wishlist_For_Woo_Template_Manager {
 									'after_product_name'	=>	esc_html__( 'After Product Title', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 								),
 			'desc_tip'          => true,
-			'class'		        => 'mwb-wfw-select' . $maybe_hidden_button,
-			'name'   			=> 'wfw-button-view',
-			'value'   			=> get_option( 'wfw-button-view', '' ),
+			'class'		        => 'mwb-wfw-select mwb-wfw-select-loop',
+			'id'   				=> 'wfw-loop-button-view',
+			'value'   			=> get_option( 'wfw-loop-button-view', '' ),
+		);
+
+		$settings[]		=	array(
+			'type'	=>	'sub-heading',
+			'value'	=>	esc_html__( 'Wishlist at Product Page', WISHLIST_FOR_WOO_TEXTDOMAIN )
+		);
+
+		$settings[] = array(
+			'title'             => esc_html__( 'Wishlist View Type', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'type'              => 'select',
+			'desc'              => esc_html__( 'Select how you want to show the wishlist interface on the loops like shop and related products.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'options'           => array(
+									''			=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'icon'		=>	esc_html__( 'Icon over Product Image', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'button'	=>	esc_html__( 'Add to Wishlist button', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+								),
+			'desc_tip'          => true,
+			'class'		        => 'mwb-wfw-select',
+			'id'   				=> 'wfw-product-view-type',
+			'value'   			=> get_option( 'wfw-product-view-type', '' ),
+			'custom_attributes' => array( 'view-type' => 'product' ),
+		);
+
+		$settings[] = array(
+			'title'             => esc_html__( 'Wishlist Interface Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'type'              => 'select',
+			'desc'              => esc_html__( 'Select which icon you want for the wishlist interface.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'options'           => array(
+									''			=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'heart'		=>	esc_html__( 'Heart Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'shopping'		=>	esc_html__( 'Shopping Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'cart'		=>	esc_html__( 'Cart Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'bag'		=>	esc_html__( 'Bag Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+								),
+			'desc_tip'          => true,
+			'class'		        => 'mwb-wfw-select mwb-wfw-select-product',
+			'id'   				=> 'wfw-product-icon-view',
+			'value'   			=> get_option( 'wfw-product-icon-view', '' ),
+		);
+
+		$settings[] = array(
+			'title'             => esc_html__( 'Wishlist Button Position', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'type'              => 'select',
+			'desc'              => esc_html__( 'Select where wishlist button should be shown.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'options'           => array(
+									''						=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'before_add_to_cart'	=>	esc_html__( 'Before Add To Cart Button', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'after_add_to_cart'		=>	esc_html__( 'Before Add To Cart Button', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'before_product_name'	=>	esc_html__( 'Before Product Title', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'after_product_name'	=>	esc_html__( 'After Product Title', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+								),
+			'desc_tip'          => true,
+			'class'		        => 'mwb-wfw-select mwb-wfw-select-product',
+			'id'   				=> 'wfw-product-button-view',
+			'value'   			=> get_option( 'wfw-product-button-view', '' ),
 		);
 
 		$settings[] = array(

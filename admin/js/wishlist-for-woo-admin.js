@@ -10,9 +10,37 @@ jQuery(document).ready(function() {
 
     const preloader = jQuery('.mwb-wfw-desc--preloader');
     const outputScreen = jQuery('.mwb-wfw-output-form');
+    const saveScreen = jQuery('.mwb-wfw_save-wrapper');
+    const savetext = jQuery('.mwb-wfw_save-text');
+    const saveButton = jQuery('.mwb-wfw_save-link');
+    const cancelButton = jQuery('.mwb-wfw_cancel-link');    
+    const saveUpdates = ( data ) => {
+        savetext.addClass( 'is-hidden' );
+        return jQuery.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: mwb_wfw_obj.ajaxUrl,
+            data: {
+                nonce: mwb_wfw_obj.authNonce,
+                action: 'saveFormOutput',
+                data: data,
+            },
+            success: function(result) {
+                savetext.removeClass( 'is-hidden' );
+                setTimeout( function () {
+                    rollbackFormChanges()
+                }, 2000 );
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                if ('error' == textStatus) {
+                    swal(textStatus.toUpperCase(), errorThrown, 'error');
+                }
+            }
+        });
+    };
 
     // Update Screen Upon hashchange.
-    jQuery(window).bind('hashchange', function() {
+    jQuery(window).bind( 'hashchange', function() {
         getCurrentScreens(window.location.hash);
     });
 
@@ -34,6 +62,16 @@ jQuery(document).ready(function() {
         jQuery('.mwb-wfw-nav-collapse').slideToggle('slow');
     });
 
+    // Cancel button.
+    cancelButton.on( 'click', function () {
+        rollbackFormChanges();
+    });
+
+    // Save button.
+    saveButton.on( 'click', function () {
+        saveFormChanges();
+    });
+    
     /**==================================================
                     Function Definations
     ====================================================*/
@@ -94,10 +132,24 @@ jQuery(document).ready(function() {
 
         // Successfully add template.
         if (200 == result.status) {
+
+            // Append template html.
             outputScreen.html( result.content );
 
             // Enable select2 fields.
-           // jQuery('.mwb-wfw-multi-select').select2();
+            jQuery('.mwb-wfw-multi-select').select2();
+            jQuery.each( jQuery( 'input, select ,textarea', '.mwb-wfw-output-form' ), function() {
+                showSavePortal( jQuery(this));
+            });
+
+            // Subsettings show/hide on change and ready.
+            jQuery.each( jQuery( '.mwb-wfw-select' ), function() {
+                handleSubSetings( jQuery( this ) );
+            });
+            
+            jQuery( '.mwb-wfw-select' ).on( 'change', function () {
+                handleSubSetings( jQuery( this ) );
+            });
         }
 
         // Template not Found.
@@ -116,6 +168,42 @@ jQuery(document).ready(function() {
         preloader.hide();
     }
 
-    // End of scripts.
-    // Custom JS for save and cancel button
+    /**
+     * Show Save/Cancel Button.
+     */
+    function showSavePortal( obj ) {
+        obj.on( 'change', function(){
+            saveScreen.removeClass( 'is-hidden' )
+        });
+    }
+
+    /**
+     * Cancel Button Click.
+     */
+    function rollbackFormChanges() {
+        saveScreen.addClass( 'is-hidden' );
+    }
+
+    /**
+     * Save Button Click.
+     */
+    function saveFormChanges() {
+        saveUpdates( outputScreen.serialize() );
+    }
+
+    /**
+     * Show Hide Subsettings.
+     */
+    function handleSubSetings(obj) {
+        view = obj.attr( 'view-type' );
+        val = obj.val();
+        if( 'undefined' == typeof view ) {
+            return;
+        }
+
+        jQuery( '.mwb-wfw-select-' + view ).closest('tr').hide();
+        jQuery( '#wfw-' + view + '-' + val + '-view' ).closest('tr').show();
+    }
+
+// End of scripts.
 });
