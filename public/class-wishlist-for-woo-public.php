@@ -100,4 +100,100 @@ class Wishlist_For_Woo_Public {
 
 	}
 
+	/**
+ 	 *  Initiate all functionalities after woocommerce is initiated.
+	 * 
+	 * @throws Some_Exception_Class If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function wishlist_init() {
+		
+		// Check if plugin enabled.
+		$is_plugin_enabled = get_option( 'wfw-enable-plugin', 'yes' );
+		if( is_admin() || 'yes' !== $is_plugin_enabled ) {
+			return;
+		}
+
+		// Enable wishlist at loops.
+		$this->enable_wishlist_on_loops();
+	}
+
+	/**
+ 	 *  Enable wishlist at loops.
+	 * 
+	 * @throws Exception If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function enable_wishlist_on_loops() {
+		
+		// Check if plugin enabled.
+		$is_wishlist_enabled = get_option( 'wfw-loop-view-type', '' );
+
+		if( empty( $is_wishlist_enabled ) ) {
+			return;
+		}
+
+		$hook = '';
+
+		switch ( $is_wishlist_enabled ) {
+			case 'value':
+				# code...
+				break;
+			
+			default:
+				$hook = 'woocommerce_shop_loop_item_title';
+				break;
+		}
+
+		/**
+		 * 'woocommerce_shop_loop_item_title' : after shop page product title in loop
+		 * 'woocommerce_after_shop_loop_item' : after shop page product add to cart in image
+		 */
+
+		/**
+		 * Product Image hooks.
+		 */
+		add_action( 'woocommerce_after_shop_loop_item' ,array( $this, 'add_wishlist_on_image' ), 10 );
+		add_action( 'woocommerce_before_shop_loop_item_title' ,array( $this, 'add_wishlist_on_image' ), 10 );
+		add_action( 'woocommerce_product_thumbnails' ,array( $this, 'add_wishlist_on_image' ), 10 );
+
+		/**
+		 * Loops hooks.
+		 */
+		add_action( 'woocommerce_shop_loop_item_title' ,array( $this, 'add_wishlist_on_shop_loops' ), 1 );
+		add_action( 'woocommerce_shop_loop_item_title' ,array( $this, 'add_wishlist_on_shop_loops' ), 10 );
+
+		/**
+		 * Single product page hooks.
+		 */
+		add_action( 'woocommerce_simple_add_to_cart' ,array( $this, 'add_wishlist_on_single' ), 10 );
+
+		// // Before add to cart.
+		// add_action( 'woocommerce_before_add_to_cart_form' ,array( $this, 'add_wishlist_on_single' ), 10 );
+		
+		// // After add to cart.
+		add_action( 'woocommerce_after_add_to_cart_button' ,array( $this, 'add_wishlist_on_single' ), 10 );
+	}
+
+	function add_wishlist_on_shop_loops(){
+		?>
+			<a href="javascript:void(0);" class="add-to-wishlist mwb_<?php echo current_action(); ?>"><?php echo 'Add to wislist'; ?></a> 
+		<?php
+	}
+
+	function add_wishlist_on_single(){
+		?>
+			<a href="javascript:void(0);" class="add-to-wishlist mwb_<?php echo current_action(); ?>"><?php echo 'Add to wislist'; ?></a>
+		<?php
+	}
+
+	function add_wishlist_on_image(){
+		?>
+		<a href="javascript:void(0);" class="add-to-wishlist mwb_<?php echo current_action(); ?>"><i style="font-size:24px;color:red;" class="fa">&#xf004;</i></a>
+		<?php
+	}
+
+// End of class.
 }
