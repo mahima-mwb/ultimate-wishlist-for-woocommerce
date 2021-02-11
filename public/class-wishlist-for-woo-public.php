@@ -51,7 +51,7 @@ class Wishlist_For_Woo_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
+		$this->render = Wishlist_For_Woo_Renderer::get_instance();
 	}
 
 	/**
@@ -117,6 +117,9 @@ class Wishlist_For_Woo_Public {
 
 		// Enable wishlist at loops.
 		$this->enable_wishlist_on_loops();
+
+		// Enable wishlist at Single page.
+		$this->enable_wishlist_on_single();
 	}
 
 	/**
@@ -151,20 +154,44 @@ class Wishlist_For_Woo_Public {
 		}
 
 		if( ! empty( $hook ) && is_array( $hook ) ) {
-			add_action( $hook[ 'hook' ] , array( $this, $func ),  $hook[ 'priority' ] );
+			add_action( $hook[ 'hook' ] , array( $this->render, $func ),  $hook[ 'priority' ] );
 		}
 	}
 
-	function add_wishlist_on_all_loops(){
-		?>
-			<a href="javascript:void(0);" class="add-to-wishlist mwb-wfw-loop-text-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-loop"><?php echo 'Add to wislist'; ?></a> 
-		<?php
-	}
+	/**
+ 	 *  Enable wishlist at Single Product Page.
+	 * 
+	 * @throws Exception If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function enable_wishlist_on_single() {
+		
+		// Check if wishlist needs to be added on current view.
+		$is_wishlist_enabled = get_option( 'wfw-product-view-type', '' );
 
-	function add_wishlist_on_loop_image(){
-		?>
-			<a href="javascript:void(0);" class="add-to-wishlist mwb-wfw-loop-icon-button mwb-<?php echo esc_html( current_action() ); ?>-icon"><i class="fa mwb-wfw-icon">&#xf004;</i></a>
-		<?php
+		if( empty( $is_wishlist_enabled ) ) {
+			return;
+		}
+
+		$hook = array();
+
+		switch ( $is_wishlist_enabled ) {
+			case 'icon' :
+				$hook = Wishlist_For_Woo_Renderer::get_icons_hooks( 'single' );
+				$func = 'add_wishlist_on_single_image';
+				break;
+
+			case 'button' :
+				$position = get_option( 'wfw-product-button-view', '' );
+				$hook = Wishlist_For_Woo_Renderer::get_button_hooks( 'single', $position );
+				$func = 'add_wishlist_on_all_single';
+				break;
+		}
+
+		if( ! empty( $hook ) && is_array( $hook ) ) {
+			add_action( $hook[ 'hook' ] , array( $this->render, $func ),  $hook[ 'priority' ] );
+		}
 	}
 
 // End of class.

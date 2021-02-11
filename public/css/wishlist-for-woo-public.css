@@ -49,12 +49,50 @@ a.add-to-wishlist.mwb-wfw-loop-text-button.mwb-woocommerce-after-shop-loop-item-
     color: #9b5c8f;
 }
 
+/*============================================== 
+        Wishlist Icon Styles at Single
+==============================================*/
+.add-to-wishlist.mwb-wfw-single-icon-button {
+    top: 2px;
+    left: 10px;
+    position: absolute;
+    filter: grayscale(1);
+    font-size: 24px;
+}
+
+.add-to-wishlist.mwb-wfw-single-icon-button:hover {
+    filter: unset;
+    color: rgb(233, 17, 17);
+}
+
+/*============================================== 
+        Wishlist Button Styles at Single
+==============================================*/
+.add-to-wishlist.mwb-wfw-single-text-button {
+    background-color: #9b5c8f;
+    padding: 5px 50px;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    color: #ffffff;
+    display: block;
+    width: max-content;
+    margin: 2px;
+    transition: all 0.2s ease-in-out;
+}
+
+.add-to-wishlist.mwb-wfw-single-text-button:hover {
+    background-color: inherit;
+    border: 2px solid #9b5c8f;
+    color: #9b5c8f;
+}
 
 /*============================================== 
            Wishlist General Fixes
 ==============================================*/
 
 /* Remove borders upon hover and active links. */
+.add-to-wishlist.mwb-wfw-single-text-button:focus,
+.add-to-wishlist.mwb-wfw-single-icon-button:focus,
 .add-to-wishlist.mwb-wfw-loop-text-button:focus,
 .add-to-wishlist.mwb-wfw-loop-icon-button:focus {
     outline: none;

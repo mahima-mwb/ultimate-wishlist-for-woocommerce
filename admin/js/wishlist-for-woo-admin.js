@@ -182,6 +182,7 @@ jQuery(document).ready(function() {
      */
     function rollbackFormChanges() {
         saveScreen.addClass( 'is-hidden' );
+        savetext.addClass( 'is-hidden' );
     }
 
     /**
