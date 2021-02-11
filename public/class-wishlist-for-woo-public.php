@@ -128,70 +128,42 @@ class Wishlist_For_Woo_Public {
 	 */
 	public function enable_wishlist_on_loops() {
 		
-		// Check if plugin enabled.
+		// Check if wishlist needs to be added on current view.
 		$is_wishlist_enabled = get_option( 'wfw-loop-view-type', '' );
 
 		if( empty( $is_wishlist_enabled ) ) {
 			return;
 		}
 
-		$hook = '';
+		$hook = array();
 
 		switch ( $is_wishlist_enabled ) {
-			case 'value':
-				# code...
+			case 'icon' :
+				$hook = Wishlist_For_Woo_Renderer::get_icons_hooks( 'loop' );
+				$func = 'add_wishlist_on_loop_image';
 				break;
-			
-			default:
-				$hook = 'woocommerce_shop_loop_item_title';
+
+			case 'button' :
+				$position = get_option( 'wfw-loop-button-view', '' );
+				$hook = Wishlist_For_Woo_Renderer::get_button_hooks( 'loop', $position );
+				$func = 'add_wishlist_on_all_loops';
 				break;
 		}
 
-		/**
-		 * 'woocommerce_shop_loop_item_title' : after shop page product title in loop
-		 * 'woocommerce_after_shop_loop_item' : after shop page product add to cart in image
-		 */
-
-		/**
-		 * Product Image hooks.
-		 */
-		add_action( 'woocommerce_after_shop_loop_item' ,array( $this, 'add_wishlist_on_image' ), 10 );
-		add_action( 'woocommerce_before_shop_loop_item_title' ,array( $this, 'add_wishlist_on_image' ), 10 );
-		add_action( 'woocommerce_product_thumbnails' ,array( $this, 'add_wishlist_on_image' ), 10 );
-
-		/**
-		 * Loops hooks.
-		 */
-		add_action( 'woocommerce_shop_loop_item_title' ,array( $this, 'add_wishlist_on_shop_loops' ), 1 );
-		add_action( 'woocommerce_shop_loop_item_title' ,array( $this, 'add_wishlist_on_shop_loops' ), 10 );
-
-		/**
-		 * Single product page hooks.
-		 */
-		add_action( 'woocommerce_simple_add_to_cart' ,array( $this, 'add_wishlist_on_single' ), 10 );
-
-		// // Before add to cart.
-		// add_action( 'woocommerce_before_add_to_cart_form' ,array( $this, 'add_wishlist_on_single' ), 10 );
-		
-		// // After add to cart.
-		add_action( 'woocommerce_after_add_to_cart_button' ,array( $this, 'add_wishlist_on_single' ), 10 );
+		if( ! empty( $hook ) && is_array( $hook ) ) {
+			add_action( $hook[ 'hook' ] , array( $this, $func ),  $hook[ 'priority' ] );
+		}
 	}
 
-	function add_wishlist_on_shop_loops(){
+	function add_wishlist_on_all_loops(){
 		?>
-			<a href="javascript:void(0);" class="add-to-wishlist mwb_<?php echo current_action(); ?>"><?php echo 'Add to wislist'; ?></a> 
+			<a href="javascript:void(0);" class="add-to-wishlist mwb-wfw-loop-text-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-loop"><?php echo 'Add to wislist'; ?></a> 
 		<?php
 	}
 
-	function add_wishlist_on_single(){
+	function add_wishlist_on_loop_image(){
 		?>
-			<a href="javascript:void(0);" class="add-to-wishlist mwb_<?php echo current_action(); ?>"><?php echo 'Add to wislist'; ?></a>
-		<?php
-	}
-
-	function add_wishlist_on_image(){
-		?>
-		<a href="javascript:void(0);" class="add-to-wishlist mwb_<?php echo current_action(); ?>"><i style="font-size:24px;color:red;" class="fa">&#xf004;</i></a>
+			<a href="javascript:void(0);" class="add-to-wishlist mwb-wfw-loop-icon-button mwb-<?php echo esc_html( current_action() ); ?>-icon"><i class="fa mwb-wfw-icon">&#xf004;</i></a>
 		<?php
 	}
 

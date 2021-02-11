@@ -262,10 +262,10 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc'              => esc_html__( 'Select where wishlist button should be shown.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'options'           => array(
 									''						=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'before_add_to_cart'	=>	esc_html__( 'Before Add To Cart Button', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'after_add_to_cart'		=>	esc_html__( 'Before Add To Cart Button', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 									'before_product_name'	=>	esc_html__( 'Before Product Title', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 									'after_product_name'	=>	esc_html__( 'After Product Title', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'before_add_to_cart'	=>	esc_html__( 'Before Add To Cart Button', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+									'before_product_loop'	=>	esc_html__( 'Before Product Section', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 								),
 			'desc_tip'          => true,
 			'class'		        => 'mwb-wfw-select mwb-wfw-select-loop',
