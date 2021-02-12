@@ -41,6 +41,15 @@ class Wishlist_For_Woo_Public {
 	private $version;
 
 	/**
+	 * The version of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 * @var      string    $public_path    The public class location.
+	 */
+	public $public_path;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -51,6 +60,7 @@ class Wishlist_For_Woo_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->public_path = plugin_dir_path( __FILE__ );
 		$this->render = Wishlist_For_Woo_Renderer::get_instance();
 	}
 
@@ -120,6 +130,9 @@ class Wishlist_For_Woo_Public {
 
 		// Enable wishlist at Single page.
 		$this->enable_wishlist_on_single();
+
+		// Initiate a wishlist shortcode.
+		$this->init_shortcodes();
 	}
 
 	/**
@@ -192,6 +205,22 @@ class Wishlist_For_Woo_Public {
 		if( ! empty( $hook ) && is_array( $hook ) ) {
 			add_action( $hook[ 'hook' ] , array( $this->render, $func ),  $hook[ 'priority' ] );
 		}
+	}
+
+	/**
+ 	 *  Enable wishlist shortcodes.
+	 * 
+	 * @throws Exception If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function init_shortcodes() {
+		
+		// Init shortcode class.
+		$shortcode = new Wishlist_For_Woo_Shortcode_Manager( $this->public_path );
+
+		// wishlist page view.
+		add_shortcode( 'mwb_wfw_wishlist', array( $shortcode, 'init' ) );
 	}
 
 // End of class.

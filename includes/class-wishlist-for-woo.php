@@ -80,7 +80,6 @@ class Wishlist_For_Woo {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 		$this->define_template_hooks();
-
 	}
 
 	/**
@@ -132,6 +131,11 @@ class Wishlist_For_Woo {
 		 * The class responsible for defining all wishlist operation.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-crud-manager.php';
+
+		/**
+		 * The class responsible for defining all wishlist operation.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-shortcode-manager.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
