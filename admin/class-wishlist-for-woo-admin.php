@@ -297,7 +297,7 @@ class Wishlist_For_Woo_Admin {
 	 * @return html
 	 */
 	public static function get_selected_template_content( $template_part=false ) {
-	
+
 		if( ! empty( $template_part ) ) {
 			switch ( $template_part ) {
 				case 'general':

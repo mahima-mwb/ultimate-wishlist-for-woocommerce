@@ -129,6 +129,11 @@ class Wishlist_For_Woo {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-renderer.php';
 
 		/**
+		 * The class responsible for defining all wishlist operation.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-crud-manager.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wishlist-for-woo-admin.php';
@@ -140,7 +145,6 @@ class Wishlist_For_Woo {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wishlist-for-woo-public.php';
 
 		$this->loader = new Wishlist_For_Woo_Loader();
-
 	}
 
 	/**
