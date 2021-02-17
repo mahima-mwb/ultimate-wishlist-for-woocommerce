@@ -337,6 +337,33 @@ class Wishlist_For_Woo_Template_Manager {
 			'value'   			=> get_option( 'wfw-product-button-view', '' ),
 		);
 
+		$settings[]		=	array(
+			'type'	=>	'sub-heading',
+			'value'	=>	esc_html__( 'Wishlist Page', WISHLIST_FOR_WOO_TEXTDOMAIN )
+		);
+
+		global $wpdb;
+		$sql = "SELECT `ID` FROM `wp_posts` WHERE `post_content` LIKE '%[mwb_wfw_wishlist]%' AND `post_type` = 'page' AND `post_status` = 'publish'";
+		$wishlist_page = $wpdb->get_results( $sql );
+		$page_option = array();
+		if( $wishlist_page ) {
+
+			foreach ( $wishlist_page as $key => $post ) {
+				$page_option[ $post->ID ] = get_the_title( $post->ID );
+			}
+		}
+
+		$settings[] = array(
+			'title'             => esc_html__( 'Wishlist Page', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'type'              => 'select',
+			'desc'              => esc_html__( 'Select where wishlist button should be shown.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'options'           => $page_option,
+			'desc_tip'          => true,
+			'class'		        => 'mwb-wfw-select mwb-wfw-select-page',
+			'id'   				=> 'wfw-selected-page',
+			'value'   			=> get_option( 'wfw-selected-page', '' ),
+		);
+
 		$settings[] = array(
 			'type' => 'sectionend',
 		);

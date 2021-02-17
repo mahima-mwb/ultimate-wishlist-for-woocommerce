@@ -98,7 +98,14 @@ class Wishlist_For_Woo_Crud_Manager {
     public function create( $atts=array() ) {
 
         $args = self::parse_query_args( $atts );
-        
+
+        if( empty( $args ) ) {
+            return array(
+                'status'    => 404, 
+                'message'    => esc_html__( 'Invalid Arguments', 'wishlist-for-woo' ), 
+            );
+        }
+
         global $wpdb;
         $results = $wpdb->insert( $this->table_name, $args );
 
@@ -205,6 +212,7 @@ class Wishlist_For_Woo_Crud_Manager {
             $args, 
             array( 'ID' => $this->id )
         );
+        
 
         // (int|false) The number of rows updated, or false on error.
         if( ! empty( $wpdb->last_error ) || empty( $response ) ) {
@@ -250,6 +258,9 @@ class Wishlist_For_Woo_Crud_Manager {
 
                 foreach ( $additional as $key => $value ) {
                     $operator = in_array( $key, $this->array_entries ) ? 'REGEXP' : '=';
+
+                    $value = 'properties' == $key ? json_encode( $value ) : $value;
+                    $value = str_replace( array( '{', '}' ), '', $value );
                     $get_query .= " AND `$key` $operator '$value' ";
                 }
             }
@@ -303,13 +314,13 @@ class Wishlist_For_Woo_Crud_Manager {
 	 * @since 1.0.0
 	 * @return array $result the parsed data form for query.
 	 */
-    public function parse_query_args( $args=array() ) {
+    private function parse_query_args( $args=array() ) {
 
         if ( ! empty( $args ) && is_array( $args ) ) {
             
             $result = array();
             foreach ( $args as $key => $arg ) {
-                $result[ $key ] = ! empty( $arg ) && is_array( $arg ) ? json_encode( $arg ) : $arg;
+                $result[ $key ] = ! empty( $arg ) && is_array( $arg ) ? json_encode( array_unique( $arg ) ) : $arg;
             }
 
             return $result;
@@ -318,6 +329,82 @@ class Wishlist_For_Woo_Crud_Manager {
         return false;
     }
 
+    /**
+	 * Get Selected data from Sql Query Obj.
+	 *
+     * @param $args     array SQL result
+     * @param $fetch    string  The key to fetch.
+	 * @since 1.0.0
+	 * @return array $result the parsed data form for query.
+	 */
+    public function get_prop( $obj=array(), $fetch = '' ) {
+
+        if ( ! empty( $obj ) && is_array( $obj ) ) {
+            
+            $result = array();
+
+            foreach ( $obj as $key => $wishlist ) {
+
+                if( empty( $fetch ) ) {
+                    return $wishlist;
+                }
+                else {
+                    return $wishlist[ $fetch ] ? $wishlist[ $fetch ] : false;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+	 * Set Selected data to Sql Query Obj and Update to wishlist.
+	 *
+     * @param $obj     array SQL result
+     * @param $key     string  The key to update.
+     * @param $value   string  The value to update.
+     * @param $force_override    bool  Whether to add as a complete new value ( works only in case of array data ) .
+	 * @since 1.0.0
+	 * @return array $result the parsed data form for query.
+	 */
+    public function set_prop( $obj=array(), $key = '', $value='', $force_override=false ) {
+
+        $result = array(
+            'status'    =>  200,
+            'message'    =>  esc_html__( 'Invalid Input', 'wishlist-for-woo' ),
+        );
+
+        if( empty( $key ) || ( true != $force_override && empty( $value ) ) ) {
+            return $result;
+        }
+
+        if ( ! empty( $obj ) && is_array( $obj ) ) {
+            
+            $result = array();
+            foreach ( $obj as $_key => $wishlist ) {
+
+                if( in_array( $_key, $this->array_entries ) ) {
+
+                    if( true == $force_override ) {
+
+                        $update_value = is_array( $value ) ? $value : array( $value );
+                    }
+                    else {
+
+                        $updated_value = json_decode( $this->get_prop( $obj, $key ) );
+                        array_push( $updated_value, $value );
+                    }
+                }
+
+                $args[ $key ] = $updated_value;
+
+                $this->id = $this->id ? $this->id : $this->get_prop( $obj, 'id' );
+
+                return $this->update( $args );
+            }
+        }
+
+        return false;
+    }
 
 // End of Class.
 }

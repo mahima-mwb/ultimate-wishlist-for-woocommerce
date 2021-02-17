@@ -33,6 +33,9 @@ class Wishlist_For_Woo_Activator {
 
 		// Create a Wishlist table in wp-db.
 		self::init();
+
+        // Create a default Wishlist Page.
+        self::insert_default_posts();
 	}
 
     /**
@@ -76,4 +79,39 @@ class Wishlist_For_Woo_Activator {
             }
         }
 	}
+
+    /**
+     * Register the Default Page.
+     *
+     * @since    1.0.0
+     */
+    public static function insert_default_posts() {
+
+        /**
+         * Search and Insert default quote page if not avaiable.
+         */
+        $args  = array(
+            'post_type'   => 'page',
+            'post_status' => 'publish',
+            'meta_key'    => '_mwb_wfw_default_page',
+        );
+
+        $quote_page = get_posts($args);
+
+        if( empty( $quote_page ) ) {
+            $default_page = array(
+                'post_title'   => esc_html__( 'Wishlist', 'wishlist-for-woo' ),
+                'post_status'  => 'publish',
+                'post_content' => esc_html( '[mwb_wfw_wishlist]' ),
+                'post_author'  => get_current_user_id(),
+                'post_type'    => 'page',
+                'meta_input'   => array(
+                    '_mwb_wfw_default_page'  => true
+               ),
+            );
+            wp_insert_post( $default_page );
+        }
+    }
+   
+// End of class.
 }

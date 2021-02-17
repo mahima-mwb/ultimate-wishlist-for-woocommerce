@@ -82,9 +82,8 @@ class Wishlist_For_Woo_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-public.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style( 'wp-jquery-ui-dialog' );
 	}
 
 	/**
@@ -107,7 +106,27 @@ class Wishlist_For_Woo_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-public.js', array( 'jquery' ), $this->version, false );
+		wp_localize_script(
+			$this->plugin_name,
+			'mwb_wfw_obj',
+			array(
+				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
+				'mobile_view'   => wp_is_mobile(),
+				'auth_nonce'    => wp_create_nonce( 'mwb_wfw_nonce' ),
+				'strings'    => json_encode(
+					array(
+						'popup_title'	=>	apply_filters( 'wfw_popup_title', esc_html__( 'New Item Added in Wishlist', 'wishlist-for-woo' ) ),
+						'view_text'	=>	apply_filters( 'mwf_view_text', esc_html__( 'View Wishlist', 'wishlist-for-woo' ) ),
+						'processing_text'	=>	apply_filters( 'mwf_processing_text', esc_html__( 'Processing', 'wishlist-for-woo' ) ),
+						'add_to_cart'	=>	apply_filters( 'mwf_add_to_cart', esc_html__( 'Buy Now', 'wishlist-for-woo' ) ),
+					)
+				),
+				'permalink'    => get_option( 'wfw-selected-page', false ) ? get_permalink( get_option( 'wfw-selected-page' ) ) : '',
+			)
+		);
 
+		wp_enqueue_script( $this->plugin_name . '-swal-alert', WISHLIST_FOR_WOO_URL . 'admin/js/swal.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 'jquery-ui-dialog' );
 	}
 
 	/**
@@ -124,6 +143,9 @@ class Wishlist_For_Woo_Public {
 		if( is_admin() || 'yes' !== $is_plugin_enabled ) {
 			return;
 		}
+
+		// Enable wishlist popup.
+		$this->enable_wishlist_popup();
 
 		// Enable wishlist at loops.
 		$this->enable_wishlist_on_loops();
@@ -221,6 +243,87 @@ class Wishlist_For_Woo_Public {
 
 		// wishlist page view.
 		add_shortcode( 'mwb_wfw_wishlist', array( $shortcode, 'init' ) );
+	}
+
+	/**
+ 	 *  Enable wishlist shortcodes.
+	 * 
+	 * @throws Exception If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function enable_wishlist_popup() {
+		
+		// wishlist page view.
+		add_action( 'wp_footer', array( $this, 'render_wishlist_html' ) );
+	}
+
+
+	/**
+ 	 *  Adds a wishlist dynamic popup to manage newly added work.
+	 * 
+	 * @throws Exception If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function render_wishlist_html() {
+		
+		$config_settings = Wishlist_For_Woo_Configuration::get_config_settings();
+		wc_get_template(
+			'partials/wishlist-for-woo-wishlist-processor.php',
+			array(
+				'config_settings' => $config_settings,
+			),
+			'',
+			$this->public_path
+		);
+	}
+
+	/**
+ 	 *  Adds a product to wishlist.
+	 * 
+	 * @throws Exception If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function addToWishlist() {
+		
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
+		$formdata = ! empty( $_POST ) ?  map_deep( wp_unslash( $_POST ), 'sanitize_text_field' ) : array();
+
+		unset( $formdata['nonce'] );
+
+		$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance();
+
+		$user = wp_get_current_user();
+		$current_wishlist = $wishlist_manager->retrieve( 'owner', $user->user_email, array( 'properties' => array( 'default' => true ) ) );
+
+		// Wishlist Exists, Add product.
+		if( 200 == $current_wishlist[ 'status' ] && count( $current_wishlist[ 'message' ] ) ) {
+
+			$result = $wishlist_manager->set_prop( $current_wishlist[ 'message' ], 'products', $formdata['productId'] );
+		}
+
+		// Wishlist does not Exists, Create new and add product.
+		else {
+
+			$args = array(
+				'title'			=> 'Wishlist #1',
+				'products'		=> array( $formdata[ 'productId' ] ),
+				'createdate'	=> date( "Y-m-d h:i:s" ),
+				'modifieddate' 	=> date( "Y-m-d h:i:s" ),
+				'owner' 		=> $user->user_email,
+				'status' 		=> 'private',
+				'collaborators' => array(),
+				'properties' 	=> array( 'default' => true ),
+			);
+
+			$result = $wishlist_manager->create( $args );
+		}
+
+		echo json_encode( $result );
+		wp_die();
 	}
 
 // End of class.

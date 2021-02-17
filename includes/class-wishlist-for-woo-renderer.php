@@ -202,9 +202,9 @@ class Wishlist_For_Woo_Renderer {
 				'wishlist-type'	=>	'loop-icon-button',
 			)
 		);
-
+		global $product;
 		?>
-			<a href="javascript:void(0);" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist mwb-wfw-loop-icon-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-icon <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><i class="fa mwb-wfw-icon"><?php echo esc_attr( $default_attr[ 'text' ] ); ?></i></a>
+			<a href="javascript:void(0);" data-wishlist-id="" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist mwb-wfw-loop-icon-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-icon <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><i class="fa mwb-wfw-icon"><?php echo esc_attr( $default_attr[ 'text' ] ); ?></i></a>
 		<?php
 	}
 
@@ -252,6 +252,17 @@ class Wishlist_For_Woo_Renderer {
 		<?php
 	}
 
+
+	/**
+ 	 *  Returns HTML for wishlist icon on All Single Product Page.
+	 * 
+	 * @throws Exception If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return html
+	 */
+	static function return_wishlist_view_content( $wishlist=array() ){
+
+	}
 
 # End of class.
 }

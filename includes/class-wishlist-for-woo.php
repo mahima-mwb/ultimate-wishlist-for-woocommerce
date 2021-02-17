@@ -206,6 +206,10 @@ class Wishlist_For_Woo {
 
 		// Initiate all functionalities after woocommerce is initiated.
 		$this->loader->add_action( 'woocommerce_init', $plugin_public, 'wishlist_init' );
+
+		// Ajax Callbacks.
+		$this->loader->add_action( 'wp_ajax_addToWishlist', $plugin_public, 'addToWishlist' );
+		$this->loader->add_action( 'wp_ajax_nopriv_addToWishlist', $plugin_public, 'addToWishlist' );
 	}
 
 	/**
