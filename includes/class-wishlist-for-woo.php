@@ -113,9 +113,9 @@ class Wishlist_For_Woo {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-i18n.php';
 
 		/**
-		 * The class responsible for defining all datasets and settings regarding configuration.
+		 * The class responsible for defining all helper functions.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-configuration.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-helper.php';
 
 		/**
 		 * The class responsible for defining all admin portal templates.

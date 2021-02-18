@@ -9,16 +9,27 @@
 jQuery(document).ready(function() {
 
     /**==========================================================================================
-     *                      Object/Function constants.
+     *                              Object constants/Variables.
     =========================================================================================== */  
 
-    // Wishlist triggers.
-    const wishlistTrigger = jQuery( '.add-to-wishlist' );
-    const strings = JSON.parse( mwb_wfw_obj.strings );
-    const wishlistPopup = jQuery( '.mwb-wfw-wishlist-dialog' );
-    const permalink = mwb_wfw_obj.permalink;
+    // Datasets.
+    let strings = mwb_wfw_obj.strings;
+    let settings = mwb_wfw_obj.settings;
+   
+    // Wishlist triggers/objects.
+    let wishlistTrigger = jQuery( '.add-to-wishlist' );
+    let wishlistPopup = jQuery( '.mwb-wfw-wishlist-dialog' );
+
+    // Settings Pickups.
+    let permalink = settings.permalink;
+
+    // HTML Objects.
     const viewWishlistButton = '<a href="' + permalink + '" class="button mwb-wfw-action-button view">' + strings.view_text + '</a>';
     const processingIconHtml = '<span class="mwb-wfw-wishlist-processing"><i class="fa fa fa-spinner fa-spin"></i>' + strings.processing_text + '...</span>';
+
+    /**==========================================================================================
+     *                               Library Functions
+    =========================================================================================== */  
 
     // Initialise the wishlist action popup.
     const initWishlistPopup = () => {

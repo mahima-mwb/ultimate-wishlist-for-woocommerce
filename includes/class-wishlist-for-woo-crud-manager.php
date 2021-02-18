@@ -249,10 +249,11 @@ class Wishlist_For_Woo_Crud_Manager {
 
         global $wpdb;
 
+        // If required wishlist must have this parameters as properties.
         if ( ! empty( $key ) && ! empty( $value ) ) {
 
             $operator = in_array( $key, $this->array_entries ) ? 'REGEXP' : '=';
-            $get_query = "SELECT * FROM `$this->table_name` WHERE `$key` $operator '$value'";
+            $get_query = "SELECT id FROM `$this->table_name` WHERE `$key` $operator '$value'";
 
             if( ! empty( $additional ) && is_array( $additional ) ) {
 
@@ -268,17 +269,9 @@ class Wishlist_For_Woo_Crud_Manager {
 
         else {
 
-            if( empty( $this->id ) || ! is_numeric( $this->id ) ) {
-
-                $result = array(
-                    'status'    => 404, 
-                    'message'    => esc_html__( 'Invalid ID', WISHLIST_FOR_WOO_TEXTDOMAIN ), 
-                );
-    
-                return $result;
-            }
-
-            $get_query = "SELECT * FROM `$this->table_name` WHERE `id` = '$this->id'";    
+            // Get all current users wishlists.
+            $user = wp_get_current_user();
+            $get_query = "SELECT id FROM `$this->table_name` WHERE `owner` = '$user->user_email'"; 
         }
 
         if( ! empty( $get_query ) ) {
@@ -289,16 +282,15 @@ class Wishlist_For_Woo_Crud_Manager {
 
                 $result = array(
                     'status'    => 400, 
-                    'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html( 'Row Not Found', WISHLIST_FOR_WOO_TEXTDOMAIN ), 
+                    'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html__( 'Row Not Found', WISHLIST_FOR_WOO_TEXTDOMAIN ), 
                 );
             }
     
             else {
-    
                 $result = array(
                     'status'    => 200, 
                     'message'    => $response, 
-                );   
+                );
             }
 
             return $result;

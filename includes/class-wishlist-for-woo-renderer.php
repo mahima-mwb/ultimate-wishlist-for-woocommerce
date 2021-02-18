@@ -165,19 +165,35 @@ class Wishlist_For_Woo_Renderer {
 	}
 
 	/**
- 	 *  Returns HTML for wishlist Text Button on All loops.
+ 	 *  Returns HTML for wishlist Text Button.
 	 * 
 	 * @throws Exception If something interesting cannot happen
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 * @return html
 	 */
-	function add_wishlist_on_all_loops(){
+	function return_wishlist_button(){
+
+		global $product;
+		$search_result = $this->does_wishlist_includes_product( $product->get_id() );
+
+		if( 200 == $search_result[ 'status' ] ) {
+			$wishlist = reset( $search_result[ 'message' ] );
+			$wid = $wishlist[ 'id' ] ? $wishlist[ 'id' ] : '';
+			$is_active = $wid ? 'active-wishlist' : '';
+			$text = ! empty( $wid ) ? esc_html__( 'Remove from Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN ) : esc_html__( 'Add to Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN );
+		}
+
+		else {
+
+			$is_active = '';
+			$wid = '';
+			$text = ! empty( $wid ) ? esc_html__( 'Remove from Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN ) : esc_html__( 'Add to Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN );
+		}
 
 		$default_attr =  apply_filters( 'mwb_wfw_wishlist_attr', array(
-				'text'	=>	apply_filters( 'mwb_wfw_wishlist_text', esc_html__( 'Add to Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN ) ),
+				'text'	=>	apply_filters( 'mwb_wfw_wishlist_text', $text ),
 				'extra_class'	=>	'',
 				'style'	=>	'',
-				'wishlist-type'	=>	'loop-text-button',
 			)
 		);
 
@@ -187,31 +203,34 @@ class Wishlist_For_Woo_Renderer {
 	}	
 
 	/**
- 	 *  Returns HTML for wishlist icon on All loops.
+ 	 *  Returns HTML for wishlist icon button.
 	 * 
 	 * @throws Exception If something interesting cannot happen
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 * @return html
 	 */
-	function add_wishlist_on_loop_image(){
+	function return_wishlist_icon(){
 
 		$default_attr =  apply_filters( 'mwb_wfw_wishlist_attr', array(
-				'text'	=>	apply_filters( 'mwb_wfw_wishlist_icon', esc_attr( self::get_icon_unicode( get_option( 'wfw-loop-icon-view', '' ) ) ) ),
+				'text'	=>	apply_filters( 'mwb_wfw_wishlist_icon', esc_attr( self::get_icon_unicode( get_option( 'wfw-icon-view', 'heart' ) ) ) ),
 				'extra_class'	=>	'',
 				'style'	=>	'',
-				'wishlist-type'	=>	'loop-icon-button',
 			)
 		);
+
 		global $product;
 		$search_result = $this->does_wishlist_includes_product( $product->get_id() );
 
-		$is_active = '';
-		$wid = '';
+		// Wishlist Exists? 
+		if( 200 == $search_result['status'] ) {
 
-		if( 200 == $search_result[ 'status' ] ) {
-			$wishlist = reset( $search_result[ 'message' ] );
+			$wishlist = reset( $search_result['message'] );
 			$wid = $wishlist[ 'id' ] ? $wishlist[ 'id' ] : '';
 			$is_active = $wid ? 'active-wishlist' : '';
+		}
+		else {
+			$is_active = '';
+			$wid = '';
 		}
 
 		?>
@@ -220,71 +239,19 @@ class Wishlist_For_Woo_Renderer {
 	}
 
 	/**
- 	 *  Returns HTML for wishlist Text Button on All Single Product Page.
+ 	 *  Checks if any current user wishlist have this product or not.
 	 * 
+	 * @param  $product_id string product id to search.
 	 * @throws Exception If something interesting cannot happen
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return html
+	 * @return bool true|false
 	 */
-	function add_wishlist_on_all_single(){
-
-		$default_attr =  apply_filters( 'mwb_wfw_wishlist_attr', array(
-				'text'	=>	apply_filters( 'mwb_wfw_wishlist_text', esc_html__( 'Add to Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN ) ),
-				'extra_class'	=>	'',
-				'style'	=>	'',
-				'wishlist-type'	=>	'product-page-text-button',
-			)
-		);
-
-		?>
-			<a href="javascript:void(0);" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist mwb-wfw-single-text-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-single <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><?php echo esc_attr( $default_attr[ 'text' ] ); ?></a>
-		<?php
-	}	
-
-	/**
- 	 *  Returns HTML for wishlist icon on All Single Product Page.
-	 * 
-	 * @throws Exception If something interesting cannot happen
-	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return html
-	 */
-	function add_wishlist_on_single_image(){
-
-		$default_attr =  apply_filters( 'mwb_wfw_wishlist_attr', array(
-				'text'	=>	apply_filters( 'mwb_wfw_wishlist_icon', esc_attr( self::get_icon_unicode( get_option( 'wfw-product-icon-view', '' ) ) ) ),
-				'extra_class'	=>	'',
-				'style'	=>	'',
-				'wishlist-type'	=>	'product-page-icon-button',
-			)
-		);
-
-		?>
-			<a href="javascript:void(0);" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist mwb-wfw-single-icon-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-icon <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><i class="fa mwb-wfw-icon"><?php echo esc_attr( $default_attr[ 'text' ] ); ?></i></a>
-		<?php
-	}
-
-
-	/**
- 	 *  Returns HTML for wishlist icon on All Single Product Page.
-	 * 
-	 * @throws Exception If something interesting cannot happen
-	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return html
-	 */
-	static function return_wishlist_view_content( $wishlist=array() ){
-
-	}
-
-
 	function does_wishlist_includes_product( $product_id=false ) {
 
 		$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance();
 
 		$user = wp_get_current_user();
-		$current_wishlist = $wishlist_manager->retrieve( 'owner', $user->user_email, array( 'products' => $product_id ) );
-
-		// Wishlist Exists, Add product.
-		return $current_wishlist;
+		return $wishlist_manager->retrieve( 'owner', $user->user_email, array( 'products' => $product_id ) );
 	}
 
 # End of class.

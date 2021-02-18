@@ -29,6 +29,10 @@ a.add-to-wishlist.mwb-wfw-loop-text-button.mwb-woocommerce-after-shop-loop-item-
     margin-bottom: 6px;
 }
 
+.single-product div.product .woocommerce-product-gallery .woocommerce-product-gallery__trigger {
+    left: .875em !important;
+}
+
 /*============================================== 
             Wishlist Icon Styles at Loops
 ==============================================*/

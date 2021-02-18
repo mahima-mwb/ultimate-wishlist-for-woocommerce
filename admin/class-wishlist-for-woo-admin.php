@@ -203,12 +203,9 @@ class Wishlist_For_Woo_Admin {
 	 */
 	public function add_config_screen() {
 
-		$config_settings = Wishlist_For_Woo_Configuration::get_config_settings();
 		wc_get_template(
 			'partials/wishlist-for-woo-config-portal.php',
-			array(
-				'config_settings' => $config_settings,
-			),
+			array(),
 			'',
 			$this->admin_path
 		);
@@ -223,12 +220,9 @@ class Wishlist_For_Woo_Admin {
 	 */
 	public function add_reporting_screen() {
 		
-		$reporting_settings = Wishlist_For_Woo_Configuration::get_reporting_settings();
 		wc_get_template(
 			'partials/wishlist-for-woo-reporting-portal.php',
-			array(
-				'reporting_settings' => $reporting_settings,
-			),
+			array(),
 			'',
 			$this->admin_path
 		);
@@ -243,12 +237,9 @@ class Wishlist_For_Woo_Admin {
 	 */
 	public function add_overview_screen() {
 
-		$overview_settings = Wishlist_For_Woo_Configuration::get_overview_settings();
 		wc_get_template(
 			'partials/wishlist-for-woo-reporting-portal.php',
-			array(
-				'overview_settings' => $overview_settings,
-			),
+			array(),
 			'',
 			$this->admin_path
 		);

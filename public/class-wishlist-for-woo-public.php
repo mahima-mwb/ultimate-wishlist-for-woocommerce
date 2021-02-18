@@ -104,7 +104,10 @@ class Wishlist_For_Woo_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		$settings = Wishlist_For_Woo_Helper::get_settings();
+		$settings = 200 == $settings[ 'status' ] ? $settings[ 'message' ] : $settings;
 
+		$strings = Wishlist_For_Woo_Helper::get_strings();
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-public.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script(
 			$this->plugin_name,
@@ -113,15 +116,8 @@ class Wishlist_For_Woo_Public {
 				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 				'mobile_view'   => wp_is_mobile(),
 				'auth_nonce'    => wp_create_nonce( 'mwb_wfw_nonce' ),
-				'strings'    => json_encode(
-					array(
-						'popup_title'	=>	apply_filters( 'wfw_popup_title', esc_html__( 'New Item Added in Wishlist', 'wishlist-for-woo' ) ),
-						'view_text'	=>	apply_filters( 'mwf_view_text', esc_html__( 'View Wishlist', 'wishlist-for-woo' ) ),
-						'processing_text'	=>	apply_filters( 'mwf_processing_text', esc_html__( 'Processing', 'wishlist-for-woo' ) ),
-						'add_to_cart'	=>	apply_filters( 'mwf_add_to_cart', esc_html__( 'Buy Now', 'wishlist-for-woo' ) ),
-					)
-				),
-				'permalink'    => get_option( 'wfw-selected-page', false ) ? get_permalink( get_option( 'wfw-selected-page' ) ) : '',
+				'strings'    => $strings ? $strings : array(),
+				'settings'    => $settings ? $settings : array(),
 			)
 		);
 
@@ -147,85 +143,91 @@ class Wishlist_For_Woo_Public {
 		// Enable wishlist popup.
 		$this->enable_wishlist_popup();
 
-		// Enable wishlist at loops.
-		$this->enable_wishlist_on_loops();
-
-		// Enable wishlist at Single page.
-		$this->enable_wishlist_on_single();
+		// Enable wishlist at Public View.
+		$this->enable_wishlist_on_site();
 
 		// Initiate a wishlist shortcode.
 		$this->init_shortcodes();
 	}
 
 	/**
- 	 *  Enable wishlist at loops.
+ 	 *  Enable a wishlist dynamic popup to manage newly added items.
 	 * 
 	 * @throws Exception If something interesting cannot happen
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 * @return null
 	 */
-	public function enable_wishlist_on_loops() {
-		
-		// Check if wishlist needs to be added on current view.
-		$is_wishlist_enabled = get_option( 'wfw-loop-view-type', '' );
+	public function enable_wishlist_popup() {
 
-		if( empty( $is_wishlist_enabled ) ) {
-			return;
-		}
-
-		$hook = array();
-
-		switch ( $is_wishlist_enabled ) {
-			case 'icon' :
-				$hook = Wishlist_For_Woo_Renderer::get_icons_hooks( 'loop' );
-				$func = 'add_wishlist_on_loop_image';
-				break;
-
-			case 'button' :
-				$position = get_option( 'wfw-loop-button-view', '' );
-				$hook = Wishlist_For_Woo_Renderer::get_button_hooks( 'loop', $position );
-				$func = 'add_wishlist_on_all_loops';
-				break;
-		}
-
-		if( ! empty( $hook ) && is_array( $hook ) ) {
-			add_action( $hook[ 'hook' ] , array( $this->render, $func ),  $hook[ 'priority' ] );
+		if( 'yes' == get_option( 'wfw-enable-popup', 'no' ) ) {
+			
+			// Wishlist popup view html.
+			add_action( 'wp_footer', array( $this, 'render_wishlist_html' ) );
 		}
 	}
 
 	/**
- 	 *  Enable wishlist at Single Product Page.
+ 	 *  Adds a wishlist dynamic popup to manage newly added items.
 	 * 
 	 * @throws Exception If something interesting cannot happen
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 * @return null
 	 */
-	public function enable_wishlist_on_single() {
+	public function render_wishlist_html() {
+		
+		wc_get_template(
+			'partials/wishlist-for-woo-wishlist-processor.php',
+			array(),
+			'',
+			$this->public_path
+		);
+	}
+
+	/**
+ 	 *  Enable wishlist at Public View.
+	 * 
+	 * @throws Exception If something interesting cannot happen
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return null
+	 */
+	public function enable_wishlist_on_site() {
 		
 		// Check if wishlist needs to be added on current view.
-		$is_wishlist_enabled = get_option( 'wfw-product-view-type', '' );
+		$is_wishlist_enabled = get_option( 'wfw-view-type', 'icon' );
 
 		if( empty( $is_wishlist_enabled ) ) {
 			return;
 		}
 
-		$hook = array();
+		$shop_hook = array();
+		$single_hook = array();
 
 		switch ( $is_wishlist_enabled ) {
 			case 'icon' :
-				$hook = Wishlist_For_Woo_Renderer::get_icons_hooks( 'single' );
-				$func = 'add_wishlist_on_single_image';
+				$shop_hook = Wishlist_For_Woo_Renderer::get_icons_hooks( 'loop' );
+				$shop_func = 'return_wishlist_icon';
+
+				$single_hook = Wishlist_For_Woo_Renderer::get_icons_hooks( 'single' );
+				$single_func = 'return_wishlist_icon';
 				break;
 
 			case 'button' :
-				$position = get_option( 'wfw-product-button-view', '' );
-				$hook = Wishlist_For_Woo_Renderer::get_button_hooks( 'single', $position );
-				$func = 'add_wishlist_on_all_single';
+				$position = get_option( 'wfw-loop-button-view', 'before_product_name' );
+				$shop_hook = Wishlist_For_Woo_Renderer::get_button_hooks( 'loop', $position );
+				$shop_func = 'return_wishlist_button';
+
+				$position = get_option( 'wfw-product-button-view', 'before_add_to_cart' );
+				$single_hook = Wishlist_For_Woo_Renderer::get_button_hooks( 'single', $position );
+				$single_func = 'return_wishlist_button';
 				break;
 		}
 
-		if( ! empty( $hook ) && is_array( $hook ) ) {
-			add_action( $hook[ 'hook' ] , array( $this->render, $func ),  $hook[ 'priority' ] );
+		if( ! empty( $shop_hook ) && is_array( $shop_hook ) ) {
+			add_action( $shop_hook[ 'hook' ] , array( $this->render, $shop_func ),  $shop_hook[ 'priority' ] );
+		}
+
+		if( ! empty( $single_hook ) && is_array( $single_hook ) ) {
+			add_action( $single_hook[ 'hook' ] , array( $this->render, $single_func ),  $single_hook[ 'priority' ] );
 		}
 	}
 
@@ -246,41 +248,7 @@ class Wishlist_For_Woo_Public {
 	}
 
 	/**
- 	 *  Enable wishlist shortcodes.
-	 * 
-	 * @throws Exception If something interesting cannot happen
-	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
-	 */
-	public function enable_wishlist_popup() {
-		
-		// wishlist page view.
-		add_action( 'wp_footer', array( $this, 'render_wishlist_html' ) );
-	}
-
-
-	/**
- 	 *  Adds a wishlist dynamic popup to manage newly added work.
-	 * 
-	 * @throws Exception If something interesting cannot happen
-	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
-	 */
-	public function render_wishlist_html() {
-		
-		$config_settings = Wishlist_For_Woo_Configuration::get_config_settings();
-		wc_get_template(
-			'partials/wishlist-for-woo-wishlist-processor.php',
-			array(
-				'config_settings' => $config_settings,
-			),
-			'',
-			$this->public_path
-		);
-	}
-
-	/**
- 	 *  Adds a product to wishlist.
+ 	 *  Ajax Callback :: Adds a product to wishlist.
 	 * 
 	 * @throws Exception If something interesting cannot happen
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
