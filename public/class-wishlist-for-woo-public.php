@@ -286,7 +286,7 @@ class Wishlist_For_Woo_Public {
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 * @return null
 	 */
-	public function addToWishlist() {
+	public function UpdateWishlist() {
 		
 		// Nonce verification.
 		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
@@ -295,33 +295,70 @@ class Wishlist_For_Woo_Public {
 		unset( $formdata['nonce'] );
 
 		$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance();
+		
 
-		$user = wp_get_current_user();
-		$current_wishlist = $wishlist_manager->retrieve( 'owner', $user->user_email, array( 'properties' => array( 'default' => true ) ) );
+		if( 'add' == $formdata[ 'task' ] ) {
 
-		// Wishlist Exists, Add product.
-		if( 200 == $current_wishlist[ 'status' ] && count( $current_wishlist[ 'message' ] ) ) {
+			$user = wp_get_current_user();
+			$current_wishlist = $wishlist_manager->retrieve( 'owner', $user->user_email, array( 'properties' => array( 'default' => true ) ) );
 
-			$result = $wishlist_manager->set_prop( $current_wishlist[ 'message' ], 'products', $formdata['productId'] );
+			// Wishlist Exists, Add product.
+			if( 200 == $current_wishlist[ 'status' ] && count( $current_wishlist[ 'message' ] ) ) {
+
+				$wishlist_manager->get_default_wishlist( $current_wishlist[ 'message' ] );
+				$result = $wishlist_manager->set_prop( $current_wishlist[ 'message' ], 'products', $formdata['productId'] );
+			}
+	
+			// Wishlist does not Exists, Create new and add product.
+			else {
+	
+				$args = array(
+					'title'			=> 'Wishlist #1',
+					'products'		=> array( $formdata[ 'productId' ] ),
+					'createdate'	=> date( "Y-m-d h:i:s" ),
+					'modifieddate' 	=> date( "Y-m-d h:i:s" ),
+					'owner' 		=> $user->user_email,
+					'status' 		=> 'private',
+					'collaborators' => array(),
+					'properties' 	=> array( 'default' => true ),
+				);
+	
+				$result = $wishlist_manager->create( $args );
+			}
+
+		}
+		elseif ( 'remove'  == $formdata[ 'task' ] ) {
+
+			$wid = ! empty( $formdata[ 'wishlistId' ] ) ? $formdata[ 'wishlistId' ] : '';
+			$pid = ! empty( $formdata[ 'productId' ] ) ? $formdata[ 'productId' ] : '';
+
+			$user = wp_get_current_user();
+			$current_wishlist = $wishlist_manager->retrieve( 'owner', $user->user_email, array( 'properties' => array( 'default' => true ), 'products' => $pid ) );
+			
+			if( 200 == $current_wishlist[ 'status' ] ) {
+
+				$products = $wishlist_manager->get_prop( $current_wishlist[ 'message' ], 'products' );
+				$found = array_search( $pid, $products );
+
+				if( false !== $found ) {
+					unset( $products[ $found ] );
+				}
+
+				// Update Products again.
+				$result = $wishlist_manager->set_prop( $current_wishlist[ 'message' ], 'products', $products, true );
+				$wishlist_manager->id = $wid ? $wid : $wishlist_manager->get_prop( $current_wishlist[ 'message' ], 'id' );
+
+				$args = array(
+					'properties'	=>	$products
+				);
+                return $wishlist_manager->update( $args );
+			}
+			else {
+				$result = $current_wishlist;
+			}
 		}
 
-		// Wishlist does not Exists, Create new and add product.
-		else {
-
-			$args = array(
-				'title'			=> 'Wishlist #1',
-				'products'		=> array( $formdata[ 'productId' ] ),
-				'createdate'	=> date( "Y-m-d h:i:s" ),
-				'modifieddate' 	=> date( "Y-m-d h:i:s" ),
-				'owner' 		=> $user->user_email,
-				'status' 		=> 'private',
-				'collaborators' => array(),
-				'properties' 	=> array( 'default' => true ),
-			);
-
-			$result = $wishlist_manager->create( $args );
-		}
-
+		$result[ 'id' ] = $wishlist_manager->id;
 		echo json_encode( $result );
 		wp_die();
 	}

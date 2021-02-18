@@ -203,8 +203,19 @@ class Wishlist_For_Woo_Renderer {
 			)
 		);
 		global $product;
+		$search_result = $this->does_wishlist_includes_product( $product->get_id() );
+
+		$is_active = '';
+		$wid = '';
+
+		if( 200 == $search_result[ 'status' ] ) {
+			$wishlist = reset( $search_result[ 'message' ] );
+			$wid = $wishlist[ 'id' ] ? $wishlist[ 'id' ] : '';
+			$is_active = $wid ? 'active-wishlist' : '';
+		}
+
 		?>
-			<a href="javascript:void(0);" data-wishlist-id="" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist mwb-wfw-loop-icon-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-icon <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><i class="fa mwb-wfw-icon"><?php echo esc_attr( $default_attr[ 'text' ] ); ?></i></a>
+			<a href="javascript:void(0);" data-wishlist-id="<?php echo esc_attr( $wid ); ?>" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist <?php echo esc_attr( $is_active ); ?> mwb-wfw-loop-icon-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-icon <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><i class="fa mwb-wfw-icon"><?php echo esc_attr( $default_attr[ 'text' ] ); ?></i></a>
 		<?php
 	}
 
@@ -262,6 +273,18 @@ class Wishlist_For_Woo_Renderer {
 	 */
 	static function return_wishlist_view_content( $wishlist=array() ){
 
+	}
+
+
+	function does_wishlist_includes_product( $product_id=false ) {
+
+		$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance();
+
+		$user = wp_get_current_user();
+		$current_wishlist = $wishlist_manager->retrieve( 'owner', $user->user_email, array( 'products' => $product_id ) );
+
+		// Wishlist Exists, Add product.
+		return $current_wishlist;
 	}
 
 # End of class.

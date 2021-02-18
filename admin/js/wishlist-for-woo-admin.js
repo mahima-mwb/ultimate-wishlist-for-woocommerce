@@ -196,14 +196,21 @@ jQuery(document).ready(function() {
      * Show Hide Subsettings.
      */
     function handleSubSetings(obj) {
-        view = obj.attr( 'view-type' );
-        val = obj.val();
-        if( 'undefined' == typeof view ) {
+        let dependency = obj.attr( 'dependency-type' );
+        let id = obj.attr( 'id' );
+
+        if( 'undefined' == typeof dependency || 'undefined' == typeof id ) {
             return;
         }
 
-        jQuery( '.mwb-wfw-select-' + view ).closest('tr').hide();
-        jQuery( '#wfw-' + view + '-' + val + '-view' ).closest('tr').show();
+        val = obj.val();
+
+        // Update custom attr for dependency.
+        obj.attr( 'dependency-type', val );
+
+        // Hide all dependent fields and Show only the selected one.
+        jQuery( '.' + id + '-dependent'  ).closest('tr').hide();
+        jQuery( '[ dependent="dependency-type-' + val + '" ]' ).closest('tr').show();
     }
 
 // End of scripts.

@@ -207,7 +207,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'type'  => 'title',
 		);
 
-		// Enable/Disable Plugin.
+		// Toggle :: Enable/Disable Plugin.
 		$settings[] = array(
 			'title' 				=> esc_html__( 'Enable /Disable Plugin', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'class' 				=> 'mwb-wfw-toggle-checkbox',
@@ -218,15 +218,28 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc'  				=> esc_html__( 'Enable/Disable the complete plugin functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
 
-		$settings[]		=	array(
-			'type'	=>	'sub-heading',
-			'value'	=>	esc_html__( 'Wishlist at Loops', WISHLIST_FOR_WOO_TEXTDOMAIN )
+		// Toggle :: Enable Popup for Product added in wishlist Plugin.
+		$settings[] = array(
+			'title' 				=> esc_html__( 'Enable Wishlist Popup', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class' 				=> 'mwb-wfw-toggle-checkbox',
+			'type'  				=> 'checkbox',
+			'desc_tip' 				=> true,
+			'value'   				=> get_option( 'wfw-enable-popup', '' ),
+			'id'    				=> 'wfw-enable-popup',
+			'desc'  				=> esc_html__( 'Show Item added in wishlist as popup after adding in list.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
 
+		// Subheading ::For Preview Settings.
+		$settings[]		=	array(
+			'type'	=>	'sub-heading',
+			'value'	=>	esc_html__( 'Wishlist Position And Preview', WISHLIST_FOR_WOO_TEXTDOMAIN )
+		);
+
+		// Select :: How to show the wishlists on frontend.
 		$settings[] = array(
 			'title'             => esc_html__( 'Wishlist View Type', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'              => 'select',
-			'desc'              => esc_html__( 'Select how you want to show the wishlist interface on the loops like shop and related products.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'desc'              => esc_html__( 'Select how you want to show the wishlist for customers.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'options'           => array(
 									''			=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 									'icon'		=>	esc_html__( 'Icon over Product Image', WISHLIST_FOR_WOO_TEXTDOMAIN ),
@@ -234,11 +247,12 @@ class Wishlist_For_Woo_Template_Manager {
 								),
 			'desc_tip'          => true,
 			'class'		        => 'mwb-wfw-select',
-			'id'   				=> 'wfw-loop-view-type',
-			'value'   			=> get_option( 'wfw-loop-view-type', '' ),
-			'custom_attributes' => array( 'view-type' => 'loop' ),
+			'id'   				=> 'wfw-view-type',
+			'value'   			=> get_option( 'wfw-view-type', 'icon' ),
+			'custom_attributes' => array( 'dependency-type' => get_option( 'wfw-view-type', 'icon' ) ),
 		);
 
+		// Select :: Which icon to use.
 		$settings[] = array(
 			'title'             => esc_html__( 'Wishlist Interface Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'              => 'select',
@@ -255,15 +269,17 @@ class Wishlist_For_Woo_Template_Manager {
 										'eye'		=>	esc_html__( 'Eye Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 								),
 			'desc_tip'          => true,
-			'class'		        => 'mwb-wfw-select mwb-wfw-select-loop',
-			'id'   				=> 'wfw-loop-icon-view',
-			'value'   			=> get_option( 'wfw-loop-icon-view', '' ),
+			'class'		        => 'mwb-wfw-select wfw-view-type-dependent',
+			'id'   				=> 'wfw-icon-view',
+			'value'   			=> get_option( 'wfw-icon-view-type', 'heart' ),
+			'custom_attributes' => array( 'dependent' => 'dependency-type-icon' ),
 		);
 
+		// Select :: Where to show button on loops.
 		$settings[] = array(
-			'title'             => esc_html__( 'Wishlist Button Position', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'title'             => esc_html__( 'Wishlist on Loops', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'              => 'select',
-			'desc'              => esc_html__( 'Select where wishlist button should be shown.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'desc'              => esc_html__( 'Select where wishlist button should be shown on woocommerce loops or shops.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'options'           => array(
 									''						=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 									'before_product_name'	=>	esc_html__( 'Before Product Title', WISHLIST_FOR_WOO_TEXTDOMAIN ),
@@ -272,57 +288,17 @@ class Wishlist_For_Woo_Template_Manager {
 									'before_product_loop'	=>	esc_html__( 'Before Product Section', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 								),
 			'desc_tip'          => true,
-			'class'		        => 'mwb-wfw-select mwb-wfw-select-loop',
+			'class'		        => 'mwb-wfw-select wfw-view-type-dependent',
 			'id'   				=> 'wfw-loop-button-view',
-			'value'   			=> get_option( 'wfw-loop-button-view', '' ),
+			'value'   			=> get_option( 'wfw-loop-button-view', 'before_product_name' ),
+			'custom_attributes' => array( 'dependent' => 'dependency-type-button' ),
 		);
 
-		$settings[]		=	array(
-			'type'	=>	'sub-heading',
-			'value'	=>	esc_html__( 'Wishlist at Product Page', WISHLIST_FOR_WOO_TEXTDOMAIN )
-		);
-
+		// Select :: Where to show button on product pages.
 		$settings[] = array(
-			'title'             => esc_html__( 'Wishlist View Type', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'title'             => esc_html__( 'Wishlist on Product Page', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'              => 'select',
-			'desc'              => esc_html__( 'Select how you want to show the wishlist interface on the loops like shop and related products.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'options'           => array(
-									''			=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'icon'		=>	esc_html__( 'Icon over Product Image', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'button'	=>	esc_html__( 'Add to Wishlist button', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-								),
-			'desc_tip'          => true,
-			'class'		        => 'mwb-wfw-select',
-			'id'   				=> 'wfw-product-view-type',
-			'value'   			=> get_option( 'wfw-product-view-type', '' ),
-			'custom_attributes' => array( 'view-type' => 'product' ),
-		);
-
-		$settings[] = array(
-			'title'             => esc_html__( 'Wishlist Interface Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'type'              => 'select',
-			'desc'              => esc_html__( 'Select which icon you want for the wishlist interface.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'options'           => array(
-									''			=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'heart'		=>	esc_html__( 'Heart Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'shopping'		=>	esc_html__( 'Shopping Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'cart'		=>	esc_html__( 'Cart Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'star'		=>	esc_html__( 'Star Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'tag'		=>	esc_html__( 'Tag Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'thumbsup'		=>	esc_html__( 'Like Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'bell'		=>	esc_html__( 'Bell Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-									'eye'		=>	esc_html__( 'Eye Icon', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-								),
-			'desc_tip'          => true,
-			'class'		        => 'mwb-wfw-select mwb-wfw-select-product',
-			'id'   				=> 'wfw-product-icon-view',
-			'value'   			=> get_option( 'wfw-product-icon-view', '' ),
-		);
-
-		$settings[] = array(
-			'title'             => esc_html__( 'Wishlist Button Position', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'type'              => 'select',
-			'desc'              => esc_html__( 'Select where wishlist button should be shown.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'desc'              => esc_html__( 'Select where wishlist button should be shown on woocommerce products page.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'options'           => array(
 									''						=>	esc_html__( 'No options Selected', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 									'before_add_to_cart'	=>	esc_html__( 'Before Add To Cart Button', WISHLIST_FOR_WOO_TEXTDOMAIN ),
@@ -332,11 +308,13 @@ class Wishlist_For_Woo_Template_Manager {
 									'after_product_price'	=>	esc_html__( 'After Product Price', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 								),
 			'desc_tip'          => true,
-			'class'		        => 'mwb-wfw-select mwb-wfw-select-product',
+			'class'		        => 'mwb-wfw-select wfw-view-type-dependent',
 			'id'   				=> 'wfw-product-button-view',
-			'value'   			=> get_option( 'wfw-product-button-view', '' ),
+			'value'   			=> get_option( 'wfw-product-button-view', 'before_add_to_cart' ),
+			'custom_attributes' => array( 'dependent' => 'dependency-type-button' ),
 		);
 
+		// Select :: Where to show button on product pages.
 		$settings[]		=	array(
 			'type'	=>	'sub-heading',
 			'value'	=>	esc_html__( 'Wishlist Page', WISHLIST_FOR_WOO_TEXTDOMAIN )
@@ -356,7 +334,7 @@ class Wishlist_For_Woo_Template_Manager {
 		$settings[] = array(
 			'title'             => esc_html__( 'Wishlist Page', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'              => 'select',
-			'desc'              => esc_html__( 'Select where wishlist button should be shown.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'desc'              => esc_html__( 'Select the page where wishlist should be shown/handled.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'options'           => $page_option,
 			'desc_tip'          => true,
 			'class'		        => 'mwb-wfw-select mwb-wfw-select-page',
@@ -364,6 +342,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'value'   			=> get_option( 'wfw-selected-page', '' ),
 		);
 
+		// End of Settings.
 		$settings[] = array(
 			'type' => 'sectionend',
 		);

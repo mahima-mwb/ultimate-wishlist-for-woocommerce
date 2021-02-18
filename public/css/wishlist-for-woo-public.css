@@ -15,7 +15,7 @@
     font-size: 24px;
 }
 
-.add-to-wishlist.mwb-wfw-loop-icon-button:hover {
+.add-to-wishlist.mwb-wfw-loop-icon-button.active-wishlist {
     filter: unset;
     color: rgb(233, 17, 17);
 }

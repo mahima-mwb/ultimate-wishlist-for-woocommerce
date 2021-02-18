@@ -58,14 +58,17 @@ jQuery(document).ready(function() {
 
         // If wishlist id is available remove from wishlist.
         if( null != wishlistId && '' != wishlistId ) {
-            triggerSuccess( 'Product removed from wishlist' );  
+            obj.removeClass('active-wishlist');
+            obj.data( 'wishlist-id', '' );
+            removeFromWishlist( productId, wishlistId );
         }
 
         // If wishlist id is not available add to wishlist.
         else if ( null !=  productId ) {
             const product = obj.closest( 'li.product' );
+            obj.addClass('active-wishlist');
             if( product.length > 0 ) {
-                triggerShowWishlist( productId, product );
+                triggerShowWishlist( productId, product, obj );
             }
 
         } else {
@@ -140,42 +143,59 @@ jQuery(document).ready(function() {
     }
 
     // Async process : Add to wishlist.
-    const addToWishlist = ( pId='' )  =>  {
+    const addToWishlist = ( pId='', obj='' )  =>  {
         let data = {
             nonce: mwb_wfw_obj.auth_nonce,
-            action : 'addToWishlist',
+            action : 'UpdateWishlist',
             productId : pId,
+            task : 'add',
         };
 
         let result = doAjax( data );
-        result.then( ( result ) => processResponse( result ) );
+        result.then( ( result, obj ) => processResponse( result, obj ) );
+    }
+
+    // Async process : Remove From to wishlist.
+    const removeFromWishlist = ( pId='', wId='' )  =>  {
+        let data = {
+            nonce: mwb_wfw_obj.auth_nonce,
+            action : 'UpdateWishlist',
+            productId : pId,
+            wishlistId : wId,
+            task : 'remove',
+        };
+
+        let result = doAjax( data );
+        result.then( ( result ) => {
+            console.log( result );
+        } );
     }
 
     // Process to Show wishlist.
-    const triggerShowWishlist = ( pId = '', product = {} ) => {
+    const triggerShowWishlist = ( pId = '', product = {}, obj={} ) => {
 
         // Prepare dialog box first.
         cloneProductDetails( product );
 
         // Add product to current wishlist.
-        addToWishlist( pId );
+        addToWishlist( pId, obj );
 
         // Show Popup for wishlist selection.
         wishlistPopup.dialog( 'open' );
     }
 
     // Process the Async Output.
-    const processResponse = ( response ) => {
+    const processResponse = ( response, obj ) => {
         response = JSON.parse( response );
         const processingIcon = jQuery( '.mwb-wfw-wishlist-processing' );
         if( 200 == response.status ) {
+           // obj.attr( 'data-wishlist-id', response.id );
+            console.log( response );
             processingIcon.remove();
         } else {
-
             processingIcon.text( response.message );
         }
     }
-
 
     /**==========================================================================================
      *                      Native Functional Callbacks
