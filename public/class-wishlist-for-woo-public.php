@@ -83,6 +83,7 @@ class Wishlist_For_Woo_Public {
 		 * class.
 		 */
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name . '-font-awesome', plugin_dir_url( __FILE__ ) . 'css/font-awesome.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'wp-jquery-ui-dialog' );
 	}
 
