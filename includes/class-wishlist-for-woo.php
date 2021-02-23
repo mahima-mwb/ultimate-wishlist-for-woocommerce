@@ -210,6 +210,8 @@ class Wishlist_For_Woo {
 		// Ajax Callbacks.
 		$this->loader->add_action( 'wp_ajax_UpdateWishlist', $plugin_public, 'UpdateWishlist' );
 		$this->loader->add_action( 'wp_ajax_nopriv_UpdateWishlist', $plugin_public, 'UpdateWishlist' );
+
+		
 	}
 
 	/**

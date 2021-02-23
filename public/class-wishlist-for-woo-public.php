@@ -116,8 +116,9 @@ class Wishlist_For_Woo_Public {
 				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 				'mobile_view'   => wp_is_mobile(),
 				'auth_nonce'    => wp_create_nonce( 'mwb_wfw_nonce' ),
-				'strings'    => $strings ? $strings : array(),
-				'settings'    => $settings ? $settings : array(),
+				'strings'   	=> $strings ? $strings : array(),
+				'settings'    	=> $settings ? $settings : array(),
+				'user'    		=> get_current_user_id(),
 			)
 		);
 
@@ -264,17 +265,46 @@ class Wishlist_For_Woo_Public {
 
 		$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance();
 		
-
 		if( 'add' == $formdata[ 'task' ] ) {
 
+			$pid = ! empty( $formdata[ 'productId' ] ) ? $formdata[ 'productId' ] : '';
+			if( empty( $pid ) ) {
+				$result = array(
+					'status'	=>	404,
+					'message'	=>	esc_html__( 'Invalid Request', 'wishlist_for_woo' )
+				);
+				return json_encode( $result );	
+			}
+
 			$user = wp_get_current_user();
-			$current_wishlist = $wishlist_manager->retrieve( 'owner', $user->user_email, array( 'properties' => array( 'default' => true ) ) );
+			$wishlist_query = $wishlist_manager->retrieve( 'owner', $user->user_email, array( 'properties' => array( 'default' => true ) ) );
 
 			// Wishlist Exists, Add product.
-			if( 200 == $current_wishlist[ 'status' ] && count( $current_wishlist[ 'message' ] ) ) {
+			if( 200 == $wishlist_query[ 'status' ] && count( $wishlist_query[ 'message' ] ) ) {
 
-				$wishlist_manager->get_default_wishlist( $current_wishlist[ 'message' ] );
-				$result = $wishlist_manager->set_prop( $current_wishlist[ 'message' ], 'products', $formdata['productId'] );
+				$wishlist = reset( $wishlist_query[ 'message' ] );
+				$wid = ! empty( $wishlist['id'] ) ? $wishlist['id'] : '';
+
+				if( empty( $wid ) ) {
+					$result = array(
+						'status'	=>	404,
+						'message'	=>	esc_html__( 'Invalid Request', 'wishlist_for_woo' )
+					);
+					return json_encode( $result );
+				}
+				else {
+					
+					$wishlist_manager->id = $wid;
+					$products = $wishlist_manager->get_prop( 'products' );
+					$products = $products ? $products : array();
+			
+					array_push( $products, $pid );
+
+					// Update Products again.
+					$args[ 'products' ] = $products;
+
+					$result = $wishlist_manager->update( $args );
+				}
 			}
 	
 			// Wishlist does not Exists, Create new and add product.
@@ -300,32 +330,42 @@ class Wishlist_For_Woo_Public {
 			$wid = ! empty( $formdata[ 'wishlistId' ] ) ? $formdata[ 'wishlistId' ] : '';
 			$pid = ! empty( $formdata[ 'productId' ] ) ? $formdata[ 'productId' ] : '';
 
-			$user = wp_get_current_user();
-			$current_wishlist = $wishlist_manager->retrieve( 'owner', $user->user_email, array( 'properties' => array( 'default' => true ), 'products' => $pid ) );
-			
-			if( 200 == $current_wishlist[ 'status' ] ) {
+			if( empty( $wid ) || ! is_numeric( $wid ) ) {
 
-				$products = $wishlist_manager->get_prop( $current_wishlist[ 'message' ], 'products' );
+				return array(
+					'status'	=>	404,
+					'message'	=>	esc_html__( 'Invalid Request', 'wishlist_for_woo' )
+				);
+			}
+
+			// Assign Id to object.
+			$wishlist_manager->id = $wid;
+
+			$products = $wishlist_manager->get_prop( 'products' );
+			$products = ! is_array( $products ) ? json_decode( json_encode( $products ), true ) : $products;
+
+			if( ! empty( $products ) ) {
+
+		
 				$found = array_search( $pid, $products );
 
 				if( false !== $found ) {
 					unset( $products[ $found ] );
 				}
-
+				
 				// Update Products again.
-				$result = $wishlist_manager->set_prop( $current_wishlist[ 'message' ], 'products', $products, true );
-				$wishlist_manager->id = $wid ? $wid : $wishlist_manager->get_prop( $current_wishlist[ 'message' ], 'id' );
-
-				$args = array(
-					'properties'	=>	$products
-				);
-                return $wishlist_manager->update( $args );
+				$args[ 'products' ] = $products;
+				$result = $wishlist_manager->update( $args );
 			}
 			else {
-				$result = $current_wishlist;
+				$result = array(
+					'status'	=>	403,
+					'message'	=>	esc_html__( 'Unable to access data.', 'wishlist_for_woo' ),
+				);
 			}
 		}
 
+		// Add a flag that this Wishlist Id was updated.
 		$result[ 'id' ] = $wishlist_manager->id;
 		echo json_encode( $result );
 		wp_die();

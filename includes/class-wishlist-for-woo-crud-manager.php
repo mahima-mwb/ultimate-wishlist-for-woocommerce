@@ -225,8 +225,6 @@ class Wishlist_For_Woo_Crud_Manager {
 
         else {
 
-            // Assign id property.
-            $this->id = $wpdb->insert_id;
             $result = array(
                 'status'    => 200, 
                 'message'    => $response, 
@@ -269,17 +267,21 @@ class Wishlist_For_Woo_Crud_Manager {
 
         else {
 
+            if( empty( $this->id ) ) {
+                return array(
+                    'status'    => 404, 
+                    'message'    => esc_html__( 'Id Not Found', WISHLIST_FOR_WOO_TEXTDOMAIN ), 
+                );
+            }
+
             // Get all current users wishlists.
-            $user = wp_get_current_user();
-            $get_query = "SELECT id FROM `$this->table_name` WHERE `owner` = '$user->user_email'"; 
+            $get_query = "SELECT * FROM `$this->table_name` WHERE `id` = '$this->id'"; 
         }
-
+        
         if( ! empty( $get_query ) ) {
-
             $response = $wpdb->get_results( $get_query, ARRAY_A );
 
             if( ! empty( $wpdb->last_error ) || empty( $response ) ) {
-
                 $result = array(
                     'status'    => 400, 
                     'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html__( 'Row Not Found', WISHLIST_FOR_WOO_TEXTDOMAIN ), 
@@ -329,72 +331,35 @@ class Wishlist_For_Woo_Crud_Manager {
 	 * @since 1.0.0
 	 * @return array $result the parsed data form for query.
 	 */
-    public function get_prop( $obj=array(), $fetch = '' ) {
+    public function get_prop( $fetch = '' ) {
+
+        // Get Wishlist object first.
+        $query_result = $this->retrieve();
+        if( 200 !== $query_result[ 'status' ] ) {
+            return $query_result;
+        }
+        else {
+            $obj = ! empty( $query_result[ 'message' ] ) ? $query_result[ 'message' ] : array();
+        }
 
         if ( ! empty( $obj ) && is_array( $obj ) ) {
             
-            $result = array();
-
             foreach ( $obj as $key => $wishlist ) {
 
                 if( empty( $fetch ) ) {
                     return $wishlist;
                 }
                 else {
-                    return $wishlist[ $fetch ] ? $wishlist[ $fetch ] : false;
+
+                    $value = $wishlist[ $fetch ] ? $wishlist[ $fetch ] : false;
+                    $result = array();
+                    if( ! empty( $value ) ) {
+                        $result = in_array( $fetch, $this->array_entries ) ? json_decode( $value ) : $value;
+                    }
+                    return $result;
                 }
             }
         }
-        return false;
-    }
-
-    /**
-	 * Set Selected data to Sql Query Obj and Update to wishlist.
-	 *
-     * @param $obj     array SQL result
-     * @param $key     string  The key to update.
-     * @param $value   string  The value to update.
-     * @param $force_override    bool  Whether to add as a complete new value ( works only in case of array data ) .
-	 * @since 1.0.0
-	 * @return array $result the parsed data form for query.
-	 */
-    public function set_prop( $obj=array(), $key = '', $value='', $force_override=false ) {
-
-        $result = array(
-            'status'    =>  200,
-            'message'    =>  esc_html__( 'Invalid Input', 'wishlist-for-woo' ),
-        );
-
-        if( empty( $key ) || ( true != $force_override && empty( $value ) ) ) {
-            return $result;
-        }
-
-        if ( ! empty( $obj ) && is_array( $obj ) ) {
-            
-            $result = array();
-            foreach ( $obj as $_key => $wishlist ) {
-
-                if( in_array( $_key, $this->array_entries ) ) {
-
-                    if( true == $force_override ) {
-
-                        $update_value = is_array( $value ) ? $value : array( $value );
-                    }
-                    else {
-
-                        $updated_value = json_decode( $this->get_prop( $obj, $key ) );
-                        array_push( $updated_value, $value );
-                    }
-                }
-
-                $args[ $key ] = $updated_value;
-
-                $this->id = $this->id ? $this->id : $this->get_prop( $obj, 'id' );
-
-                return $this->update( $args );
-            }
-        }
-
         return false;
     }
 

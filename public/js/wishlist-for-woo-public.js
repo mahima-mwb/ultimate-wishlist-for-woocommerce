@@ -8,39 +8,42 @@
  */
 jQuery(document).ready(function() {
 
-    /**==========================================================================================
-     *                              Object constants/Variables.
-    =========================================================================================== */  
+/**==========================================================================================
+ *                              Object constants/Variables.
+=========================================================================================== */  
 
     // Datasets.
     let strings = mwb_wfw_obj.strings;
     let settings = mwb_wfw_obj.settings;
+    let user = mwb_wfw_obj.user;
+
+    // Settings Pickups.
+    let permalink = settings.permalink;
    
     // Wishlist triggers/objects.
     let wishlistTrigger = jQuery( '.add-to-wishlist' );
     let wishlistPopup = jQuery( '.mwb-wfw-wishlist-dialog' );
 
-    // Settings Pickups.
-    let permalink = settings.permalink;
-
     // HTML Objects.
     const viewWishlistButton = '<a href="' + permalink + '" class="button mwb-wfw-action-button view">' + strings.view_text + '</a>';
     const processingIconHtml = '<span class="mwb-wfw-wishlist-processing"><i class="fa fa fa-spinner fa-spin"></i>' + strings.processing_text + '...</span>';
 
-    /**==========================================================================================
-     *                               Library Functions
-    =========================================================================================== */  
+/**==========================================================================================
+ *                               Library Functions
+=========================================================================================== */  
 
     // Initialise the wishlist action popup.
     const initWishlistPopup = () => {
-        wishlistPopup.dialog({
+
+        if( 'yes' != settings.wfw_enable_popup ) return;
+         wishlistPopup.dialog({
             modal: true,
             title: strings.popup_title,
             width : 700,
             autoOpen : false,
             draggable: true,
             closeText: "Close",
-            beforeClose: function( event, ui ) {
+            beforeClose: function() {
                 wishlistPopupReset();
             },
             buttons: [{
@@ -54,7 +57,6 @@ jQuery(document).ready(function() {
 
     // Reset the popup on every close.
     const wishlistPopupReset = () => {
-
         jQuery( '.mwb-wfw-wishlist-item-img' ).attr( 'src', '' );
         jQuery( '.mwb-wfw-wishlist-item-img' ).trigger( 'change' );
         jQuery( '.mwb-wfw-wishlist-item-details' ).empty();
@@ -62,24 +64,25 @@ jQuery(document).ready(function() {
         jQuery( '.mwb-wfw-wishlist-processing' ).remove();
     }
 
-    // Wishlist process.
+    // Wishlist process :: Product Add/Remove.
     const processWishtlist = ( obj ) => {
         productId = obj.data( 'product-id' );
-        wishlistId = obj.data( 'wishlist-id' );
+        wishlistId = obj.data( 'wishlist-id' ) ? obj.data( 'wishlist-id' ) : obj.attr( 'data-wishlist-id' );
 
         // If wishlist id is available remove from wishlist.
         if( null != wishlistId && '' != wishlistId ) {
             obj.removeClass('active-wishlist');
-            obj.data( 'wishlist-id', '' );
-            removeFromWishlist( productId, wishlistId );
+            obj.attr( 'data-wishlist-id', '' );
+            removeFromWishlist( productId, wishlistId, obj );
         }
 
         // If wishlist id is not available add to wishlist.
         else if ( null !=  productId ) {
             const product = obj.closest( 'li.product' );
             obj.addClass('active-wishlist');
-            if( product.length > 0 ) {
-                triggerShowWishlist( productId, product, obj );
+            obj.addClass('current-trigger');
+            if( product.length > 0 ) {                
+                triggerShowWishlist( productId, product );
             }
 
         } else {
@@ -89,8 +92,6 @@ jQuery(document).ready(function() {
 
     // Ajax Callbacks.
     async function doAjax(args) {
-        let result;
-    
         try {
             return await jQuery.ajax({
                 url: mwb_wfw_obj.ajaxurl,
@@ -154,7 +155,7 @@ jQuery(document).ready(function() {
     }
 
     // Async process : Add to wishlist.
-    const addToWishlist = ( pId='', obj='' )  =>  {
+    const addToWishlist = ( pId='' )  =>  {
         let data = {
             nonce: mwb_wfw_obj.auth_nonce,
             action : 'UpdateWishlist',
@@ -163,7 +164,7 @@ jQuery(document).ready(function() {
         };
 
         let result = doAjax( data );
-        result.then( ( result, obj ) => processResponse( result, obj ) );
+        result.then( ( result ) => processResponse( result ) );
     }
 
     // Async process : Remove From to wishlist.
@@ -183,41 +184,53 @@ jQuery(document).ready(function() {
     }
 
     // Process to Show wishlist.
-    const triggerShowWishlist = ( pId = '', product = {}, obj={} ) => {
+    const triggerShowWishlist = ( pId = '', product = {} ) => {
 
         // Prepare dialog box first.
         cloneProductDetails( product );
 
         // Add product to current wishlist.
-        addToWishlist( pId, obj );
+        addToWishlist( pId );
 
         // Show Popup for wishlist selection.
-        wishlistPopup.dialog( 'open' );
+        if( wishlistPopup.length ) {
+            wishlistPopup.dialog( 'open' );
+        }
     }
 
     // Process the Async Output.
-    const processResponse = ( response, obj ) => {
+    const processResponse = ( response ) => {
         response = JSON.parse( response );
         const processingIcon = jQuery( '.mwb-wfw-wishlist-processing' );
         if( 200 == response.status ) {
-           // obj.attr( 'data-wishlist-id', response.id );
             console.log( response );
+            jQuery('.current-trigger').attr( 'data-wishlist-id', response.id );
             processingIcon.remove();
         } else {
             processingIcon.text( response.message );
         }
     }
 
-    /**==========================================================================================
-     *                      Native Functional Callbacks
-    =========================================================================================== */    
+/**==========================================================================================
+ *                      Native Functional Callbacks
+=========================================================================================== */    
 
     // Initialise dialog box for popup.
     initWishlistPopup();
 
     // Add/Remove to Wishlist.
     wishlistTrigger.on( 'click', function() {
-        processWishtlist( jQuery( this ) );
+        // If a guest user enters wishlist.
+        if( 0 == user ){
+            triggerError( strings.login_required );
+        }
+        else {
+            wishlistTrigger.removeClass( 'current-trigger' );
+            processWishtlist( jQuery( this ) );
+        }
     });
+
+
+// End of scripts.
 });
 

@@ -68,6 +68,7 @@ class Wishlist_For_Woo_Helper {
             'view_text'	=>	apply_filters( 'mwf_view_text', esc_html__( 'View Wishlist', 'wishlist-for-woo' ) ),
             'processing_text'	=>	apply_filters( 'mwf_processing_text', esc_html__( 'Processing', 'wishlist-for-woo' ) ),
             'add_to_cart'	=>	apply_filters( 'mwf_add_to_cart', esc_html__( 'Buy Now', 'wishlist-for-woo' ) ),
+            'login_required'	=>	apply_filters( 'mwf_login_required', esc_html__( 'Please Login to your account first.', 'wishlist-for-woo' ) ),
         );
     }
 
@@ -83,7 +84,7 @@ class Wishlist_For_Woo_Helper {
 
             $formatted_result = array();
             foreach ( $result as $key => $option ) {
-                $formatted_result[ $option[ 'option_name' ] ] = $option[ 'option_value' ];
+                $formatted_result[ str_replace( '-', '_', $option[ 'option_name' ] ) ] = $option[ 'option_value' ];
             }
 
             return $formatted_result;

@@ -356,7 +356,8 @@ class Wishlist_For_Woo_Admin {
 		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
 
 		$checkbox_settings = array(
-			'wfw-enable-plugin'
+			'wfw-enable-plugin',
+			'wfw-enable-popup',
 		);
 
 		$formdata = array();
