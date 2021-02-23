@@ -175,30 +175,32 @@ class Wishlist_For_Woo_Renderer {
 
 		global $product;
 		$search_result = $this->does_wishlist_includes_product( $product->get_id() );
+		$accept_text = apply_filters( 'mwb_wfw_wishlist_accept_text', esc_html__( 'Add to Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN ) );
+		$remove_text = apply_filters( 'mwb_wfw_wishlist_remove_text', esc_html__( 'Remove from Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN ) );
 
 		if( 200 == $search_result[ 'status' ] ) {
 			$wishlist = reset( $search_result[ 'message' ] );
 			$wid = $wishlist[ 'id' ] ? $wishlist[ 'id' ] : '';
 			$is_active = $wid ? 'active-wishlist' : '';
-			$text = ! empty( $wid ) ? esc_html__( 'Remove from Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN ) : esc_html__( 'Add to Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN );
+			$text = ! empty( $wid ) ? $remove_text : $accept_text;
 		}
 
 		else {
 
 			$is_active = '';
 			$wid = '';
-			$text = ! empty( $wid ) ? esc_html__( 'Remove from Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN ) : esc_html__( 'Add to Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN );
+			$text = $accept_text;
 		}
 
 		$default_attr =  apply_filters( 'mwb_wfw_wishlist_attr', array(
-				'text'	=>	apply_filters( 'mwb_wfw_wishlist_text', $text ),
+				'text'	=>	$text,
 				'extra_class'	=>	'',
 				'style'	=>	'',
 			)
 		);
 
 		?>
-			<a href="javascript:void(0);" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist mwb-wfw-loop-text-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-loop <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><?php echo esc_attr( $default_attr[ 'text' ] ); ?></a>
+		<a href="javascript:void(0);" data-wishlist-id="<?php echo esc_attr( $wid ); ?>" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist <?php echo esc_attr( $is_active ); ?> mwb-wfw-loop-text-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-loop <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><?php echo esc_attr( $default_attr[ 'text' ] ); ?></a>
 		<?php
 	}	
 

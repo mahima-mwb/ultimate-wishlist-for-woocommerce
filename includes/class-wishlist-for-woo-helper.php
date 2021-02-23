@@ -69,9 +69,10 @@ class Wishlist_For_Woo_Helper {
             'processing_text'	=>	apply_filters( 'mwf_processing_text', esc_html__( 'Processing', 'wishlist-for-woo' ) ),
             'add_to_cart'	=>	apply_filters( 'mwf_add_to_cart', esc_html__( 'Buy Now', 'wishlist-for-woo' ) ),
             'login_required'	=>	apply_filters( 'mwf_login_required', esc_html__( 'Please Login to your account first.', 'wishlist-for-woo' ) ),
+            'add_to_wishlist'	=>	apply_filters( 'mwb_wfw_wishlist_accept_text', esc_html__( 'Add to Wishlist', 'wishlist-for-woo' ) ),
+            'remove_from_wishlist'	=>	apply_filters( 'mwb_wfw_wishlist_remove_text', esc_html__( 'Remove from Wishlist', 'wishlist-for-woo' ) ),
         );
     }
-
 
 	/**
 	 * Get options settings from db.

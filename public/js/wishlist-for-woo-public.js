@@ -68,24 +68,29 @@ jQuery(document).ready(function() {
     const processWishtlist = ( obj ) => {
         productId = obj.data( 'product-id' );
         wishlistId = obj.data( 'wishlist-id' ) ? obj.data( 'wishlist-id' ) : obj.attr( 'data-wishlist-id' );
+        obj.addClass( 'current-trigger' );
+        if( obj.hasClass( 'mwb-wfw-loop-text-button' ) ) {
+            obj.prop( "disabled", true );
+        }
 
         // If wishlist id is available remove from wishlist.
         if( null != wishlistId && '' != wishlistId ) {
             obj.removeClass('active-wishlist');
             obj.attr( 'data-wishlist-id', '' );
-            removeFromWishlist( productId, wishlistId, obj );
+            removeFromWishlist( productId, wishlistId );
         }
 
         // If wishlist id is not available add to wishlist.
         else if ( null !=  productId ) {
             const product = obj.closest( 'li.product' );
             obj.addClass('active-wishlist');
-            obj.addClass('current-trigger');
-            if( product.length > 0 ) {                
+
+            if( product.length > 0 || 'single' == location() ) {                
                 triggerShowWishlist( productId, product );
             }
 
-        } else {
+        } 
+        else {
             triggerError();
         }
     }
@@ -149,9 +154,7 @@ jQuery(document).ready(function() {
         addToCartButton.appendTo( ".mwb-wfw-wishlist-action-buttons" );
         addToCartButton.text( strings.add_to_cart );
         jQuery( ".mwb-wfw-wishlist-action-buttons" ).append( viewWishlistButton );
-
         jQuery( ".ui-dialog-title" ).append( processingIconHtml );
-
     }
 
     // Async process : Add to wishlist.
@@ -178,16 +181,24 @@ jQuery(document).ready(function() {
         };
 
         let result = doAjax( data );
-        result.then( ( result ) => {
-            console.log( result );
+        result.then( ( response ) => {
+            response = JSON.parse( response );
+            if( 200 == response.status ) {
+                console.log( response );
+                let trigger = jQuery('.current-trigger');
+                if( trigger.hasClass( 'mwb-wfw-loop-text-button' ) ) {
+                    trigger.text( strings.add_to_wishlist );
+                    trigger.prop( "disabled", false );
+                }
+            }
         } );
     }
 
     // Process to Show wishlist.
     const triggerShowWishlist = ( pId = '', product = {} ) => {
 
-        // Prepare dialog box first.
-        cloneProductDetails( product );
+        // Prepare dialog box first only for shop page.
+        'shop' == location() && cloneProductDetails( product );
 
         // Add product to current wishlist.
         addToWishlist( pId );
@@ -204,10 +215,25 @@ jQuery(document).ready(function() {
         const processingIcon = jQuery( '.mwb-wfw-wishlist-processing' );
         if( 200 == response.status ) {
             console.log( response );
-            jQuery('.current-trigger').attr( 'data-wishlist-id', response.id );
+            let trigger = jQuery('.current-trigger');
+            trigger.attr( 'data-wishlist-id', response.id );
+            if( trigger.hasClass( 'mwb-wfw-loop-text-button' ) ) {
+                trigger.text( strings.remove_from_wishlist );
+                trigger.prop( "disabled", false );
+            }
+
             processingIcon.remove();
         } else {
             processingIcon.text( response.message );
+        }
+    }
+
+    const location = () => {
+        if( jQuery( 'body' ).hasClass( 'single-product' ) ) {
+            return 'single';
+        }
+        else {
+            return 'shop';
         }
     }
 
