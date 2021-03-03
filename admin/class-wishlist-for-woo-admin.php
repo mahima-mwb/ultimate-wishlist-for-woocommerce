@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -53,14 +52,14 @@ class Wishlist_For_Woo_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of this plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
-		$this->admin_path = plugin_dir_path( __FILE__ );
+		$this->version     = $version;
+		$this->admin_path  = plugin_dir_path( __FILE__ );
 	}
 
 	/**
@@ -83,9 +82,9 @@ class Wishlist_For_Woo_Admin {
 		 */
 
 		/**
-		 * Scripts and Stylesheets need to be accessed and enqueued on configuration panels only. 
+		 * Scripts and Stylesheets need to be accessed and enqueued on configuration panels only.
 		 */
-		if( self::is_valid_screen() ) {
+		if ( self::is_valid_screen() ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-admin.css', array(), $this->version, 'all' );
 			wp_enqueue_style( $this->plugin_name . '-select2', plugin_dir_url( __FILE__ ) . 'css/select2.min.css', array(), $this->version, 'all' );
 		}
@@ -109,7 +108,7 @@ class Wishlist_For_Woo_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		if( self::is_valid_screen() ) {
+		if ( self::is_valid_screen() ) {
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-admin.js', array( 'jquery' ), $this->version, false );
 			wp_enqueue_script( $this->plugin_name . '-swal-alert', plugin_dir_url( __FILE__ ) . 'js/swal.js', array( 'jquery' ), $this->version, false );
 			wp_enqueue_script( $this->plugin_name . '-select2', plugin_dir_url( __FILE__ ) . 'js/select2.min.js', array( 'jquery' ), $this->version, false );
@@ -117,13 +116,13 @@ class Wishlist_For_Woo_Admin {
 				$this->plugin_name,
 				'mwb_wfw_obj',
 				array(
-					'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
-					'mobileView'   => wp_is_mobile(),
-					'authNonce'    => wp_create_nonce( 'mwb_wfw_nonce' ),
-					'notfoundErrorMessage'    => esc_html__( 'Settings Panel Not Found.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-					'criticalErrorMessage'    => esc_html__( 'Internal Server Error.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+					'ajaxUrl'              => admin_url( 'admin-ajax.php' ),
+					'mobileView'           => wp_is_mobile(),
+					'authNonce'            => wp_create_nonce( 'mwb_wfw_nonce' ),
+					'notfoundErrorMessage' => esc_html__( 'Settings Panel Not Found.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+					'criticalErrorMessage' => esc_html__( 'Internal Server Error.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 				)
-			);	
+			);
 		}
 	}
 
@@ -133,12 +132,13 @@ class Wishlist_For_Woo_Admin {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @author 	 MakeWebBetter <plugins@makewebbetter.com>
+	 * @author   MakeWebBetter <plugins@makewebbetter.com>.
 	 * @return   bool true|fase
 	 */
 	private static function is_valid_screen() {
 
 		$result = false;
+
 		$valid_screens = array(
 			'toplevel_page_wfw-config-portal',
 			'wishlist-for-woocommerce_page_wfw-performance-reporting',
@@ -160,10 +160,10 @@ class Wishlist_For_Woo_Admin {
 	}
 
 	/**
- 	 *  Add a admin menu for accessing plugin features.
-	 * 
+	 *  Add a admin menu for accessing plugin features.
+	 *
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
+	 * @return void
 	 */
 	public function add_config_menu() {
 
@@ -186,7 +186,7 @@ class Wishlist_For_Woo_Admin {
 		 * Add sub-menu for Reportings settings.
 		 */
 		add_submenu_page( 'wfw-config-portal', esc_html__( 'Reports & Analytics', WISHLIST_FOR_WOO_TEXTDOMAIN ), esc_html__( 'Reports & Analytics', WISHLIST_FOR_WOO_TEXTDOMAIN ), 'manage_options', 'wfw-performance-reporting', array( $this, 'add_reporting_screen' ) );
-		
+
 		/**
 		 * Add sub-menu for Plugin Overview.
 		 */
@@ -195,11 +195,11 @@ class Wishlist_For_Woo_Admin {
 
 
 	/**
- 	 *  Add a admin menu for accessing config portal.
-	 * 
+	 *  Add a admin menu for accessing config portal.
+	 *
 	 * @throws $error If something interesting cannot happen while registering the portal.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
+	 * @return void
 	 */
 	public function add_config_screen() {
 
@@ -212,14 +212,14 @@ class Wishlist_For_Woo_Admin {
 	}
 
 	/**
- 	 *  Add a admin menu for accessing reporting portal.
-	 * 
+	 *  Add a admin menu for accessing reporting portal.
+	 *
 	 * @throws $error If something interesting cannot happen while registering the portal.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
+	 * @return void
 	 */
 	public function add_reporting_screen() {
-		
+
 		wc_get_template(
 			'partials/wishlist-for-woo-reporting-portal.php',
 			array(),
@@ -229,11 +229,11 @@ class Wishlist_For_Woo_Admin {
 	}
 
 	/**
- 	 *  Add a admin menu for accessing overview portal.
-	 * 
+	 *  Add a admin menu for accessing overview portal.
+	 *
 	 * @throws $error If something interesting cannot happen while registering the portal.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
+	 * @return void
 	 */
 	public function add_overview_screen() {
 
@@ -246,51 +246,53 @@ class Wishlist_For_Woo_Admin {
 	}
 
 	/**
- 	 *  Get screen ajax callback.
-	 * 
+	 *  Get screen ajax callback.
+	 *
 	 * @throws $error If something interesting cannot happen while registering the portal.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 * @return html
 	 */
 	public function getCurrentScreen() {
-		
-		// Nonce verification.
-		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
 
-		$hashScreen = ! empty( $_POST[ 'hashScreen' ] ) ? str_replace( '#', '', $_POST[ 'hashScreen' ] ) : false;
-		
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
+
+		$hashScreen = ! empty( $_POST['hashScreen'] ) ? str_replace( '#', '', $_POST['hashScreen'] ) : false;
+
 		try {
 
 			$result = array(
-				'status'	=>	200,
-				'content'	=>	self::get_selected_template_content( $hashScreen ),
+				'status'  => 200,
+				'content' => self::get_selected_template_content( $hashScreen ),
 			);
-			
-		} catch (\Throwable $error ) {
+
+		} catch ( \Throwable $error ) {
 
 			$result = array(
-				'status'	=>	500,
-				'content'	=>	$error->getMessage(),
+				'status'  => 500,
+				'content' => $error->getMessage(),
 			);
 		}
-		
+
 		echo json_encode( $result );
 		wp_die();
 	}
 
 	/**
- 	 *  Return Html content for required tab.
+	 *  Return Html content for required tab.
 	 *
 	 * @param string $template_part the key for section which we need.
-	 * 
-	 * @throws Some_Exception_Class If something interesting cannot happen
+	 *
+	 * @throws Some_Exception_Class If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 * @return html
 	 */
-	public static function get_selected_template_content( $template_part=false ) {
+	public static function get_selected_template_content( $template_part = false ) {
 
-		if( ! empty( $template_part ) ) {
+		if ( ! empty( $template_part ) ) {
+
 			switch ( $template_part ) {
+
 				case 'general':
 					$settings = Wishlist_For_Woo_Template_Manager::get_general_sections_settings();
 					break;
@@ -310,11 +312,11 @@ class Wishlist_For_Woo_Admin {
 				case 'crm':
 					$settings = Wishlist_For_Woo_Template_Manager::get_crm_sections_settings();
 					break;
-				
+
 				default:
 					$settings[] = array(
 						'title' => esc_html__( 'Undefined Portal Encountered', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-						'class'    => 'mwb-wfw-sub-heading',
+						'class' => 'mwb-wfw-sub-heading',
 						'type'  => 'title',
 						'id'    => 'mwb-wfw-heading',
 					);
@@ -322,20 +324,21 @@ class Wishlist_For_Woo_Admin {
 			}
 		}
 
-		if( ! empty( $settings ) && is_array( $settings ) ) {
+		if ( ! empty( $settings ) && is_array( $settings ) ) {
 
 			$output = '';
+
 			foreach ( $settings as $index => $setting ) {
 
-				if( ! empty( $setting[ 'type' ] ) && 'sub-heading' == $setting[ 'type' ] ) {
-					$output .= sprintf( '<tr valign="top"><td colspan="2" class="forminp"><h2 class="mwb-wfw-subheading">%s</h2></td></tr>', esc_html( $setting[ 'value' ] ) );
-				}
+				if ( ! empty( $setting['type'] ) && 'sub-heading' == $setting['type'] ) {
 
-				else {
+					$output .= sprintf( '<tr valign="top"><td colspan="2" class="forminp"><h2 class="mwb-wfw-subheading">%s</h2></td></tr>', esc_html( $setting['value'] ) );
+
+				} else {
 					ob_start();
 						woocommerce_admin_fields( array( $setting ) );
 					$output .= ob_get_contents();
-					ob_end_clean();		
+					ob_end_clean();
 				}
 			}
 
@@ -344,34 +347,35 @@ class Wishlist_For_Woo_Admin {
 	}
 
 	/**
- 	 *  Save form data ajax callback.
-	 * 
+	 *  Save form data ajax callback.
+	 *
 	 * @throws $error If something interesting cannot happen while registering the portal.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 * @return json
 	 */
 	public function saveFormOutput() {
-		
+
 		// Nonce verification.
 		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
 
 		$checkbox_settings = array(
 			'wfw-enable-plugin',
 			'wfw-enable-popup',
+			'wfw-enable-push-notif',
 		);
 
 		$formdata = array();
 		isset( $_POST['data'] ) ? parse_str( sanitize_text_field( $_POST['data'] ), $formdata ) : '';
-		$formdata = ! empty( $formdata ) ?  map_deep( wp_unslash( $formdata ), 'sanitize_text_field' ) : false;
-		
+		$formdata = ! empty( $formdata ) ? map_deep( wp_unslash( $formdata ), 'sanitize_text_field' ) : false;
+
 		try {
 
 			foreach ( $checkbox_settings as $key => $data_key ) {
 
-				if( ! array_key_exists( $data_key, $formdata ) ) {
+				if ( ! array_key_exists( $data_key, $formdata ) ) {
 					$formdata[ $data_key ] = '';
-				}
-				else {
+
+				} else {
 
 					$formdata[ $data_key ] = 'yes';
 				}
@@ -388,18 +392,52 @@ class Wishlist_For_Woo_Admin {
 					'content'	=>	'success',
 				);
 			}
-			
-		} catch (\Throwable $error ) {
+		} catch ( \Throwable $error ) {
 
 			$result = array(
-				'status'	=>	500,
-				'content'	=>	$error->getMessage(),
+				'status'  => 500,
+				'content' => $error->getMessage(),
 			);
 		}
-		
+
 		echo json_encode( $result );
 		wp_die();
 	}
 
-# End of class.
+	/**
+	 * Move push notif main js to root folder.
+	 */
+	public function MoveFiletoRoot() {
+
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
+
+		$result = array();
+
+		$enable_push_notif = get_option( 'wfw-enable-push-notif', 'yes' );
+
+		if ( 'yes' == $enable_push_notif ) {
+
+			$source      = WISHLIST_PLUGINS_PATH . 'wishlist-for-woo/service-worker.js';
+			$destination = ABSPATH . 'service-worker.js';
+
+			$move_file = rename( $source, $destination );
+
+			if ( false == $move_file ) {
+				$result = array(
+					'status'  => false,
+					'message' => esc_html__( 'Write permisiion needed!', 'wishlist_for_woo' ),
+				);
+			} else{ 
+				$result = array(
+					'status'  => true,
+					'message' => esc_html__( 'File moved succesfully', 'wishlist_for_woo' ),
+				);
+			}
+		}
+
+		wp_send_json( $result );
+	}
+
+	// End of class.
 }

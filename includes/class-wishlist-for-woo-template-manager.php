@@ -109,21 +109,21 @@ class Wishlist_For_Woo_Template_Manager {
 	public function render_helpdesk_sidebar() {
 		
 		ob_start(); ?>
-           <div class="mwb-wfw-sidebar">
-                <div class="mwb-wfw-helpdesk__icon">
-                    <img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/customer-service-icon.jpg' ) ?>" class="mwb-wfw-helpdesk-btn" />
-                </div>
-                <h2>help desk </h2>
-                <ul class="mwb-wfw-sidebar__items">
-                    <li class="mwb-wfw-sidebar__links"><a href="javascript:void(0)"><?php esc_html_e( 'go pro', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?><span> &#8594;</span></a></li>
-                    <li class="mwb-wfw-sidebar__links"><a href="javascript:void(0)"><?php esc_html_e( 'see docs', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?><span> &#8594;</span></a></li>
-                    <li class="mwb-wfw-sidebar__links"><a href="javascript:void(0)"><?php esc_html_e( 'see tutorial', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?> <span> &#8594;</span></a></li>
-                </ul>
-                <div class="mwb-wfw-sidebar__connect">
-                    <a href="javascript:void(0)"><?php esc_html_e( 'connect with us in one click', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></a>
-                    <a href="javascript:void(0)" class="mwb-wfw-skype__icon"><img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/skype_logo.png' ) ?>" alt="skype-log"><span>connect</span></a>
-                </div>
-            </div>
+		   <div class="mwb-wfw-sidebar">
+				<div class="mwb-wfw-helpdesk__icon">
+					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/customer-service-icon.jpg' ) ?>" class="mwb-wfw-helpdesk-btn" />
+				</div>
+				<h2>help desk </h2>
+				<ul class="mwb-wfw-sidebar__items">
+					<li class="mwb-wfw-sidebar__links"><a href="javascript:void(0)"><?php esc_html_e( 'go pro', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?><span> &#8594;</span></a></li>
+					<li class="mwb-wfw-sidebar__links"><a href="javascript:void(0)"><?php esc_html_e( 'see docs', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?><span> &#8594;</span></a></li>
+					<li class="mwb-wfw-sidebar__links"><a href="javascript:void(0)"><?php esc_html_e( 'see tutorial', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?> <span> &#8594;</span></a></li>
+				</ul>
+				<div class="mwb-wfw-sidebar__connect">
+					<a href="javascript:void(0)"><?php esc_html_e( 'connect with us in one click', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></a>
+					<a href="javascript:void(0)" class="mwb-wfw-skype__icon"><img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/skype_logo.png' ) ?>" alt="skype-log"><span>connect</span></a>
+				</div>
+			</div>
 		<?php echo ob_get_clean();
 	}	
 
@@ -308,22 +308,24 @@ class Wishlist_For_Woo_Template_Manager {
 									'after_product_price'	=>	esc_html__( 'After Product Price', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 								),
 			'desc_tip'          => true,
-			'class'		        => 'mwb-wfw-select wfw-view-type-dependent',
-			'id'   				=> 'wfw-product-button-view',
-			'value'   			=> get_option( 'wfw-product-button-view', 'before_add_to_cart' ),
+			'class'             => 'mwb-wfw-select wfw-view-type-dependent',
+			'id'                => 'wfw-product-button-view',
+			'value'             => get_option( 'wfw-product-button-view', 'before_add_to_cart' ),
 			'custom_attributes' => array( 'dependent' => 'dependency-type-button' ),
 		);
 
 		// Select :: Where to show button on product pages.
-		$settings[]		=	array(
-			'type'	=>	'sub-heading',
-			'value'	=>	esc_html__( 'Wishlist Page', WISHLIST_FOR_WOO_TEXTDOMAIN )
+		$settings[] = array(
+			'type'  => 'sub-heading',
+			'value' => esc_html__( 'Wishlist Page', WISHLIST_FOR_WOO_TEXTDOMAIN )
 		);
 
 		global $wpdb;
-		$sql = "SELECT `ID` FROM `wp_posts` WHERE `post_content` LIKE '%[mwb_wfw_wishlist]%' AND `post_type` = 'page' AND `post_status` = 'publish'";
+
+		$sql           = "SELECT `ID` FROM `wp_posts` WHERE `post_content` LIKE '%[mwb_wfw_wishlist]%' AND `post_type` = 'page' AND `post_status` = 'publish'";
 		$wishlist_page = $wpdb->get_results( $sql );
-		$page_option = array();
+		$page_option   = array();
+
 		if( $wishlist_page ) {
 
 			foreach ( $wishlist_page as $key => $post ) {
@@ -332,21 +334,21 @@ class Wishlist_For_Woo_Template_Manager {
 		}
 
 		$settings[] = array(
-			'title'             => esc_html__( 'Wishlist Page', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'type'              => 'select',
-			'desc'              => esc_html__( 'Select the page where wishlist should be shown/handled.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'options'           => $page_option,
-			'desc_tip'          => true,
-			'class'		        => 'mwb-wfw-select mwb-wfw-select-page',
-			'id'   				=> 'wfw-selected-page',
-			'value'   			=> get_option( 'wfw-selected-page', '' ),
+			'title'    => esc_html__( 'Wishlist Page', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'type'     => 'select',
+			'desc'     => esc_html__( 'Select the page where wishlist should be shown/handled.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'options'  => $page_option,
+			'desc_tip' => true,
+			'class'	   => 'mwb-wfw-select mwb-wfw-select-page',
+			'id'       => 'wfw-selected-page',
+			'value'    => get_option( 'wfw-selected-page', '' ),
 		);
 
 		// End of Settings.
 		$settings[] = array(
 			'type' => 'sectionend',
 		);
-		
+
 		return $settings;
 	}
 
@@ -357,11 +359,12 @@ class Wishlist_For_Woo_Template_Manager {
 	 * @return array
 	 */
 	public static function get_social_sharing_sections_settings() {
-		
-		$settings = array();
+
+		$settings   = array();
+
 		$settings[] = array(
 			'title' => esc_html__( 'This will be heading for Social Sharing Tab.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'class'    => 'mwb-wfw-sub-heading',
+			'class' => 'mwb-wfw-sub-heading',
 			'type'  => 'title',
 			'id'    => 'mwb-wfw-heading',
 		);
@@ -379,13 +382,34 @@ class Wishlist_For_Woo_Template_Manager {
 	 * @return array
 	 */
 	public static function get_push_notify_sections_settings() {
-		
-		$settings = array();
+
+		// Section start.
 		$settings[] = array(
-			'title' => esc_html__( 'This will be heading for any Push Notification section seperation', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'class'    => 'mwb-wfw-sub-heading',
+			'title' => esc_html__( 'Push Notifications', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'  => 'title',
-			'id'    => 'mwb-wfw-heading',
+		);
+
+		// Toggle :: Enable/Disable Plugin.
+		$settings[] = array(
+			'title'    => esc_html__( 'Enable /Disable Push Notifications', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-checkbox',
+			'type'     => 'checkbox',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-push-notif', 'yes' ),
+			'id'       => 'wfw-enable-push-notif',
+			'desc'     => esc_html__( 'Enable/Disable the push notifications functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Toggle :: Enable/Disable Plugin.
+
+		$settings[] = array(
+			'title'    => esc_html__( 'Secret Key', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-checkbox',
+			'type'     => 'text',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-push-notif-sk', '' ),
+			'id'       => 'wfw-push-notif-sk',
+			'desc'     => esc_html__( 'Enable/Disable the push notifications functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
 
 		$settings[] = array(
@@ -401,11 +425,12 @@ class Wishlist_For_Woo_Template_Manager {
 	 * @return array
 	 */
 	public static function get_advance_feature_sections_settings() {
-		
+
 		$settings = array();
+
 		$settings[] = array(
 			'title' => esc_html__( 'This will be heading for Advance Features section.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'class'    => 'mwb-wfw-sub-heading',
+			'class' => 'mwb-wfw-sub-heading',
 			'type'  => 'title',
 			'id'    => 'mwb-wfw-heading',
 		);
@@ -423,11 +448,12 @@ class Wishlist_For_Woo_Template_Manager {
 	 * @return array
 	 */
 	public static function get_crm_sections_settings() {
-		
+
 		$settings = array();
+
 		$settings[] = array(
 			'title' => esc_html__( 'This will be heading for CRM section', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'class'    => 'mwb-wfw-sub-heading',
+			'class' => 'mwb-wfw-sub-heading',
 			'type'  => 'title',
 			'id'    => 'mwb-wfw-heading',
 		);

@@ -59,9 +59,9 @@ class Wishlist_For_Woo_Public {
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 		$this->public_path = plugin_dir_path( __FILE__ );
-		$this->render = Wishlist_For_Woo_Renderer::get_instance();
+		$this->render      = Wishlist_For_Woo_Renderer::get_instance();
 	}
 
 	/**
@@ -85,6 +85,8 @@ class Wishlist_For_Woo_Public {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-public.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name . '-font-awesome', plugin_dir_url( __FILE__ ) . 'css/font-awesome.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'wp-jquery-ui-dialog' );
+		
+
 	}
 
 	/**
@@ -125,6 +127,9 @@ class Wishlist_For_Woo_Public {
 
 		wp_enqueue_script( $this->plugin_name . '-swal-alert', WISHLIST_FOR_WOO_URL . 'admin/js/swal.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'jquery-ui-dialog' );
+		add_thickbox();
+
+		wp_enqueue_script( 'wfw-pushy-sdk', plugin_dir_url( __FILE__ ) . 'js/wishlist-pushy-sdk.js', array( 'jquery' ), $this->version, false );
 	}
 
 	/**
@@ -150,6 +155,7 @@ class Wishlist_For_Woo_Public {
 
 		// Initiate a wishlist shortcode.
 		$this->init_shortcodes();
+
 	}
 
 	/**
@@ -160,13 +166,43 @@ class Wishlist_For_Woo_Public {
 	 * @return null
 	 */
 	public function enable_wishlist_popup() {
-
+	
 		if( 'yes' == get_option( 'wfw-enable-popup', 'no' ) ) {
 			
 			// Wishlist popup view html.
 			add_action( 'wp_footer', array( $this, 'render_wishlist_html' ) );
 		}
 	}
+
+	/**
+	 * Enable push notifications& enqueue its JS.
+	 */
+	public function enable_push_notifications() {
+
+		$secret_key = get_option( 'wfw-push-notif-sk', '' );
+
+		$file = ABSPATH . 'service-worker.js';
+
+		if ( ! empty( $secret_key ) ) {
+
+			if ( file_exists( $file ) ) {
+
+				?>
+				<script type='module'>
+					// Register visitor's browser for push notifications
+					Pushy.register({ appId: <?php echo esc_html( $secret_key ); ?> }).then(function (deviceToken) {
+
+					}).catch(function (err) {
+						// Handle registration errors
+						console.error(err);
+					});
+				</script>
+				<?php
+			}
+		}
+
+	}
+
 
 	/**
  	 *  Adds a wishlist dynamic popup to manage newly added items.
@@ -370,6 +406,115 @@ class Wishlist_For_Woo_Public {
 		$result[ 'id' ] = $wishlist_manager->id;
 		echo json_encode( $result );
 		wp_die();
+	}
+
+	public function UpdateWishlistMeta() {
+
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
+
+		$formdata = array();
+		isset( $_POST['formData'] ) ? parse_str( sanitize_text_field( $_POST['formData'] ), $formdata ) : '';
+		$formdata = ! empty( $formdata ) ?  map_deep( wp_unslash( $formdata ), 'sanitize_text_field' ) : false;
+
+		$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance();
+		$wishlist_manager->id = $formdata[ 'wid' ] ? $formdata[ 'wid' ] : false;
+		$properties = $wishlist_manager->get_prop( 'properties' );
+		$properties = ! is_array( $properties ) ? json_decode( json_encode( $properties ), true ) : $properties;
+		$properties[  'comments' ] = $properties[  'comments' ] ? $properties[  'comments' ] : array();
+
+		$properties[  'comments' ][ $formdata[ 'wid' ] ] = $formdata;
+		
+		unset( $properties[  'comments' ][ $formdata[ 'wid' ] ][ 'wid' ] );
+		unset( $properties[  'comments' ][ $formdata[ 'wid' ] ][ 'product' ] );
+
+		// $properties
+
+		wp_die();
+	}
+
+	/**
+	 * Ajax callback for Email Invitation.
+	 */
+	public function InvitationEmail() {
+
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
+
+		$result = array();
+
+		$email = ! empty( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : false;
+		$id    = ! empty( $_POST['id'] ) ? sanitize_text_field( wp_unslash( $_POST['id'] ) ) : '';
+
+		if ( empty( $email ) || empty( $id ) ) {
+
+			$result = array(
+				'status'  => false,
+				'message' => esc_html__( 'Email field cannot be empty', 'wishlist_for_woo' ),
+			);
+
+		}
+
+		if ( false != $email && ! empty( $id ) ) {
+
+			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $id );
+
+			$wishlist_title = $wishlist_manager->get_prop( 'title' );
+			$collaborators  = $wishlist_manager->get_prop( 'collaborators' );
+
+			$link = get_permalink( get_option( 'wfw-selected-page', '' ) );
+
+			if ( ! empty( $link ) ) {
+				$link = add_query_arg(
+					array(
+						'wl-ref' => Wishlist_For_Woo_Helper::encrypter( $id ),
+					),
+					$link
+				);
+
+			}
+
+			$subject = apply_filters( 'wfw_invite_email_subject', 'Join as a collaborator' );
+			$message = apply_filters( 'wfw_invite_email_messgae', 'You are now added as a collaborator to this wishlist ' . $wishlist_title . '. Visit the page here ' . $link );
+
+			if ( ! function_exists( 'wp_mail' ) ) {
+
+				$result = array(
+					'status'  => false,
+					'message' => esc_html__( 'At the moment, you are not allowed to send this mail', 'wishlist_for_you' ),
+				);
+			}
+
+			wp_mail(
+				$email,
+				$subject,
+				$message,
+				array(
+					'From: ' . get_bloginfo( 'name' ) . ' <' . get_bloginfo( 'admin_email' ) . '>'
+				)
+			);
+
+			array_push( $collaborators, $email );
+
+			$args['collaborators'] = $collaborators;
+
+			$update = $wishlist_manager->update( $args );
+
+			if ( 200 == $update['status'] ) {
+
+				$result = array(
+					'status'  => true,
+					'message' => esc_html__( 'Invite sent successfully', 'wishlist_for_woo' ),
+				);
+			} else {
+				$result = array(
+					'status'  => false,
+					'message' => esc_html__( 'Invitation failed', 'wishlist_for_woo' ),
+				);
+			}
+
+			wp_send_json( $result );
+		}
 	}
 
 // End of class.

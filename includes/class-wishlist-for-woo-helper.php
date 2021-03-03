@@ -92,9 +92,15 @@ class Wishlist_For_Woo_Helper {
         }
     }
 
+
+	/**
+	 * Get encrypt/decrypt form of strings.
+	 *
+	 * @since    1.0.0
+	 */
     public static function encrypter( $string, $action = 'e' ) {
 
-        // you may change these values to your own
+        // Keys to encrypt.
         $secret_key = 'mwb-wfw-encrypt-base';
         $secret_iv = 'mwb-wfw-decrypt-base';
      
@@ -102,12 +108,19 @@ class Wishlist_For_Woo_Helper {
         $encrypt_method = "AES-256-CBC";
         $key = hash( 'sha256', $secret_key );
         $iv = substr( hash( 'sha256', $secret_iv ), 0, 16 );
-     
-        if( $action == 'e' ) {
-            $output = base64_encode( openssl_encrypt( $string, $encrypt_method, $key, 0, $iv ) );
-        }
-        else if( $action == 'd' ){
-            $output = openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
+
+        switch ( $action ) {
+            case 'e':
+                $output = base64_encode( openssl_encrypt( $string, $encrypt_method, $key, 0, $iv ) );
+                break;
+            
+            case 'd':
+                $output = openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
+                break;                
+
+            default:
+                $output = false;
+                break;
         }
      
        return $output;

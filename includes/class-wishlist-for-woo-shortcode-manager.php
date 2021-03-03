@@ -67,7 +67,7 @@ class Wishlist_For_Woo_Shortcode_Manager {
 			}
 		}
 
-		if( 'view' == $access ) {
+		if( ! empty( $access ) && 'view' == $access ) {
 			$get_wishlists = $wishlist_manager->retrieve();
 			if( 200 == $get_wishlists['status'] ) {
 				$owner_lists = ! empty( $get_wishlists['message'] ) ? $get_wishlists['message'] : array();
@@ -93,7 +93,7 @@ class Wishlist_For_Woo_Shortcode_Manager {
 				'owner_lists'		=>	$owner_lists,
 				'access'			=>	$access,
 				'wishlist_manager'	=>	$wishlist_manager,
-				'wid_to_show'		=>	$wid_to_show
+				'wid_to_show'		=>	$current_id
 			),
 			'',
 			$this->base_path

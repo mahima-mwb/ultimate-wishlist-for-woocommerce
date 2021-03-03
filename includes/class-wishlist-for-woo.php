@@ -188,6 +188,7 @@ class Wishlist_For_Woo {
 		// Ajax Callbacks.
 		$this->loader->add_action( 'wp_ajax_getCurrentScreen', $plugin_admin, 'getCurrentScreen' );
 		$this->loader->add_action( 'wp_ajax_saveFormOutput', $plugin_admin, 'saveFormOutput' );
+		$this->loader->add_action( 'wp_ajax_MoveFiletoRoot', $plugin_admin, 'MoveFiletoRoot' );
 	}
 
 	/**
@@ -209,9 +210,15 @@ class Wishlist_For_Woo {
 
 		// Ajax Callbacks.
 		$this->loader->add_action( 'wp_ajax_UpdateWishlist', $plugin_public, 'UpdateWishlist' );
+		$this->loader->add_action( 'wp_ajax_UpdateWishlistMeta', $plugin_public, 'UpdateWishlistMeta' );
 		$this->loader->add_action( 'wp_ajax_nopriv_UpdateWishlist', $plugin_public, 'UpdateWishlist' );
+		$this->loader->add_action( 'wp_ajax_nopriv_UpdateWishlistMeta', $plugin_public, 'UpdateWishlistMeta' );
+		$this->loader->add_action( 'wp_ajax_InvitationEmail', $plugin_public, 'InvitationEmail' );
+		$this->loader->add_action( 'wp_ajax_nopriv_InvitationEmail', $plugin_public, 'InvitationEmail' );
 
-		
+		// Push notitfications enable.
+		$this->loader->add_action( 'wp_footer', $plugin_public, 'enable_push_notifications' );
+
 	}
 
 	/**

@@ -30,6 +30,25 @@ jQuery(document).ready(function() {
                 setTimeout( function () {
                     rollbackFormChanges()
                 }, 2000 );
+
+                if ( 200 == result.status ) {
+                   var screen = window.location.hash;
+                    if ( '#push_notify' == screen ) {
+                        jQuery.ajax({
+                            type: 'post',
+                            url : mwb_wfw_obj.ajaxUrl,
+                            data: {
+                                nonce: mwb_wfw_obj.authNonce,
+                                action: 'MoveFiletoRoot',
+                            },
+                            success : function(result) {
+                                if ( false == result.status ) {
+                                    swal( 'Opps!!', result.message, 'error' );
+                                }
+                            }
+                        });
+                    }
+                }
             },
             error: function(xhr, textStatus, errorThrown) {
                 if ('error' == textStatus) {

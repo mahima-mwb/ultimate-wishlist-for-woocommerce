@@ -23,6 +23,10 @@ jQuery(document).ready(function() {
     // Wishlist triggers/objects.
     let wishlistTrigger = jQuery( '.add-to-wishlist' );
     let wishlistPopup = jQuery( '.mwb-wfw-wishlist-dialog' );
+    let createWishlistTrigger = jQuery( '.create-new-list' );
+    let createWishlistPopup = jQuery( '.wfw-create-list-form' );
+    let addWishlistMetaTrigger = jQuery( '.wfw-action-comment' );
+    let addWishlistMetaPopup =  jQuery( '.wfw_comment_wrapper' );
 
     // HTML Objects.
     const viewWishlistButton = '<a href="' + permalink + '" class="button mwb-wfw-action-button view">' + strings.view_text + '</a>';
@@ -256,6 +260,67 @@ jQuery(document).ready(function() {
         }
     });
 
+    // Create New Wishlist.
+    if( addWishlistMetaTrigger.length > 0 ) {
+
+        addWishlistMetaTrigger.on( 'click', function() {
+            prod = jQuery(this).attr('data-prod');
+            wId = jQuery(this).attr('data-wId');
+            jQuery('.comment_product').val( prod );
+            jQuery('.comment_wid').val( wId );
+            addWishlistMetaPopup.show();  
+        });
+    }
+
+    jQuery( '.wfw_comment_close, .wfw_comment_cancel' ).on( 'click', function(e) {
+        e.preventDefault();
+        addWishlistMetaPopup.hide()
+    });
+
+    jQuery( '.add-meta-to-wishlist' ).on( 'submit', function(e) {
+
+        e.preventDefault();
+        data = jQuery(this).serialize();
+        let input = {
+            nonce: mwb_wfw_obj.auth_nonce,
+            action : 'UpdateWishlistMeta',
+            formData : data,
+        };
+
+        let result = doAjax( input );
+        result.then( ( result ) => function( result ) {
+            console.log( result ); 
+        } );
+    });
+
+    jQuery( document ).on( 'submit', '#wfw_email_invite_form', function(e) {
+        
+        e.preventDefault();
+
+        let data = {
+            nonce: mwb_wfw_obj.auth_nonce,
+            action : 'InvitationEmail',
+            id     : jQuery( 'input[name="wfw_toshow_id"]' ).val(),
+            email  : jQuery( 'input[name="wfw_invite_email"]' ).val(),
+        };
+      
+        let result = doAjax( data );
+
+        result.then( ( response ) => {
+
+            if( true == response.status ) {
+     
+                tb_remove();
+                triggerSuccess( response.message );
+            
+            } else if ( false == response.message ) {
+                tb_remove();
+                triggerError( response.message );
+            }
+        } );
+
+    
+    });
 
 // End of scripts.
 });
