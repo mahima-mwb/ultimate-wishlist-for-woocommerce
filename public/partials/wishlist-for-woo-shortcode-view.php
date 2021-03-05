@@ -96,7 +96,7 @@
 							<?php if( $access == 'edit' ) : ?>
 							<p class="wfw_invite-icon">
 								<i class="fas fa-user-circle"></i> 
-								<a class="thickbox mwb-wfw-invite" href="#TB_inline?&width=350&height=170&inlineId=wfw_invite_popup"><span>+</span><?php esc_html_e( 'Invite', 'wishlist-for-woo' ); ?></a>
+								<a title="<?php esc_html_e( 'Invite Collaborator' ); ?>" class="thickbox mwb-wfw-invite" href="#TB_inline?&inlineId=wfw_invite_popup"><span>+</span><?php esc_html_e( 'Invite', 'wishlist-for-woo' ); ?></a>
 							</p>
 							<div id="wfw_invite_popup"  >
 								<div id="wfw_invite_content_wrapper">
@@ -152,6 +152,7 @@
 						</div>
 					</div>
 					<ul class="wfw_content-right_item_list">
+					<?php $products = ! is_array( $products ) ? json_decode( json_encode( $products ), true ) : $products; ?>
 					<?php if ( ! empty( $products ) && count( $products ) ) : ?>
 						<?php foreach ( $products as $key => $id ) : ?>
 							<?php
@@ -183,7 +184,7 @@
 									</p>
 									<p class="item_rating">
 										<?php if ( $ratings_count->total_comments ) : ?>
-											<a class="mwb-wfw-reviews" href="<?php echo esc_url( $product_url ); ?>#reviews" class="rate_count"><?php echo $review_html; ?>(<?php echo esc_html( $ratings_count->total_comments ); ?>)</a>
+											<a class="mwb-wfw-reviews" href="<?php echo esc_url( $product_url ); ?>#reviews" class="rate_count"><?php echo esc_html( $review_html ); ?>(<?php echo esc_html( $ratings_count->total_comments ); ?>)</a>
 										<?php endif; ?>
 									</p>
 									<p class="item_price">
@@ -191,7 +192,7 @@
 										<?php echo $price_html; ?>
 										</span>	
 										<span class="item_detail">
-											<a class="mwb-wfw-details" href="<?php echo esc_url( $product_url ); ?>"><?php esc_html_e( 'Details', 'wishlist-for-woo' ); ?></a>
+											<a id="wfw_get_details" href="javascript:void(0)" data-wId="<?php echo esc_html( $wid_to_show ); ?>" data-prod="<?php echo esc_html( $id ); ?>"><?php esc_html_e( 'Details', 'wishlist-for-woo' ); ?></a>
 										</span> 
 									</p>
 									<p class="item_desc">
@@ -200,11 +201,15 @@
 								</div>
 								<div class="wfw_content-right_item-action">
 									<p>
-										<a href="javascript:void(0);" class="action_button"><?php esc_html_e( 'Add to cart', 'wishlist-for-woo' ); ?></a>
+										<a  id="wfw_add_to_cart" href="javascript:void(0);" data-wId="<?php echo esc_html( $wid_to_show ); ?>" data-prod="<?php echo esc_html( $id ); ?>" class="action_button"><?php esc_html_e( 'Add to cart', 'wishlist-for-woo' ); ?></a>
+									</p> 
+									<p>
+										<a  id="wfw_go_to_checkout" href="javascript:void(0);" class="action_button wfw_go_to_checkout"><?php esc_html_e( 'Add to cart', 'wishlist-for-woo' ); ?></a>
 									</p> 
 
+
 									<?php if( $access == 'edit' ) : ?>
-									<p class="action_delete">
+									<p class="action_delete" id="wfw_del_prod_frm_wishlist" data-wId="<?php echo esc_html( $wid_to_show ); ?>" data-prod="<?php echo esc_html( $id ); ?>"  >
 										<?php esc_html_e( 'Delete', 'wishlist-for-woo' ); ?>
 									</p>
 									<p><a href="javascript:void(0);" data-wId=<?php echo esc_html( $wid_to_show ); ?> data-prod=<?php echo esc_html( $id ); ?> class="wfw-action-comment"><?php esc_html_e( 'Add comment, quantity & priority', 'wishlist-for-woo' ); ?></a></p>

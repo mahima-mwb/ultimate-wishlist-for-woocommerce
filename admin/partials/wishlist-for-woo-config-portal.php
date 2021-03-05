@@ -18,6 +18,4 @@
 <?php do_action( 'mwb_wfw_nav_tab' ); ?>
 <?php do_action( 'mwb_wfw_output_screen' ); ?>
 <?php do_action( 'mwb_wfw_header_end' ); ?>
-<?php
-echo '<pre>'; print_r( WISHLIST_PLUGINS_PATH ); echo '</pre>';
-echo '<pre>'; print_r( ABSPATH ); echo '</pre>';
+

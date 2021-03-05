@@ -409,7 +409,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-push-notif-sk', '' ),
 			'id'       => 'wfw-push-notif-sk',
-			'desc'     => esc_html__( 'Enable/Disable the push notifications functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'desc'     => esc_html__( 'Note: A file "service-worker.js" needs to be stored on the root folder, else push notifications will not work. ', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
 
 		$settings[] = array(

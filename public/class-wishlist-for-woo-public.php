@@ -188,15 +188,15 @@ class Wishlist_For_Woo_Public {
 			if ( file_exists( $file ) ) {
 
 				?>
-				<script type='module'>
+				<!-- <script type='module'>
 					// Register visitor's browser for push notifications
-					Pushy.register({ appId: <?php echo esc_html( $secret_key ); ?> }).then(function (deviceToken) {
+					Pushy.register({ appId: '<?php //echo esc_html( $secret_key ); ?>' }).then(function (deviceToken) {
 
 					}).catch(function (err) {
 						// Handle registration errors
 						console.error(err);
 					});
-				</script>
+				</script> -->
 				<?php
 			}
 		}
@@ -411,7 +411,9 @@ class Wishlist_For_Woo_Public {
 	public function UpdateWishlistMeta() {
 
 		// Nonce verification.
-		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
+
+		$result = array();
 
 		$formdata = array();
 		isset( $_POST['formData'] ) ? parse_str( sanitize_text_field( $_POST['formData'] ), $formdata ) : '';
@@ -423,14 +425,30 @@ class Wishlist_For_Woo_Public {
 		$properties = ! is_array( $properties ) ? json_decode( json_encode( $properties ), true ) : $properties;
 		$properties[  'comments' ] = $properties[  'comments' ] ? $properties[  'comments' ] : array();
 
-		$properties[  'comments' ][ $formdata[ 'wid' ] ] = $formdata;
-		
+		$properties[  'comments' ][ $formdata[ 'product' ] ] = $formdata;
+
 		unset( $properties[  'comments' ][ $formdata[ 'wid' ] ][ 'wid' ] );
 		unset( $properties[  'comments' ][ $formdata[ 'wid' ] ][ 'product' ] );
 
-		// $properties
+		$args['properties'] = $properties;
 
-		wp_die();
+		$response = $wishlist_manager->update( $args );
+
+		if ( 200 == $response['status'] ) {
+
+			// $properties
+			$result = array(
+				'status'  => true,
+				'message' => esc_html__( 'Comment added successfully', 'wishlist_for_woo' ),
+			);
+		} else {
+			$result = array(
+				'status'  => false,
+				'message' => esc_html__( 'There\'s some problem adding comment, try again', 'wishlist_for_woo' ),
+			);
+		}
+
+		wp_send_json( $result );
 	}
 
 	/**
@@ -517,5 +535,267 @@ class Wishlist_For_Woo_Public {
 		}
 	}
 
+	/**
+	 * Details popup modal content.
+	 */
+	public function wfw_get_item_details() {
+
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
+
+		$wid     = ! empty( $_POST['wId'] ) ? sanitize_text_field( wp_unslash( $_POST['wId'] ) ) : '';
+		$prod_id = ! empty( $_POST['pro_id'] ) ? sanitize_text_field( wp_unslash( $_POST['pro_id'] ) ) : '';
+
+		$result = array();
+
+		if ( empty( $wid ) || empty( $prod_id ) ) {
+
+			$result = array(
+				'status'  => false,
+				'message' => esc_html__( 'No data found', 'whishlist_for_woo' ),
+			);
+
+		}
+
+		if ( ! empty( $wid ) && ! empty( $prod_id ) ) {
+
+			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $wid );
+
+			$properties = $wishlist_manager->get_prop( 'properties' );
+
+			if ( ! empty( $properties ) ) {
+				if ( isset( $properties->comments ) ) {
+
+					if ( ! empty( $properties->comments->$prod_id ) ) {
+
+						if ( ! empty( $properties->comments->$prod_id->comment ) ) {
+
+							$result = array(
+								'status'  => true,
+								'message' => $properties->comments->$prod_id->comment,
+							);
+						} else {
+							$result = array(
+								'status'  => false,
+								'message' => esc_html__( 'No comments found for this product. ', 'wishlist_for_woo' ),
+							);
+						}
+					} else {
+						$result = array(
+							'status'  => false,
+							'message' => esc_html__( 'No comments found for this product. ', 'wishlist_for_woo' ),
+						);
+					}
+				} else {
+					$result = array(
+						'status'  => false,
+						'message' => esc_html__( 'No comments found.', 'wishlist_for_woo' ),
+					);
+				}
+			} else {
+				$result = array(
+					'status'  => false,
+					'message' => esc_html__( 'No properties found.', 'wishlist_for_woo' ),
+				);
+			}
+		}
+
+		wp_send_json( $result );
+
+	}
+
+	/**
+	 * Add to cart wish list product.
+	 */
+	public function add_to_cart_wish_prod() {
+
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
+
+		$wid     = ! empty( $_POST['wId'] ) ? sanitize_text_field( wp_unslash( $_POST['wId'] ) ) : '';
+		$prod_id = ! empty( $_POST['pro_id'] ) ? sanitize_text_field( wp_unslash( $_POST['pro_id'] ) ) : '';
+
+		$result = array();
+
+		if ( empty( $wid ) || empty( $prod_id ) ) {
+
+			$result = array(
+				'status'  => false,
+				'message' => esc_html__( 'Something went wrong, try again', 'whishlist_for_woo' ),
+			);
+
+		}
+
+		if ( ! empty( $wid ) && ! empty( $prod_id ) ) {
+
+			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $wid );
+
+			$products = $wishlist_manager->get_prop( 'products' );
+
+			if ( ! empty( $products ) && is_array( $products ) ) {
+
+				foreach ( $products as $product_id ) {
+
+					if ( $prod_id == $product_id ) {
+
+						$product = wc_get_product( $prod_id );
+
+						if ( $product ) {
+
+							if ( 'instock' == $product->get_stock_status() || $product->backorders_allowed() ) {
+
+								if ( $product->is_type( 'variable' ) ) {
+
+									$result = array(
+										'status'   => true,
+										'variable' => true,
+										'message'  => wc_get_page_permalink( $prod_id ),
+									);
+
+								} elseif ( function_exists( 'WC' ) ) {
+
+									WC()->cart->add_to_cart( $prod_id );
+
+									$result = array(
+										'status'   => true,
+										'variable' => false,
+										'message'  => wc_get_checkout_url(),
+									);
+								}
+							}
+						} else {
+							$result = array(
+								'status'  => false,
+								'message' => esc_html__( 'Product does not exists', 'wishlist_for_woo' ),
+							);
+						}
+					}
+				}
+			}
+		}
+
+		wp_send_json( $result );
+
+	}
+
+	/**
+	 * Remove product and go to checkout.
+	 */
+	public function go_to_checkout_wish_prod() {
+
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
+
+		$wid     = ! empty( $_POST['wId'] ) ? sanitize_text_field( wp_unslash( $_POST['wId'] ) ) : '';
+		$prod_id = ! empty( $_POST['pro_id'] ) ? sanitize_text_field( wp_unslash( $_POST['pro_id'] ) ) : '';
+
+		$result = array();
+
+		if ( empty( $wid ) || empty( $prod_id ) ) {
+
+			$result = array(
+				'status'  => false,
+				'message' => esc_html__( 'Something went wrong, try again', 'whishlist_for_woo' ),
+			);
+
+		}
+
+		if ( ! empty( $wid ) && ! empty( $prod_id ) ) {
+
+			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $wid );
+
+			$products = $wishlist_manager->get_prop( 'products' );
+
+			if ( ! empty( $products ) && is_array( $products ) ) {
+
+				foreach ( $products as $key => $product_id ) {
+
+					if ( $prod_id == $product_id ) {
+						unset( $products[ $key ] );
+
+						$args['products'] = $products;
+
+						$response = $wishlist_manager->update( $args );
+
+						if ( 200 == $response['status'] ) {
+
+							$result = array(
+								'status'  => true,
+								'message' => wc_get_checkout_url(),
+							);
+						} else {
+							$result = array(
+								'status'  => false,
+								'message' => esc_html__( 'Something went wrong', 'wishlist_for_woo' ),
+							);
+						}
+					}
+				}
+			}
+		}
+
+		wp_send_json( $result );
+
+	}
+
+	/**
+	 * Delete product from wishlist.
+	 */
+	public function delete_wish_prod() {
+
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
+
+		$wid     = ! empty( $_POST['wId'] ) ? sanitize_text_field( wp_unslash( $_POST['wId'] ) ) : '';
+		$prod_id = ! empty( $_POST['pro_id'] ) ? sanitize_text_field( wp_unslash( $_POST['pro_id'] ) ) : '';
+
+		$result = array();
+
+		if ( empty( $wid ) || empty( $prod_id ) ) {
+
+			$result = array(
+				'status'  => false,
+				'message' => esc_html__( 'Something went wrong, try again', 'whishlist_for_woo' ),
+			);
+
+		}
+
+		if ( ! empty( $wid ) && ! empty( $prod_id ) ) {
+
+			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $wid );
+
+			$products = $wishlist_manager->get_prop( 'products' );
+
+			if ( ! empty( $products ) && is_array( $products ) ) {
+
+				foreach ( $products as $key => $product_id ) {
+
+					if ( $prod_id == $product_id ) {
+						unset( $products[ $key ] );
+
+						$args['products'] = $products;
+
+						$response = $wishlist_manager->update( $args );
+
+						if ( 200 == $response['status'] ) {
+
+							$result = array(
+								'status'  => true,
+								'message' => esc_html__( 'Product deleted successfully', 'wishlist_for_woo' ),
+							);
+						} else {
+							$result = array(
+								'status'  => false,
+								'message' => esc_html__( 'Something went wrong', 'wishlist_for_woo' ),
+							);
+						}
+					}
+				}
+			}
+		}
+
+		wp_send_json( $result );
+
+	}
 // End of class.
 }

@@ -215,6 +215,14 @@ class Wishlist_For_Woo {
 		$this->loader->add_action( 'wp_ajax_nopriv_UpdateWishlistMeta', $plugin_public, 'UpdateWishlistMeta' );
 		$this->loader->add_action( 'wp_ajax_InvitationEmail', $plugin_public, 'InvitationEmail' );
 		$this->loader->add_action( 'wp_ajax_nopriv_InvitationEmail', $plugin_public, 'InvitationEmail' );
+		$this->loader->add_action( 'wp_ajax_wfw_get_item_details', $plugin_public, 'wfw_get_item_details' );
+		$this->loader->add_action( 'wp_ajax_nopriv_wfw_get_item_details', $plugin_public, 'wfw_get_item_details' );
+		$this->loader->add_action( 'wp_ajax_add_to_cart_wish_prod', $plugin_public, 'add_to_cart_wish_prod' );
+		$this->loader->add_action( 'wp_ajax_nopriv_add_to_cart_wish_prod', $plugin_public, 'add_to_cart_wish_prod' );
+		$this->loader->add_action( 'wp_ajax_go_to_checkout_wish_prod', $plugin_public, 'go_to_checkout_wish_prod' );
+		$this->loader->add_action( 'wp_ajax_nopriv_go_to_checkout_wish_prod', $plugin_public, 'go_to_checkout_wish_prod' );
+		$this->loader->add_action( 'wp_ajax_delete_wish_prod', $plugin_public, 'delete_wish_prod' );
+		$this->loader->add_action( 'wp_ajax_nopriv_delete_wish_prod', $plugin_public, 'delete_wish_prod' );
 
 		// Push notitfications enable.
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'enable_push_notifications' );

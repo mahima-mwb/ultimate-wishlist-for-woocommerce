@@ -288,11 +288,22 @@ jQuery(document).ready(function() {
         };
 
         let result = doAjax( input );
-        result.then( ( result ) => function( result ) {
-            console.log( result ); 
+        result.then( ( response ) =>  {
+
+            if ( true == response.status ) {
+                addWishlistMetaPopup.hide();
+                triggerSuccess( response.message );
+
+                
+
+            } else if( false == response.status ) {
+                addWishlistMetaPopup.hide();
+                triggerError( response.message );
+            }
         } );
     });
 
+    // Send invitation email to collaborator.
     jQuery( document ).on( 'submit', '#wfw_email_invite_form', function(e) {
         
         e.preventDefault();
@@ -319,8 +330,108 @@ jQuery(document).ready(function() {
             }
         } );
 
-    
     });
+
+    // Display comments on click on details.
+    jQuery( document ).on( 'click', '#wfw_get_details', function(e) {
+
+        e.preventDefault();
+         
+        let wid = jQuery(this).attr( "data-wId" );
+        let pro_id = jQuery(this).data("prod");
+        
+        let data = {
+            nonce : mwb_wfw_obj.auth_nonce,
+            action : 'wfw_get_item_details',
+            wId : wid,
+            pro_id : pro_id
+        };
+
+        let result = doAjax( data );
+
+        result.then( ( response ) => {
+            if ( true == response.status ) {
+                jQuery( this ).append( '<div class="wfw_show_details">' + response.message + '</div>' );
+            } else {
+                jQuery( this ).append( '<div class="wfw_show_details">' + response.message + '</div>' );
+            }
+
+        });
+    } );
+
+    // Add to cart wishlist product
+    jQuery( document ).on( 'click', '#wfw_add_to_cart', function(e) {
+        e.preventDefault();
+
+        let data = {
+            nonce : mwb_wfw_obj.auth_nonce,
+            action : 'add_to_cart_wish_prod',
+            wId : jQuery(this).attr( "data-wId" ),
+            pro_id : jQuery(this).data("prod"),
+        }
+
+        let result = doAjax( data );
+
+        result.then( (response) => {
+            
+            if( true == response.status ) {
+
+                if ( true == response.variable ) {
+
+                    window.location.href = response.message;
+
+                } else if( false == response.variable ) {
+
+                    jQuery( this ).css( 'display', 'none' );
+                    jQuery( '#wfw_go_to_checkout' ).css( 'display', 'block' );
+                    jQuery( '#wfw_go_to_checkout' ).attr( 'href', response.message );
+                    jQuery( '#wfw_go_to_checkout' ).text( 'Go to checkout' );
+
+                    jQuery( '#wfw_go_to_checkout' ).on( 'click', function(e) {
+                        e.preventDefault();
+                        let data = {
+                            nonce : mwb_wfw_obj.auth_nonce,
+                            action : 'go_to_checkout_wish_prod',
+                            wId : jQuery('#wfw_add_to_cart').attr( "data-wId" ),
+                            pro_id : jQuery('#wfw_add_to_cart').data("prod"),
+                        }
+
+                        let result = doAjax( data );
+
+                        result.then( (response) => {
+                            if ( true == response.status ) {
+                                window.location.href = response.message;
+                            }
+                            else {
+                                triggerError( response.message );
+                            }
+                        } );
+                    } );
+                }
+            } else if ( false == response.status ) {
+                triggerError( response.message )
+            }
+        });
+    });
+
+    // Delete prod from wishlist.
+    jQuery( document ).on( 'click', '#wfw_del_prod_frm_wishlist', function(e) {
+
+        e.preventDefault();
+
+        let data = {
+            nonce : mwb_wfw_obj.auth_nonce,
+            action : 'delete_wish_prod',
+            wId : jQuery(this).attr( "data-wId" ),
+            pro_id : jQuery(this).data("prod"),
+        }
+
+        let result = doAjax( data );
+
+        result.then( (response) => {
+            console.log( response );
+        } );
+    } );
 
 // End of scripts.
 });

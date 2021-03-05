@@ -517,6 +517,10 @@ span.mwb-wfw-wishlist-processing > i.fa.fa.fa-spinner.fa-spin {
     display: none;
 }
 
+.wfw_go_to_checkout {
+    display: none;
+}
+
 /**
  * Media Queries.
  */
