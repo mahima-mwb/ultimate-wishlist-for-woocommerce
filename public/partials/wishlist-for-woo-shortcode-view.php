@@ -144,8 +144,8 @@
 							<span href="" class="wfw_content_more">
 								<i class="fas fa-ellipsis-h"></i> <span><?php esc_html_e( 'More', 'wishlist-for-woo' ); ?></span>
 								<ul class="wfw_content_more_link">
-									<li><a class="mwb-wfw-manage" href="javascript:void(0);"><?php esc_html_e( 'Manage List', 'wishlist-for-woo' ); ?></a></li>
-									<li><a class="mwb-wfw-print" href="javascript:void(0);"><?php esc_html_e( 'Print List', 'wishlist-for-woo' ); ?></a></li>
+									<li><a class="mwb-wfw-default" data-wId="<?php echo esc_html( $wid_to_show ); ?>" href="javascript:void(0);"><?php esc_html_e( 'Set as Default.', 'wishlist-for-woo' ); ?></a></li>
+									<li><a class="mwb-wfw-delete" data-wId="<?php echo esc_html( $wid_to_show ); ?>" href="javascript:void(0);"><?php esc_html_e( 'Delete List', 'wishlist-for-woo' ); ?></a></li>
 								</ul>
 							</span>
 						<?php endif; ?>
@@ -168,7 +168,7 @@
 								$price_html    = $_product->get_price_html();
 								$description   = $_product->get_short_description() ? $_product->get_short_description() : $_product->get_description();
 							?>
-							<li class="wfw_content-right_item">
+							<li class="wfw_content-right_item wfw_list_item_<?php echo esc_html( $id ); ?>">
 								<div class="wfw_content-right_item-img">
 									<a class="mwb-wfw-product-img" href="<?php echo esc_url( $product_url ); ?>">
 										<?php if( ! empty( $image_url ) ) : ?>
@@ -204,7 +204,7 @@
 										<a  id="wfw_add_to_cart" href="javascript:void(0);" data-wId="<?php echo esc_html( $wid_to_show ); ?>" data-prod="<?php echo esc_html( $id ); ?>" class="action_button"><?php esc_html_e( 'Add to cart', 'wishlist-for-woo' ); ?></a>
 									</p> 
 									<p>
-										<a  id="wfw_go_to_checkout" href="javascript:void(0);" class="action_button wfw_go_to_checkout"><?php esc_html_e( 'Add to cart', 'wishlist-for-woo' ); ?></a>
+										<a  id="wfw_go_to_checkout<?php echo esc_html( $id ); ?>" href="javascript:void(0);" class="action_button wfw_go_to_checkout"><?php esc_html_e( 'Add to cart', 'wishlist-for-woo' ); ?></a>
 									</p> 
 
 

@@ -336,6 +336,11 @@ jQuery(document).ready(function() {
     jQuery( document ).on( 'click', '#wfw_get_details', function(e) {
 
         e.preventDefault();
+
+        if( jQuery( '.wfw_show_details' ).length > 0 ) {
+            jQuery( '.wfw_show_details' ).remove();
+            return;
+        }
          
         let wid = jQuery(this).attr( "data-wId" );
         let pro_id = jQuery(this).data("prod");
@@ -350,12 +355,8 @@ jQuery(document).ready(function() {
         let result = doAjax( data );
 
         result.then( ( response ) => {
-            if ( true == response.status ) {
-                jQuery( this ).append( '<div class="wfw_show_details">' + response.message + '</div>' );
-            } else {
-                jQuery( this ).append( '<div class="wfw_show_details">' + response.message + '</div>' );
-            }
-
+            
+            jQuery(this).after('<div class="wfw_show_details">' + response.message + '</div>');
         });
     } );
 
@@ -370,6 +371,8 @@ jQuery(document).ready(function() {
             pro_id : jQuery(this).data("prod"),
         }
 
+        var  pro_id = jQuery(this).data("prod");
+
         let result = doAjax( data );
 
         result.then( (response) => {
@@ -383,11 +386,11 @@ jQuery(document).ready(function() {
                 } else if( false == response.variable ) {
 
                     jQuery( this ).css( 'display', 'none' );
-                    jQuery( '#wfw_go_to_checkout' ).css( 'display', 'block' );
-                    jQuery( '#wfw_go_to_checkout' ).attr( 'href', response.message );
-                    jQuery( '#wfw_go_to_checkout' ).text( 'Go to checkout' );
+                    jQuery( '#wfw_go_to_checkout' + pro_id ).css( 'display', 'block' );
+                    jQuery( '#wfw_go_to_checkout' + pro_id ).attr( 'href', response.message );
+                    jQuery( '#wfw_go_to_checkout' + pro_id ).text( 'Go to checkout' );
 
-                    jQuery( '#wfw_go_to_checkout' ).on( 'click', function(e) {
+                    jQuery( '#wfw_go_to_checkout' + pro_id ).on( 'click', function(e) {
                         e.preventDefault();
                         let data = {
                             nonce : mwb_wfw_obj.auth_nonce,
@@ -426,10 +429,52 @@ jQuery(document).ready(function() {
             pro_id : jQuery(this).data("prod"),
         }
 
+        var pro_id = jQuery(this).data("prod");
+
         let result = doAjax( data );
 
         result.then( (response) => {
+            if ( true == response.status ) {
+               jQuery( '.wfw_list_item_' + pro_id ).remove();
+            } else {
+                triggerError( response.message );
+            }
+
+        } );
+    } );
+
+    // Delete entire list.
+    jQuery( document ).on( 'click', '.mwb-wfw-delete', function(e) {
+
+        e.preventDefault();
+
+        let data = {
+            nonce : mwb_wfw_obj.auth_nonce,
+            action : 'delete_current_wishlist',
+            wId : jQuery(this).attr( "data-wId" ),
+        }
+
+        let result = doAjax( data );
+
+        result.then( ( response ) => {
             console.log( response );
+        } );
+    });
+
+    // Set as default.
+    jQuery( document ).on( 'click', '.mwb-wfw-default', function(e){
+        e.preventDefault();
+
+        let data = {
+            nonce : mwb_wfw_obj.auth_nonce,
+            action : 'wishlist_set_default',
+            wId : jQuery(this).attr( "data-wId" ),
+        }
+
+        let result = doAjax( data );
+
+        result.then( (response) => {
+            console.log();
         } );
     } );
 

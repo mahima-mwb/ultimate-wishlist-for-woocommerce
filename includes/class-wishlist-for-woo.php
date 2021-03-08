@@ -184,7 +184,7 @@ class Wishlist_For_Woo {
 
 		// Add a admin menu for accessing plugin features.
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_config_menu' );
-		
+
 		// Ajax Callbacks.
 		$this->loader->add_action( 'wp_ajax_getCurrentScreen', $plugin_admin, 'getCurrentScreen' );
 		$this->loader->add_action( 'wp_ajax_saveFormOutput', $plugin_admin, 'saveFormOutput' );
@@ -223,6 +223,10 @@ class Wishlist_For_Woo {
 		$this->loader->add_action( 'wp_ajax_nopriv_go_to_checkout_wish_prod', $plugin_public, 'go_to_checkout_wish_prod' );
 		$this->loader->add_action( 'wp_ajax_delete_wish_prod', $plugin_public, 'delete_wish_prod' );
 		$this->loader->add_action( 'wp_ajax_nopriv_delete_wish_prod', $plugin_public, 'delete_wish_prod' );
+		$this->loader->add_action( 'wp_ajax_delete_current_wishlist', $plugin_public, 'delete_current_wishlist' );
+		$this->loader->add_action( 'wp_ajax_nopriv_delete_current_wishlist', $plugin_public, 'delete_current_wishlist' );
+		$this->loader->add_action( 'wp_ajax_wishlist_set_default', $plugin_public, 'wishlist_set_default' );
+		$this->loader->add_action( 'wp_ajax_nopriv_wishlist_set_default', $plugin_public, 'wishlist_set_default' );
 
 		// Push notitfications enable.
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'enable_push_notifications' );

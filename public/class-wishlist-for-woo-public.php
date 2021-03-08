@@ -649,7 +649,7 @@ class Wishlist_For_Woo_Public {
 									$result = array(
 										'status'   => true,
 										'variable' => true,
-										'message'  => wc_get_page_permalink( $prod_id ),
+										'message'  => get_permalink( $prod_id ),
 									);
 
 								} elseif ( function_exists( 'WC' ) ) {
@@ -713,7 +713,7 @@ class Wishlist_For_Woo_Public {
 					if ( $prod_id == $product_id ) {
 						unset( $products[ $key ] );
 
-						$args['products'] = $products;
+						$args['products'] = array_values( $products );
 
 						$response = $wishlist_manager->update( $args );
 
@@ -773,7 +773,7 @@ class Wishlist_For_Woo_Public {
 					if ( $prod_id == $product_id ) {
 						unset( $products[ $key ] );
 
-						$args['products'] = $products;
+						$args['products'] = array_values( $products );
 
 						$response = $wishlist_manager->update( $args );
 
@@ -795,6 +795,66 @@ class Wishlist_For_Woo_Public {
 		}
 
 		wp_send_json( $result );
+	}
+
+	/**
+	 * Delete current wish list.
+	 */
+	public function delete_current_wishlist() {
+
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
+
+		$wid = ! empty( $_POST['wId'] ) ? sanitize_text_field( wp_unslash( $_POST['wId'] ) ) : '';
+
+		$result = array();
+
+		if ( empty( $wid ) ) {
+
+			$result = array(
+				'status'  => false,
+				'message' => esc_html__( 'Something went wrong, try again', 'whishlist_for_woo' ),
+			);
+
+		}
+
+		if ( ! empty( $wid ) ) {
+
+			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $wid );
+			$result = $wishlist_manager->delete();
+		}
+
+		wp_send_json( $result );
+	}
+
+	/**
+	 * Set wishlist as default.
+	 */
+	public function wishlist_set_default() {
+
+		// Nonce verification.
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
+
+		$wid = ! empty( $_POST['wId'] ) ? sanitize_text_field( wp_unslash( $_POST['wId'] ) ) : '';
+
+		$result = array();
+
+		if ( empty( $wid ) ) {
+
+			$result = array(
+				'status'  => false,
+				'message' => esc_html__( 'Something went wrong, try again', 'whishlist_for_woo' ),
+			);
+
+		}
+
+		if ( ! empty( $wid ) ) {
+
+			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $wid );
+			echo '<pre>'; print_r( $wishlist_manager ); echo '</pre>';
+		}
+
+		wp_die();
 
 	}
 // End of class.
