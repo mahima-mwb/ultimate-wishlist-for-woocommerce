@@ -458,6 +458,18 @@ jQuery(document).ready(function() {
 
         result.then( ( response ) => {
             console.log( response );
+
+            if ( true == response.status ) {
+                triggerSuccess( response.message );
+                jQuery( document ).on( 'click', '.swal-button--confirm', function() {
+                   
+                    window.location.href = response.reload;
+                } );
+            } else {
+                triggerError( response.message );
+            }
+
+         
         } );
     });
 
@@ -474,7 +486,11 @@ jQuery(document).ready(function() {
         let result = doAjax( data );
 
         result.then( (response) => {
-            console.log();
+            if ( true == response.status ) {
+                triggerSuccess( response.message );
+            } else {
+                triggerError( 'Somthing went wrong' );
+            }
         } );
     } );
 

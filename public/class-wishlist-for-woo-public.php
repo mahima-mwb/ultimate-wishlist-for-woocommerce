@@ -821,7 +821,28 @@ class Wishlist_For_Woo_Public {
 		if ( ! empty( $wid ) ) {
 
 			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $wid );
-			$result = $wishlist_manager->delete();
+
+			$response = $wishlist_manager->delete();
+
+			if ( 200 == $response['status'] ) {
+
+				$result = array(
+					'status'  => true,
+					'reload'  => get_permalink( 'wishlist' ),
+					'message' => esc_html__( 'Wishlist deleted successfully', 'wishlist_for_woo' ),
+				);
+			} else if ( 400 == $response['status'] ) {
+
+				$result = array(
+					'status'  => false,
+					'message' => esc_html__( 'Something went wrong, try again', 'wishlist_for_woo' ),
+				);
+			} else {
+				$result = array(
+					'status'  => false,
+					'message' => esc_html__( 'Technical error, try reloading the page.', 'wishlist_for_woo' ),
+				);
+			}
 		}
 
 		wp_send_json( $result );
@@ -851,10 +872,14 @@ class Wishlist_For_Woo_Public {
 		if ( ! empty( $wid ) ) {
 
 			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $wid );
-			echo '<pre>'; print_r( $wishlist_manager ); echo '</pre>';
+
+			$result = array(
+				'status'  => true,
+				'message' => esc_html__( 'Already the default list', 'wishlist_for_woo' ),
+			);
 		}
 
-		wp_die();
+		wp_send_json( $result );
 
 	}
 // End of class.
