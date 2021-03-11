@@ -125,21 +125,34 @@
 								);
 
 							}
+							if ( ! empty( get_option( 'wfw-enable-fb-share' ) ) && 'yes' == get_option( 'wfw-enable-fb-share' ) ) {
+								?>
 
-							?>
-
-							<a class="mwb-wfw-share" data-location="facebook" href="http://www.facebook.com/sharer.php?s=100&p[url]=<?php echo esc_url( $page_link ); ?>&p[title]=<?php echo esc_html( $wishlist_title ); ?>">
+							<a class="mwb-wfw-share" id="mwb-wfw-share-fb" data-location="facebook" href="http://www.facebook.com/sharer.php?s=100&p[url]=<?php echo esc_url( $page_link ); ?>&p[title]=<?php echo esc_html( $wishlist_title ); ?>">
 								<i class="fab fa-facebook"></i>
 							</a>
-							<a class="mwb-wfw-share" data-location="whatsapp" href="https://wa.me/?text=<?php echo rawurlencode( $page_link ); ?>">
+								<?php
+							} if ( ! empty( get_option( 'wfw-enable-whatsapp-share' ) ) && 'yes' == get_option( 'wfw-enable-whatsapp-share' ) ) {
+								?>
+							<a class="mwb-wfw-share" id="mwb-wfw-share-wa" data-location="whatsapp" href="https://wa.me/?text=<?php echo rawurlencode( $page_link ); ?>">
 								<i class="fab fa-whatsapp"></i>
 							</a>
-							<a class="mwb-wfw-share" data-location="twitter" href="http://twitter.com/share?text=<?php echo esc_html( $wishlist_title ); ?>&url=<?php echo esc_url( $page_link ); ?>">
+								<?php
+							} if ( ! empty( get_option( 'wfw-enable-twitter-share' ) ) && 'yes' == get_option( 'wfw-enable-twitter-share' ) ) {
+								?>
+
+							<a class="mwb-wfw-share" id="mwb-wfw-share-tt" data-location="twitter" href="http://twitter.com/share?text=<?php echo esc_html( $wishlist_title ); ?>&url=<?php echo esc_url( $page_link ); ?>">
 								<i class="fab fa-twitter"></i>
 							</a>
-							<a class="mwb-wfw-share" data-location="pinterest" href="http://pinterest.com/pin/create/button/?url=<?php echo esc_url( $page_link ); ?>&description=<?php echo esc_html( $wishlist_title ); ?>">
+								<?php
+							} if ( ! empty( get_option( 'wfw-enable-pinterest-share' ) ) && 'yes' == get_option( 'wfw-enable-pinterest-share' ) ) {
+								?>
+							<a class="mwb-wfw-share" id="mwb-wfw-share-pt" data-location="pinterest" href="http://pinterest.com/pin/create/button/?url=<?php echo esc_url( $page_link ); ?>&description=<?php echo esc_html( $wishlist_title ); ?>">
 								<i class="fab fa-pinterest"></i>
 							</a>
+								<?php
+							}
+							?>
 
 							<span href="" class="wfw_content_more">
 								<i class="fas fa-ellipsis-h"></i> <span><?php esc_html_e( 'More', 'wishlist-for-woo' ); ?></span>

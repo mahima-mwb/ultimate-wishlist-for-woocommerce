@@ -85,9 +85,9 @@ class Wishlist_For_Woo_Admin {
 		 * Scripts and Stylesheets need to be accessed and enqueued on configuration panels only.
 		 */
 		if ( self::is_valid_screen() ) {
+			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-admin.css', array(), $this->version, 'all' );
 			wp_enqueue_style( $this->plugin_name . '-select2', plugin_dir_url( __FILE__ ) . 'css/select2.min.css', array(), $this->version, 'all' );
-			wp_enqueue_style( 'wp-color-picker' );
 		}
 	}
 
@@ -111,12 +111,9 @@ class Wishlist_For_Woo_Admin {
 		 */
 		if ( self::is_valid_screen() ) {
 
-			// wp_enqueue_script( 'wp-color-picker' );
-			wp_enqueue_script( 'iris', admin_url( 'js/iris.min.js' ), array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
 			wp_enqueue_script( $this->plugin_name . '-swal-alert', plugin_dir_url( __FILE__ ) . 'js/swal.js', array( 'jquery' ), $this->version, false );
 			wp_enqueue_script( $this->plugin_name . '-select2', plugin_dir_url( __FILE__ ) . 'js/select2.min.js', array( 'jquery' ), $this->version, false );
-			
 			wp_localize_script(
 				$this->plugin_name,
 				'mwb_wfw_obj',
@@ -386,28 +383,48 @@ class Wishlist_For_Woo_Admin {
 	public function saveFormOutput() {
 
 		// Nonce verification.
-		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
 
 		$checkbox_settings = array(
-			'wfw-enable-plugin',
-			'wfw-enable-popup',
-			'wfw-enable-push-notif',
+			'general'	=>	array(
+				'wfw-enable-plugin',
+				'wfw-enable-popup',
+			),
+			'social_sharing'	=>	array(
+				'wfw-enable-fb-share',
+				'wfw-enable-whatsapp-share',
+				'wfw-enable-twitter-share',
+				'wfw-enable-pinterest-share',
+			),
+			'push_notify'	=>	array(
+				'wfw-enable-push-notif',
+			),
+			'advance_feature'	=>	array(
+				'wfw-enable-multi-wishlist',
+				'wfw-enable-api-route',
+				'wfw-enable-automated-mail',
+				'wfw-enable-instock-notif',
+			),
+			'crm'	=>	array(
+			),
 		);
 
 		$formdata = array();
 		isset( $_POST['data'] ) ? parse_str( sanitize_text_field( $_POST['data'] ), $formdata ) : '';
 		$formdata = ! empty( $formdata ) ? map_deep( wp_unslash( $formdata ), 'sanitize_text_field' ) : false;
+		$screen = ! empty( $_POST[ 'screen' ] ) ? str_replace( '#', '', sanitize_text_field( wp_unslash( $_POST[ 'screen' ] ) ) ) : false;
 
 		try {
 
-			foreach ( $checkbox_settings as $key => $data_key ) {
+			if( ! empty( $checkbox_settings[ $screen ] ) && is_array( $checkbox_settings[ $screen ] ) ) {
+				foreach ( $checkbox_settings[ $screen ] as $key => $data_key ) {
 
-				if ( ! array_key_exists( $data_key, $formdata ) ) {
-					$formdata[ $data_key ] = '';
-
-				} else {
-
-					$formdata[ $data_key ] = 'yes';
+					if( array_key_exists( $data_key, $formdata ) && ! empty( $formdata[ $data_key ] ) ) {
+						$formdata[ $data_key ] = 'yes';
+					}
+					else {
+						$formdata[ $data_key ] = '';
+					}
 				}
 			}
 
@@ -456,9 +473,9 @@ class Wishlist_For_Woo_Admin {
 			if ( false == $move_file ) {
 				$result = array(
 					'status'  => false,
-					'message' => esc_html__( 'Write permisiion needed!', 'wishlist_for_woo' ),
+					'message' => esc_html__( 'Write permission needed!', 'wishlist_for_woo' ),
 				);
-			} else{ 
+			} else { 
 				$result = array(
 					'status'  => true,
 					'message' => esc_html__( 'File moved succesfully', 'wishlist_for_woo' ),

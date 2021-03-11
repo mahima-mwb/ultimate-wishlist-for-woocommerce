@@ -11,7 +11,7 @@ jQuery(document).ready(function() {
     const preloader = jQuery('.mwb-wfw-desc--preloader');
     const outputScreen = jQuery('.mwb-wfw-output-form');
     const saveScreen = jQuery('.mwb-wfw_save-wrapper');
-    const savetext = jQuery('.mwb-wfw_save-text');
+    const savetext = jQuery('.mwb-wfw_save-text'); 
     const saveButton = jQuery('.mwb-wfw_save-link');
     const cancelButton = jQuery('.mwb-wfw_cancel-link');    
     const saveUpdates = ( data ) => {
@@ -24,11 +24,12 @@ jQuery(document).ready(function() {
                 nonce: mwb_wfw_obj.authNonce,
                 action: 'saveFormOutput',
                 data: data,
+                screen : window.location.hash
             },
             success: function(result) {
                 savetext.removeClass( 'is-hidden' );
                 setTimeout( function () {
-                    rollbackFormChanges()
+                   rollbackFormChanges()
                 }, 2000 );
 
                 if ( 200 == result.status ) {
@@ -43,7 +44,10 @@ jQuery(document).ready(function() {
                             },
                             success : function(result) {
                                 if ( false == result.status ) {
+                                    
                                     swal( 'Opps!!', result.message, 'error' );
+                                    jQuery( '#wfw-enable-push-notif' ).trigger('click');
+                                    saveButton.click();
                                 }
                             }
                         });
@@ -124,7 +128,14 @@ jQuery(document).ready(function() {
                 hashScreen: hashScreen,
             },
             success: function(result) {
+
                 processResult(result);
+                let option_color  = jQuery( '.mwb-wfw-color' );
+                option_color.wpColorPicker({
+                    change: (event, ui) => {
+                        saveScreen.removeClass( 'is-hidden' )
+                    }
+                });
             },
             error: function(xhr, textStatus, errorThrown) {
                 if ('error' == textStatus) {
@@ -157,7 +168,7 @@ jQuery(document).ready(function() {
 
             // Enable select2 fields.
             jQuery('.mwb-wfw-multi-select').select2();
-            jQuery.each( jQuery( 'input, select ,textarea', '.mwb-wfw-output-form' ), function() {
+            jQuery.each( jQuery( 'input, select ,textarea, button', '.mwb-wfw-output-form' ), function() {
                 showSavePortal( jQuery(this));
             });
 
@@ -233,20 +244,10 @@ jQuery(document).ready(function() {
     }
 
     // Social share color fields.
-    let option_color  = jQuery( '.mwb-wfw-colorcolorpick' );
-    
-    jQuery('.mwb-wfw-colorcolorpick').iris({
-        // or in the data-default-color attribute on the input
-        defaultColor: true,
-        // a callback to fire whenever the color changes to a valid color
-        change: function(event, ui){},
-        // a callback to fire when the input is emptied or an invalid color
-        clear: function() {},
-        // hide the color picker controls on load
-        hide: true,
-        // show a group of common colors beneath the square
-        palettes: true
-    });
+    let option_color  = jQuery( '.mwb-wfw-color' );
+
+    option_color.wpColorPicker();
+   
 
 // End of scripts.
 });

@@ -241,6 +241,17 @@ jQuery(document).ready(function() {
         }
     }
 
+    const SocialIcons = ( object, font_setting, color_setting ) => {
+        object.css( 'display', 'block' );
+        if ( font_setting.length > 0 ) {
+            object.css( 'font-size', font_setting );
+        }
+
+        if ( color_setting.length > 0 ) {
+            object.css( 'color', '#' + color_setting );
+        }
+    }
+
 /**==========================================================================================
  *                      Native Functional Callbacks
 =========================================================================================== */    
@@ -493,6 +504,32 @@ jQuery(document).ready(function() {
             }
         } );
     } );
+
+    // Social share settings.
+    let fb_settings = jQuery( '#mwb-wfw-share-fb' );
+    let wa_settings = jQuery( '#mwb-wfw-share-wa' );
+    let tt_settings = jQuery( '#mwb-wfw-share-tt' );
+    let pt_settings = jQuery( '#mwb-wfw-share-pt' );
+    console.log( settings.wfw_enable_icon_size );
+    console.log( settings );
+
+    if ( 'yes' == settings.wfw_enable_fb_share ) {
+        SocialIcons( fb_settings, settings.wfw_enable_icon_size, settings.wfw_enable_fb_color );
+    }
+
+    if ( 'yes' == settings.wfw_enable_whatsapp_share ) {
+        SocialIcons( wa_settings, settings.wfw_enable_icon_size, settings.wfw_enable_whatsapp_color );
+    }
+
+    if ( 'yes' == settings.wfw_enable_twitter_share ) {
+        SocialIcons( tt_settings, settings.wfw_enable_icon_size, settings.wfw_enable_twitter_color );
+    }
+
+    if ( 'yes' == settings.wfw_enable_pinterest_share ) {
+        SocialIcons( pt_settings, settings.wfw_enable_icon_size, settings.wfw_enable_pinterest_color );
+    }
+
+    
 
 // End of scripts.
 });
