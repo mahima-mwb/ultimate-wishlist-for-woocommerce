@@ -94,6 +94,11 @@ jQuery(document).ready(function() {
     saveButton.on( 'click', function () {
         saveFormChanges();
     });
+
+    // Social share color fields.
+    let option_color  = jQuery( '.mwb-wfw-color' );
+
+    option_color.wpColorPicker();
     
     /**==================================================
                     Function Definations
@@ -105,8 +110,25 @@ jQuery(document).ready(function() {
      */
     function getCurrentScreens(hashScreen = false) {
 
+        params = mwb_wfw_obj.params;
+        console.log( params.page );
+
+        let defaultHash = '';
+
+        switch ( params.page ) {
+            case 'wfw-config-portal':
+                defaultHash = '#general';
+                break;
+            case 'wfw-performance-reporting':
+                defaultHash = '#wishlist_base';
+                break;
+            default:
+                defaultHash = '#overview';
+                break;
+        }
+
         // Default tab : General Settings.
-        hashScreen = hashScreen.length ? hashScreen : '#general';
+        hashScreen = hashScreen.length ? hashScreen : defaultHash;
 
         /**
          * Step 1 : Before requesting the screen get the preloader on.
@@ -242,12 +264,5 @@ jQuery(document).ready(function() {
         jQuery( '.' + id + '-dependent'  ).closest('tr').hide();
         jQuery( '[ dependent="dependency-type-' + val + '" ]' ).closest('tr').show();
     }
-
-    // Social share color fields.
-    let option_color  = jQuery( '.mwb-wfw-color' );
-
-    option_color.wpColorPicker();
-   
-
 // End of scripts.
 });

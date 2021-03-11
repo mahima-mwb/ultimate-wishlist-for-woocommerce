@@ -119,6 +119,7 @@ class Wishlist_For_Woo_Admin {
 				'mwb_wfw_obj',
 				array(
 					'ajaxUrl'              => admin_url( 'admin-ajax.php' ),
+					'params'               => map_deep( wp_unslash( $_GET ), 'sanitize_text_field' ),
 					'mobileView'           => wp_is_mobile(),
 					'authNonce'            => wp_create_nonce( 'mwb_wfw_nonce' ),
 					'notfoundErrorMessage' => esc_html__( 'Settings Panel Not Found.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
@@ -205,7 +206,7 @@ class Wishlist_For_Woo_Admin {
 		/**
 		 * Add sub-menu for Reportings settings.
 		 */
-		add_submenu_page( 'wfw-config-portal', esc_html__( 'Reports & Analytics', WISHLIST_FOR_WOO_TEXTDOMAIN ), esc_html__( 'Reports & Analytics', WISHLIST_FOR_WOO_TEXTDOMAIN ), 'manage_options', 'wfw-performance-reporting', array( $this, 'add_reporting_screen' ) );
+		add_submenu_page( 'wfw-config-portal', esc_html__( 'Performance Analytics', WISHLIST_FOR_WOO_TEXTDOMAIN ), esc_html__( 'Performance Analytics', WISHLIST_FOR_WOO_TEXTDOMAIN ), 'manage_options', 'wfw-performance-reporting', array( $this, 'add_reporting_screen' ) );
 
 		/**
 		 * Add sub-menu for Plugin Overview.
@@ -281,10 +282,21 @@ class Wishlist_For_Woo_Admin {
 
 		try {
 
-			$result = array(
-				'status'  => 200,
-				'content' => self::get_selected_template_content( $hashScreen ),
-			);
+			$content = $this->get_selected_template_content( $hashScreen );
+			if( 404 == $content ) {
+				$result = array(
+					'status'  => 404,
+					'content' => esc_html__( 'Undefined Portal Encountered', WISHLIST_FOR_WOO_TEXTDOMAIN )
+				);
+			}
+			else {
+
+				$result = array(
+					'status'  => 200,
+					'content' => $content
+				);	
+			}
+
 
 		} catch ( \Throwable $error ) {
 
@@ -307,7 +319,7 @@ class Wishlist_For_Woo_Admin {
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 * @return html
 	 */
-	public static function get_selected_template_content( $template_part = false ) {
+	public function get_selected_template_content( $template_part = false ) {
 
 		if ( ! empty( $template_part ) ) {
 
@@ -331,16 +343,18 @@ class Wishlist_For_Woo_Admin {
 
 				case 'crm':
 					$settings = Wishlist_For_Woo_Template_Manager::get_crm_sections_settings();
-				
+				break;
+
+				case 'wishlist_base':
+				case 'product_base':
+				case 'overview':
+					$base = $this->admin_path;
+					$settings = Wishlist_For_Woo_Template_Manager::get_template_sections( str_replace( '_', '-', $template_part ), $base );
 					break;
 
 				default:
-					$settings[] = array(
-						'title' => esc_html__( 'Undefined Portal Encountered', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-						'class' => 'mwb-wfw-sub-heading',
-						'type'  => 'title',
-						'id'    => 'mwb-wfw-heading',
-					);
+					// Nothing Found.
+					$settings = 404;
 					break;
 			}
 		}
@@ -369,7 +383,7 @@ class Wishlist_For_Woo_Admin {
 			return $output;
 
 		} else {
-			return $settings;
+			return $settings ? $settings : false;
 		}
 	}
 
@@ -452,7 +466,7 @@ class Wishlist_For_Woo_Admin {
 	}
 
 	/**
-	 * Move push notif main js to root folder.
+	 * Move push notification main js to root folder.
 	 */
 	public function MoveFiletoRoot() {
 
@@ -486,5 +500,5 @@ class Wishlist_For_Woo_Admin {
 		wp_send_json( $result );
 	}
 
-	// End of class.
+// End of class.
 }

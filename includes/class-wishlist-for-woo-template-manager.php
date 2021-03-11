@@ -169,21 +169,13 @@ class Wishlist_For_Woo_Template_Manager {
 			
 			case 'wfw-performance-reporting':
 				$tabs = array(
-					'general'			=>	esc_html__( 'Testing', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-					'social_sharing'	=>	esc_html__( 'Social Testing', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-					'push_notify'		=>	esc_html__( 'Push Testing', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-					'advance_feature'	=>	esc_html__( 'Advance Testing', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-					'crm'				=>	esc_html__( 'CRM Configuration', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+					'wishlist_base'			=>	esc_html__( 'All Wishlists', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+					'product_base'			=>	esc_html__( 'Product Based Reporting', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 				);
 				break;
 				
 			case 'wfw-plugin-overview':
 				$tabs = array(
-					'general'			=>	esc_html__( 'Overview', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-					'social_sharing'	=>	esc_html__( 'Overview Testing', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-					'push_notify'		=>	esc_html__( 'Push overview', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-					'advance_feature'	=>	esc_html__( 'Advance overview', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-					'crm'				=>	esc_html__( 'CRM overview', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 				);
 				break;
 		}
@@ -213,8 +205,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'class' 				=> 'mwb-wfw-toggle-checkbox',
 			'type'  				=> 'checkbox',
 			'desc_tip' 				=> true,
-			'default' 				=> '1',
-			'value'   				=> get_option( 'wfw-enable-plugin', '' ),
+			'value'   				=> get_option( 'wfw-enable-plugin', 'yes' ),
 			'id'    				=> 'wfw-enable-plugin',
 			'desc'  				=> esc_html__( 'Enable/Disable the complete plugin functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
@@ -389,7 +380,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
-			'value'    => get_option( 'wfw-enable-fb-share', '' ),
+			'value'    => get_option( 'wfw-enable-fb-share', 'yes' ),
 			'id'       => 'wfw-enable-fb-share',
 			'desc'     => esc_html__( 'Enable/Disable the Facebook share functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
@@ -411,7 +402,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
-			'value'    => get_option( 'wfw-enable-whatsapp-share', '' ),
+			'value'    => get_option( 'wfw-enable-whatsapp-share', 'yes' ),
 			'id'       => 'wfw-enable-whatsapp-share',
 			'desc'     => esc_html__( 'Enable/Disable the WhatsApp share functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
@@ -434,7 +425,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
-			'value'    => get_option( 'wfw-enable-twitter-share', '' ),
+			'value'    => get_option( 'wfw-enable-twitter-share', 'yes' ),
 			'id'       => 'wfw-enable-twitter-share',
 			'desc'     => esc_html__( 'Enable/Disable the Twitter share functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
@@ -457,7 +448,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
-			'value'    => get_option( 'wfw-enable-pinterest-share', '' ),
+			'value'    => get_option( 'wfw-enable-pinterest-share', 'yes' ),
 			'id'       => 'wfw-enable-pinterest-share',
 			'desc'     => esc_html__( 'Enable/Disable the Pinterest share functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
@@ -537,7 +528,7 @@ class Wishlist_For_Woo_Template_Manager {
 		$settings[] = array(
 			'title'    => esc_html__( 'URL', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'class'    => 'mwb-wfw-toggle-text',
-			'type'     => 'url',
+			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-custom-notif-url', '' ),
 			'id'       => 'wfw-custom-notif-url',
@@ -559,7 +550,7 @@ class Wishlist_For_Woo_Template_Manager {
 		$settings[] = array(
 			'title'    => esc_html__( 'Image', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'class'    => 'mwb-wfw-toggle-text',
-			'type'     => 'file',
+			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-custom-notif-img', '' ),
 			'id'       => 'wfw-custom-notif-img',
@@ -585,7 +576,7 @@ class Wishlist_For_Woo_Template_Manager {
 
 		// Section start.
 		$settings[] = array(
-			'title' => esc_html__( 'Advnace Notifications', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'title' => esc_html__( 'Advance Notifications', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'  => 'title',
 		);
 
@@ -651,10 +642,7 @@ class Wishlist_For_Woo_Template_Manager {
 		?>
 		<div id="mfw_crm_config_wrapper">
 			<div id="wfw_crm_configurations">
-
-				<h3><?php esc_html_e( 'CRM Configurations', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></h3>
-				<h3><?php esc_html_e( 'Supported CRM Tools', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></h3>
-
+				<h2 class="mwb-wfw-subheading"><?php esc_html_e( 'Supported CRM Tools', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></h2>
 				<div class="wfw_crm_config_options">
 					<div class="wfw_crm_config_options_icon simple">
 						<a href="<?php echo esc_url( esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ) ); ?>">
@@ -673,6 +661,29 @@ class Wishlist_For_Woo_Template_Manager {
 		$settings = ob_get_clean();
 
 		return $settings;
+	}
+
+	/**
+ 	 *  Get all templates of other Tab.
+	 *
+	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @return html Buffered html.
+	 */
+	public static function get_template_sections( $template_name = false, $base_path=false ) {
+		
+		if( ! empty( $template_name ) ) {
+			ob_start();
+				wc_get_template(
+					'partials/templates/wishlist-for-woo-' . $template_name . '.php',
+					array( $template_name => $template_name ),
+					'',
+					$base_path
+				);
+			$output = ob_get_contents();
+			ob_end_clean();
+
+			return $output;
+		}
 	}
 
 # End of class.
