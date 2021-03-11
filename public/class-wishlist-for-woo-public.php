@@ -828,7 +828,7 @@ class Wishlist_For_Woo_Public {
 
 				$result = array(
 					'status'  => true,
-					'reload'  => get_permalink( 'wishlist' ),
+					'reload'  => get_permalink( get_option( 'wfw-selected-page', '' ) ),
 					'message' => esc_html__( 'Wishlist deleted successfully', 'wishlist_for_woo' ),
 				);
 			} else if ( 400 == $response['status'] ) {

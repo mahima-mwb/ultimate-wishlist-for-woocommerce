@@ -182,6 +182,9 @@ class Wishlist_For_Woo {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		// Register woocommerce screens.
+		$this->loader->add_filter( 'woocommerce_screen_ids', $plugin_admin, 'set_wc_screen_ids' );
+
 		// Add a admin menu for accessing plugin features.
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_config_menu' );
 

@@ -360,14 +360,165 @@ class Wishlist_For_Woo_Template_Manager {
 	 */
 	public static function get_social_sharing_sections_settings() {
 
-		$settings   = array();
-
+		// Section start.
 		$settings[] = array(
-			'title' => esc_html__( 'This will be heading for Social Sharing Tab.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'class' => 'mwb-wfw-sub-heading',
+			'title' => esc_html__( 'Push Notifications', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'  => 'title',
-			'id'    => 'mwb-wfw-heading',
 		);
+
+		// Toggle :: Enable/Disable Facebook share.
+		$settings[] = array(
+			'title'    => esc_html__( 'Faceook share', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-checkbox',
+			'type'     => 'checkbox',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-fb-share', 'yes' ),
+			'id'       => 'wfw-enable-fb-share',
+			'desc'     => esc_html__( 'Enable/Disable the Facebook share functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Input :: Facebook icon color.
+		$settings[] = array(
+			'title'    => esc_html__( 'Faceook Icon color', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-color',
+			'type'     => 'color',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-fb-color', '' ),
+			'id'       => 'wfw-enable-fb-color',
+			'desc'     => esc_html__( 'Input Facebook icon color.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Input :: Facebook icon size.
+		$settings[] = array(
+			'title'    => esc_html__( 'Faceook Icon size', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-select',
+			'type'     => 'select',
+			'options'  => array(
+				'small'  => esc_html__( 'Small', 'wishlist_for_woo' ),
+				'medium' => esc_html__( 'Meduim', 'wishlist_for_woo' ),
+				'Large'  => esc_html__( 'Large', 'wishlist_for_woo' ),
+			),
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-fb-size', '' ),
+			'id'       => 'wfw-enable-fb-size',
+			'desc'     => esc_html__( 'Input Facebook icon size.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Toggle :: Enable/Disable Whatsapp share.
+		$settings[] = array(
+			'title'    => esc_html__( 'WhatsApp share', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-checkbox',
+			'type'     => 'checkbox',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-whatsapp-share', 'yes' ),
+			'id'       => 'wfw-enable-whatsapp-share',
+			'desc'     => esc_html__( 'Enable/Disable the WhatsApp share functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Input :: Whatsapp icon color.
+		$settings[] = array(
+			'title'    => esc_html__( 'WhatsApp Icon color', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-color',
+			'type'     => 'color',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-whatsapp-color', '' ),
+			'id'       => 'wfw-enable-whatsapp-color',
+			'desc'     => esc_html__( 'Input WhatsApp icon color.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Input :: Whatsapp icon size.
+		$settings[] = array(
+			'title'    => esc_html__( 'WhatsApp Icon size', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-select',
+			'type'     => 'select',
+			'options'  => array(
+				'small'  => esc_html__( 'Small', 'wishlist_for_woo' ),
+				'medium' => esc_html__( 'Meduim', 'wishlist_for_woo' ),
+				'Large'  => esc_html__( 'Large', 'wishlist_for_woo' ),
+			),
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-whatsapp-size', '' ),
+			'id'       => 'wfw-enable-whatsapp-size',
+			'desc'     => esc_html__( 'Input WhatsApp icon size.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Toggle :: Enable/Disable twitter share.
+		$settings[] = array(
+			'title'    => esc_html__( 'Twitter share', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-checkbox',
+			'type'     => 'checkbox',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-twitter-share', 'yes' ),
+			'id'       => 'wfw-enable-twitter-share',
+			'desc'     => esc_html__( 'Enable/Disable the Twitter share functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Input :: Twitter icon color.
+		$settings[] = array(
+			'title'    => esc_html__( 'Twitter Icon color', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-color',
+			'type'     => 'color',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-twitter-color', '' ),
+			'id'       => 'wfw-enable-twitter-color',
+			'desc'     => esc_html__( 'Input WhatsApp icon color.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Input :: Twitter icon size.
+		$settings[] = array(
+			'title'    => esc_html__( 'Twitter Icon size', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-select',
+			'type'     => 'select',
+			'options'  => array(
+				'small'  => esc_html__( 'Small', 'wishlist_for_woo' ),
+				'medium' => esc_html__( 'Meduim', 'wishlist_for_woo' ),
+				'Large'  => esc_html__( 'Large', 'wishlist_for_woo' ),
+			),
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-twitter-size', '' ),
+			'id'       => 'wfw-enable-twitter-size',
+			'desc'     => esc_html__( 'Input WhatsApp icon size.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Toggle :: Enable/Disable pinterest share.
+		$settings[] = array(
+			'title'    => esc_html__( 'Pinterest share', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-checkbox',
+			'type'     => 'checkbox',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-pinterest-share', 'yes' ),
+			'id'       => 'wfw-enable-pinterest-share',
+			'desc'     => esc_html__( 'Enable/Disable the Pinterest share functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Input :: Pinterest icon color.
+		$settings[] = array(
+			'title'    => esc_html__( 'Pinterest Icon color', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-color',
+			'type'     => 'color',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-pinterest-color', '' ),
+			'id'       => 'wfw-enable-pinterest-color',
+			'desc'     => esc_html__( 'Input Pinterest icon color.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Input :: Pinterest icon size.
+		$settings[] = array(
+			'title'    => esc_html__( 'Pinterest Icon size', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-select',
+			'type'     => 'select',
+			'options'  => array(
+				'small'  => esc_html__( 'Small', 'wishlist_for_woo' ),
+				'medium' => esc_html__( 'Meduim', 'wishlist_for_woo' ),
+				'Large'  => esc_html__( 'Large', 'wishlist_for_woo' ),
+			),
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-pinterest-size', '' ),
+			'id'       => 'wfw-enable-pinterest-color',
+			'desc'     => esc_html__( 'Input Pinterest icon size.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+
 
 		$settings[] = array(
 			'type' => 'sectionend',
@@ -391,7 +542,7 @@ class Wishlist_For_Woo_Template_Manager {
 
 		// Toggle :: Enable/Disable Plugin.
 		$settings[] = array(
-			'title'    => esc_html__( 'Enable /Disable Push Notifications', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'title'    => esc_html__( 'Push Notifications', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
@@ -400,11 +551,11 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc'     => esc_html__( 'Enable/Disable the push notifications functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
 
-		// Toggle :: Enable/Disable Plugin.
+		// Input :: Push notification client id.
 
 		$settings[] = array(
 			'title'    => esc_html__( 'Secret Key', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'class'    => 'mwb-wfw-toggle-checkbox',
+			'class'    => 'mwb-wfw-toggle-text',
 			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-push-notif-sk', '' ),
@@ -412,9 +563,60 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc'     => esc_html__( 'Note: A file "service-worker.js" needs to be stored on the root folder, else push notifications will not work. ', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
 
+		// Subheading ::For Preview Settings.
+		$settings[]		=	array(
+			'type'	=>	'sub-heading',
+			'value'	=>	esc_html__( 'Send Custom notifications.', WISHLIST_FOR_WOO_TEXTDOMAIN )
+		);
+
+		// Input :: Custom notfications title.
+		$settings[] = array(
+			'title'    => esc_html__( 'Title', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-text',
+			'type'     => 'text',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-custom-notif-title', '' ),
+			'id'       => 'wfw-custom-notif-title',
+			'desc'     => esc_html__( 'Enter custom noitification title. ', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Input :: Custom notfications URL.
+		$settings[] = array(
+			'title'    => esc_html__( 'URL', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-text',
+			'type'     => 'url',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-custom-notif-url', '' ),
+			'id'       => 'wfw-custom-notif-url',
+			'desc'     => esc_html__( 'Enter custom noitification URL. ', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Input :: Custom notfications Message.
+		$settings[] = array(
+			'title'    => esc_html__( 'Message', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-text',
+			'type'     => 'text',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-custom-notif-msg', '' ),
+			'id'       => 'wfw-custom-notif-msg',
+			'desc'     => esc_html__( 'Enter custom noitification message. ', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Input :: Custom notfications Image.
+		$settings[] = array(
+			'title'    => esc_html__( 'Image', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-text',
+			'type'     => 'file',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-custom-notif-img', '' ),
+			'id'       => 'wfw-custom-notif-img',
+			'desc'     => esc_html__( 'Enter custom noitification image. ', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
 		$settings[] = array(
 			'type' => 'sectionend',
 		);
+
 		return $settings;
 	}
 
@@ -428,12 +630,55 @@ class Wishlist_For_Woo_Template_Manager {
 
 		$settings = array();
 
+		// Section start.
 		$settings[] = array(
-			'title' => esc_html__( 'This will be heading for Advance Features section.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'class' => 'mwb-wfw-sub-heading',
+			'title' => esc_html__( 'Advnace Notifications', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 			'type'  => 'title',
-			'id'    => 'mwb-wfw-heading',
 		);
+
+		// Toggle :: Enable/Disable multiple wishlist.
+		$settings[] = array(
+			'title'    => esc_html__( 'Multiple Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-checkbox',
+			'type'     => 'checkbox',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-multi-wishlist', 'yes' ),
+			'id'       => 'wfw-enable-multi-wishlist',
+			'desc'     => esc_html__( 'Enable/Disable the multiple wishlist functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Toggle :: Enable/Disable create api routing.
+		$settings[] = array(
+			'title'    => esc_html__( 'Create API routing', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-checkbox',
+			'type'     => 'checkbox',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-api-route', 'yes' ),
+			'id'       => 'wfw-enable-api-route',
+			'desc'     => esc_html__( 'Enable/Disable the API routing functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+		// Toggle :: Enable/Disable Automated emails.
+		$settings[] = array(
+			'title'    => esc_html__( 'Automated Emails', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			'class'    => 'mwb-wfw-toggle-checkbox',
+			'type'     => 'checkbox',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-automated-mail', 'yes' ),
+			'id'       => 'wfw-enable-automated-mail',
+			'desc'     => esc_html__( 'Send automated emails to wishlist owners.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+		);
+
+			// Toggle :: Enable/Disable instock notifications.
+			$settings[] = array(
+				'title'    => esc_html__( 'In-stock Notification', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+				'class'    => 'mwb-wfw-toggle-checkbox',
+				'type'     => 'checkbox',
+				'desc_tip' => true,
+				'value'    => get_option( 'wfw-enable-instock-notif', 'yes' ),
+				'id'       => 'wfw-enable-instock-notif',
+				'desc'     => esc_html__( 'Enable/Disable in-stock notifications functionality.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			);
 
 		$settings[] = array(
 			'type' => 'sectionend',
@@ -449,18 +694,31 @@ class Wishlist_For_Woo_Template_Manager {
 	 */
 	public static function get_crm_sections_settings() {
 
-		$settings = array();
+		ob_start();
+		?>
+		<div id="mfw_crm_config_wrapper">
+			<div id="wfw_crm_configurations">
 
-		$settings[] = array(
-			'title' => esc_html__( 'This will be heading for CRM section', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			'class' => 'mwb-wfw-sub-heading',
-			'type'  => 'title',
-			'id'    => 'mwb-wfw-heading',
-		);
+				<h3><?php esc_html_e( 'CRM Configurations', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></h3>
+				<h3><?php esc_html_e( 'Supported CRM Tools', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></h3>
 
-		$settings[] = array(
-			'type' => 'sectionend',
-		);
+				<div class="wfw_crm_config_options">
+					<div class="wfw_crm_config_options_icon simple">
+						<a href="<?php echo esc_url( esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ) ); ?>">
+							<img class="wfw_crm_tool_mautic" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/mautic-logo.png' ); ?>">
+						</a>
+					</div>
+					<div class="wfw_crm_config_options_icon simple">
+						<a href="<?php echo esc_url( esc_url( 'https://wordpress.org/plugins/makewebbetter-hubspot-for-woocommerce/' ) ); ?>">
+							<img class="wfw_crm_tool_hubspot" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/hubspot-logo.svg' ); ?>">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+		$settings = ob_get_clean();
+
 		return $settings;
 	}
 

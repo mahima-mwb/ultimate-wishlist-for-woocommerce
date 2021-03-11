@@ -87,6 +87,7 @@ class Wishlist_For_Woo_Admin {
 		if ( self::is_valid_screen() ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-admin.css', array(), $this->version, 'all' );
 			wp_enqueue_style( $this->plugin_name . '-select2', plugin_dir_url( __FILE__ ) . 'css/select2.min.css', array(), $this->version, 'all' );
+			wp_enqueue_style( 'wp-color-picker' );
 		}
 	}
 
@@ -109,9 +110,13 @@ class Wishlist_For_Woo_Admin {
 		 * class.
 		 */
 		if ( self::is_valid_screen() ) {
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-admin.js', array( 'jquery' ), $this->version, false );
+
+			// wp_enqueue_script( 'wp-color-picker' );
+			wp_enqueue_script( 'iris', admin_url( 'js/iris.min.js' ), array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
 			wp_enqueue_script( $this->plugin_name . '-swal-alert', plugin_dir_url( __FILE__ ) . 'js/swal.js', array( 'jquery' ), $this->version, false );
 			wp_enqueue_script( $this->plugin_name . '-select2', plugin_dir_url( __FILE__ ) . 'js/select2.min.js', array( 'jquery' ), $this->version, false );
+			
 			wp_localize_script(
 				$this->plugin_name,
 				'mwb_wfw_obj',
@@ -157,6 +162,24 @@ class Wishlist_For_Woo_Admin {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Register page IDs for Woocommerce.
+	 *
+	 * @param array $screen Screen ID.
+	 */
+	public function set_wc_screen_ids( $screen ) {
+
+		$screen_ids = array(
+			'toplevel_page_wfw-config-portal',
+			'wishlist-for-woocommerce_page_wfw-performance-reporting',
+			'wishlist-for-woocommerce_page_wfw-plugin-overview',
+		);
+
+		$screen = array_merge( $screen_ids, $screen );
+
+		return $screen;
 	}
 
 	/**
@@ -311,6 +334,7 @@ class Wishlist_For_Woo_Admin {
 
 				case 'crm':
 					$settings = Wishlist_For_Woo_Template_Manager::get_crm_sections_settings();
+				
 					break;
 
 				default:
@@ -334,6 +358,9 @@ class Wishlist_For_Woo_Admin {
 
 					$output .= sprintf( '<tr valign="top"><td colspan="2" class="forminp"><h2 class="mwb-wfw-subheading">%s</h2></td></tr>', esc_html( $setting['value'] ) );
 
+				} elseif ( ! empty( $setting['type'] ) && 'file' == $setting['type'] ) {
+
+					$output .= sprintf( '<tr valign="top"><th scope="row" class="titledesc"><label for="%s">%s</label></th><td colspan="2" class="forminp"><input class="mwb-wfw-file" name="%s" value="%s" ></td></tr>', esc_html( $setting['id'] ), esc_html( $setting['title'] ), esc_html( $setting['id'] ), esc_html( $setting['value'] ) );
 				} else {
 					ob_start();
 						woocommerce_admin_fields( array( $setting ) );
@@ -343,6 +370,9 @@ class Wishlist_For_Woo_Admin {
 			}
 
 			return $output;
+
+		} else {
+			return $settings;
 		}
 	}
 

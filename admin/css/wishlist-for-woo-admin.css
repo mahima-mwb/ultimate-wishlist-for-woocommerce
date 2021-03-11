@@ -560,6 +560,22 @@ h2.mwb-wfw-subheading {
     padding: 0px 0px 0px 25px;
 }
 
+input#wfw-custom-notif-title {
+    pointer-events: none;
+}
+
+input#wfw-custom-notif-url {
+    pointer-events: none;
+}
+
+input#wfw-custom-notif-msg {
+    pointer-events: none;
+}
+
+input.mwb-wfw-file {
+    pointer-events: none;
+}
+
 /* Media query start */
 
 @media only screen and (max-width:768px) {
