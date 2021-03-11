@@ -277,7 +277,7 @@ class Wishlist_For_Woo_Crud_Manager {
             // Get all current users wishlists.
             $get_query = "SELECT * FROM `$this->table_name` WHERE `id` = '$this->id'"; 
         }
-        
+
         if( ! empty( $get_query ) ) {
             $response = $wpdb->get_results( $get_query, ARRAY_A );
 
@@ -361,6 +361,42 @@ class Wishlist_For_Woo_Crud_Manager {
             }
         }
         return false;
+    }
+
+    /**
+	 * Get all the wishlist for user.
+	 *
+	 * @since 1.0.0
+	 * @return array $result the parsed data form for query.
+	 */
+    public function get_all() {
+
+        if( ! is_admin() ) {
+            return false;
+        }
+
+        // Get all current users wishlists.
+        global $wpdb;
+        $get_query = "SELECT * FROM `$this->table_name`"; 
+        $response = $wpdb->get_results( $get_query, ARRAY_A );
+
+        if( ! empty( $wpdb->last_error ) ) {
+
+            $result = array(
+                'status'    => 400, 
+                'message'    => $wpdb->last_error, 
+            );
+        }
+
+        else {
+
+            $result = array(
+                'status'    => 200, 
+                'response'    => apply_filters( 'mwb-crm-connect-zoho-logs', $response ), 
+            );    
+        }
+
+        return $result;
     }
 
 // End of Class.

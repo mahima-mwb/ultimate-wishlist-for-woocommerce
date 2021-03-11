@@ -29,7 +29,7 @@ class Wishlist_For_Woo_Shortcode_Manager {
 	 * @access   private
 	 * @var      string    $base_path    The ID of this plugin.
 	 */
-	public $base_path;
+	public static $base_path;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -38,7 +38,7 @@ class Wishlist_For_Woo_Shortcode_Manager {
 	 * @param      string    $base_path       The name of the plugin.
 	 */
 	public function __construct( $base_path ) {
-		$this->base_path = $base_path;
+		self::$base_path = $base_path;
 	}
 
 	/**
@@ -96,7 +96,7 @@ class Wishlist_For_Woo_Shortcode_Manager {
 				'wid_to_show'		=>	$current_id
 			),
 			'',
-			$this->base_path
+			self::$base_path
 		);
 
 		$output = ob_get_contents();
