@@ -1,5 +1,4 @@
 <?php
-
     $manager = Wishlist_For_Woo_Crud_Manager::get_instance();
     $response = $manager->get_all();
     $all_wishlists = 200 == $response[ 'status' ] ? $response[ 'response' ] : false;
@@ -38,7 +37,7 @@
                         </td>
                         <td><?php echo esc_html( $value['createdate'] ) ?></td>
                         <td><?php echo esc_html( $value['modifieddate'] ) ?></td>
-                        <td><?php $user = get_user_by( 'email', $value['owner'] ); echo esc_html( $user->user_nicename ); ?></td>
+                        <td><?php $user = get_user_by( 'email', $value['owner'] ); echo esc_html( $user->user_nicename ? $user->user_nicename : $value['owner'] ); ?></td>
                         <td><?php echo esc_html( $value['status'] ); ?></td>
                         <td>
                             <?php foreach ( $value['collaborators'] as $key => $email ) : ?>

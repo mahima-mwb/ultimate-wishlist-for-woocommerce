@@ -15,21 +15,39 @@
         $manager = Wishlist_For_Woo_Crud_Manager::get_instance();
         $response = $manager->retrieve(  'products', get_the_ID() );
         $all_wishlists = 200 == $response[ 'status' ] ? $response[ 'message' ] : false;
-  
-        if( 200 != $all_wishlists[ 'status' ] ) {
+       
+        if( 200 != $response[ 'status' ] ) {
             continue;
         }
-       
-        echo '<pre>'; print_r( get_the_ID() ); echo '</pre>';
+        
+        $wishlist = array();
+        if( ! empty( $all_wishlists ) && is_array( $all_wishlists ) ) :
+            foreach ( $all_wishlists as $key => $list ) :
+                $id = $list['id' ] ? $list['id' ] : false;
+                $manager = new Wishlist_For_Woo_Crud_Manager( $id );
+                $result = $manager->get_prop( 'title' );
+                array_push( $wishlist, $result );
+            endforeach;
+        endif;
+
         $dataset = array(
-            'id'    =>  get_the_ID(),
-            'title'    =>  get_the_title(),
-            'image'    =>  woocommerce_get_product_thumbnail( 'related-thumb' ),
+            'id'                =>  get_the_ID(),
+            'title'             =>  get_the_title(),
+            'image'             =>  wp_get_attachment_url( $product->get_image_id() ),
+            'wishlist_count'    =>  count( $all_wishlists ),
+            'wishlists'         =>  implode( ',', $wishlist ),
         );
         
         array_push( $datastore, $dataset );
-
+        
     endwhile;
+
+    // Sort on the basis of count.
+    $wishlist_count = array();
+    foreach ($datastore as $key => $row){
+        $wishlist_count[$key] = $row['wishlist_count'];
+    }
+    array_multisort( $wishlist_count, SORT_DESC, $datastore );
 ?>
 
 <div class="mwb-table__wrapper">
@@ -47,9 +65,11 @@
             <?php if( ! empty( $datastore ) && is_array( $datastore ) ) : ?>
                 <?php foreach ( $datastore as $key => $value ) : ?>
                     <tr>
-                        <td><?php echo esc_html( $value['id'] ) ?></td>
-                        <td><?php echo esc_html( $value['title'] ) ?></td>
-                        <td><?php echo $value['image']; ?></td>
+                        <td><?php echo esc_html( $value['id'] ); ?></td>
+                        <td><?php echo esc_html( $value['title'] ); ?></td>
+                        <td><img src="<?php echo esc_url( $value['image'] );  ?>" class="mwb-wfw-prod-img" ></td>
+                        <td><?php echo $value['wishlist_count']; ?></td>
+                        <td><?php echo $value['wishlists']; ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else : ?>

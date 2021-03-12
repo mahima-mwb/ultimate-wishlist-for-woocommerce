@@ -392,8 +392,8 @@ class Wishlist_For_Woo_Crud_Manager {
 
             $result = array(
                 'status'    => 200, 
-                'response'    => apply_filters( 'mwb-crm-connect-zoho-logs', $response ), 
-            );    
+                'response'    => apply_filters( 'mwb_wfw_all_wishlists', $response ), 
+            ); 
         }
 
         return $result;
