@@ -216,7 +216,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'class' 				=> 'mwb-wfw-toggle-checkbox',
 			'type'  				=> 'checkbox',
 			'desc_tip' 				=> true,
-			'value'   				=> get_option( 'wfw-enable-popup', '' ),
+			'value'   				=> get_option( 'wfw-enable-popup', 'yes' ),
 			'id'    				=> 'wfw-enable-popup',
 			'desc'  				=> esc_html__( 'Show Item added in wishlist as popup after adding in list.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);
@@ -369,7 +369,7 @@ class Wishlist_For_Woo_Template_Manager {
 				'25px' => esc_html__( 'Large', 'wishlist_for_woo' ),
 			),
 			'desc_tip' => true,
-			'value'    => get_option( 'wfw-enable-icon-size', '' ),
+			'value'    => get_option( 'wfw-enable-icon-size', '15px' ),
 			'id'       => 'wfw-enable-icon-size',
 			'desc'     => esc_html__( 'Input Pinterest icon size.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
 		);

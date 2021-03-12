@@ -94,11 +94,6 @@ jQuery(document).ready(function() {
     saveButton.on( 'click', function () {
         saveFormChanges();
     });
-
-    // Social share color fields.
-    let option_color  = jQuery( '.mwb-wfw-color' );
-
-    option_color.wpColorPicker();
     
     /**==================================================
                     Function Definations
