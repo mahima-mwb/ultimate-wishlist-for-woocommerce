@@ -10,7 +10,7 @@
  *
  * @link              https://makewebbetter.com
  * @since             1.0.0
- * @package           Wishlist_For_Woo
+ * @package           Wishlist_Fsd ador_Woo
  *
  * @wordpress-plugin
  * Plugin Name:       Wishlist for Woocommerce
