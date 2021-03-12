@@ -122,6 +122,7 @@ class Wishlist_For_Woo_Public {
 				'strings'   	=> $strings ? $strings : array(),
 				'settings'    	=> $settings ? $settings : array(),
 				'user'    		=> get_current_user_id(),
+				'permalink'     => get_page_link( get_option( 'wfw-selected-page', '' ) ),
 			)
 		);
 
@@ -188,19 +189,17 @@ class Wishlist_For_Woo_Public {
 			if ( file_exists( $file ) ) {
 
 				?>
-				<!-- <script type='module'>
+				<script type='module'>
 					// Register visitor's browser for push notifications
-					Pushy.register({ appId: '<?php //echo esc_html( $secret_key ); ?>' }).then(function (deviceToken) {
-
+					Pushy.register({ appId: '<?php echo esc_html( $secret_key ); ?>' }).then(function (deviceToken) {
 					}).catch(function (err) {
 						// Handle registration errors
 						console.error(err);
 					});
-				</script> -->
+				</script>
 				<?php
 			}
 		}
-
 	}
 
 
@@ -408,6 +407,10 @@ class Wishlist_For_Woo_Public {
 		wp_die();
 	}
 
+
+	/**
+	 * Ajax callback for Meta Updates.
+	 */
 	public function UpdateWishlistMeta() {
 
 		// Nonce verification.
@@ -415,9 +418,9 @@ class Wishlist_For_Woo_Public {
 
 		$result = array();
 
-		$formdata = array();
-		isset( $_POST['formData'] ) ? parse_str( sanitize_text_field( $_POST['formData'] ), $formdata ) : '';
-		$formdata = ! empty( $formdata ) ?  map_deep( wp_unslash( $formdata ), 'sanitize_text_field' ) : false;
+		$formdata = ! empty( $_POST['formData'] ) ?  map_deep( wp_unslash( $_POST['formData'] ), 'sanitize_text_field' ) : false;
+
+		$formdata = $this->parse_serialised_data( $formdata );
 
 		$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance();
 		$wishlist_manager->id = $formdata[ 'wid' ] ? $formdata[ 'wid' ] : false;
@@ -881,6 +884,21 @@ class Wishlist_For_Woo_Public {
 
 		wp_send_json( $result );
 
+	}
+
+	/**
+	 * Parse Serialised data.
+	 */
+	public function parse_serialised_data( $array=array() ) {
+		$result = array();
+		if( ! empty( $array ) && is_array( $array ) ) {
+			foreach ( $array as $key => $value ) {
+				
+				$result[ $value[ 'name' ] ] = $value[ 'value' ];
+			}
+		}
+
+		return $result;
 	}
 // End of class.
 }

@@ -18,8 +18,8 @@ jQuery(document).ready(function() {
     let user = mwb_wfw_obj.user;
 
     // Settings Pickups.
-    let permalink = settings.permalink;
-   
+    let permalink = mwb_wfw_obj.permalink;
+   console.log( permalink )
     // Wishlist triggers/objects.
     let wishlistTrigger = jQuery( '.add-to-wishlist' );
     let wishlistPopup = jQuery( '.mwb-wfw-wishlist-dialog' );
@@ -188,7 +188,6 @@ jQuery(document).ready(function() {
         result.then( ( response ) => {
             response = JSON.parse( response );
             if( 200 == response.status ) {
-                console.log( response );
                 let trigger = jQuery('.current-trigger');
                 if( trigger.hasClass( 'mwb-wfw-loop-text-button' ) ) {
                     trigger.text( strings.add_to_wishlist );
@@ -218,7 +217,6 @@ jQuery(document).ready(function() {
         response = JSON.parse( response );
         const processingIcon = jQuery( '.mwb-wfw-wishlist-processing' );
         if( 200 == response.status ) {
-            console.log( response );
             let trigger = jQuery('.current-trigger');
             trigger.attr( 'data-wishlist-id', response.id );
             if( trigger.hasClass( 'mwb-wfw-loop-text-button' ) ) {
@@ -291,7 +289,7 @@ jQuery(document).ready(function() {
     jQuery( '.add-meta-to-wishlist' ).on( 'submit', function(e) {
 
         e.preventDefault();
-        data = jQuery(this).serialize();
+        data = jQuery(this).serializeArray();
         let input = {
             nonce: mwb_wfw_obj.auth_nonce,
             action : 'UpdateWishlistMeta',
@@ -304,8 +302,6 @@ jQuery(document).ready(function() {
             if ( true == response.status ) {
                 addWishlistMetaPopup.hide();
                 triggerSuccess( response.message );
-
-                
 
             } else if( false == response.status ) {
                 addWishlistMetaPopup.hide();
@@ -468,8 +464,6 @@ jQuery(document).ready(function() {
         let result = doAjax( data );
 
         result.then( ( response ) => {
-            console.log( response );
-
             if ( true == response.status ) {
                 triggerSuccess( response.message );
                 jQuery( document ).on( 'click', '.swal-button--confirm', function() {
@@ -510,8 +504,6 @@ jQuery(document).ready(function() {
     let wa_settings = jQuery( '#mwb-wfw-share-wa' );
     let tt_settings = jQuery( '#mwb-wfw-share-tt' );
     let pt_settings = jQuery( '#mwb-wfw-share-pt' );
-    console.log( settings.wfw_enable_icon_size );
-    console.log( settings );
 
     if ( 'yes' == settings.wfw_enable_fb_share ) {
         SocialIcons( fb_settings, settings.wfw_enable_icon_size, settings.wfw_enable_fb_color );

@@ -668,3 +668,6 @@ input.mwb-wfw-file {
 .mwb-wfw-prod-img {
     max-width: 20%;
 }
+#screen-meta-links {
+    display: none;
+}
