@@ -239,14 +239,25 @@ jQuery(document).ready(function() {
         }
     }
 
+    /**
+     * Social icons appereance
+     * @param {*} object 
+     * @param {*} font_setting 
+     * @param {*} color_setting 
+     */
     const SocialIcons = ( object, font_setting, color_setting ) => {
+
         object.css( 'display', 'block' );
+        let svg        = object.children();
+        let svg_circle = svg.children( 'circle' );
+
         if ( font_setting.length > 0 ) {
-            object.css( 'font-size', font_setting );
+            svg.attr( 'height', font_setting );
+            svg.attr( 'width', font_setting );
         }
 
         if ( color_setting.length > 0 ) {
-            object.css( 'color', '#' + color_setting );
+            svg_circle.attr( 'fill', '#' + color_setting );
         }
     }
 
@@ -521,8 +532,6 @@ jQuery(document).ready(function() {
         SocialIcons( pt_settings, settings.wfw_enable_icon_size, settings.wfw_enable_pinterest_color );
     }
 
-    
-
-// End of scripts.
+    // End of scripts.
 });
 
