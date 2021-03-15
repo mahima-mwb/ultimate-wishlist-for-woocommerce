@@ -367,7 +367,7 @@ class Wishlist_For_Woo_Admin {
 
 				if ( ! empty( $setting['type'] ) && 'sub-heading' == $setting['type'] ) {
 
-					$output .= sprintf( '<tr valign="top"><td colspan="2" class="forminp"><h2 class="mwb-wfw-subheading">%s</h2></td></tr>', esc_html( $setting['value'] ) );
+					$output .= sprintf( '<tr valign="top"><td colspan="2" class="forminp wfw_admin_subheading"><h2 class="mwb-wfw-subheading">%s</h2></td></tr>', esc_html( $setting['value'] ) );
 
 				} elseif ( ! empty( $setting['type'] ) && 'file' == $setting['type'] ) {
 

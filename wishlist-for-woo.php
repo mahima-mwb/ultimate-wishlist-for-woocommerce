@@ -38,7 +38,7 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'WISHLIST_FOR_WOO_VERSION', '1.0.0' );
 define( 'WISHLIST_FOR_WOO_TEXTDOMAIN', 'wishlist-for-woo' );
 define( 'WISHLIST_FOR_WOO_URL', plugin_dir_url( __FILE__ ) );
-define( 'WISHLIST_PLUGINS_PATH', plugin_dir_path( __DIR__ ) );
+define( 'WISHLIST_PLUGINS_PATH', plugin_dir_path( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.

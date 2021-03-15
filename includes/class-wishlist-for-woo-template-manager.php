@@ -85,8 +85,11 @@ class Wishlist_For_Woo_Template_Manager {
 	public function render_settings_screen() {
 		
 		ob_start(); ?>
+
 		<div class="mwb-wfw-container">
+
 			<div class="mwb-wfw-row">
+				<?php  do_action( 'mwb_wfw_helpdesk' ); ?>
 				<div class="mwb-wfw-desc">
 					<form method="post" action="#" class="mwb-wfw-output-form"></form>
 					<div class="mwb-wfw-desc--preloader">
@@ -94,7 +97,6 @@ class Wishlist_For_Woo_Template_Manager {
 						<h4><?php esc_html_e( 'Loading settings please wait...', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></h4>
 					</div>
 				</div>
-				<?php  do_action( 'mwb_wfw_helpdesk' ); ?>
 			</div>
 		</div>
 		<?php echo ob_get_clean();

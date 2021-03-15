@@ -145,7 +145,6 @@ jQuery(document).ready(function() {
                 hashScreen: hashScreen,
             },
             success: function(result) {
-
                 processResult(result);
                 let option_color  = jQuery( '.mwb-wfw-color' );
                 option_color.wpColorPicker({
@@ -182,6 +181,15 @@ jQuery(document).ready(function() {
 
             // Append template html.
             outputScreen.html( result.content );
+
+            // Alter tooltip html.
+            let tooltip = jQuery( '.woocommerce-help-tip' );
+            let reformed_tip = '';
+            tooltip.each( function() {
+                let data_tip = tooltip.attr( 'data-tip' );
+                reformed_tip = jQuery( this ).append( '<span class="woocommerce-help-tip-text">' + data_tip + '</span>' );
+            });
+          //  jQuery( reformed_tip ).wrap( '<span class="woocommerce-help-tip-wrapper"></span>' );
 
             // Enable select2 fields.
             jQuery('.mwb-wfw-multi-select').select2();
@@ -260,4 +268,13 @@ jQuery(document).ready(function() {
         jQuery( '[ dependent="dependency-type-' + val + '" ]' ).closest('tr').show();
     }
 // End of scripts.
+
+
+
+// designer
+// toggle Helpdesk
+jQuery('.mwb-wfw-helpdesk__icon img').click(function(){
+    jQuery('.mwb-wfw-desc').toggleClass('mwb-wfw-over');
+})
 });
+

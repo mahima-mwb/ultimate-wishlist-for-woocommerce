@@ -95,14 +95,17 @@
 							</div>
 							<?php if( $access == 'edit' ) : ?>
 							<p class="wfw_invite-icon">
-								<i class="fas fa-user-circle"></i> 
+								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="wfw_user">
+								<path d="M11 0C4.92339 0 0 4.92339 0 11C0 17.0766 4.92339 22 11 22C17.0766 22 22 17.0766 22 11C22 4.92339 17.0766 0 11 0ZM11 4.25806C13.1556 4.25806 14.9032 6.00565 14.9032 8.16129C14.9032 10.3169 13.1556 12.0645 11 12.0645C8.84435 12.0645 7.09677 10.3169 7.09677 8.16129C7.09677 6.00565 8.84435 4.25806 11 4.25806ZM11 19.5161C8.39637 19.5161 6.06331 18.3363 4.50202 16.4911C5.33589 14.921 6.96814 13.8387 8.87097 13.8387C8.97742 13.8387 9.08387 13.8565 9.18589 13.8875C9.7625 14.0738 10.3657 14.1935 11 14.1935C11.6343 14.1935 12.2419 14.0738 12.8141 13.8875C12.9161 13.8565 13.0226 13.8387 13.129 13.8387C15.0319 13.8387 16.6641 14.921 17.498 16.4911C15.9367 18.3363 13.6036 19.5161 11 19.5161Z" fill="black"/>
+								</svg>
+
 								<a title="<?php esc_html_e( 'Invite Collaborator' ); ?>" class="thickbox mwb-wfw-invite" href="#TB_inline?&inlineId=wfw_invite_popup"><span>+</span><?php esc_html_e( 'Invite', 'wishlist-for-woo' ); ?></a>
 							</p>
 							<div id="wfw_invite_popup"  >
 								<div id="wfw_invite_content_wrapper">
+									<h3 class="wfw-invite_form">Enter your friends email here!</h3>
 									<form id="wfw_email_invite_form" action="" method="post">
-										<label for="wfw_invite_email"><?php esc_html_e( 'Email', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></label>
-										<input type="email" name="wfw_invite_email" id="wfw_invite_email" value="" >
+										<input type="email" placeholder="Enter email here" name="wfw_invite_email" id="wfw_invite_email" value="" >
 										<input type="hidden" name="wfw_toshow_id" id="wfw_toshow_id" value="<?php echo esc_html( $wishlist_manager->id ); ?>" >
 										<input type="submit" name="wfw_invite_send_button" value="<?php esc_html_e( 'Send', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?>" >
 									</form>
@@ -129,26 +132,38 @@
 								?>
 
 							<a class="mwb-wfw-share" id="mwb-wfw-share-fb" data-location="facebook" href="http://www.facebook.com/sharer.php?s=100&p[url]=<?php echo esc_url( $page_link ); ?>&p[title]=<?php echo esc_html( $wishlist_title ); ?>">
-								<i class="fab fa-facebook"></i>
+								<svg width="15" height="15" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<circle cx="16" cy="16" r="16" fill="#1A3365" class="wfw_facebook"/>
+									<path d="M21 6H18C16.6739 6 15.4021 6.52678 14.4645 7.46447C13.5268 8.40215 13 9.67392 13 11V14H10V18H13V26H17V18H20L21 14H17V11C17 10.7348 17.1054 10.4804 17.2929 10.2929C17.4804 10.1054 17.7348 10 18 10H21V6Z" fill="white"/>
+								</svg>
 							</a>
 								<?php
 							} if ( ! empty( get_option( 'wfw-enable-whatsapp-share' ) ) && 'yes' == get_option( 'wfw-enable-whatsapp-share' ) ) {
 								?>
 							<a class="mwb-wfw-share" id="mwb-wfw-share-wa" data-location="whatsapp" href="https://wa.me/?text=<?php echo rawurlencode( $page_link ); ?>">
-								<i class="fab fa-whatsapp"></i>
+								<svg width="15" height="15" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="wfw_whatsapp">
+										<circle cx="16" cy="16" r="16" fill="#25D366"/>
+										<path d="M22.304 9.61562C20.6205 7.92812 18.3786 7 15.996 7C11.0781 7 7.07634 11.0018 7.07634 15.9196C7.07634 17.4906 7.48616 19.0254 8.26562 20.3795L7 25L11.729 23.7585C13.0308 24.4696 14.4973 24.8433 15.992 24.8433H15.996C20.9098 24.8433 25 20.8415 25 15.9237C25 13.5411 23.9875 11.3031 22.304 9.61562V9.61562ZM15.996 23.3406C14.6621 23.3406 13.3562 22.983 12.2192 22.308L11.95 22.1473L9.14554 22.8826L9.89286 20.1464L9.71607 19.8652C8.97277 18.6839 8.58304 17.3219 8.58304 15.9196C8.58304 11.8335 11.9098 8.5067 16 8.5067C17.9808 8.5067 19.8411 9.27812 21.2393 10.6804C22.6375 12.0826 23.4973 13.9429 23.4933 15.9237C23.4933 20.0138 20.0821 23.3406 15.996 23.3406V23.3406ZM20.0621 17.7879C19.8411 17.6754 18.7442 17.1371 18.5393 17.0647C18.3344 16.9884 18.1857 16.9522 18.0371 17.1772C17.8884 17.4022 17.4625 17.9004 17.3299 18.0531C17.2013 18.2018 17.0688 18.2219 16.8478 18.1094C15.5379 17.4545 14.6781 16.9402 13.8143 15.4576C13.5853 15.0638 14.0433 15.092 14.4692 14.2402C14.5415 14.0915 14.5054 13.9629 14.4491 13.8504C14.3929 13.7379 13.9469 12.6411 13.7621 12.1951C13.5813 11.7612 13.3964 11.8214 13.2598 11.8134C13.1313 11.8054 12.9826 11.8054 12.8339 11.8054C12.6853 11.8054 12.4442 11.8616 12.2393 12.0826C12.0344 12.3076 11.4598 12.846 11.4598 13.9429C11.4598 15.0397 12.2594 16.1004 12.3679 16.2491C12.4804 16.3978 13.9388 18.6478 16.1768 19.6161C17.5911 20.2268 18.1455 20.279 18.8527 20.1746C19.2826 20.1103 20.1705 19.6362 20.3554 19.1138C20.5402 18.5915 20.5402 18.1455 20.4839 18.0531C20.4317 17.9527 20.283 17.8964 20.0621 17.7879Z" fill="white"/>
+								</svg>
 							</a>
 								<?php
 							} if ( ! empty( get_option( 'wfw-enable-twitter-share' ) ) && 'yes' == get_option( 'wfw-enable-twitter-share' ) ) {
 								?>
 
 							<a class="mwb-wfw-share" id="mwb-wfw-share-tt" data-location="twitter" href="http://twitter.com/share?text=<?php echo esc_html( $wishlist_title ); ?>&url=<?php echo esc_url( $page_link ); ?>">
-								<i class="fab fa-twitter"></i>
+								<svg width="15" height="15" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="wfw_twitter">
+										<circle cx="16" cy="16" r="16" fill="#1DA1F2"/>
+										<path d="M27 7.01006C26.0424 7.68553 24.9821 8.20217 23.86 8.54006C23.2577 7.84757 22.4573 7.35675 21.567 7.13398C20.6767 6.91122 19.7395 6.96725 18.8821 7.29451C18.0247 7.62177 17.2884 8.20446 16.773 8.96377C16.2575 9.72309 15.9877 10.6224 16 11.5401V12.5401C14.2426 12.5856 12.5013 12.1959 10.931 11.4055C9.36074 10.6151 8.01032 9.44869 7 8.01006C7 8.01006 3 17.0101 12 21.0101C9.94053 22.408 7.48716 23.109 5 23.0101C14 28.0101 25 23.0101 25 11.5101C24.9991 11.2315 24.9723 10.9537 24.92 10.6801C25.9406 9.67355 26.6608 8.40277 27 7.01006V7.01006Z" fill="white"/>
+								</svg>
 							</a>
 								<?php
 							} if ( ! empty( get_option( 'wfw-enable-pinterest-share' ) ) && 'yes' == get_option( 'wfw-enable-pinterest-share' ) ) {
 								?>
 							<a class="mwb-wfw-share" id="mwb-wfw-share-pt" data-location="pinterest" href="http://pinterest.com/pin/create/button/?url=<?php echo esc_url( $page_link ); ?>&description=<?php echo esc_html( $wishlist_title ); ?>">
-								<i class="fab fa-pinterest"></i>
+								<svg width="15" height="15" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="wfw_pinterest">
+										<circle cx="16" cy="16" r="16" fill="#E60023"/>
+										<path d="M16.5 8C12.225 8 8 10.3298 8 14.1003C8 16.4982 9.65 17.8606 10.65 17.8606C11.0625 17.8606 11.3 16.9205 11.3 16.6548C11.3 16.3381 10.3125 15.6637 10.3125 14.3455C10.3125 11.607 12.8625 9.66557 16.1625 9.66557C19 9.66557 21.1 10.9837 21.1 13.4054C21.1 15.2141 20.2125 18.6065 17.3375 18.6065C16.3 18.6065 15.4125 17.9934 15.4125 17.1147C15.4125 15.8272 16.5125 14.5805 16.5125 13.2522C16.5125 10.9973 12.6 11.4061 12.6 14.1309C12.6 14.7032 12.6875 15.3367 13 15.8578C12.425 17.881 11.25 20.8954 11.25 22.9799C11.25 23.6237 11.3625 24.2572 11.4375 24.901C11.5792 25.0304 11.5083 25.0168 11.725 24.9521C13.825 22.6019 13.75 22.142 14.7 19.0663C15.2125 19.8634 16.5375 20.2925 17.5875 20.2925C22.0125 20.2925 24 16.7672 24 13.5894C24 10.2071 20.425 8 16.5 8Z" fill="white"/>
+								</svg>
 							</a>
 								<?php
 							}
@@ -156,10 +171,12 @@
 
 							<span href="" class="wfw_content_more">
 								<i class="fas fa-ellipsis-h"></i> <span><?php esc_html_e( 'More', 'wishlist-for-woo' ); ?></span>
+								<?php if ( ! empty( $products ) && is_array( $products ) ) : ?>
 								<ul class="wfw_content_more_link">
 									<li><a class="mwb-wfw-default" data-wId="<?php echo esc_html( $wid_to_show ); ?>" href="javascript:void(0);"><?php esc_html_e( 'Set as Default.', 'wishlist-for-woo' ); ?></a></li>
 									<li><a class="mwb-wfw-delete" data-wId="<?php echo esc_html( $wid_to_show ); ?>" href="javascript:void(0);"><?php esc_html_e( 'Delete List', 'wishlist-for-woo' ); ?></a></li>
 								</ul>
+								<?php endif; ?>
 							</span>
 						<?php endif; ?>
 						</div>
@@ -247,11 +264,9 @@
 								<li class="wfw_comment_message">
 									<label for="comments" class="wfw_comment_label"><?php esc_html_e( 'Comment', 'wishlist-for-woo' ); ?>
 									</label>
-									<p><textarea name="comment" cols="4" rows="5"></textarea>
+									<p><textarea name="comment" cols="4" rows="2"></textarea>
 									<input type="hidden" class="comment_product" name="product">
 									<input type="hidden" class="comment_wid" name="wid">
-									</p>
-									<p class="wfw_comment_remaining"><?php esc_html_e( 'Remaining : 250 characters', 'wishlist-for-woo' ); ?>
 									</p>
 									<div class="wfw_comment_priority">
 										<span>

@@ -56,9 +56,9 @@
                             <?php foreach ( $value['properties'] as $key => $prop ) : ?>
                                 <?php if( 'default' == $key ) : ?>
                                     <?php if( true == $prop ) : ?>
-                                        <span class="wfw-default-wishlist"><?php esc_html_e( 'Is Default', 'wishlist-for-woo' ); ?> &#9989;</span>
+                                        <span class="wfw-default-wishlist"><?php esc_html_e( 'Is Default', 'wishlist-for-woo' ); ?> <span class="wfw-tick">&#10003;</span></span>
                                         <?php else: ?>
-                                        <span class="wfw-default-wishlist"><?php esc_html_e( 'Is Default', 'wishlist-for-woo' ); ?> &#10062;</span>
+                                        <span class="wfw-default-wishlist"><?php esc_html_e( 'Is Default', 'wishlist-for-woo' ); ?> <span class="wfw-cross">&#10007;</span></span>
                                     <?php endif; ?>
                                     
                                 <?php elseif( 'comments' == $key && ! empty( $prop ) ) : ?>
@@ -67,8 +67,8 @@
                                         if( ! empty( $prop ) && is_array( $prop ) ) : ?>
                                             <?php foreach ( $prop as $pid => $comments ) : ?>
                                                 <p class="wfw-comments"><?php echo esc_html( get_the_title( $pid ) ); ?><p>
-                                                <span class="wfw-comments">&#9989; <?php esc_html_e( 'Comment', 'wishlist-for-woo' ); ?> : <?php echo esc_html( $comments[ 'comment' ] ); ?></span>
-                                                <span class="wfw-comments">&#9989; <?php esc_html_e( 'Priority', 'wishlist-for-woo' ); ?> : <?php echo esc_html( $comments[ 'priority' ] ); ?></span>
+                                                <span class="wfw-comments"> <span class="wfw-tick">&#10003;</span> <?php esc_html_e( 'Comment', 'wishlist-for-woo' ); ?> : <?php echo esc_html( $comments[ 'comment' ] ); ?></span>
+                                                <span class="wfw-comments"> <span class="wfw-tick">&#10003;</span> <?php esc_html_e( 'Priority', 'wishlist-for-woo' ); ?> : <?php echo esc_html( $comments[ 'priority' ] ); ?></span>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                 <?php endif; ?>

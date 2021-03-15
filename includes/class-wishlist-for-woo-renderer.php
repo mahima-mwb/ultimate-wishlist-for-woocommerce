@@ -137,32 +137,6 @@ class Wishlist_For_Woo_Renderer {
 		return ! empty( $all_hooks[ $template ][ $option ] ) ? $all_hooks[ $template ][ $option ] : array();
 	}
 
-	/**
- 	 *  Get hooks for Buttons implementation on shop.
-	 * 
-	 * @param 	Option   $option  The icon name in admin settings for unicode needs to be returned.
-	 * @throws 	Exception If something interesting cannot happen
-	 * @author 	MakeWebBetter <plugins@makewebbetter.com>
-	 * @return 	html unicode for the icon.
-	 */
-	public static function get_icon_unicode(  $option='' ) {
-		
-		/**
-		 * All options available for Product page.
-		 */
-		$unicodes = array(
-			'heart'		=>	esc_html( '&#xf004;' ),
-			'shopping'	=>	esc_html( '&#xf290;' ),
-			'cart'		=>	esc_html( '&#xf217;' ),
-			'star'		=>	esc_html( '&#xf005;' ),
-			'tag'		=>	esc_html( '&#xf02b;' ),
-			'thumbsup'  =>  esc_html( '&#xf087;' ),
-			'bell'		=>	esc_html( '&#xf0f3;' ),
-			'eye'		=>	esc_html( '&#xf06e;' ),
-		);
-
-		return ! empty( $unicodes[ $option ] ) ? $unicodes[ $option ] : '';
-	}
 
 	/**
  	 *  Returns HTML for wishlist Text Button.
@@ -214,7 +188,7 @@ class Wishlist_For_Woo_Renderer {
 	function return_wishlist_icon(){
 
 		$default_attr =  apply_filters( 'mwb_wfw_wishlist_attr', array(
-				'text'	=>	apply_filters( 'mwb_wfw_wishlist_icon', esc_attr( self::get_icon_unicode( get_option( 'wfw-icon-view', 'heart' ) ) ) ),
+				'text'	=>	apply_filters( 'mwb_wfw_wishlist_icon', get_option( 'wfw-icon-view', 'heart' ) ),
 				'extra_class'	=>	'',
 				'style'	=>	'',
 			)
@@ -236,7 +210,7 @@ class Wishlist_For_Woo_Renderer {
 		}
 
 		?>
-			<a href="javascript:void(0);" data-wishlist-id="<?php echo esc_attr( $wid ); ?>" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist <?php echo esc_attr( $is_active ); ?> mwb-wfw-loop-icon-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-icon <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><i class="fa mwb-wfw-icon"><?php echo esc_attr( $default_attr[ 'text' ] ); ?></i></a>
+			<a href="javascript:void(0);" data-wishlist-id="<?php echo esc_attr( $wid ); ?>" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist <?php echo esc_attr( $is_active ); ?> mwb-wfw-loop-icon-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-icon <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><img class="mwb-wfw-icon" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'public/icons/' . $default_attr[ 'text' ] . '.svg' ); ?>"></a>
 		<?php
 	}
 
