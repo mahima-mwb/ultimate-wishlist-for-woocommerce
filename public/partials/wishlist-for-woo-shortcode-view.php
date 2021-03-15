@@ -222,7 +222,7 @@
 										<?php echo $price_html; ?>
 										</span>	
 										<span class="item_detail">
-											<a id="wfw_get_details" href="javascript:void(0)" data-wId="<?php echo esc_html( $wid_to_show ); ?>" data-prod="<?php echo esc_html( $id ); ?>"><?php esc_html_e( 'Details', 'wishlist-for-woo' ); ?></a>
+											<a id="wfw_get_details" href="javascript:void(0)" data-wId="<?php echo esc_html( $wid_to_show ); ?>" data-prod="<?php echo esc_html( $id ); ?>"><?php esc_html_e( 'Comments', 'wishlist-for-woo' ); ?></a>
 										</span> 
 									</p>
 									<p class="item_desc">

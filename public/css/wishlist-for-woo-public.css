@@ -72,7 +72,7 @@ body .post-content p {
             Wishlist Button Styles at Loops
 ==============================================*/
 .add-to-wishlist.mwb-wfw-loop-icon-button {
-    top: 2px;
+    top: 10px;
     right: 10px;
     position: absolute;
     filter: grayscale(1);
@@ -669,6 +669,10 @@ span.mwb-wfw-wishlist-processing>i.fa.fa.fa-spinner.fa-spin {
 
 .mwb-wfw-icon:hover {
     opacity: 0.5;
+}
+
+.mwb-wfw-wishlist-item-img {
+    margin: auto;
 }
 
 /**
