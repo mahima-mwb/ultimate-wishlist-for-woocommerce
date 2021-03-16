@@ -57,6 +57,7 @@
 
 		<?php
 			// Wishlist to show content.
+			$default 			  = ! empty( $default ) ? $default : false;
 			$wid_to_show          = ! empty( $wid_to_show ) ? $wid_to_show : $default;
 			$wishlist_manager->id = $wid_to_show;
 			$search               = $wishlist_manager->retrieve();

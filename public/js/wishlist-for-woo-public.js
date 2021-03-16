@@ -19,12 +19,10 @@ jQuery(document).ready(function() {
 
     // Settings Pickups.
     let permalink = mwb_wfw_obj.permalink;
-   console.log( permalink )
+
     // Wishlist triggers/objects.
     let wishlistTrigger = jQuery( '.add-to-wishlist' );
     let wishlistPopup = jQuery( '.mwb-wfw-wishlist-dialog' );
-    let createWishlistTrigger = jQuery( '.create-new-list' );
-    let createWishlistPopup = jQuery( '.wfw-create-list-form' );
     let addWishlistMetaTrigger = jQuery( '.wfw-action-comment' );
     let addWishlistMetaPopup =  jQuery( '.wfw_comment_wrapper' );
 
@@ -202,7 +200,7 @@ jQuery(document).ready(function() {
 
         // Prepare dialog box first only for shop page.
         'shop' == location() && cloneProductDetails( product );
-
+console.log( location() ) 
         // Add product to current wishlist.
         addToWishlist( pId );
 

@@ -90,8 +90,8 @@ class Wishlist_For_Woo_Shortcode_Manager {
 		wc_get_template(
 			'partials/wishlist-for-woo-shortcode-view.php',
 			array(
-				'owner_lists'		=>	$owner_lists,
-				'access'			=>	$access,
+				'owner_lists'		=>	! empty( $owner_lists ) ? $owner_lists : array(),
+				'access'			=>	! empty( $access ) ? $access : false,
 				'wishlist_manager'	=>	$wishlist_manager,
 				'wid_to_show'		=>	$current_id
 			),

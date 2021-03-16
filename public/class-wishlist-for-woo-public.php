@@ -122,7 +122,7 @@ class Wishlist_For_Woo_Public {
 				'strings'   	=> $strings ? $strings : array(),
 				'settings'    	=> $settings ? $settings : array(),
 				'user'    		=> get_current_user_id(),
-				'permalink'     => get_page_link( get_option( 'wfw-selected-page', '' ) ),
+				'permalink'     => ! empty( get_option( 'wfw-selected-page', '' ) ) ? get_page_link( get_option( 'wfw-selected-page', '' ) ) : false,
 			)
 		);
 

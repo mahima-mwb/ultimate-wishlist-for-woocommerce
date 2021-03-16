@@ -29,7 +29,6 @@ class Wishlist_For_Woo_Template_Manager {
 
 		ob_start(); ?>
 		<!-- Header Section -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<main class="mwb-wfw-main">
@@ -87,7 +86,6 @@ class Wishlist_For_Woo_Template_Manager {
 		ob_start(); ?>
 
 		<div class="mwb-wfw-container">
-
 			<div class="mwb-wfw-row">
 				<?php  do_action( 'mwb_wfw_helpdesk' ); ?>
 				<div class="mwb-wfw-desc">
@@ -647,14 +645,31 @@ class Wishlist_For_Woo_Template_Manager {
 				<h2 class="mwb-wfw-subheading"><?php esc_html_e( 'Supported CRM Tools', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?></h2>
 				<div class="wfw_crm_config_options">
 					<div class="wfw_crm_config_options_icon simple">
-						<a href="<?php echo esc_url( esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ) ); ?>">
-							<img class="wfw_crm_tool_mautic" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/mautic-logo.png' ); ?>">
+						<a href="<?php echo esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ); ?>">
+							<img class="wfw_crm_tool_mautic" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/mautic-logo.svg' ); ?>">
 						</a>
+						<h3>Integration with Mautic for WooCommerce</h3>
+						<ul>
+							<li>Track and nurture your WooCommerce contacts</li>
+							<li>Create over 20 predefined custom fields to segregate your contacts</li>
+							<li>Sync your contacts data in real-time</li>
+							<li>Assign custom tags to your contacts using Mautic</li>
+							<li>Create high-converting marketing campaigns</li>
+							<li>Segment your contacts on their Recency, Frequency, and Monetary ratings</li>
+						</ul>
 					</div>
 					<div class="wfw_crm_config_options_icon simple">
-						<a href="<?php echo esc_url( esc_url( 'https://wordpress.org/plugins/makewebbetter-hubspot-for-woocommerce/' ) ); ?>">
+						<a href="<?php echo esc_url( 'https://wordpress.org/plugins/makewebbetter-hubspot-for-woocommerce/' ); ?>">
 							<img class="wfw_crm_tool_hubspot" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/hubspot-logo.svg' ); ?>">
 						</a>
+						<h3>HubSpot for WooCommerce</h3>
+						<ul>
+							<li>Sync your WooCommerce store data to HubSpot</li>
+							<li>Manage your customers and their orders in an easy-to-use CRM</li>
+							<li>Track and recover customers’ abandoned carts</li>
+							<li>Create and send beautiful, responsive emails to your leads and customers</li>
+							<li>Build advertising campaigns on Facebook, Instagram, LinkedIn, and Google</li>
+						</ul>
 					</div>
 				</div>
 			</div>

@@ -2,7 +2,8 @@
 
     $args = array(
         'post_type'      => 'product',
-        'product_status'    => 'public'
+        'product_status'    => 'public',
+        'posts_per_page'    => -1,
     );
 
     $datastore = array();

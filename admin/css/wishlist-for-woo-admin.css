@@ -31,7 +31,6 @@ main.mwb-wfw-main {
     margin-left: -19px;
 }
 
-
 /* HEADER SECTION START */
 
 .mwb-wfw-header {
@@ -590,7 +589,7 @@ h2.mwb-wfw-subheading {
 }
 
 .mwb-wfw-output-form tr>th {
-    flex: 0 0 225px;
+    flex: 0 0 237px;
     padding-right: 10px;
     padding-bottom: 25px;
     font-size: 12px;
@@ -604,6 +603,7 @@ h2.mwb-wfw-subheading {
 .mwb-wfw-output-form td>fieldset {
     display: flex;
     align-items: baseline;
+    margin-left: 30px;
 }
 
 .mwb-wfw-output-form .wfw_admin_subheading {
@@ -698,13 +698,17 @@ label[for=wfw-custom-notif-title]:before {
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: center;
-    min-height: 300px;
+    text-align: center;
 }
 
 .wfw_crm_config_options img {
-    width: auto;
-    max-height: 150px;
+    width: 100%;
     border-radius: 5px;
+}
+
+
+.wfw_crm_config_options_icon {
+    flex: 0 0 48%;
 }
 
 .wfw_crm_config_options img:hover {
@@ -747,6 +751,8 @@ label[for=wfw-custom-notif-title]:before {
 
 .mwb-table__wrapper>table {
     border: 2px solid #9B5C8F;
+    text-align: center;
+    color: #9B5C8F;
 }
 
 .mwb-table__wrapper>table tr {
@@ -772,12 +778,16 @@ label[for=wfw-custom-notif-title]:before {
 }
 
 .mwb-table__wrapper>table td:first-child {
-    color: #9B5C8F;
     font-weight: 600;
 }
 
 .mwb-table__wrapper>table td p:nth-child(even) {
     background-color: #e4dde3;
+}
+
+.mwb-table__wrapper>table td:last-child {
+    text-align: left;
+    padding-left: 15px;
 }
 
 .wfw-tick {
@@ -794,6 +804,29 @@ label[for=wfw-custom-notif-title]:before {
     max-width: 200px;
     overflow-wrap: anywhere;
 }
+
+.wfw_crm_config_options_icon h3 {
+    font-family: 'orbitronRegular', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: #9B5C8F;
+    margin: 25px auto;
+    line-height: 32px;
+    border-bottom: 1px solid;
+    padding: 0px 0 25px;
+}
+
+.wfw_crm_config_options_icon li {
+    font-family: 'orbitronRegular', sans-serif;
+    list-style-type: square;
+    color: #3a3a3a;
+    text-align: left;
+    margin:0 35px;
+    padding:5px 0;
+    max-width: 300px;
+}
+
 /* Media query start */
 
 @media only screen and (max-width:768px) {
@@ -878,6 +911,9 @@ label[for=wfw-custom-notif-title]:before {
         padding: 9px;
     }
 
+    .wfw_crm_config_options_icon {
+        flex: 0 0 100%;
+    }
 
     /* SIDEBAR SECTION  END */
 }

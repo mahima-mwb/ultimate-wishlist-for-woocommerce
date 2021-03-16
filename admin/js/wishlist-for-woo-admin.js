@@ -106,8 +106,6 @@ jQuery(document).ready(function() {
     function getCurrentScreens(hashScreen = false) {
 
         params = mwb_wfw_obj.params;
-        console.log( params.page );
-
         let defaultHash = '';
 
         switch ( params.page ) {
@@ -184,12 +182,10 @@ jQuery(document).ready(function() {
 
             // Alter tooltip html.
             let tooltip = jQuery( '.woocommerce-help-tip' );
-            let reformed_tip = '';
             tooltip.each( function() {
-                let data_tip = tooltip.attr( 'data-tip' );
+                let data_tip = jQuery( this ).attr( 'data-tip' );
                 reformed_tip = jQuery( this ).append( '<span class="woocommerce-help-tip-text">' + data_tip + '</span>' );
             });
-          //  jQuery( reformed_tip ).wrap( '<span class="woocommerce-help-tip-wrapper"></span>' );
 
             // Enable select2 fields.
             jQuery('.mwb-wfw-multi-select').select2();
