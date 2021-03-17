@@ -24,6 +24,9 @@
     font-display: swap;
 }
 
+.mwb-wfw-sidebar__links:first-child {
+    display: none;
+}
 
 /* font include end */
 

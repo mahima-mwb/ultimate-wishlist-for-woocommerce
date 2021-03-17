@@ -143,7 +143,7 @@ class Wishlist_For_Woo_Crud_Manager {
 
             $result = array(
                 'status'    => 404, 
-                'message'    => esc_html__( 'Invalid ID', WISHLIST_FOR_WOO_TEXTDOMAIN ), 
+                'message'    => esc_html__( 'Invalid ID', 'wishlist-for-woo' ), 
             );
 
             return $result;
@@ -184,7 +184,7 @@ class Wishlist_For_Woo_Crud_Manager {
 
             $result = array(
                 'status'    => 404, 
-                'message'    => esc_html__( 'Invalid ID', WISHLIST_FOR_WOO_TEXTDOMAIN ), 
+                'message'    => esc_html__( 'Invalid ID', 'wishlist-for-woo' ), 
             );
 
             return $result;
@@ -270,7 +270,7 @@ class Wishlist_For_Woo_Crud_Manager {
             if( empty( $this->id ) ) {
                 return array(
                     'status'    => 404, 
-                    'message'    => esc_html__( 'Id Not Found', WISHLIST_FOR_WOO_TEXTDOMAIN ), 
+                    'message'    => esc_html__( 'Id Not Found', 'wishlist-for-woo' ), 
                 );
             }
 
@@ -284,7 +284,7 @@ class Wishlist_For_Woo_Crud_Manager {
             if( ! empty( $wpdb->last_error ) || empty( $response ) ) {
                 $result = array(
                     'status'    => 400, 
-                    'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html__( 'Row Not Found', WISHLIST_FOR_WOO_TEXTDOMAIN ), 
+                    'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html__( 'Row Not Found', 'wishlist-for-woo' ), 
                 );
             }
     

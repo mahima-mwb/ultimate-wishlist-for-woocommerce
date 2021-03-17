@@ -108,7 +108,7 @@
 									<form id="wfw_email_invite_form" action="" method="post">
 										<input type="email" placeholder="Enter email here" name="wfw_invite_email" id="wfw_invite_email" value="" >
 										<input type="hidden" name="wfw_toshow_id" id="wfw_toshow_id" value="<?php echo esc_html( $wishlist_manager->id ); ?>" >
-										<input type="submit" name="wfw_invite_send_button" value="<?php esc_html_e( 'Send', WISHLIST_FOR_WOO_TEXTDOMAIN ); ?>" >
+										<input type="submit" name="wfw_invite_send_button" value="<?php esc_html_e( 'Send', 'wishlist-for-woo' ); ?>" >
 									</form>
 
 								</div>

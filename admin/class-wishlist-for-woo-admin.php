@@ -122,8 +122,8 @@ class Wishlist_For_Woo_Admin {
 					'params'               => map_deep( wp_unslash( $_GET ), 'sanitize_text_field' ),
 					'mobileView'           => wp_is_mobile(),
 					'authNonce'            => wp_create_nonce( 'mwb_wfw_nonce' ),
-					'notfoundErrorMessage' => esc_html__( 'Settings Panel Not Found.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-					'criticalErrorMessage' => esc_html__( 'Internal Server Error.', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+					'notfoundErrorMessage' => esc_html__( 'Settings Panel Not Found.', 'wishlist-for-woo' ),
+					'criticalErrorMessage' => esc_html__( 'Internal Server Error.', 'wishlist-for-woo' ),
 				)
 			);
 		}
@@ -189,29 +189,29 @@ class Wishlist_For_Woo_Admin {
 	public function add_config_menu() {
 
 		add_menu_page(
-			esc_html__( 'Wishlist For Woocommerce', WISHLIST_FOR_WOO_TEXTDOMAIN ),
-			esc_html__( 'Wishlist For Woocommerce', WISHLIST_FOR_WOO_TEXTDOMAIN ),
+			esc_html__( 'Wishlist For Woocommerce', 'wishlist-for-woo' ),
+			esc_html__( 'Wishlist For Woocommerce', 'wishlist-for-woo' ),
 			'manage_woocommerce',
 			'wfw-config-portal',
 			array( $this, 'add_config_screen' ),
-			'dashicons-yes-alt',
+			'dashicons-superhero',
 			57
 		);
 
 		/**
 		 * Add sub-menu for Configuration settings.
 		 */
-		add_submenu_page( 'wfw-config-portal', esc_html__( 'Configuration & Settings', WISHLIST_FOR_WOO_TEXTDOMAIN ), esc_html__( 'Configuration & Settings', WISHLIST_FOR_WOO_TEXTDOMAIN ), 'manage_options', 'wfw-config-portal' );
+		add_submenu_page( 'wfw-config-portal', esc_html__( 'Configuration & Settings', 'wishlist-for-woo' ), esc_html__( 'Configuration & Settings', 'wishlist-for-woo' ), 'manage_options', 'wfw-config-portal' );
 
 		/**
 		 * Add sub-menu for Reportings settings.
 		 */
-		add_submenu_page( 'wfw-config-portal', esc_html__( 'Performance Analytics', WISHLIST_FOR_WOO_TEXTDOMAIN ), esc_html__( 'Performance Analytics', WISHLIST_FOR_WOO_TEXTDOMAIN ), 'manage_options', 'wfw-performance-reporting', array( $this, 'add_reporting_screen' ) );
+		add_submenu_page( 'wfw-config-portal', esc_html__( 'Performance Analytics', 'wishlist-for-woo' ), esc_html__( 'Performance Analytics', 'wishlist-for-woo' ), 'manage_options', 'wfw-performance-reporting', array( $this, 'add_reporting_screen' ) );
 
 		/**
 		 * Add sub-menu for Plugin Overview.
 		 */
-		add_submenu_page( 'wfw-config-portal', esc_html__( 'Overview', WISHLIST_FOR_WOO_TEXTDOMAIN ), esc_html__( 'Overview', WISHLIST_FOR_WOO_TEXTDOMAIN ), 'manage_options', 'wfw-plugin-overview', array( $this, 'add_overview_screen' ) );
+		add_submenu_page( 'wfw-config-portal', esc_html__( 'Overview', 'wishlist-for-woo' ), esc_html__( 'Overview', 'wishlist-for-woo' ), 'manage_options', 'wfw-plugin-overview', array( $this, 'add_overview_screen' ) );
 	}
 
 
@@ -286,7 +286,7 @@ class Wishlist_For_Woo_Admin {
 			if( 404 == $content ) {
 				$result = array(
 					'status'  => 404,
-					'content' => esc_html__( 'Undefined Portal Encountered', WISHLIST_FOR_WOO_TEXTDOMAIN )
+					'content' => esc_html__( 'Undefined Portal Encountered', 'wishlist-for-woo' )
 				);
 			}
 			else {

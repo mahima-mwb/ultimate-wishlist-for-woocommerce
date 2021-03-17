@@ -149,8 +149,8 @@ class Wishlist_For_Woo_Renderer {
 
 		global $product;
 		$search_result = $this->does_wishlist_includes_product( $product->get_id() );
-		$accept_text = apply_filters( 'mwb_wfw_wishlist_accept_text', esc_html__( 'Add to Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN ) );
-		$remove_text = apply_filters( 'mwb_wfw_wishlist_remove_text', esc_html__( 'Remove from Wishlist', WISHLIST_FOR_WOO_TEXTDOMAIN ) );
+		$accept_text = apply_filters( 'mwb_wfw_wishlist_accept_text', esc_html__( 'Add to Wishlist', 'wishlist-for-woo' ) );
+		$remove_text = apply_filters( 'mwb_wfw_wishlist_remove_text', esc_html__( 'Remove from Wishlist', 'wishlist-for-woo' ) );
 
 		if( 200 == $search_result[ 'status' ] ) {
 			$wishlist = reset( $search_result[ 'message' ] );

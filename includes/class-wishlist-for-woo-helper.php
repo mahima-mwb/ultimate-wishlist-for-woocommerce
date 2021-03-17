@@ -40,7 +40,7 @@ class Wishlist_For_Woo_Helper {
 
             $result = array(
                 'status'    => 400, 
-                'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html( 'Settings Not Found. Please Save settings once again.', WISHLIST_FOR_WOO_TEXTDOMAIN ), 
+                'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html( 'Settings Not Found. Please Save settings once again.', 'wishlist-for-woo' ), 
             );
         }
 
