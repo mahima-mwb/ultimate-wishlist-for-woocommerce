@@ -822,9 +822,103 @@ label[for=wfw-custom-notif-title]:before {
     list-style-type: square;
     color: #3a3a3a;
     text-align: left;
-    margin:0 35px;
-    padding:5px 0;
+    margin: 0 35px;
+    padding: 5px 0;
     max-width: 300px;
+}
+
+/*=======================================
+        OVERVIEW PAGE STYLING
+=========================================*/
+.wfw-overview_wrapper {
+    font-family: 'orbitronRegular', sans-serif;
+    letter-spacing: 2px;
+    line-height: 1.25;
+}
+
+.wfw-overview_wrapper a:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.wfw-overview_wrapper p {
+    font-size: 12px;
+    color: #4d4d4d;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: #1a3365;
+}
+
+.wfw-overview_wrapper img {
+    width: 100%;
+}
+
+.wfw-overview_content {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 5px #cccccc;
+    margin-top: 10px;
+}
+
+.wfw-overview_content ul {
+    margin: 10px;
+}
+
+.wfw-overview_content li {
+    color: #9B5C8F;
+    list-style-type: square;
+    margin: 10px;
+}
+
+.wfw-overview_card h3 {
+    text-align: center;
+    font-size: 24px;
+}
+
+.wfw-overview_card ul {
+    display: flex;
+    text-align: center;
+}
+
+.wfw-overview_card li {
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 0 5px #cccccc;
+    width: 100%;
+    margin: 15px 10px 0;
+    border-radius: 5px;
+}
+
+.wfw-overview_card li:first-child {
+    margin-left: 0px;
+}
+
+.wfw-overview_card li:last-child {
+    margin-right: 0px;
+}
+
+.wfw-overview_card-item img {
+    width: 50%;
+}
+
+.wfw-overview_support-icon {
+    display: flex;
+}
+
+.wfw-overview_support-icon img {
+    width: 24px;
+    height: auto;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.wfw-overview_support {
+    border-top: 1px solid #1a3365;
+    margin-top: 20px;
 }
 
 /* Media query start */
@@ -913,6 +1007,17 @@ label[for=wfw-custom-notif-title]:before {
 
     .wfw_crm_config_options_icon {
         flex: 0 0 100%;
+    }
+
+    /*=======================================
+        OVERVIEW PAGE STYLING for Mobile
+    =========================================*/
+    .wfw-overview_card ul {
+        flex-wrap: wrap;
+    }
+
+    .wfw-overview_card li {
+        margin: 15px 0;
     }
 
     /* SIDEBAR SECTION  END */
