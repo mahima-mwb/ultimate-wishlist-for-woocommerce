@@ -85,12 +85,9 @@ jQuery(document).ready(function() {
         // If wishlist id is not available add to wishlist.
         else if ( null !=  productId ) {
             const product = obj.closest( 'li.product' );
+
             obj.addClass('active-wishlist');
-
-            if( product.length > 0 || 'single' == location() ) {                
-                triggerShowWishlist( productId, product );
-            }
-
+            triggerShowWishlist( productId, product );  
         } 
         else {
             triggerError();
@@ -142,6 +139,11 @@ jQuery(document).ready(function() {
 
     //  Pick product details from selected product and append to Wishlist.
     const cloneProductDetails = ( product ) => {
+
+        if( product.length == 0 ) {
+            console.error( 'Theme Issue:Unable to fetch product. Wishlist Popup wont be shown.' ); 
+            return;
+        }
         
         src = product.find( 'img' ).attr( 'src' );
         title = product.find( '.woocommerce-loop-product__title' ).clone();
@@ -198,14 +200,17 @@ jQuery(document).ready(function() {
     // Process to Show wishlist.
     const triggerShowWishlist = ( pId = '', product = {} ) => {
 
-        // Prepare dialog box first only for shop page.
-        'shop' == location() && cloneProductDetails( product );
-console.log( location() ) 
+        // Show Popup for wishlist selection.
+        if( 'yes' == settings.wfw_enable_popup )  {
+            // Prepare dialog box first only for shop page.
+            'shop' == location() && cloneProductDetails( product );
+        }
+
         // Add product to current wishlist.
         addToWishlist( pId );
 
-        // Show Popup for wishlist selection.
-        if( wishlistPopup.length ) {
+
+        if( product.length != 0 && wishlistPopup.length ) {
             wishlistPopup.dialog( 'open' );
         }
     }

@@ -263,7 +263,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc_tip'          => true,
 			'class'		        => 'mwb-wfw-select wfw-view-type-dependent',
 			'id'   				=> 'wfw-icon-view',
-			'value'   			=> get_option( 'wfw-icon-view-type', 'heart' ),
+			'value'   			=> get_option( 'wfw-icon-view', 'heart' ),
 			'custom_attributes' => array( 'dependent' => 'dependency-type-icon' ),
 		);
 
