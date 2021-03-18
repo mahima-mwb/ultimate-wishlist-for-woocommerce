@@ -87,6 +87,7 @@ body .post-content p {
 
 a.add-to-wishlist.mwb-wfw-loop-text-button.mwb-woocommerce-before-shop-loop-item-loop {
     margin-bottom: 5px;
+    max-width: unset;
 }
 
 a.add-to-wishlist.mwb-wfw-loop-text-button.mwb-woocommerce-after-shop-loop-item-loop {

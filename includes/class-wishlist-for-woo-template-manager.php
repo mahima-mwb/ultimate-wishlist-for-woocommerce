@@ -657,6 +657,9 @@ class Wishlist_For_Woo_Template_Manager {
 							<li>Create high-converting marketing campaigns</li>
 							<li>Segment your contacts on their Recency, Frequency, and Monetary ratings</li>
 						</ul>
+						<a class="mwb-wfw-cta" target="_blank" href="<?php echo esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ); ?>">
+							<?php esc_html_e( 'View Plugin Site', 'wishlist-for-woo' ); ?>
+						</a>
 					</div>
 					<div class="wfw_crm_config_options_icon simple">
 						<a href="<?php echo esc_url( 'https://wordpress.org/plugins/makewebbetter-hubspot-for-woocommerce/' ); ?>">
@@ -670,6 +673,9 @@ class Wishlist_For_Woo_Template_Manager {
 							<li>Create and send beautiful, responsive emails to your leads and customers</li>
 							<li>Build advertising campaigns on Facebook, Instagram, LinkedIn, and Google</li>
 						</ul>
+						<a class="mwb-wfw-cta" target="_blank" href="<?php echo esc_url( 'https://wordpress.org/plugins/makewebbetter-hubspot-for-woocommerce/' ); ?>">
+							<?php esc_html_e( 'View Plugin Site', 'wishlist-for-woo' ); ?>
+						</a>
 					</div>
 				</div>
 			</div>

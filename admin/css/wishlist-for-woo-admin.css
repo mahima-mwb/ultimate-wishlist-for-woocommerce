@@ -87,6 +87,15 @@ main.mwb-wfw-main {
     width: 25px;
 }
 
+a.mwb-wfw-cta {
+    color: #9B5C8F;
+    text-decoration: none;
+    font-size: 15px;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 3px 10px;
+}
+
 /*Remove focus*/
 .mwb-wfw-toggler__wrap .mwb-wfw-toggler:focus,
 .wfw_crm_config_options a:focus {
@@ -722,7 +731,7 @@ label[for=wfw-custom-notif-title]:before {
 .woocommerce-help-tip-text {
     font-size: 10px;
     display: none;
-    min-width: 100px;
+    min-width: 125px;
     width: 100%;
     position: absolute;
     text-align: center;
