@@ -700,7 +700,7 @@ label[for=wfw-custom-notif-title]:before {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: baseline;
     text-align: center;
 }
 
@@ -810,14 +810,14 @@ label[for=wfw-custom-notif-title]:before {
 
 .wfw_crm_config_options_icon h3 {
     font-family: 'orbitronRegular', sans-serif;
-    font-size: 32px;
+    font-size: 26px;
     letter-spacing: 2px;
     font-weight: 600;
     color: #9B5C8F;
     margin: 25px auto;
     line-height: 32px;
-    border-bottom: 1px solid;
     padding: 0px 0 25px;
+    border-bottom:1px solid;
 }
 
 .wfw_crm_config_options_icon li {

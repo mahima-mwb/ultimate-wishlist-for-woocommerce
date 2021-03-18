@@ -85,7 +85,7 @@ class Wishlist_For_Woo_Renderer {
 
 			'before_product_loop' => array(
 				'hook'			=>	'woocommerce_before_shop_loop_item',
-				'priority'			=>	'10',
+				'priority'			=>	'2',
 			),
 			'before_product_name' => array(
 				'hook'			=>	'woocommerce_shop_loop_item_title',

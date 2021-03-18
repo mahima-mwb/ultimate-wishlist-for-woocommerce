@@ -648,7 +648,7 @@ class Wishlist_For_Woo_Template_Manager {
 						<a href="<?php echo esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ); ?>">
 							<img class="wfw_crm_tool_mautic" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/mautic-logo.svg' ); ?>">
 						</a>
-						<h3>Integration with Mautic for WooCommerce</h3>
+						<h3>Mautic for WooCommerce</h3>
 						<ul>
 							<li>Track and nurture your WooCommerce contacts</li>
 							<li>Create over 20 predefined custom fields to segregate your contacts</li>

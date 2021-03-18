@@ -107,9 +107,11 @@ a.add-to-wishlist.mwb-wfw-loop-text-button.mwb-woocommerce-after-shop-loop-item-
     border: 2px solid #ffffff;
     border-radius: 5px;
     color: #ffffff;
+    max-width: 200px;
     display: block;
     margin: 2px;
     transition: all 0.2s ease-in-out;
+    text-align: center;
 }
 
 .add-to-wishlist.mwb-wfw-loop-text-button:hover {
