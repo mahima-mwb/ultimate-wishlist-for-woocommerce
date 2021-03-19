@@ -759,6 +759,10 @@ label[for=wfw-custom-notif-title]:before {
     display: block;
 }
 
+span.woocommerce-help-tip-text.wishlist-page-label {
+    min-width: 230px;
+}
+
 /*performance analytics*/
 
 .mwb-table__wrapper>table {

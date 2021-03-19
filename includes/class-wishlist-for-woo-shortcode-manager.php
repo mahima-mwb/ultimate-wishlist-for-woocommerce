@@ -59,7 +59,9 @@ class Wishlist_For_Woo_Shortcode_Manager {
 
 			$wishlist_manager->id = $current_id;	
 			$owner = $wishlist_manager->get_prop( 'owner' );
-			if( $owner == $user->user_email || in_array( $user->user_email, $collaborators ) ) {
+			$collaborators = $wishlist_manager->get_prop( 'collaborators' );
+
+			if( $owner == $user->user_email || ( is_array( $collaborators ) && in_array( $user->user_email, $collaborators ) ) ) {
 				$access = 'edit';
 			}
 			else {

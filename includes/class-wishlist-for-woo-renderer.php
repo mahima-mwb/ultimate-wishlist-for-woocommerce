@@ -173,8 +173,15 @@ class Wishlist_For_Woo_Renderer {
 			)
 		);
 
+		    $cate = get_queried_object();
+		    if( is_shop() ){
+		  		$default_attr[ 'extra_class' ] = 'mwb-wfw-loop-button';
+		    }
+
 		?>
 		<a href="javascript:void(0);" data-wishlist-id="<?php echo esc_attr( $wid ); ?>" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist <?php echo esc_attr( $is_active ); ?> mwb-wfw-loop-text-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-loop <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><?php echo esc_attr( $default_attr[ 'text' ] ); ?></a>
+
+		<a href="javascript:void(0);"class="processing-button"><img class="mwb-wfw-processing-icon" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'public/icons/processing.gif' ); ?>"></a>
 		<?php
 	}	
 

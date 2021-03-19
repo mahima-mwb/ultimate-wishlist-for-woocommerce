@@ -243,7 +243,7 @@
 									<p class="action_delete" id="wfw_del_prod_frm_wishlist" data-wId="<?php echo esc_html( $wid_to_show ); ?>" data-prod="<?php echo esc_html( $id ); ?>"  >
 										<?php esc_html_e( 'Delete', 'wishlist-for-woo' ); ?>
 									</p>
-									<p><a href="javascript:void(0);" data-wId=<?php echo esc_html( $wid_to_show ); ?> data-prod=<?php echo esc_html( $id ); ?> class="wfw-action-comment"><?php esc_html_e( 'Add comment, quantity & priority', 'wishlist-for-woo' ); ?></a></p>
+									<p><a href="javascript:void(0);" data-wId=<?php echo esc_html( $wid_to_show ); ?> data-prod=<?php echo esc_html( $id ); ?> class="wfw-action-comment"><?php esc_html_e( 'Add comment & priority', 'wishlist-for-woo' ); ?></a></p>
 									<?php endif; ?>
 								</div>
 							</li>
@@ -257,7 +257,7 @@
 				<div class="wfw_comment_wrapper">
 					<div class="wfw_comment">
 						<div class="wfw_comment_head">
-							<span><?php esc_html_e( 'Add comment, quantity & priority', 'wishlist-for-woo' ); ?></span>
+							<span><?php esc_html_e( 'Add comment & priority', 'wishlist-for-woo' ); ?></span>
 							<a href="javascript:void(0);" class="wfw_comment_close">+</a>
 						</div>
 						<form class="add-meta-to-wishlist" action="#" method="post">
@@ -265,7 +265,7 @@
 								<li class="wfw_comment_message">
 									<label for="comments" class="wfw_comment_label"><?php esc_html_e( 'Comment', 'wishlist-for-woo' ); ?>
 									</label>
-									<p><textarea name="comment" cols="4" rows="2"></textarea>
+									<p><textarea name="comment" required="required" cols="4" rows="2"></textarea>
 									<input type="hidden" class="comment_product" name="product">
 									<input type="hidden" class="comment_wid" name="wid">
 									</p>
