@@ -184,7 +184,10 @@ jQuery(document).ready(function() {
             let tooltip = jQuery( '.woocommerce-help-tip' );
             tooltip.each( function() {
                 let data_tip = jQuery( this ).attr( 'data-tip' );
-                reformed_tip = jQuery( this ).append( '<span class="woocommerce-help-tip-text">' + data_tip + '</span>' );
+                let label = jQuery( this ).closest( 'label' );
+                labelclass = label.text().replace(/\s+/g, '-').toLowerCase() + 'label';
+
+                reformed_tip = jQuery( this ).append( '<span class="woocommerce-help-tip-text ' + labelclass + '">' + data_tip + '</span>' );
             });
 
             // Enable select2 fields.

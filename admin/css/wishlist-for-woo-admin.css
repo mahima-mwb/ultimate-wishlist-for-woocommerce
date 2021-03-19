@@ -722,7 +722,7 @@ label[for=wfw-custom-notif-title]:before {
 .woocommerce-help-tip-text {
     font-size: 10px;
     display: none;
-    min-width: 100px;
+    min-width: 125px;
     width: 100%;
     position: absolute;
     text-align: center;
@@ -748,6 +748,10 @@ label[for=wfw-custom-notif-title]:before {
 
 .woocommerce-help-tip:hover>.woocommerce-help-tip-text {
     display: block;
+}
+
+span.woocommerce-help-tip-text.wishlist-page-label {
+    min-width: 230px;
 }
 
 /*performance analytics*/

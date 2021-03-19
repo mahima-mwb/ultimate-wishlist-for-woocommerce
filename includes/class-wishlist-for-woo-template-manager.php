@@ -328,7 +328,7 @@ class Wishlist_For_Woo_Template_Manager {
 		$settings[] = array(
 			'title'    => esc_html__( 'Wishlist Page', 'wishlist-for-woo' ),
 			'type'     => 'select',
-			'desc'     => esc_html__( 'Select the page where wishlist should be shown/handled.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Select the page where wishlist should be shown/handled. Wishlist page required shortcode as [mwb_wfw_wishlist]', 'wishlist-for-woo' ),
 			'options'  => $page_option,
 			'desc_tip' => true,
 			'class'	   => 'mwb-wfw-select mwb-wfw-select-page',

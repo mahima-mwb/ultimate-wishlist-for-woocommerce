@@ -70,10 +70,9 @@ jQuery(document).ready(function() {
     const processWishtlist = ( obj ) => {
         productId = obj.data( 'product-id' );
         wishlistId = obj.data( 'wishlist-id' ) ? obj.data( 'wishlist-id' ) : obj.attr( 'data-wishlist-id' );
+        
+        // Add a flag.
         obj.addClass( 'current-trigger' );
-        if( obj.hasClass( 'mwb-wfw-loop-text-button' ) ) {
-            obj.prop( "disabled", true );
-        }
 
         // If wishlist id is available remove from wishlist.
         if( null != wishlistId && '' != wishlistId ) {
@@ -87,8 +86,8 @@ jQuery(document).ready(function() {
             const product = obj.closest( 'li.product' );
 
             obj.addClass('active-wishlist');
-            triggerShowWishlist( productId, product );  
-        } 
+            triggerShowWishlist( productId, product ); 
+        }
         else {
             triggerError();
         }
@@ -109,7 +108,7 @@ jQuery(document).ready(function() {
     }
 
     // Error Trigger process.
-    const triggerError = ( msg='Something Went Wrong' ) => {
+    const triggerError = ( msg='Something Went Wrong. Please Reload.' ) => {
         swal( 'Oopss...', msg, 'error' );
     }
 
@@ -191,8 +190,12 @@ jQuery(document).ready(function() {
                 let trigger = jQuery('.current-trigger');
                 if( trigger.hasClass( 'mwb-wfw-loop-text-button' ) ) {
                     trigger.text( strings.add_to_wishlist );
-                    trigger.prop( "disabled", false );
+                    trigger.next( '.processing-button' ).css( 'display', 'none' );
+                    trigger.show();
                 }
+            }
+            else {
+                triggerError();
             }
         } );
     }
@@ -209,7 +212,6 @@ jQuery(document).ready(function() {
         // Add product to current wishlist.
         addToWishlist( pId );
 
-
         if( product.length != 0 && wishlistPopup.length ) {
             wishlistPopup.dialog( 'open' );
         }
@@ -218,18 +220,16 @@ jQuery(document).ready(function() {
     // Process the Async Output.
     const processResponse = ( response ) => {
         response = JSON.parse( response );
-        const processingIcon = jQuery( '.mwb-wfw-wishlist-processing' );
         if( 200 == response.status ) {
             let trigger = jQuery('.current-trigger');
             trigger.attr( 'data-wishlist-id', response.id );
             if( trigger.hasClass( 'mwb-wfw-loop-text-button' ) ) {
                 trigger.text( strings.remove_from_wishlist );
-                trigger.prop( "disabled", false );
+                trigger.next( '.processing-button' ).css( 'display', 'none' );
+                trigger.show();            
             }
-
-            processingIcon.remove();
         } else {
-            processingIcon.text( response.message );
+            triggerError();
         }
     }
 
@@ -279,6 +279,8 @@ jQuery(document).ready(function() {
         }
         else {
             wishlistTrigger.removeClass( 'current-trigger' );
+            jQuery( this ).hide();
+            jQuery( this ).next( '.processing-button' ).css( 'display', 'block' );
             processWishtlist( jQuery( this ) );
         }
     });

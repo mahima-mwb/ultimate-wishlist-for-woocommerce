@@ -87,6 +87,11 @@ body .post-content p {
 
 a.add-to-wishlist.mwb-wfw-loop-text-button.mwb-woocommerce-before-shop-loop-item-loop {
     margin-bottom: 5px;
+    max-width: unset;
+}
+img.mwb-wfw-processing-icon {
+    margin: auto !important;
+    width: 30px;
 }
 
 a.add-to-wishlist.mwb-wfw-loop-text-button.mwb-woocommerce-after-shop-loop-item-loop {
@@ -103,15 +108,27 @@ a.add-to-wishlist.mwb-wfw-loop-text-button.mwb-woocommerce-after-shop-loop-item-
 ==============================================*/
 .add-to-wishlist.mwb-wfw-loop-text-button {
     background-color: #9b5c8f;
-    padding: 5px;
     border: 2px solid #ffffff;
     border-radius: 5px;
+    padding: 5px;
     color: #ffffff;
     max-width: 200px;
     display: block;
     margin: 2px;
     transition: all 0.2s ease-in-out;
     text-align: center;
+}
+
+ .processing-button {
+    background-color: #9b5c8f;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    color: #ffffff;
+    display: block;
+    margin: 2px;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    display: none;
 }
 
 .add-to-wishlist.mwb-wfw-loop-text-button:hover {
