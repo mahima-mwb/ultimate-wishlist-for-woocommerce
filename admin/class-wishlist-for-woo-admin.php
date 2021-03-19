@@ -432,13 +432,7 @@ class Wishlist_For_Woo_Admin {
 
             if( ! empty( $checkbox_settings[ $screen ] ) && is_array( $checkbox_settings[ $screen ] ) ) {
                 foreach ( $checkbox_settings[ $screen ] as $key => $data_key ) {
-
-                    if( ! empty( $formdata[ $data_key ] ) ) {
-                        $formdata[ $data_key ] = 'yes';
-                    }
-                    else {
-                        $formdata[ $data_key ] = '';
-                    }
+                    $formdata[ $data_key ] = ! empty( $formdata[ $data_key ] ) ? 'yes' : 'no';
                 }
             }
 

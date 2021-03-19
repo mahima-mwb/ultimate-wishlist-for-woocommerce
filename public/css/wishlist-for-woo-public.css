@@ -44,6 +44,7 @@ body .post-content p {
     display: flex;
     width: 100%;
     justify-content: center;
+    align-items: baseline;
 }
 
 #wfw_invite_email {
@@ -52,6 +53,7 @@ body .post-content p {
     border-radius: 2px;
     color: #1a3365;
     margin-right: 20px;
+    padding: 10px;
 }
 
 #wfw_invite_email:focus,
@@ -85,22 +87,10 @@ body .post-content p {
     color: rgb(233, 17, 17);
 }
 
-a.add-to-wishlist.mwb-wfw-loop-text-button.mwb-woocommerce-before-shop-loop-item-loop {
-    margin-bottom: 5px;
-    max-width: unset;
-}
 img.mwb-wfw-processing-icon {
     margin: auto !important;
-    width: 30px;
-}
-
-a.add-to-wishlist.mwb-wfw-loop-text-button.mwb-woocommerce-after-shop-loop-item-loop {
-    margin-top: -16px;
-    margin-bottom: 6px;
-}
-
-.single-product div.product .woocommerce-product-gallery .woocommerce-product-gallery__trigger {
-    left: .875em !important;
+    width: 30px !important;
+    height: 30px !important;
 }
 
 /*============================================== 
@@ -114,20 +104,20 @@ a.add-to-wishlist.mwb-wfw-loop-text-button.mwb-woocommerce-after-shop-loop-item-
     color: #ffffff;
     max-width: 200px;
     display: block;
-    margin: 2px;
     transition: all 0.2s ease-in-out;
     text-align: center;
+    margin: 10px 2px;
 }
 
- .processing-button {
+.processing-button {
     background-color: #9b5c8f;
     border: 2px solid #ffffff;
     border-radius: 5px;
     color: #ffffff;
-    display: block;
     margin: 2px;
     transition: all 0.2s ease-in-out;
     text-align: center;
+    max-width: 200px;
     display: none;
 }
 
@@ -322,18 +312,19 @@ main button:focus,
 }
 
 .wfw_content-right {
-    display: flex;
-    padding: 5px 10px;
-    justify-content: space-between;
     border-bottom: 1px solid #f2f2f2;
+    display: flex;
     font-size: 13px;
+    justify-content: space-between;
+    padding: 5px 10px;
 }
 
 .wfw_content-right_item {
+    align-items: flex-start;
     display: flex;
+    font-size: 12px;
     justify-content: space-between;
     padding: 5px;
-    font-size: 12px;
     transition: all 0.2s ease-in-out;
 }
 
@@ -399,14 +390,13 @@ main button:focus,
 
 .wfw_content-right_item-desc {
     flex: 0 0 50%;
-    padding: 3px;
+    padding: 10px;
 }
 
 .wfw_content-right_item-action {
     padding: 3px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
 }
 
 .wfw_content-right_item-img a {
@@ -493,7 +483,7 @@ main button:focus,
     top: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    z-index: 999;
+    z-index: 99999;
 
 }
 
@@ -513,6 +503,10 @@ main button:focus,
     background-color: #ffffff;
     padding: 10px;
     color: #000;
+}
+
+.add-meta-to-wishlist {
+    padding: 10px;
 }
 
 .wfw_comment_head {
@@ -563,6 +557,8 @@ main button:focus,
     border-radius: 5px;
     box-shadow: 0px 0px 9px -4px #a2a2a2 inset;
     min-height: 100px;
+    color: #1a3365;
+    padding: 10px;
 }
 
 .wfw_comment_priority select,
@@ -577,6 +573,7 @@ main button:focus,
     padding: 0px 5px;
     border-radius: 2px;
     font-size: 14px;
+    color: #1a3365;
 }
 
 .wfw_comment_buttons {
@@ -588,7 +585,7 @@ main button:focus,
 
 #wfw_email_invite_form input[name='wfw_invite_send_button'],
 .wfw_comment_cancel,
-.mwb-wfw-wishlist-action-buttons a,
+.mwb-wfw-wishlist-item .mwb-wfw-wishlist-action-buttons a,
 .wfw_comment_save {
     background-color: #1a3365;
     border: 2px solid #1a3365;
@@ -606,16 +603,31 @@ main button:focus,
     width: 100%;
 }
 
-.wfw_comment_cancel,
-.mwb-wfw-wishlist-action-buttons a:last-child {
+.mwb-wfw-wishlist-item .mwb-wfw-wishlist-action-buttons a.mwb-wfw-action-button:last-child {
     background-color: #fff;
     border: 2px solid #1a3365;
     color: #1a3365;
+    max-width: 200px;
+    width: 100%;
+    display: inline-block;
+    padding: 5px 10px;
+    text-align: center;
 }
 
-.mwb-wfw-wishlist-action-buttons a {
+.wfw_comment_cancel {
+    background-color: #fff;
+    border: 2px solid #1a3365;
+    color: #1a3365;
+    text-align: center;
+}
+
+.mwb-wfw-wishlist-item .mwb-wfw-wishlist-action-buttons a {
     margin: 10px 10px 0 0;
     max-width: 150px;
+}
+
+.mwb-wfw-wishlist-item .mwb-wfw-wishlist-action-buttons a:after {
+    display: none;
 }
 
 .wfw_comment_message label {
@@ -692,6 +704,7 @@ span.mwb-wfw-wishlist-processing>i.fa.fa.fa-spinner.fa-spin {
 
 .mwb-wfw-wishlist-item-img {
     margin: auto;
+    width: 50%;
 }
 
 /**
@@ -715,12 +728,8 @@ span.mwb-wfw-wishlist-processing>i.fa.fa.fa-spinner.fa-spin {
 
 @media screen and (max-width: 768px) {
 
-    .wfw_content-right {
-        flex-wrap: wrap;
-    }
-
-    .wfw_content-right_head {
-        flex: 0 0 100%;
+    .wfw_more_links {
+        flex: 0 0 48%;
     }
 
     .wfw_content-right_item:hover {
@@ -732,7 +741,8 @@ span.mwb-wfw-wishlist-processing>i.fa.fa.fa-spinner.fa-spin {
         flex-wrap: wrap;
         display: flex;
         flex-direction: column;
-        text-align: left;
+        align-items: center;
+        text-align: center;
     }
 
     .wfw_content-right_item-img {
@@ -745,5 +755,10 @@ span.mwb-wfw-wishlist-processing>i.fa.fa.fa-spinner.fa-spin {
 
     .wfw_content-right_item-action {
         max-width: 250px;
+    }
+
+    .wfw_show_details {
+        padding: 5px;
+        clip-path: unset;
     }
 }

@@ -222,8 +222,11 @@ jQuery(document).ready(function() {
         response = JSON.parse( response );
         if( 200 == response.status ) {
             let trigger = jQuery('.current-trigger');
+            let processingIcon = jQuery('.mwb-wfw-wishlist-processing');
+
             trigger.attr( 'data-wishlist-id', response.id );
             if( trigger.hasClass( 'mwb-wfw-loop-text-button' ) ) {
+                processingIcon.hide();
                 trigger.text( strings.remove_from_wishlist );
                 trigger.next( '.processing-button' ).css( 'display', 'none' );
                 trigger.show();            
@@ -279,8 +282,12 @@ jQuery(document).ready(function() {
         }
         else {
             wishlistTrigger.removeClass( 'current-trigger' );
-            jQuery( this ).hide();
-            jQuery( this ).next( '.processing-button' ).css( 'display', 'block' );
+
+            if( jQuery( this ).hasClass( 'mwb-wfw-loop-text-button' ) ) {
+                jQuery( this ).hide();
+                jQuery( this ).next( '.processing-button' ).css( 'display', 'flex' );
+            }
+
             processWishtlist( jQuery( this ) );
         }
     });
@@ -306,6 +313,16 @@ jQuery(document).ready(function() {
 
         e.preventDefault();
         data = jQuery(this).serializeArray();
+
+        for (var i = data.length - 1; i >= 0; i--) {
+            
+            if (!data[i].value.replace(/\s/g, '').length) {
+              triggerError( 'Comment only contains whitespace (ie. spaces, tabs or line breaks)' );
+              addWishlistMetaPopup.hide();
+              return;
+            }
+        }
+
         let input = {
             nonce: mwb_wfw_obj.auth_nonce,
             action : 'UpdateWishlistMeta',
