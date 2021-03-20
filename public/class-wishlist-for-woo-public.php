@@ -332,6 +332,7 @@ class Wishlist_For_Woo_Public {
 					$wishlist_manager->id = $wid;
 					$products = $wishlist_manager->get_prop( 'products' );
 					$products = $products ? $products : array();
+					$products = ! is_array( $products ) ? json_decode( json_encode( $products ), true ) : $products;
 			
 					array_push( $products, $pid );
 

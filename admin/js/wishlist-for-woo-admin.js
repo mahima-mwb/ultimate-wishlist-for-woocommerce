@@ -16,6 +16,21 @@ jQuery(document).ready(function() {
     const cancelButton = jQuery('.mwb-wfw_cancel-link');    
     const saveUpdates = ( data ) => {
         savetext.addClass( 'is-hidden' );
+
+        let defaultHash = '';
+
+        switch ( params.page ) {
+            case 'wfw-config-portal':
+                defaultHash = '#general';
+                break;
+            case 'wfw-performance-reporting':
+                defaultHash = '#wishlist_base';
+                break;
+            default:
+                defaultHash = '#overview';
+                break;
+        }
+
         return jQuery.ajax({
             type: 'post',
             dataType: 'json',
@@ -24,7 +39,7 @@ jQuery(document).ready(function() {
                 nonce: mwb_wfw_obj.authNonce,
                 action: 'saveFormOutput',
                 data: data,
-                screen : window.location.hash
+                screen : window.location.hash.length ? window.location.hash : defaultHash
             },
             success: function(result) {
                 savetext.removeClass( 'is-hidden' );
@@ -33,7 +48,7 @@ jQuery(document).ready(function() {
                 }, 2000 );
 
                 if ( 200 == result.status ) {
-                   var screen = window.location.hash;
+                   var screen = window.location.hash.length ? window.location.hash : defaultHash;
                     if ( '#push_notify' == screen ) {
                         jQuery.ajax({
                             type: 'post',
