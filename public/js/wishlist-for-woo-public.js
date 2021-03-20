@@ -68,8 +68,8 @@ jQuery(document).ready(function() {
 
     // Wishlist process :: Product Add/Remove.
     const processWishtlist = ( obj ) => {
-        productId = obj.data( 'product-id' );
-        wishlistId = obj.data( 'wishlist-id' ) ? obj.data( 'wishlist-id' ) : obj.attr( 'data-wishlist-id' );
+        productId = obj.attr( 'data-product-id' );
+        wishlistId = obj.attr( 'data-wishlist-id' );
         
         // Add a flag.
         obj.addClass( 'current-trigger' );
@@ -84,7 +84,6 @@ jQuery(document).ready(function() {
         // If wishlist id is not available add to wishlist.
         else if ( null !=  productId ) {
             const product = obj.closest( 'li.product' );
-
             obj.addClass('active-wishlist');
             triggerShowWishlist( productId, product ); 
         }
@@ -146,7 +145,7 @@ jQuery(document).ready(function() {
         
         src = '';
         product.find( 'img' ).map(function() { 
-            if( -1 == this.src.search("wishlist-for-woo/public/icons/processing.gif") ) {
+            if( -1 == this.src.search("/wishlist-for-woo/public/icons/") ) {
                 src = this.src;
             }
         });
@@ -237,6 +236,7 @@ jQuery(document).ready(function() {
                 trigger.next( '.processing-button' ).css( 'display', 'none' );
                 trigger.show();            
             }
+            processingIcon.hide();
         } else {
             triggerError();
         }
@@ -401,10 +401,9 @@ jQuery(document).ready(function() {
         let result = doAjax( data );
 
         result.then( ( response ) => {
-            
             jQuery(this).after('<div class="wfw_show_details">' + response.message + '</div>');
         });
-    } );
+    });
 
     // Add to cart wishlist product
     jQuery( document ).on( 'click', '#wfw_add_to_cart', function(e) {
@@ -480,6 +479,7 @@ jQuery(document).ready(function() {
         let result = doAjax( data );
 
         result.then( (response) => {
+
             if ( true == response.status ) {
                jQuery( '.wfw_list_item_' + pro_id ).remove();
             } else {

@@ -378,11 +378,11 @@ class Wishlist_For_Woo_Public {
 			$wishlist_manager->id = $wid;
 
 			$products = $wishlist_manager->get_prop( 'products' );
+			$products = ! empty( $products ) ? $products : array();
 			$products = ! is_array( $products ) ? json_decode( json_encode( $products ), true ) : $products;
-
+	
 			if( ! empty( $products ) ) {
 
-		
 				$found = array_search( $pid, $products );
 
 				if( false !== $found ) {
@@ -634,6 +634,8 @@ class Wishlist_For_Woo_Public {
 			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $wid );
 
 			$products = $wishlist_manager->get_prop( 'products' );
+			$products = ! empty( $products ) ? $products : array();
+			$products = ! is_array( $products ) ? json_decode( json_encode( $products ), true ) : $products;
 
 			if ( ! empty( $products ) && is_array( $products ) ) {
 
@@ -708,6 +710,8 @@ class Wishlist_For_Woo_Public {
 			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $wid );
 
 			$products = $wishlist_manager->get_prop( 'products' );
+			$products = ! empty( $products ) ? $products : array();
+			$products = ! is_array( $products ) ? json_decode( json_encode( $products ), true ) : $products;
 
 			if ( ! empty( $products ) && is_array( $products ) ) {
 
@@ -768,6 +772,8 @@ class Wishlist_For_Woo_Public {
 			$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance( $wid );
 
 			$products = $wishlist_manager->get_prop( 'products' );
+			$products = ! empty( $products ) ? $products : array();
+			$products = ! is_array( $products ) ? json_decode( json_encode( $products ), true ) : $products;
 
 			if ( ! empty( $products ) && is_array( $products ) ) {
 

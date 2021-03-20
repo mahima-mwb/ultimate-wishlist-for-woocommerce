@@ -328,7 +328,7 @@ class Wishlist_For_Woo_Template_Manager {
 		$settings[] = array(
 			'title'    => esc_html__( 'Wishlist Page', 'wishlist-for-woo' ),
 			'type'     => 'select',
-			'desc'     => esc_html__( 'Select the page where wishlist should be shown/handled. Wishlist page required shortcode as [mwb_wfw_wishlist]', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Select the page where view wishlist button should redirect. Wishlist page requires shortcode as [mwb_wfw_wishlist]', 'wishlist-for-woo' ),
 			'options'  => $page_option,
 			'desc_tip' => true,
 			'class'	   => 'mwb-wfw-select mwb-wfw-select-page',
@@ -642,36 +642,35 @@ class Wishlist_For_Woo_Template_Manager {
 		?>
 		<div id="mfw_crm_config_wrapper">
 			<div id="wfw_crm_configurations">
-				<h2 class="mwb-wfw-subheading"><?php esc_html_e( 'Supported CRM Tools', 'wishlist-for-woo' ); ?></h2>
+				<h2 class="mwb-wfw-subheading"><?php esc_html_e( 'Supported CRM Tools - Premium Feature', 'wishlist-for-woo' ); ?></h2>
 				<div class="wfw_crm_config_options">
 					<div class="wfw_crm_config_options_icon simple">
 						<a href="<?php echo esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ); ?>">
 							<img class="wfw_crm_tool_mautic" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/mautic-logo.svg' ); ?>">
 						</a>
-						<h3>Mautic for WooCommerce</h3>
+						<h3><?php esc_html_e( 'Mautic for WooCommerce', 'wishlist-for-woo' ); ?></h3>
 						<ul>
-							<li>Track and nurture your WooCommerce contacts</li>
-							<li>Create over 20 predefined custom fields to segregate your contacts</li>
-							<li>Sync your contacts data in real-time</li>
-							<li>Assign custom tags to your contacts using Mautic</li>
-							<li>Create high-converting marketing campaigns</li>
-							<li>Segment your contacts on their Recency, Frequency, and Monetary ratings</li>
+							<li><?php esc_html_e( 'Track and nurture your WooCommerce contacts', 'wishlist-for-woo' ); ?></li>
+
+							<li><?php esc_html_e( 'Create over 20 predefined custom fields to segregate your contacts', 'wishlist-for-woo' ); ?></li>
+							<li><?php esc_html_e( 'Sync your contacts data in real-time', 'wishlist-for-woo' ); ?></li>
+							<li><?php esc_html_e( 'Assign custom tags to your contacts using Mautic', 'wishlist-for-woo' ); ?></li>
+							<li><?php esc_html_e( 'Create high-converting marketing campaigns', 'wishlist-for-woo' ); ?></li>
+							<li><?php esc_html_e( 'Segment your contacts on their Recency, Frequency, and Monetary ratings', 'wishlist-for-woo' ); ?></li>
 						</ul>
-						<a class="mwb-wfw-cta" target="_blank" href="<?php echo esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ); ?>">
-							<?php esc_html_e( 'View Plugin Site', 'wishlist-for-woo' ); ?>
-						</a>
+						<a class="mwb-wfw-cta" target="_blank" href="<?php echo esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ); ?>"><?php esc_html_e( 'View Plugin Site', 'wishlist-for-woo' ); ?></a>
 					</div>
 					<div class="wfw_crm_config_options_icon simple">
 						<a href="<?php echo esc_url( 'https://wordpress.org/plugins/makewebbetter-hubspot-for-woocommerce/' ); ?>">
 							<img class="wfw_crm_tool_hubspot" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/hubspot-logo.svg' ); ?>">
 						</a>
-						<h3>HubSpot for WooCommerce</h3>
+						<h3><?php esc_html_e( 'HubSpot for WooCommerce', 'wishlist-for-woo' ); ?></h3>
 						<ul>
-							<li>Sync your WooCommerce store data to HubSpot</li>
-							<li>Manage your customers and their orders in an easy-to-use CRM</li>
-							<li>Track and recover customers’ abandoned carts</li>
-							<li>Create and send beautiful, responsive emails to your leads and customers</li>
-							<li>Build advertising campaigns on Facebook, Instagram, LinkedIn, and Google</li>
+							<li><?php esc_html_e( 'Sync your WooCommerce store data to HubSpot', 'wishlist-for-woo' ); ?></li>
+							<li><?php esc_html_e( 'Manage your customers and their orders in an easy-to-use CRM', 'wishlist-for-woo' ); ?></li>
+							<li><?php esc_html_e( 'Track and recover customers’ abandoned carts', 'wishlist-for-woo' ); ?></li>
+							<li><?php esc_html_e( 'Create and send beautiful, responsive emails to your leads and customers', 'wishlist-for-woo' ); ?></li>
+							<li><?php esc_html_e( 'Build advertising campaigns on Facebook, Instagram, LinkedIn, and Google', 'wishlist-for-woo' ); ?></li>
 						</ul>
 						<a class="mwb-wfw-cta" target="_blank" href="<?php echo esc_url( 'https://wordpress.org/plugins/makewebbetter-hubspot-for-woocommerce/' ); ?>">
 							<?php esc_html_e( 'View Plugin Site', 'wishlist-for-woo' ); ?>
