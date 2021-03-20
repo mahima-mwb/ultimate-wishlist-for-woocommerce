@@ -613,16 +613,27 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc'     => esc_html__( 'Send automated emails to wishlist owners.', 'wishlist-for-woo' ),
 		);
 
-			// Toggle :: Enable/Disable instock notifications.
-			$settings[] = array(
-				'title'    => esc_html__( 'In-stock Notification', 'wishlist-for-woo' ),
-				'class'    => 'mwb-wfw-toggle-checkbox',
-				'type'     => 'checkbox',
-				'desc_tip' => true,
-				'value'    => get_option( 'wfw-enable-instock-notif', '' ),
-				'id'       => 'wfw-enable-instock-notif',
-				'desc'     => esc_html__( 'Enable/Disable in-stock notifications functionality.', 'wishlist-for-woo' ),
-			);
+		// Toggle :: Enable/Disable instock notifications.
+		$settings[] = array(
+			'title'    => esc_html__( 'In-stock Notification', 'wishlist-for-woo' ),
+			'class'    => 'mwb-wfw-toggle-checkbox',
+			'type'     => 'checkbox',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-instock-notif', '' ),
+			'id'       => 'wfw-enable-instock-notif',
+			'desc'     => esc_html__( 'Enable/Disable in-stock notifications functionality.', 'wishlist-for-woo' ),
+		);
+
+		// Toggle :: Enable/Disable instock notifications.
+		$settings[] = array(
+			'title'    => esc_html__( 'Delete Data/Wishlist at uninstall', 'wishlist-for-woo' ),
+			'class'    => 'mwb-wfw-toggle-checkbox',
+			'type'     => 'checkbox',
+			'desc_tip' => true,
+			'value'    => get_option( 'wfw-enable-instock-notif', '' ),
+			'id'       => 'wfw-enable-instock-notif',
+			'desc'     => esc_html__( 'On uninstalling the plugin all the settings and users wishlist will be deleted.', 'wishlist-for-woo' ),
+		);
 
 		$settings[] = array(
 			'type' => 'sectionend',

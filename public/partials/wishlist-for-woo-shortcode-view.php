@@ -172,12 +172,10 @@
 
 							<span href="" class="wfw_content_more">
 								<i class="fas fa-ellipsis-h"></i> <span><?php esc_html_e( 'More', 'wishlist-for-woo' ); ?></span>
-								<?php if ( ! empty( $products ) && is_array( $products ) ) : ?>
 								<ul class="wfw_content_more_link">
 									<li><a class="mwb-wfw-default" data-wId="<?php echo esc_html( $wid_to_show ); ?>" href="javascript:void(0);"><?php esc_html_e( 'Set as Default.', 'wishlist-for-woo' ); ?></a></li>
 									<li><a class="mwb-wfw-delete" data-wId="<?php echo esc_html( $wid_to_show ); ?>" href="javascript:void(0);"><?php esc_html_e( 'Delete List', 'wishlist-for-woo' ); ?></a></li>
 								</ul>
-								<?php endif; ?>
 							</span>
 						<?php endif; ?>
 						</div>
