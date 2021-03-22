@@ -6,7 +6,7 @@
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
- * @package    Wishlist_For_Woo
+ * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/public
  */
 
@@ -16,7 +16,7 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Wishlist_For_Woo
+ * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/public
  * @author     MakeWebBetter <https://makewebbetter.com>
  */

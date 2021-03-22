@@ -59,10 +59,9 @@ jQuery(document).ready(function() {
                             },
                             success : function(result) {
                                 if ( false == result.status ) {
-                                    
                                     swal( 'Opps!!', result.message, 'error' );
                                     jQuery( '#wfw-enable-push-notif' ).trigger('click');
-                                    saveButton.click();
+                                    saveButton.trigger('click');
                                 }
                             }
                         });
@@ -281,14 +280,12 @@ jQuery(document).ready(function() {
         jQuery( '.' + id + '-dependent'  ).closest('tr').hide();
         jQuery( '[ dependent="dependency-type-' + val + '" ]' ).closest('tr').show();
     }
+
+    // toggle Helpdesk
+    jQuery('.mwb-wfw-helpdesk__icon img').on('click', function() {
+        jQuery('.mwb-wfw-desc').toggleClass('mwb-wfw-over');
+    })
+
 // End of scripts.
-
-
-
-// designer
-// toggle Helpdesk
-jQuery('.mwb-wfw-helpdesk__icon img').click(function(){
-    jQuery('.mwb-wfw-desc').toggleClass('mwb-wfw-over');
-})
 });
 

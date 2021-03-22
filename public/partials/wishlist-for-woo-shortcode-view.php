@@ -7,7 +7,7 @@
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
- * @package    Wishlist_For_Woo
+ * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/public/partials
  */
 

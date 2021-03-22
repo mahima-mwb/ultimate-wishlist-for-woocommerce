@@ -10,19 +10,23 @@
  *
  * @link              https://makewebbetter.com
  * @since             1.0.0
- * @package           Wishlist_Fsd ador_Woo
+ * @package           wishlist-for-woo
  *
  * @wordpress-plugin
- * Plugin Name:       Wishlist for Woocommerce
- * Plugin URI:        https://wordpress.org/plugins/wishlist-for-woo/
- * Description:       Wishes and purchases are like ZERO and ONE of the shopping journeys respectively. This plugin helps you to turn this ZERO into ONE.
- * Version:           1.0.0
- * Author:            MakeWebBetter
- * Author URI:        https://makewebbetter.com
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       wishlist-for-woo
- * Domain Path:       /languages
+ * Plugin Name:       		Wishlist for Woocommerce
+ * Plugin URI:        		https://wordpress.org/plugins/wishlist-for-woo/
+ * Description:       		Wishes and purchases are like ZERO and ONE of the shopping journeys respectively. This plugin helps you to turn this ZERO into ONE.
+ * Version:           		1.0.0
+ * Requires at least:		4.4
+ * Tested up to: 			5.7
+ * WC requires at least:	3.0
+ * WC tested up to: 		5.1.0
+ * Author:            		MakeWebBetter
+ * Author URI:        		https://makewebbetter.com
+ * License:           		GPL-3.0
+ * License URI:       		http://www.gnu.org/licenses/gpl-3.0.txt
+ * Text Domain:       		wishlist-for-woo
+ * Domain Path:       		/languages
  */
 
 // If this file is called directly, abort.

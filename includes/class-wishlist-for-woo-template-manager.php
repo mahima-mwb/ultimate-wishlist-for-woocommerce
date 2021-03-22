@@ -5,7 +5,7 @@
  *
  *
  * @since      1.0.0
- * @package    Wishlist_For_Woo
+ * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/includes
  * @author     MakeWebBetter <https://makewebbetter.com>
  */

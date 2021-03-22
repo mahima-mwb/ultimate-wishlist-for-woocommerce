@@ -4,7 +4,7 @@
  *
  *
  * @since      1.0.0
- * @package    Wishlist_For_Woo
+ * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/includes
  * @author     MakeWebBetter <https://makewebbetter.com>
  */
@@ -151,7 +151,15 @@ class Wishlist_For_Woo_Renderer {
 		$search_result = $this->does_wishlist_includes_product( $product->get_id() );
 		$accept_text = apply_filters( 'mwb_wfw_wishlist_accept_text', esc_html__( 'Add to Wishlist', 'wishlist-for-woo' ) );
 		$remove_text = apply_filters( 'mwb_wfw_wishlist_remove_text', esc_html__( 'Remove from Wishlist', 'wishlist-for-woo' ) );
-
+		$image_id  = $product->get_image_id();
+		$image_url = '';
+		
+		if( empty( $image_id ) ) {
+			$image_url = wc_placeholder_img_src();
+		}
+		else {
+			$image_url = wp_get_attachment_image_url( $image_id );
+		}
 		if( 200 == $search_result[ 'status' ] ) {
 			$wishlist = reset( $search_result[ 'message' ] );
 			$wid = $wishlist[ 'id' ] ? $wishlist[ 'id' ] : '';
@@ -180,7 +188,7 @@ class Wishlist_For_Woo_Renderer {
 
 		?>
 		<a href="javascript:void(0);" data-wishlist-id="<?php echo esc_attr( $wid ); ?>" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist <?php echo esc_attr( $is_active ); ?> mwb-wfw-loop-text-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-loop <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><?php echo esc_attr( $default_attr[ 'text' ] ); ?></a>
-
+		<input type="hidden" class="mwb-wfw-product-image" value="<?php echo esc_url( $image_url ); ?>">
 		<a href="javascript:void(0);"class="processing-button"><img class="mwb-wfw-processing-icon" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'public/icons/processing.gif' ); ?>"></a>
 		<?php
 	}	
@@ -204,6 +212,16 @@ class Wishlist_For_Woo_Renderer {
 		global $product;
 		$search_result = $this->does_wishlist_includes_product( $product->get_id() );
 
+		$image_id  = $product->get_image_id();
+		$image_url = '';
+		
+		if( empty( $image_id ) ) {
+			$image_url = wc_placeholder_img_src();
+		}
+		else {
+			$image_url = wp_get_attachment_image_url( $image_id );
+		}
+
 		// Wishlist Exists? 
 		if( 200 == $search_result['status'] ) {
 
@@ -217,6 +235,7 @@ class Wishlist_For_Woo_Renderer {
 		}
 
 		?>
+			<input type="hidden" class="mwb-wfw-product-image" value="<?php echo esc_url( $image_url ); ?>">
 			<a href="javascript:void(0);" data-wishlist-id="<?php echo esc_attr( $wid ); ?>" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr[ 'style' ] ); ?>" class="add-to-wishlist <?php echo esc_attr( $is_active ); ?> mwb-wfw-loop-icon-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-icon <?php echo esc_attr( $default_attr[ 'extra_class' ] ); ?>"><img class="mwb-wfw-icon" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'public/icons/' . $default_attr[ 'text' ] . '.svg' ); ?>"></a>
 		<?php
 	}

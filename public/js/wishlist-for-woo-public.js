@@ -143,14 +143,9 @@ jQuery(document).ready(function() {
             return;
         }
 
-        let images = product.find( 'img' );
-        for (var i = images.length - 1; i >= 0; i--) {
+        let images = product.find( '.mwb-wfw-product-image' );
+        src = images.val();
 
-            if( -1 == jQuery(images[i]).attr('src').search("/wishlist-for-woo/public/icons/") ) {
-                src = jQuery(images[i]).attr('src');
-                break;
-            }
-        }
         title = product.find( '.woocommerce-loop-product__title' ).clone();
         priceHtml = product.find( 'span.price' ).clone();
         addToCartButton = product.find( 'a.add_to_cart_button' ).clone();

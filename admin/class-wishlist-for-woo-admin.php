@@ -5,7 +5,7 @@
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
- * @package    Wishlist_For_Woo
+ * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/admin
  */
 
@@ -15,7 +15,7 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Wishlist_For_Woo
+ * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/admin
  * @author     MakeWebBetter <https://makewebbetter.com>
  */

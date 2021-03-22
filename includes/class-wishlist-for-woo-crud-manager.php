@@ -6,7 +6,7 @@
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
- * @package    Wishlist_For_Woo
+ * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/includes
  */
 
@@ -17,7 +17,7 @@
  * API Docs here : https://docs.google.com/document/d/17K510j0YKeqwQc03a5kjP6e_OI88SSTUTqGygDNhfR8/edit?usp=sharing
  *
  * @since      1.0.0
- * @package    Wishlist_For_Woo
+ * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/includes
  * @author     MakeWebBetter <https://makewebbetter.com>
  */
