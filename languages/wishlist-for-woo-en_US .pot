@@ -593,7 +593,7 @@ msgid "Send Custom notifications."
 msgstr ""
 
 #: includes/class-wishlist-for-woo-template-manager.php:518
-msgid "Enter custom noitification title. "
+msgid "Enter custom notification title. "
 msgstr ""
 
 #: includes/class-wishlist-for-woo-template-manager.php:523
@@ -601,7 +601,7 @@ msgid "URL"
 msgstr ""
 
 #: includes/class-wishlist-for-woo-template-manager.php:529
-msgid "Enter custom noitification URL. "
+msgid "Enter custom notification URL. "
 msgstr ""
 
 #: includes/class-wishlist-for-woo-template-manager.php:534
@@ -609,7 +609,7 @@ msgid "Message"
 msgstr ""
 
 #: includes/class-wishlist-for-woo-template-manager.php:540
-msgid "Enter custom noitification message. "
+msgid "Enter custom notification message. "
 msgstr ""
 
 #: includes/class-wishlist-for-woo-template-manager.php:545
@@ -617,7 +617,7 @@ msgid "Image"
 msgstr ""
 
 #: includes/class-wishlist-for-woo-template-manager.php:551
-msgid "Enter custom noitification image. "
+msgid "Enter custom notification image. "
 msgstr ""
 
 #: includes/class-wishlist-for-woo-template-manager.php:573

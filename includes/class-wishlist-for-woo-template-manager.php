@@ -515,7 +515,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-custom-notif-title', '' ),
 			'id'       => 'wfw-custom-notif-title',
-			'desc'     => esc_html__( 'Enter custom noitification title. ', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enter custom notification title. ', 'wishlist-for-woo' ),
 		);
 
 		// Input :: Custom notfications URL.
@@ -526,7 +526,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-custom-notif-url', '' ),
 			'id'       => 'wfw-custom-notif-url',
-			'desc'     => esc_html__( 'Enter custom noitification URL. ', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enter custom notification URL. ', 'wishlist-for-woo' ),
 		);
 
 		// Input :: Custom notfications Message.
@@ -537,7 +537,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-custom-notif-msg', '' ),
 			'id'       => 'wfw-custom-notif-msg',
-			'desc'     => esc_html__( 'Enter custom noitification message. ', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enter custom notification message. ', 'wishlist-for-woo' ),
 		);
 
 		// Input :: Custom notfications Image.
@@ -548,7 +548,7 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-custom-notif-img', '' ),
 			'id'       => 'wfw-custom-notif-img',
-			'desc'     => esc_html__( 'Enter custom noitification image. ', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enter custom notification image. ', 'wishlist-for-woo' ),
 		);
 
 		$settings[] = array(
