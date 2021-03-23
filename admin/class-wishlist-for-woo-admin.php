@@ -479,7 +479,7 @@ class Wishlist_For_Woo_Admin {
 			} else {
 				$result = array(
 					'status'  => true,
-					'message' => esc_html__( 'File moved succesfully', 'wishlist_for_woo' ),
+					'message' => esc_html__( 'File moved successfully', 'wishlist_for_woo' ),
 				);
 			}
 		}
