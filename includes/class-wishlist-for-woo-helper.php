@@ -30,10 +30,10 @@ class Wishlist_For_Woo_Helper {
 	public static function get_settings() {
 
         global $wpdb;
-        $get_query = "SELECT `option_name`, `option_value`, `option_id`
+        $get_query = $wpdb->prepare("SELECT `option_name`, `option_value`, `option_id`
         FROM `wp_options`
-        WHERE `option_name` LIKE '%wfw-%'";
-
+        WHERE `option_name` LIKE '%wfw-%'");
+ 
         $response = $wpdb->get_results( $get_query, ARRAY_A );
 
         if( ! empty( $wpdb->last_error ) || empty( $response ) ) {
@@ -77,6 +77,7 @@ class Wishlist_For_Woo_Helper {
 	/**
 	 * Get options settings from db.
 	 *
+     * @param $result The resultive data.
 	 * @since    1.0.0
 	 */
     public static function format_sql_result( $result=array() ) {
@@ -96,6 +97,8 @@ class Wishlist_For_Woo_Helper {
 	/**
 	 * Get encrypt/decrypt form of strings.
 	 *
+     * @param $string The string to encryt.
+     * @param $action action to perform.
 	 * @since    1.0.0
 	 */
     public static function encrypter( $string, $action = 'e' ) {

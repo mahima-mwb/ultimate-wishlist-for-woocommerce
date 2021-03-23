@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a admin area view for the plugin
  *
@@ -11,9 +10,9 @@
  * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/admin/partials
  */
-?>
 
-<!-- Add required templates -->
+?>
+<!-- Add required templates. -->
 <?php do_action( 'mwb_wfw_header_start' ); ?>
 <?php do_action( 'mwb_wfw_nav_tab' ); ?>
 <?php do_action( 'mwb_wfw_output_screen' ); ?>

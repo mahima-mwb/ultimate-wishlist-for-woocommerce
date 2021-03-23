@@ -184,7 +184,6 @@ class Wishlist_For_Woo_Admin {
      *  Add a admin menu for accessing plugin features.
      *
      * @author MakeWebBetter <plugins@makewebbetter.com>
-     * @return void
      */
     public function add_config_menu() {
 
@@ -220,7 +219,6 @@ class Wishlist_For_Woo_Admin {
      *
      * @throws $error If something interesting cannot happen while registering the portal.
      * @author MakeWebBetter <plugins@makewebbetter.com>
-     * @return void
      */
     public function add_config_screen() {
 
@@ -237,7 +235,6 @@ class Wishlist_For_Woo_Admin {
      *
      * @throws $error If something interesting cannot happen while registering the portal.
      * @author MakeWebBetter <plugins@makewebbetter.com>
-     * @return void
      */
     public function add_reporting_screen() {
 
@@ -254,7 +251,6 @@ class Wishlist_For_Woo_Admin {
      *
      * @throws $error If something interesting cannot happen while registering the portal.
      * @author MakeWebBetter <plugins@makewebbetter.com>
-     * @return void
      */
     public function add_overview_screen() {
 
@@ -278,7 +274,7 @@ class Wishlist_For_Woo_Admin {
         // Nonce verification.
         check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
 
-        $hashScreen = ! empty( $_POST['hashScreen'] ) ? str_replace( '#', '', $_POST['hashScreen'] ) : false;
+        $hashScreen = ! empty( $_POST['hashScreen'] ) ? str_replace( '#', '', sanitize_text_field( wp_unslash( $_POST['hashScreen'] ) ) ) : false;
 
         try {
 
@@ -424,7 +420,8 @@ class Wishlist_For_Woo_Admin {
         );
 
         $formdata = array();
-        isset( $_POST['data'] ) ? parse_str( sanitize_text_field( $_POST['data'] ), $formdata ) : '';
+        
+        isset( $_POST['data'] ) ? parse_str( sanitize_text_field( wp_unslash( $_POST['data'] ) ), $formdata ) : '';
         $formdata = ! empty( $formdata ) ? map_deep( wp_unslash( $formdata ), 'sanitize_text_field' ) : false;
         $screen = ! empty( $_POST[ 'screen' ] ) ? str_replace( '#', '', sanitize_text_field( wp_unslash( $_POST[ 'screen' ] ) ) ) : false;
 

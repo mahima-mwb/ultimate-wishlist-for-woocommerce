@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The core plugin templates are handled here.
  *
@@ -8,6 +7,7 @@
  * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/includes
  * @author     MakeWebBetter <https://makewebbetter.com>
+ * 
  */
 class Wishlist_For_Woo_Template_Manager {
 
@@ -23,11 +23,10 @@ class Wishlist_For_Woo_Template_Manager {
  	 *  Add a header panel for all screens in plugin.
 	 *
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return html
 	 */
 	public function render_header_content_start() {
 
-		ob_start(); ?>
+		?>
 		<!-- Header Section -->
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,18 +36,18 @@ class Wishlist_For_Woo_Template_Manager {
 				<span class="mwb-wfw-version"><?php echo sprintf( 'v%s', esc_html( WISHLIST_FOR_WOO_VERSION ) ); ?></span>
 			</header>
 			<!-- End of Header Section -->
-		<?php echo ob_get_clean();
+		<?php 
 	}
 
 	/**
  	 *  Add a header panel for all screens in plugin.
 	 *
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return html
+	 * @return html.
 	 */
 	public function render_navigation_tab() {
 		
-		ob_start(); ?>
+		?>
 		<!-- Tabs Section -->
 		<nav class="mwb-wfw-navbar">
 			<div class="mwb-wfw-toggler__wrap">
@@ -72,7 +71,7 @@ class Wishlist_For_Woo_Template_Manager {
 			</div>
 		</nav>
 		<!-- End of Tabs Section -->
-		<?php echo ob_get_clean();	
+		<?php 	
 	}
 
 	/**
@@ -83,7 +82,7 @@ class Wishlist_For_Woo_Template_Manager {
 	 */
 	public function render_settings_screen() {
 		
-		ob_start(); ?>
+		?>
 
 		<div class="mwb-wfw-container">
 			<div class="mwb-wfw-row">
@@ -97,7 +96,7 @@ class Wishlist_For_Woo_Template_Manager {
 				</div>
 			</div>
 		</div>
-		<?php echo ob_get_clean();
+		<?php
 	}
 
 	/**
@@ -108,7 +107,7 @@ class Wishlist_For_Woo_Template_Manager {
 	 */
 	public function render_helpdesk_sidebar() {
 		
-		ob_start(); ?>
+		?>
 		   <div class="mwb-wfw-sidebar">
 				<div class="mwb-wfw-helpdesk__icon">
 					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/customer-service-icon.jpg' ) ?>" class="mwb-wfw-helpdesk-btn" />
@@ -124,7 +123,7 @@ class Wishlist_For_Woo_Template_Manager {
 					<a href="https://join.skype.com/invite/IKVeNkLHebpC" class="mwb-wfw-skype__icon"><img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/skype_logo.png' ) ?>" alt="skype-log"><span>connect</span></a>
 				</div>
 			</div>
-		<?php echo ob_get_clean();
+		<?php
 	}	
 
 	/**
@@ -135,7 +134,7 @@ class Wishlist_For_Woo_Template_Manager {
 	 */
 	public function render_header_content_end() {
 		
-		ob_start(); ?>
+		 ?>
 		<!-- Header Section -->
 			<div class="mwb-wfw_save-wrapper is-hidden">
 				<span><a href="javascript:void(0);" class="mwb-wfw_save-link"><?php esc_html_e( 'SAVE', 'wishlist-for-woo' ); ?></a>
@@ -144,7 +143,7 @@ class Wishlist_For_Woo_Template_Manager {
 			</div>
 		</main>
 		<!-- End of Header Section -->
-		<?php echo ob_get_clean();
+		<?php
 	}
 
 	/**
@@ -155,7 +154,7 @@ class Wishlist_For_Woo_Template_Manager {
 	 */
 	public function retrieve_nav_tabs() {
 
-		$current_screen = ! empty( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : false;
+		$current_screen = ! empty( $_GET[ 'page' ] ) ? sanitize_text_field( wp_unslash( $_GET[ 'page' ] ) ) : false;
 		switch ( $current_screen ) {
 			case 'wfw-config-portal':
 				$tabs = array(
@@ -314,7 +313,7 @@ class Wishlist_For_Woo_Template_Manager {
 
 		global $wpdb;
 
-		$sql           = "SELECT `ID` FROM `wp_posts` WHERE `post_content` LIKE '%[mwb_wfw_wishlist]%' AND `post_type` = 'page' AND `post_status` = 'publish'";
+		$sql           = $wpdb->prepare( "SELECT `ID` FROM `wp_posts` WHERE `post_content` LIKE '%[mwb_wfw_wishlist]%' AND `post_type` = 'page' AND `post_status` = 'publish'" );
 		$wishlist_page = $wpdb->get_results( $sql );
 		$page_option   = array();
 
@@ -700,6 +699,8 @@ class Wishlist_For_Woo_Template_Manager {
  	 *  Get all templates of other Tab.
 	 *
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
+	 * @param $template_name The slug for template
+	 * @param $base_path The base path to include.
 	 * @return html Buffered html.
 	 */
 	public static function get_template_sections( $template_name = false, $base_path=false ) {

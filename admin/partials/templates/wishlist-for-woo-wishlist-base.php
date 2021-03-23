@@ -1,4 +1,14 @@
 <?php
+/**
+ * The admin-specific functionality of the plugin. Wishlist reporting file used to show wishlists based performance.
+ *
+ * @link       https://makewebbetter.com
+ * @since      1.0.0
+ *
+ * @package    wishlist-for-woo
+ * @subpackage Wishlist_For_Woo/admin/partials/templates
+ */
+
     $manager = Wishlist_For_Woo_Crud_Manager::get_instance();
     $response = $manager->get_all();
     $all_wishlists = 200 == $response[ 'status' ] ? $response[ 'response' ] : false;
@@ -31,8 +41,8 @@
                         <td><?php echo esc_html( $value['id'] ) ?></td>
                         <td><?php echo esc_html( $value['title'] ) ?></td>
                         <td>
-                            <?php foreach ( $value['products'] as $key => $id ) : ?>
-                               <p><?php echo esc_html( get_the_title( $id ) ); ?><p>
+                            <?php foreach ( $value['products'] as $key => $_id ) : ?>
+                               <p><?php echo esc_html( get_the_title( $_id ) ); ?><p>
                             <?php endforeach; ?>
                         </td>
                         <td><?php echo esc_html( $value['createdate'] ) ?></td>
@@ -65,10 +75,10 @@
                                     <?php 
                                         $prop = ! is_array( $prop ) ? json_decode( json_encode( $prop ), true ) : $prop; 
                                         if( ! empty( $prop ) && is_array( $prop ) ) : ?>
-                                            <?php foreach ( $prop as $pid => $comments ) : ?>
+                                            <?php foreach ( $prop as $pid => $_comments ) : ?>
                                                 <p class="wfw-comments"><?php echo esc_html( get_the_title( $pid ) ); ?><p>
-                                                <span class="wfw-comments"> <span class="wfw-tick">&#10003;</span> <?php esc_html_e( 'Comment', 'wishlist-for-woo' ); ?> : <?php echo esc_html( $comments[ 'comment' ] ); ?></span>
-                                                <span class="wfw-comments"> <span class="wfw-tick">&#10003;</span> <?php esc_html_e( 'Priority', 'wishlist-for-woo' ); ?> : <?php echo esc_html( $comments[ 'priority' ] ); ?></span>
+                                                <span class="wfw-comments"> <span class="wfw-tick">&#10003;</span> <?php esc_html_e( 'Comment', 'wishlist-for-woo' ); ?> : <?php echo esc_html( $_comments[ 'comment' ] ); ?></span>
+                                                <span class="wfw-comments"> <span class="wfw-tick">&#10003;</span> <?php esc_html_e( 'Priority', 'wishlist-for-woo' ); ?> : <?php echo esc_html( $_comments[ 'priority' ] ); ?></span>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                 <?php endif; ?>

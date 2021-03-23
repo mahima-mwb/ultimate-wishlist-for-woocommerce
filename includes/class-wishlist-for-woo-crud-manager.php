@@ -61,6 +61,7 @@ class Wishlist_For_Woo_Crud_Manager {
 	 * Ensures only one instance of Wishlist_For_Woo_Crud_Manager is loaded or can be loaded.
 	 *
 	 * @since 1.0.0
+     * @param $id The id of wishlist.
 	 * @static
 	 * @return Wishlist_For_Woo_Crud_Manager - Main instance.
 	 */
@@ -79,6 +80,7 @@ class Wishlist_For_Woo_Crud_Manager {
 	 *
 	 * @since 1.0.0
 	 * @static
+     * @param $id The id of wishlist.
 	 * @return Wishlist_For_Woo_Crud_Manager - Retrieved instance.
 	 */
 	public function __construct( $id=null ) {
@@ -93,6 +95,7 @@ class Wishlist_For_Woo_Crud_Manager {
 	 * Create new wishlist.
 	 *
 	 * @since 1.0.0
+     * @param $atts The attributes array of wishlist.
 	 * @return array $result the result of insertion query.
 	 */
     public function create( $atts=array() ) {
@@ -176,6 +179,7 @@ class Wishlist_For_Woo_Crud_Manager {
 	 * Create new wishlist.
 	 *
 	 * @since 1.0.0
+     * @param $atts The attributes array of wishlist.
 	 * @return array $result the result of insertion query.
 	 */
     public function update( $atts=array() ) {
@@ -201,7 +205,7 @@ class Wishlist_For_Woo_Crud_Manager {
         unset( $atts[ 'createdate' ] );
 
         // Add last modified date.
-        $atts[ 'modifieddate' ] = date( "Y-m-d h:i:s" );
+        $atts[ 'modifieddate' ] = gmdate( "Y-m-d h:i:s" );
 
         $args = self::parse_query_args( $atts );
 
@@ -237,9 +241,9 @@ class Wishlist_For_Woo_Crud_Manager {
     /**
 	 * Parse data in required format.
 	 *
-     * @param $key string    
-     * @param $value string 
-     * @param $args array 
+     * @param $key string     The key for query.
+     * @param $value string   The value for query.
+     * @param $args array     The args for query optional.
 	 * @since 1.0.0
 	 * @return array $result the parsed data from query.
 	 */
@@ -251,9 +255,8 @@ class Wishlist_For_Woo_Crud_Manager {
         if ( ! empty( $key ) && ! empty( $value ) ) {
 
             $operator = in_array( $key, $this->array_entries ) ? 'REGEXP' : '=';
-            $get_query = "SELECT id FROM `$this->table_name` WHERE `$key` $operator '$value'";
-
-            if( ! empty( $additional ) && is_array( $additional ) ) {
+            $get_query = $wpdb->prepare("SELECT id FROM `$this->table_name` WHERE `$key` $operator '$value'");
+            if (!empty($additional) && is_array($additional)) {
 
                 foreach ( $additional as $key => $value ) {
                     $operator = in_array( $key, $this->array_entries ) ? 'REGEXP' : '=';
@@ -267,7 +270,7 @@ class Wishlist_For_Woo_Crud_Manager {
 
         else {
 
-            if( empty( $this->id ) ) {
+            if (empty($this->id)) {
                 return array(
                     'status'    => 404, 
                     'message'    => esc_html__( 'Id Not Found', 'wishlist-for-woo' ), 
@@ -275,10 +278,10 @@ class Wishlist_For_Woo_Crud_Manager {
             }
 
             // Get all current users wishlists.
-            $get_query = "SELECT * FROM `$this->table_name` WHERE `id` = '$this->id'"; 
+            $get_query = $wpdb->prepare("SELECT * FROM `$this->table_name` WHERE `id` = '$this->id'");
         }
 
-        if( ! empty( $get_query ) ) {
+        if (!empty($get_query)) {
             $response = $wpdb->get_results( $get_query, ARRAY_A );
 
             if( ! empty( $wpdb->last_error ) || empty( $response ) ) {
@@ -304,7 +307,7 @@ class Wishlist_For_Woo_Crud_Manager {
     /**
 	 * Parse data in required format.
 	 *
-     * @param $args array 
+     * @param $args array  The arguments.
 	 * @since 1.0.0
 	 * @return array $result the parsed data form for query.
 	 */
@@ -326,7 +329,7 @@ class Wishlist_For_Woo_Crud_Manager {
     /**
 	 * Get Selected data from Sql Query Obj.
 	 *
-     * @param $args     array SQL result
+     * @param $args     array   SQL result.
      * @param $fetch    string  The key to fetch.
 	 * @since 1.0.0
 	 * @return array $result the parsed data form for query.
@@ -371,16 +374,16 @@ class Wishlist_For_Woo_Crud_Manager {
 	 */
     public function get_all() {
 
-        if( ! is_admin() ) {
+        if (! is_admin()) {
             return false;
         }
 
         // Get all current users wishlists.
         global $wpdb;
-        $get_query = "SELECT * FROM `$this->table_name`"; 
-        $response = $wpdb->get_results( $get_query, ARRAY_A );
+        $get_query = $wpdb->prepare("SELECT * FROM `$this->table_name`");
+        $response = $wpdb->get_results($get_query, ARRAY_A);
 
-        if( ! empty( $wpdb->last_error ) ) {
+        if (!empty($wpdb->last_error)) {
 
             $result = array(
                 'status'    => 400, 

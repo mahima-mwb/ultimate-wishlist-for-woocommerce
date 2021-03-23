@@ -135,9 +135,8 @@ class Wishlist_For_Woo_Public {
 	/**
  	 *  Initiate all functionalities after woocommerce is initiated.
 	 * 
-	 * @throws Some_Exception_Class If something interesting cannot happen
+	 * @throws Some_Exception_Class If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
 	 */
 	public function wishlist_init() {
 		
@@ -161,9 +160,8 @@ class Wishlist_For_Woo_Public {
 	/**
  	 *  Enable a wishlist dynamic popup to manage newly added items.
 	 * 
-	 * @throws Exception If something interesting cannot happen
+	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
 	 */
 	public function enable_wishlist_popup() {
 	
@@ -205,9 +203,8 @@ class Wishlist_For_Woo_Public {
 	/**
  	 *  Adds a wishlist dynamic popup to manage newly added items.
 	 * 
-	 * @throws Exception If something interesting cannot happen
+	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
 	 */
 	public function render_wishlist_html() {
 		
@@ -222,9 +219,8 @@ class Wishlist_For_Woo_Public {
 	/**
  	 *  Enable wishlist at Public View.
 	 * 
-	 * @throws Exception If something interesting cannot happen
+	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
 	 */
 	public function enable_wishlist_on_site() {
 		
@@ -270,9 +266,8 @@ class Wishlist_For_Woo_Public {
 	/**
  	 *  Enable wishlist shortcodes.
 	 * 
-	 * @throws Exception If something interesting cannot happen
+	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
 	 */
 	public function init_shortcodes() {
 		
@@ -286,9 +281,8 @@ class Wishlist_For_Woo_Public {
 	/**
  	 *  Ajax Callback :: Adds a product to wishlist.
 	 * 
-	 * @throws Exception If something interesting cannot happen
+	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return null
 	 */
 	public function UpdateWishlist() {
 		
@@ -894,12 +888,13 @@ class Wishlist_For_Woo_Public {
 
 	/**
 	 * Parse Serialised data.
+	 * 
+	 * @param $array 	dataset to serialize.
 	 */
 	public function parse_serialised_data( $array=array() ) {
 		$result = array();
 		if( ! empty( $array ) && is_array( $array ) ) {
 			foreach ( $array as $key => $value ) {
-				
 				$result[ $value[ 'name' ] ] = $value[ 'value' ];
 			}
 		}

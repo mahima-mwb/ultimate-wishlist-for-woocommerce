@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -23,8 +22,9 @@
  * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/includes
  * @author     MakeWebBetter <https://makewebbetter.com>
+ * 
  */
-class Wishlist_For_Woo_i18n {
+class Wishlist_For_Woo_I18n {
 
 
 	/**

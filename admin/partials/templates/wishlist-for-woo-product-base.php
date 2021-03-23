@@ -1,4 +1,13 @@
 <?php
+/**
+ * The admin-specific functionality of the plugin. Wishlist reporting file used to show product based performance.
+ *
+ * @link       https://makewebbetter.com
+ * @since      1.0.0
+ *
+ * @package    wishlist-for-woo
+ * @subpackage Wishlist_For_Woo/admin/partials/templates
+ */
 
     $args = array(
         'post_type'      => 'product',
@@ -24,8 +33,8 @@
         $wishlist = array();
         if( ! empty( $all_wishlists ) && is_array( $all_wishlists ) ) :
             foreach ( $all_wishlists as $key => $list ) :
-                $id = $list['id' ] ? $list['id' ] : false;
-                $manager = new Wishlist_For_Woo_Crud_Manager( $id );
+                $_id = $list['id' ] ? $list['id' ] : false;
+                $manager = new Wishlist_For_Woo_Crud_Manager( $_id );
                 $result = $manager->get_prop( 'title' );
                 array_push( $wishlist, $result );
             endforeach;
@@ -69,8 +78,8 @@
                         <td><?php echo esc_html( $value['id'] ); ?></td>
                         <td><?php echo esc_html( $value['title'] ); ?></td>
                         <td><img src="<?php echo esc_url( $value['image'] );  ?>" class="mwb-wfw-prod-img" ></td>
-                        <td><?php echo $value['wishlist_count']; ?></td>
-                        <td><?php echo $value['wishlists']; ?></td>
+                        <td><?php echo esc_html( $value['wishlist_count'] ); ?></td>
+                        <td><?php echo esc_html( $value['wishlists'] ); ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else : ?>

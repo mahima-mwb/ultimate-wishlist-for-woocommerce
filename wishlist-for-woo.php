@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -27,6 +26,7 @@
  * License URI:       		http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       		wishlist-for-woo
  * Domain Path:       		/languages
+ * 
  */
 
 // If this file is called directly, abort.

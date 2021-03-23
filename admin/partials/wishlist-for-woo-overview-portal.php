@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a admin area view for the plugin
  *
@@ -11,6 +10,7 @@
  * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/admin/partials
  */
+
 ?>
 
 <!-- Add required templates -->

@@ -1,3 +1,17 @@
+<?php
+/**
+ * Provide a admin-facing view for the plugin
+ *
+ * This file is used to markup the plugin-overview template.
+ *
+ * @link       https://makewebbetter.com
+ * @since      1.0.0
+ *
+ * @package    wishlist-for-woo
+ * @subpackage Wishlist_For_Woo/admin/partials/templates
+ */
+
+?>
 <ul class="wfw-overview_wrapper">
 	<li class="wfw-overview_banner">
 		<div class="wfw-overview_banner-image">

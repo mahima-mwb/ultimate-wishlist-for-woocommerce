@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The shortcode management for wishlist plugin.
  *
@@ -8,6 +7,7 @@
  *
  * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/includes
+ * 
  */
 
 /**
@@ -53,7 +53,7 @@ class Wishlist_For_Woo_Shortcode_Manager {
 		$user = wp_get_current_user();
 
 		// Check for Wishlists by url id.
-		$current_ref = ! empty( $_GET[ 'wl-ref' ] ) ? sanitize_text_field( $_GET[ 'wl-ref' ] ) : false;
+		$current_ref = ! empty( $_GET[ 'wl-ref' ] ) ? sanitize_text_field( wp_unslash($_GET[ 'wl-ref' ]) ) : false;
 		$current_id = ! empty( $current_ref ) ? Wishlist_For_Woo_Helper::encrypter( $current_ref, 'd' ) : false;
 		if( ! empty( $current_id ) ) {
 

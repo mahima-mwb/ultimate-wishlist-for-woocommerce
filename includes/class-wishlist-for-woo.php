@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -26,6 +25,7 @@
  * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/includes
  * @author     MakeWebBetter <https://makewebbetter.com>
+ * 
  */
 class Wishlist_For_Woo {
 
@@ -88,7 +88,7 @@ class Wishlist_For_Woo {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Wishlist_For_Woo_Loader. Orchestrates the hooks of the plugin.
-	 * - Wishlist_For_Woo_i18n. Defines internationalization functionality.
+	 * - Wishlist_For_Woo_I18n. Defines internationalization functionality.
 	 * - Wishlist_For_Woo_Admin. Defines all hooks for the admin area.
 	 * - Wishlist_For_Woo_Public. Defines all hooks for the public side of the site.
 	 *
@@ -154,7 +154,7 @@ class Wishlist_For_Woo {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Wishlist_For_Woo_i18n class in order to set the domain and to register the hook
+	 * Uses the Wishlist_For_Woo_I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -162,7 +162,7 @@ class Wishlist_For_Woo {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Wishlist_For_Woo_i18n();
+		$plugin_i18n = new Wishlist_For_Woo_I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 

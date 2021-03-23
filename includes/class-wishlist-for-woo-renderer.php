@@ -41,7 +41,7 @@ class Wishlist_For_Woo_Renderer {
  	 * Get hooks for Icons implementation on shop.
 	 * 
 	 * @param 	Place   $template  Hooks for woo template needs to be returned.
-	 * @throws Exception If something interesting cannot happen
+	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 * @return array $hooks all hooks to be implemented.
 	 */
@@ -71,8 +71,9 @@ class Wishlist_For_Woo_Renderer {
 	/**
  	 *  Get hooks for Buttons implementation on shop.
 	 * 
-	 * @param 	Place   $template  Hooks for woo template needs to be returned.
-	 * @throws 	Exception If something interesting cannot happen
+	 * @param 	$template  Hooks for woo template needs to be returned.
+	 * @param   $option    Options to be fetched
+	 * @throws 	Exception If something interesting cannot happen.
 	 * @author 	MakeWebBetter <plugins@makewebbetter.com>
 	 * @return 	array $hooks all hooks to be implemented.
 	 */
@@ -128,7 +129,7 @@ class Wishlist_For_Woo_Renderer {
 		);
 
 
-		//	Merged Output	
+		//	Merged Output.	
 		$all_hooks = array(
 			'loop'	=>	$loop_hooks,
 			'single' => $single_hooks,
@@ -141,9 +142,8 @@ class Wishlist_For_Woo_Renderer {
 	/**
  	 *  Returns HTML for wishlist Text Button.
 	 * 
-	 * @throws Exception If something interesting cannot happen
+	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return html
 	 */
 	function return_wishlist_button(){
 
@@ -196,11 +196,10 @@ class Wishlist_For_Woo_Renderer {
 	/**
  	 *  Returns HTML for wishlist icon button.
 	 * 
-	 * @throws Exception If something interesting cannot happen
+	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
-	 * @return html
 	 */
-	function return_wishlist_icon(){
+	public function return_wishlist_icon(){
 
 		$default_attr =  apply_filters( 'mwb_wfw_wishlist_attr', array(
 				'text'	=>	apply_filters( 'mwb_wfw_wishlist_icon', get_option( 'wfw-icon-view', 'heart' ) ),
@@ -244,11 +243,11 @@ class Wishlist_For_Woo_Renderer {
  	 *  Checks if any current user wishlist have this product or not.
 	 * 
 	 * @param  $product_id string product id to search.
-	 * @throws Exception If something interesting cannot happen
+	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 * @return bool true|false
 	 */
-	function does_wishlist_includes_product( $product_id=false ) {
+	public function does_wishlist_includes_product( $product_id=false ) {
 
 		$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance();
 

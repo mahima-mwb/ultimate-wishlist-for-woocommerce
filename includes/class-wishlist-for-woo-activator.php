@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin activation
  *
@@ -19,6 +18,7 @@
  * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/includes
  * @author     MakeWebBetter <https://makewebbetter.com>
+ * 
  */
 class Wishlist_For_Woo_Activator {
 
@@ -43,7 +43,8 @@ class Wishlist_For_Woo_Activator {
 	 *
 	 * @since 1.0.0
 	 * @static
-	 * @return null.
+     * @throws $e Exception
+     * 
 	 */
 	protected static function init() {
 
