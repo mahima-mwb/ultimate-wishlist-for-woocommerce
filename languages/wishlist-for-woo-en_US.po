@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wishlist for Woocommerce\n"
-"POT-Creation-Date: 2021-03-22 19:48+0530\n"
-"PO-Revision-Date: 2021-03-22 19:50+0530\n"
+"POT-Creation-Date: 2021-03-23 16:21+0530\n"
+"PO-Revision-Date: 2021-03-23 16:21+0530\n"
 "Last-Translator: \n"
 "Language-Team: MakeWebBetter\n"
 "Language: en_US\n"
@@ -25,174 +25,207 @@ msgstr ""
 msgid "Internal Server Error."
 msgstr ""
 
-#: admin/class-wishlist-for-woo-admin.php:192
-#: admin/class-wishlist-for-woo-admin.php:193 wishlist-for-woo.php:217
+#: admin/class-wishlist-for-woo-admin.php:191
+#: admin/class-wishlist-for-woo-admin.php:192 wishlist-for-woo.php:220
 msgid "Wishlist For Woocommerce"
 msgstr ""
 
-#: admin/class-wishlist-for-woo-admin.php:204
+#: admin/class-wishlist-for-woo-admin.php:203
 msgid "Configuration & Settings"
 msgstr ""
 
-#: admin/class-wishlist-for-woo-admin.php:209
+#: admin/class-wishlist-for-woo-admin.php:208
 msgid "Performance Analytics"
 msgstr ""
 
-#: admin/class-wishlist-for-woo-admin.php:214
+#: admin/class-wishlist-for-woo-admin.php:213
 msgid "Overview"
 msgstr ""
 
-#: admin/class-wishlist-for-woo-admin.php:289
+#: admin/class-wishlist-for-woo-admin.php:285
 msgid "Undefined Portal Encountered"
 msgstr ""
 
-#: admin/class-wishlist-for-woo-admin.php:484
+#: admin/class-wishlist-for-woo-admin.php:477
 msgid "Write permission needed!"
 msgstr ""
 
-#: admin/class-wishlist-for-woo-admin.php:489
+#: admin/class-wishlist-for-woo-admin.php:482
 msgid "File moved succesfully"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-overview.php:4
+#: admin/partials/templates/wishlist-for-woo-overview.php:18
 msgid "admin/images/bannerwish.bmp"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-overview.php:32
+#: admin/partials/templates/wishlist-for-woo-overview.php:46
 msgid "admin/icons/Icons_Buyers.jpg"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-overview.php:41
+#: admin/partials/templates/wishlist-for-woo-overview.php:55
 msgid "admin/icons/Icons_Shareable.jpg"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-overview.php:50
+#: admin/partials/templates/wishlist-for-woo-overview.php:64
 msgid "admin/icons/Icons_Set.jpg"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-overview.php:61
+#: admin/partials/templates/wishlist-for-woo-overview.php:75
 msgid "admin/icons/Icons_Customize.jpg"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-overview.php:69
+#: admin/partials/templates/wishlist-for-woo-overview.php:83
 msgid "admin/icons/Icons_Purchase.jpg"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-overview.php:85
+#: admin/partials/templates/wishlist-for-woo-overview.php:99
 msgid "admin/icons/phone-call.png"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-overview.php:86
+#: admin/partials/templates/wishlist-for-woo-overview.php:100
+#: includes/class-wishlist-for-woo-template-manager.php:121
 msgid "admin/icons/mail.png"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-overview.php:87
-msgid "admin/icons/skype_logo.png"
-msgstr ""
-
-#: admin/partials/templates/wishlist-for-woo-product-base.php:58
+#: admin/partials/templates/wishlist-for-woo-product-base.php:68
 msgid "Product Id"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-product-base.php:59
+#: admin/partials/templates/wishlist-for-woo-product-base.php:69
 msgid "Product Title"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-product-base.php:60
+#: admin/partials/templates/wishlist-for-woo-product-base.php:70
 msgid "Product Thumbnail"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-product-base.php:61
+#: admin/partials/templates/wishlist-for-woo-product-base.php:71
 msgid "Wishlists Count"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-product-base.php:62
+#: admin/partials/templates/wishlist-for-woo-product-base.php:72
 msgid "Wishlists"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-product-base.php:78
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:81
+#: admin/partials/templates/wishlist-for-woo-product-base.php:88
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:99
 msgid "No Wishlists Found."
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:11
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:21
 msgid "Id"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:12
-#: includes/class-wishlist-for-woo-template-manager.php:518
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:22
+#: includes/class-wishlist-for-woo-template-manager.php:512
 msgid "Title"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:13
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:23
 msgid "Products"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:14
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:24
 msgid "Create Date"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:15
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:25
 msgid "Last Modified"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:16
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:26
 msgid "Owner"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:17
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:27
 msgid "Status"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:18
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:28
 msgid "Collaborators"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:19
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:29
 msgid "Properties"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:59
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:61
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:76
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:78
 msgid "Is Default"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:70
-#: public/partials/wishlist-for-woo-shortcode-view.php:264
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:88
+#: public/partials/wishlist-for-woo-shortcode-view.php:266
 msgid "Comment"
 msgstr ""
 
-#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:71
-#: public/partials/wishlist-for-woo-shortcode-view.php:272
+#: admin/partials/templates/wishlist-for-woo-wishlist-base.php:89
+#: public/partials/wishlist-for-woo-shortcode-view.php:274
 msgid "Priority"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-activator.php:103
+#: extra-templates/makewebbetter-deactivation-template-display.php:34
+msgid "May we have a little info about why you are deactivating?"
+msgstr ""
+
+#: extra-templates/makewebbetter-deactivation-template-display.php:44
+msgid "Skip and Deactivate Now"
+msgstr ""
+
+#: extra-templates/makewebbetter-onboarding-template-display.php:44
+msgid "Skip For Now"
+msgstr ""
+
+#: includes/class-makewebbetter-onboarding-helper.php:307
+msgid "What is your monthly revenue?"
+msgstr ""
+
+#: includes/class-makewebbetter-onboarding-helper.php:324
+msgid "What industry defines your business?"
+msgstr ""
+
+#: includes/class-makewebbetter-onboarding-helper.php:359
+msgid "What is the best email address to contact you?"
+msgstr ""
+
+#: includes/class-makewebbetter-onboarding-helper.php:369
+msgid "What is your contact number?"
+msgstr ""
+
+#: includes/class-makewebbetter-onboarding-helper.php:612
+msgid "Select Any One Option..."
+msgstr ""
+
+#: includes/class-makewebbetter-onboarding-helper.php:870
+msgid "Unexpected Error Occured"
+msgstr ""
+
+#: includes/class-wishlist-for-woo-activator.php:102
 msgid "Wishlist"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-activator.php:105
+#: includes/class-wishlist-for-woo-activator.php:104
 msgid "[mwb_wfw_wishlist]"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-crud-manager.php:105
+#: includes/class-wishlist-for-woo-crud-manager.php:108
 msgid "Invalid Arguments"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-crud-manager.php:146
+#: includes/class-wishlist-for-woo-crud-manager.php:147
 #: includes/class-wishlist-for-woo-crud-manager.php:187
 msgid "Invalid ID"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-crud-manager.php:273
+#: includes/class-wishlist-for-woo-crud-manager.php:267
 msgid "Id Not Found"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-crud-manager.php:287
+#: includes/class-wishlist-for-woo-crud-manager.php:281
 msgid "Row Not Found"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-helper.php:43
+#: includes/class-wishlist-for-woo-helper.php:45
 msgid "Settings Not Found. Please Save settings once again."
 msgstr ""
 
@@ -217,588 +250,584 @@ msgid "Please Login to your account first."
 msgstr ""
 
 #: includes/class-wishlist-for-woo-helper.php:72
-#: includes/class-wishlist-for-woo-renderer.php:152
+#: includes/class-wishlist-for-woo-renderer.php:150
 msgid "Add to Wishlist"
 msgstr ""
 
 #: includes/class-wishlist-for-woo-helper.php:73
-#: includes/class-wishlist-for-woo-renderer.php:153
+#: includes/class-wishlist-for-woo-renderer.php:151
 msgid "Remove from Wishlist"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-renderer.php:184
+#: includes/class-wishlist-for-woo-renderer.php:189
 msgid "public/icons/processing.gif"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-renderer.php:220
+#: includes/class-wishlist-for-woo-renderer.php:235
 msgid "public/icons/"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:36
+#: includes/class-wishlist-for-woo-template-manager.php:33
 msgid "Wishlist for Woocommerce"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:94
+#: includes/class-wishlist-for-woo-template-manager.php:91
 msgid "admin/images/preloader.gif"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:95
+#: includes/class-wishlist-for-woo-template-manager.php:92
 msgid "Loading settings please wait..."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:114
+#: includes/class-wishlist-for-woo-template-manager.php:111
 msgid "admin/images/customer-service-icon.jpg"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:118
+#: includes/class-wishlist-for-woo-template-manager.php:115
 msgid "go pro"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:119
+#: includes/class-wishlist-for-woo-template-manager.php:116
 msgid "see docs"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:120
+#: includes/class-wishlist-for-woo-template-manager.php:117
 msgid "see demo"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:123
+#: includes/class-wishlist-for-woo-template-manager.php:120
 msgid "connect with us in one click"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:124
-msgid "admin/images/skype_logo.png"
-msgstr ""
-
-#: includes/class-wishlist-for-woo-template-manager.php:141
+#: includes/class-wishlist-for-woo-template-manager.php:138
 msgid "SAVE"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:142
+#: includes/class-wishlist-for-woo-template-manager.php:139
 msgid "CANCEL"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:143
+#: includes/class-wishlist-for-woo-template-manager.php:140
 msgid "You have saved your data!"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:162
+#: includes/class-wishlist-for-woo-template-manager.php:159
 msgid "General"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:163
+#: includes/class-wishlist-for-woo-template-manager.php:160
 msgid "Social Sharing"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:164
+#: includes/class-wishlist-for-woo-template-manager.php:161
 msgid "Push Notification"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:165
+#: includes/class-wishlist-for-woo-template-manager.php:162
 msgid "Advance Features"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:166
+#: includes/class-wishlist-for-woo-template-manager.php:163
 msgid "CRM Configuration"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:172
+#: includes/class-wishlist-for-woo-template-manager.php:169
 msgid "All Wishlists"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:173
+#: includes/class-wishlist-for-woo-template-manager.php:170
 msgid "Product Based Reporting"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:198
+#: includes/class-wishlist-for-woo-template-manager.php:194
 msgid "General Settings"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:204
+#: includes/class-wishlist-for-woo-template-manager.php:200
 msgid "Enable /Disable Plugin"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:210
+#: includes/class-wishlist-for-woo-template-manager.php:206
 msgid "Enable/Disable the complete plugin functionality."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:215
+#: includes/class-wishlist-for-woo-template-manager.php:211
 msgid "Enable Wishlist Popup"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:221
+#: includes/class-wishlist-for-woo-template-manager.php:217
 msgid "Show Item added in wishlist as popup after adding in list."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:227
+#: includes/class-wishlist-for-woo-template-manager.php:223
 msgid "Wishlist Position And Preview"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:232
+#: includes/class-wishlist-for-woo-template-manager.php:228
 msgid "Wishlist View Type"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:234
+#: includes/class-wishlist-for-woo-template-manager.php:230
 msgid "Select how you want to show the wishlist for customers."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:236
-#: includes/class-wishlist-for-woo-template-manager.php:253
-#: includes/class-wishlist-for-woo-template-manager.php:276
-#: includes/class-wishlist-for-woo-template-manager.php:295
+#: includes/class-wishlist-for-woo-template-manager.php:232
+#: includes/class-wishlist-for-woo-template-manager.php:249
+#: includes/class-wishlist-for-woo-template-manager.php:272
+#: includes/class-wishlist-for-woo-template-manager.php:291
 msgid "No options Selected"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:237
+#: includes/class-wishlist-for-woo-template-manager.php:233
 msgid "Icon over Product Image"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:238
+#: includes/class-wishlist-for-woo-template-manager.php:234
 msgid "Add to Wishlist button"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:249
+#: includes/class-wishlist-for-woo-template-manager.php:245
 msgid "Wishlist Interface Icon"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:251
+#: includes/class-wishlist-for-woo-template-manager.php:247
 msgid "Select which icon you want for the wishlist interface."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:254
+#: includes/class-wishlist-for-woo-template-manager.php:250
 msgid "Heart Icon"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:255
+#: includes/class-wishlist-for-woo-template-manager.php:251
 msgid "Shopping Icon"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:256
+#: includes/class-wishlist-for-woo-template-manager.php:252
 msgid "Cart Icon"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:257
+#: includes/class-wishlist-for-woo-template-manager.php:253
 msgid "Star Icon"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:258
+#: includes/class-wishlist-for-woo-template-manager.php:254
 msgid "Tag Icon"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:259
+#: includes/class-wishlist-for-woo-template-manager.php:255
 msgid "Like Icon"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:260
+#: includes/class-wishlist-for-woo-template-manager.php:256
 msgid "Bell Icon"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:261
+#: includes/class-wishlist-for-woo-template-manager.php:257
 msgid "Eye Icon"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:272
+#: includes/class-wishlist-for-woo-template-manager.php:268
 msgid "Wishlist on Loops"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:274
+#: includes/class-wishlist-for-woo-template-manager.php:270
 msgid ""
 "Select where wishlist button should be shown on woocommerce loops or shops."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:277
-#: includes/class-wishlist-for-woo-template-manager.php:298
+#: includes/class-wishlist-for-woo-template-manager.php:273
+#: includes/class-wishlist-for-woo-template-manager.php:294
 msgid "Before Product Title"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:278
-#: includes/class-wishlist-for-woo-template-manager.php:299
+#: includes/class-wishlist-for-woo-template-manager.php:274
+#: includes/class-wishlist-for-woo-template-manager.php:295
 msgid "After Product Title"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:279
-#: includes/class-wishlist-for-woo-template-manager.php:296
+#: includes/class-wishlist-for-woo-template-manager.php:275
+#: includes/class-wishlist-for-woo-template-manager.php:292
 msgid "Before Add To Cart Button"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:280
+#: includes/class-wishlist-for-woo-template-manager.php:276
 msgid "Before Product Section"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:291
+#: includes/class-wishlist-for-woo-template-manager.php:287
 msgid "Wishlist on Product Page"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:293
+#: includes/class-wishlist-for-woo-template-manager.php:289
 msgid ""
 "Select where wishlist button should be shown on woocommerce products page."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:297
+#: includes/class-wishlist-for-woo-template-manager.php:293
 msgid "After Add To Cart Button"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:300
+#: includes/class-wishlist-for-woo-template-manager.php:296
 msgid "After Product Price"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:312
-#: includes/class-wishlist-for-woo-template-manager.php:329
+#: includes/class-wishlist-for-woo-template-manager.php:308
+#: includes/class-wishlist-for-woo-template-manager.php:325
 msgid "Wishlist Page"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:331
+#: includes/class-wishlist-for-woo-template-manager.php:327
 msgid ""
 "Select the page where view wishlist button should redirect. Wishlist page "
 "requires shortcode as [mwb_wfw_wishlist]"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:357
+#: includes/class-wishlist-for-woo-template-manager.php:353
+#: includes/class-wishlist-for-woo-template-manager.php:477
 #: includes/class-wishlist-for-woo-template-manager.php:483
-#: includes/class-wishlist-for-woo-template-manager.php:489
 msgid "Push Notifications"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:363
+#: includes/class-wishlist-for-woo-template-manager.php:359
 msgid "Icon size"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:367
+#: includes/class-wishlist-for-woo-template-manager.php:363
 msgid "Small"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:368
-#: public/partials/wishlist-for-woo-shortcode-view.php:276
+#: includes/class-wishlist-for-woo-template-manager.php:364
+#: public/partials/wishlist-for-woo-shortcode-view.php:278
 msgid "Medium"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:369
+#: includes/class-wishlist-for-woo-template-manager.php:365
 msgid "Large"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:374
+#: includes/class-wishlist-for-woo-template-manager.php:370
 msgid "Input Pinterest icon size."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:379
+#: includes/class-wishlist-for-woo-template-manager.php:375
 msgid "Facebook share"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:385
+#: includes/class-wishlist-for-woo-template-manager.php:381
 msgid "Enable/Disable the Facebook share functionality."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:390
+#: includes/class-wishlist-for-woo-template-manager.php:386
 msgid "Facebook Icon color"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:396
+#: includes/class-wishlist-for-woo-template-manager.php:392
 msgid "Input Facebook icon color."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:401
+#: includes/class-wishlist-for-woo-template-manager.php:397
 msgid "WhatsApp share"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:407
+#: includes/class-wishlist-for-woo-template-manager.php:403
 msgid "Enable/Disable the WhatsApp share functionality."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:412
+#: includes/class-wishlist-for-woo-template-manager.php:408
 msgid "WhatsApp Icon color"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:418
+#: includes/class-wishlist-for-woo-template-manager.php:414
 msgid "Input WhatsApp icon color."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:424
+#: includes/class-wishlist-for-woo-template-manager.php:419
 msgid "Twitter share"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:430
+#: includes/class-wishlist-for-woo-template-manager.php:425
 msgid "Enable/Disable the Twitter share functionality."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:435
+#: includes/class-wishlist-for-woo-template-manager.php:430
 msgid "Twitter Icon color"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:441
+#: includes/class-wishlist-for-woo-template-manager.php:436
 msgid "Input Twitter icon color."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:447
+#: includes/class-wishlist-for-woo-template-manager.php:441
 msgid "Pinterest share"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:453
+#: includes/class-wishlist-for-woo-template-manager.php:447
 msgid "Enable/Disable the Pinterest share functionality."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:458
+#: includes/class-wishlist-for-woo-template-manager.php:452
 msgid "Pinterest Icon color"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:464
+#: includes/class-wishlist-for-woo-template-manager.php:458
 msgid "Input Pinterest icon color."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:495
+#: includes/class-wishlist-for-woo-template-manager.php:489
 msgid "Enable/Disable the push notifications functionality."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:501
+#: includes/class-wishlist-for-woo-template-manager.php:495
 msgid "Secret Key"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:507
+#: includes/class-wishlist-for-woo-template-manager.php:501
 msgid ""
 "Note: A file \"service-worker.js\" needs to be stored on the root folder, "
 "else push notifications will not work. "
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:513
+#: includes/class-wishlist-for-woo-template-manager.php:507
 msgid "Send Custom notifications."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:524
+#: includes/class-wishlist-for-woo-template-manager.php:518
 msgid "Enter custom noitification title. "
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:529
+#: includes/class-wishlist-for-woo-template-manager.php:523
 msgid "URL"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:535
+#: includes/class-wishlist-for-woo-template-manager.php:529
 msgid "Enter custom noitification URL. "
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:540
+#: includes/class-wishlist-for-woo-template-manager.php:534
 msgid "Message"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:546
+#: includes/class-wishlist-for-woo-template-manager.php:540
 msgid "Enter custom noitification message. "
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:551
+#: includes/class-wishlist-for-woo-template-manager.php:545
 msgid "Image"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:557
+#: includes/class-wishlist-for-woo-template-manager.php:551
 msgid "Enter custom noitification image. "
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:579
+#: includes/class-wishlist-for-woo-template-manager.php:573
 msgid "Advance Notifications"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:585
+#: includes/class-wishlist-for-woo-template-manager.php:579
 msgid "Multiple Wishlist"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:591
+#: includes/class-wishlist-for-woo-template-manager.php:585
 msgid "Enable/Disable the multiple wishlist functionality."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:596
+#: includes/class-wishlist-for-woo-template-manager.php:590
 msgid "Create API routing"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:602
+#: includes/class-wishlist-for-woo-template-manager.php:596
 msgid "Enable/Disable the API routing functionality."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:607
+#: includes/class-wishlist-for-woo-template-manager.php:601
 msgid "Automated Emails"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:613
+#: includes/class-wishlist-for-woo-template-manager.php:607
 msgid "Send automated emails to wishlist owners."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:618
+#: includes/class-wishlist-for-woo-template-manager.php:612
 msgid "In-stock Notification"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:624
+#: includes/class-wishlist-for-woo-template-manager.php:618
 msgid "Enable/Disable in-stock notifications functionality."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:629
+#: includes/class-wishlist-for-woo-template-manager.php:623
 msgid "Delete Data/Wishlist at uninstall"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:635
+#: includes/class-wishlist-for-woo-template-manager.php:629
 msgid ""
 "On uninstalling the plugin all the settings and users wishlist will be "
 "deleted."
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:656
+#: includes/class-wishlist-for-woo-template-manager.php:650
 msgid "Supported CRM Tools - Premium Feature"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:659
-#: includes/class-wishlist-for-woo-template-manager.php:672
+#: includes/class-wishlist-for-woo-template-manager.php:653
+#: includes/class-wishlist-for-woo-template-manager.php:666
 msgid "https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:660
+#: includes/class-wishlist-for-woo-template-manager.php:654
 msgid "admin/images/mautic-logo.svg"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:662
+#: includes/class-wishlist-for-woo-template-manager.php:656
 msgid "Mautic for WooCommerce"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:664
+#: includes/class-wishlist-for-woo-template-manager.php:658
 msgid "Track and nurture your WooCommerce contacts"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:666
+#: includes/class-wishlist-for-woo-template-manager.php:660
 msgid "Create over 20 predefined custom fields to segregate your contacts"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:667
+#: includes/class-wishlist-for-woo-template-manager.php:661
 msgid "Sync your contacts data in real-time"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:668
+#: includes/class-wishlist-for-woo-template-manager.php:662
 msgid "Assign custom tags to your contacts using Mautic"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:669
+#: includes/class-wishlist-for-woo-template-manager.php:663
 msgid "Create high-converting marketing campaigns"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:670
+#: includes/class-wishlist-for-woo-template-manager.php:664
 msgid "Segment your contacts on their Recency, Frequency, and Monetary ratings"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:672
-#: includes/class-wishlist-for-woo-template-manager.php:687
+#: includes/class-wishlist-for-woo-template-manager.php:666
+#: includes/class-wishlist-for-woo-template-manager.php:681
 msgid "View Plugin Site"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:675
-#: includes/class-wishlist-for-woo-template-manager.php:686
+#: includes/class-wishlist-for-woo-template-manager.php:669
+#: includes/class-wishlist-for-woo-template-manager.php:680
 msgid "https://wordpress.org/plugins/makewebbetter-hubspot-for-woocommerce/"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:676
+#: includes/class-wishlist-for-woo-template-manager.php:670
 msgid "admin/images/hubspot-logo.svg"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:678
+#: includes/class-wishlist-for-woo-template-manager.php:672
 msgid "HubSpot for WooCommerce"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:680
+#: includes/class-wishlist-for-woo-template-manager.php:674
 msgid "Sync your WooCommerce store data to HubSpot"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:681
+#: includes/class-wishlist-for-woo-template-manager.php:675
 msgid "Manage your customers and their orders in an easy-to-use CRM"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:682
+#: includes/class-wishlist-for-woo-template-manager.php:676
 msgid "Track and recover customers’ abandoned carts"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:683
+#: includes/class-wishlist-for-woo-template-manager.php:677
 msgid ""
 "Create and send beautiful, responsive emails to your leads and customers"
 msgstr ""
 
-#: includes/class-wishlist-for-woo-template-manager.php:684
+#: includes/class-wishlist-for-woo-template-manager.php:678
 msgid ""
 "Build advertising campaigns on Facebook, Instagram, LinkedIn, and Google"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:309
-#: public/class-wishlist-for-woo-public.php:326
-#: public/class-wishlist-for-woo-public.php:373
+#: public/class-wishlist-for-woo-public.php:302
+#: public/class-wishlist-for-woo-public.php:319
+#: public/class-wishlist-for-woo-public.php:363
 msgid "Invalid Request"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:399
+#: public/class-wishlist-for-woo-public.php:388
 msgid "Unable to access data."
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:445
+#: public/class-wishlist-for-woo-public.php:434
 msgid "Comment added successfully"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:450
+#: public/class-wishlist-for-woo-public.php:439
 msgid "There's some problem adding comment, try again"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:474
+#: public/class-wishlist-for-woo-public.php:463
 msgid "Email field cannot be empty"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:505
+#: public/class-wishlist-for-woo-public.php:494
 msgid "At the moment, you are not allowed to send this mail"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:528
+#: public/class-wishlist-for-woo-public.php:517
 msgid "Invite sent successfully"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:533
+#: public/class-wishlist-for-woo-public.php:522
 msgid "Invitation failed"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:558
+#: public/class-wishlist-for-woo-public.php:547
 msgid "No data found"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:583
-#: public/class-wishlist-for-woo-public.php:589
+#: public/class-wishlist-for-woo-public.php:572
+#: public/class-wishlist-for-woo-public.php:578
 msgid "No comments found for this product. "
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:595
+#: public/class-wishlist-for-woo-public.php:584
 msgid "No comments found."
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:601
+#: public/class-wishlist-for-woo-public.php:590
 msgid "No properties found."
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:627
-#: public/class-wishlist-for-woo-public.php:703
-#: public/class-wishlist-for-woo-public.php:765
-#: public/class-wishlist-for-woo-public.php:825
-#: public/class-wishlist-for-woo-public.php:847
-#: public/class-wishlist-for-woo-public.php:876
+#: public/class-wishlist-for-woo-public.php:616
+#: public/class-wishlist-for-woo-public.php:692
+#: public/class-wishlist-for-woo-public.php:754
+#: public/class-wishlist-for-woo-public.php:814
+#: public/class-wishlist-for-woo-public.php:836
+#: public/class-wishlist-for-woo-public.php:865
 msgid "Something went wrong, try again"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:674
+#: public/class-wishlist-for-woo-public.php:663
 msgid "Product does not exists"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:736
-#: public/class-wishlist-for-woo-public.php:798
+#: public/class-wishlist-for-woo-public.php:725
+#: public/class-wishlist-for-woo-public.php:787
 msgid "Something went wrong"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:793
+#: public/class-wishlist-for-woo-public.php:782
 msgid "Product deleted successfully"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:841
+#: public/class-wishlist-for-woo-public.php:830
 msgid "Wishlist deleted successfully"
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:852
+#: public/class-wishlist-for-woo-public.php:841
 msgid "Technical error, try reloading the page."
 msgstr ""
 
-#: public/class-wishlist-for-woo-public.php:887
+#: public/class-wishlist-for-woo-public.php:876
 msgid "Already the default list"
 msgstr ""
 
@@ -832,100 +861,100 @@ msgid ""
 "content."
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:87
+#: public/partials/wishlist-for-woo-shortcode-view.php:88
 msgid "Shared"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:103
+#: public/partials/wishlist-for-woo-shortcode-view.php:104
 msgid "Invite Collaborator"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:103
+#: public/partials/wishlist-for-woo-shortcode-view.php:104
 msgid "Invite"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:111
+#: public/partials/wishlist-for-woo-shortcode-view.php:112
 msgid "Send"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:174
+#: public/partials/wishlist-for-woo-shortcode-view.php:176
 msgid "More"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:176
+#: public/partials/wishlist-for-woo-shortcode-view.php:178
 msgid "Set as Default."
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:177
+#: public/partials/wishlist-for-woo-shortcode-view.php:179
 msgid "Delete List"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:224
+#: public/partials/wishlist-for-woo-shortcode-view.php:226
 msgid "Comments"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:228
+#: public/partials/wishlist-for-woo-shortcode-view.php:230
 msgid "..."
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:233
-#: public/partials/wishlist-for-woo-shortcode-view.php:236
+#: public/partials/wishlist-for-woo-shortcode-view.php:235
+#: public/partials/wishlist-for-woo-shortcode-view.php:238
 msgid "Add to cart"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:242
+#: public/partials/wishlist-for-woo-shortcode-view.php:244
 msgid "Delete"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:244
-#: public/partials/wishlist-for-woo-shortcode-view.php:258
+#: public/partials/wishlist-for-woo-shortcode-view.php:246
+#: public/partials/wishlist-for-woo-shortcode-view.php:260
 msgid "Add comment & priority"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:250
+#: public/partials/wishlist-for-woo-shortcode-view.php:252
 msgid "No Products Added"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:277
+#: public/partials/wishlist-for-woo-shortcode-view.php:279
 msgid "High"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:278
+#: public/partials/wishlist-for-woo-shortcode-view.php:280
 msgid "Low"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:286
+#: public/partials/wishlist-for-woo-shortcode-view.php:288
 msgid "Cancel"
 msgstr ""
 
-#: public/partials/wishlist-for-woo-shortcode-view.php:287
+#: public/partials/wishlist-for-woo-shortcode-view.php:289
 msgid "Save"
 msgstr ""
 
-#: wishlist-for-woo.php:123
+#: wishlist-for-woo.php:126
 msgid "Settings"
 msgstr ""
 
-#: wishlist-for-woo.php:143
+#: wishlist-for-woo.php:146
 msgid "Demo"
 msgstr ""
 
-#: wishlist-for-woo.php:144
+#: wishlist-for-woo.php:147
 msgid "Documentation"
 msgstr ""
 
-#: wishlist-for-woo.php:145
+#: wishlist-for-woo.php:148
 msgid "Support"
 msgstr ""
 
-#: wishlist-for-woo.php:217
+#: wishlist-for-woo.php:220
 msgid "WooCommerce"
 msgstr ""
 
-#: wishlist-for-woo.php:217
+#: wishlist-for-woo.php:220
 msgid " is not activated, Please activate WooCommerce first to activate "
 msgstr ""
 
-#: wishlist-for-woo.php:217
+#: wishlist-for-woo.php:220
 msgid "."
 msgstr ""
