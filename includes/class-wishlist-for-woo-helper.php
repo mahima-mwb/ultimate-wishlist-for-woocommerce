@@ -29,33 +29,33 @@ class Wishlist_For_Woo_Helper {
 	 */
 	public static function get_settings() {
 
-        global $wpdb;
-        $get_query = $wpdb->prepare("SELECT `option_name`, `option_value`, `option_id`
+		global $wpdb;
+		$get_query = $wpdb->prepare(
+			"SELECT `option_name`, `option_value`, `option_id`
         FROM `wp_options`
-        WHERE `option_name` LIKE '%wfw-%'");
- 
-        $response = $wpdb->get_results( $get_query, ARRAY_A );
+        WHERE `option_name` LIKE '%wfw-%'"
+		);
 
-        if( ! empty( $wpdb->last_error ) || empty( $response ) ) {
+		$response = $wpdb->get_results( $get_query, ARRAY_A );
 
-            $result = array(
-                'status'    => 400, 
-                'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html( 'Settings Not Found. Please Save settings once again.', 'wishlist-for-woo' ), 
-            );
-        }
+		if ( ! empty( $wpdb->last_error ) || empty( $response ) ) {
 
-        else {
+			$result = array(
+				'status'    => 400,
+				'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html( 'Settings Not Found. Please Save settings once again.', 'wishlist-for-woo' ),
+			);
+		} else {
 
-            $formatted_result = self::format_sql_result( $response );
+			$formatted_result = self::format_sql_result( $response );
 
-            $result = array(
-                'status'    => 200, 
-                'message'    => $formatted_result, 
-            );
-        }
+			$result = array(
+				'status'    => 200,
+				'message'    => $formatted_result,
+			);
+		}
 
-        return $result;
-    }
+		return $result;
+	}
 
 	/**
 	 * Get Wishlist Strings.
@@ -63,71 +63,71 @@ class Wishlist_For_Woo_Helper {
 	 * @since    1.0.0
 	 */
 	public static function get_strings() {
-        return array(
-            'popup_title'	=>	apply_filters( 'wfw_popup_title', esc_html__( 'New Item Added in Wishlist', 'wishlist-for-woo' ) ),
-            'view_text'	=>	apply_filters( 'mwf_view_text', esc_html__( 'View Wishlist', 'wishlist-for-woo' ) ),
-            'processing_text'	=>	apply_filters( 'mwf_processing_text', esc_html__( 'Processing', 'wishlist-for-woo' ) ),
-            'add_to_cart'	=>	apply_filters( 'mwf_add_to_cart', esc_html__( 'Buy Now', 'wishlist-for-woo' ) ),
-            'login_required'	=>	apply_filters( 'mwf_login_required', esc_html__( 'Please Login to your account first.', 'wishlist-for-woo' ) ),
-            'add_to_wishlist'	=>	apply_filters( 'mwb_wfw_wishlist_accept_text', esc_html__( 'Add to Wishlist', 'wishlist-for-woo' ) ),
-            'remove_from_wishlist'	=>	apply_filters( 'mwb_wfw_wishlist_remove_text', esc_html__( 'Remove from Wishlist', 'wishlist-for-woo' ) ),
-        );
-    }
+		return array(
+			'popup_title'   => apply_filters( 'wfw_popup_title', esc_html__( 'New Item Added in Wishlist', 'wishlist-for-woo' ) ),
+			'view_text' => apply_filters( 'mwf_view_text', esc_html__( 'View Wishlist', 'wishlist-for-woo' ) ),
+			'processing_text'   => apply_filters( 'mwf_processing_text', esc_html__( 'Processing', 'wishlist-for-woo' ) ),
+			'add_to_cart'   => apply_filters( 'mwf_add_to_cart', esc_html__( 'Buy Now', 'wishlist-for-woo' ) ),
+			'login_required'    => apply_filters( 'mwf_login_required', esc_html__( 'Please Login to your account first.', 'wishlist-for-woo' ) ),
+			'add_to_wishlist'   => apply_filters( 'mwb_wfw_wishlist_accept_text', esc_html__( 'Add to Wishlist', 'wishlist-for-woo' ) ),
+			'remove_from_wishlist'  => apply_filters( 'mwb_wfw_wishlist_remove_text', esc_html__( 'Remove from Wishlist', 'wishlist-for-woo' ) ),
+		);
+	}
 
 	/**
 	 * Get options settings from db.
 	 *
-     * @param $result The resultive data.
+	 * @param $result The resultive data.
 	 * @since    1.0.0
 	 */
-    public static function format_sql_result( $result=array() ) {
+	public static function format_sql_result( $result = array() ) {
 
-        if( ! empty( $result ) && is_array( $result ) ) {
+		if ( ! empty( $result ) && is_array( $result ) ) {
 
-            $formatted_result = array();
-            foreach ( $result as $key => $option ) {
-                $formatted_result[ str_replace( '-', '_', $option[ 'option_name' ] ) ] = $option[ 'option_value' ];
-            }
+			$formatted_result = array();
+			foreach ( $result as $key => $option ) {
+				$formatted_result[ str_replace( '-', '_', $option['option_name'] ) ] = $option['option_value'];
+			}
 
-            return $formatted_result;
-        }
-    }
+			return $formatted_result;
+		}
+	}
 
 
 	/**
 	 * Get encrypt/decrypt form of strings.
 	 *
-     * @param $string The string to encryt.
-     * @param $action action to perform.
+	 * @param $string The string to encryt.
+	 * @param $action action to perform.
 	 * @since    1.0.0
 	 */
-    public static function encrypter( $string, $action = 'e' ) {
+	public static function encrypter( $string, $action = 'e' ) {
 
-        // Keys to encrypt.
-        $secret_key = 'mwb-wfw-encrypt-base';
-        $secret_iv = 'mwb-wfw-decrypt-base';
-     
-        $output = false;
-        $encrypt_method = "AES-256-CBC";
-        $key = hash( 'sha256', $secret_key );
-        $iv = substr( hash( 'sha256', $secret_iv ), 0, 16 );
+		// Keys to encrypt.
+		$secret_key = 'mwb-wfw-encrypt-base';
+		$secret_iv = 'mwb-wfw-decrypt-base';
 
-        switch ( $action ) {
-            case 'e':
-                $output = base64_encode( openssl_encrypt( $string, $encrypt_method, $key, 0, $iv ) );
-                break;
-            
-            case 'd':
-                $output = openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
-                break;                
+		$output = false;
+		$encrypt_method = 'AES-256-CBC';
+		$key = hash( 'sha256', $secret_key );
+		$iv = substr( hash( 'sha256', $secret_iv ), 0, 16 );
 
-            default:
-                $output = false;
-                break;
-        }
-     
-       return $output;
-    }
+		switch ( $action ) {
+			case 'e':
+				$output = base64_encode( openssl_encrypt( $string, $encrypt_method, $key, 0, $iv ) );
+				break;
 
-// End of class.
+			case 'd':
+				$output = openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
+				break;
+
+			default:
+				$output = false;
+				break;
+		}
+
+		return $output;
+	}
+
+	// End of class.
 }

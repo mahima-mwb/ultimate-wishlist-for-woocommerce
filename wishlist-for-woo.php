@@ -12,21 +12,20 @@
  * @package           wishlist-for-woo
  *
  * @wordpress-plugin
- * Plugin Name:       		Wishlist for Woocommerce
- * Plugin URI:        		https://wordpress.org/plugins/wishlist-for-woo/
- * Description:       		Wishes and purchases are like ZERO and ONE of the shopping journeys respectively. This plugin helps you to turn this ZERO into ONE.
- * Version:           		1.0.0
- * Requires at least:		4.4
- * Tested up to: 			5.7
- * WC requires at least:	3.0
- * WC tested up to: 		5.1.0
- * Author:            		MakeWebBetter
- * Author URI:        		https://makewebbetter.com
- * License:           		GPL-3.0
- * License URI:       		http://www.gnu.org/licenses/gpl-3.0.txt
- * Text Domain:       		wishlist-for-woo
- * Domain Path:       		/languages
- * 
+ * Plugin Name:             Wishlist for Woocommerce
+ * Plugin URI:              https://wordpress.org/plugins/wishlist-for-woo/
+ * Description:             Wishes and purchases are like ZERO and ONE of the shopping journeys respectively. This plugin helps you to turn this ZERO into ONE.
+ * Version:                 1.0.0
+ * Requires at least:       4.4
+ * Tested up to:            5.7
+ * WC requires at least:    3.0
+ * WC tested up to:         5.1.0
+ * Author:                  MakeWebBetter
+ * Author URI:              https://makewebbetter.com
+ * License:                 GPL-3.0
+ * License URI:             http://www.gnu.org/licenses/gpl-3.0.txt
+ * Text Domain:             wishlist-for-woo
+ * Domain Path:             /languages
  */
 
 // If this file is called directly, abort.
@@ -124,7 +123,7 @@ if ( true === $mwb_wfw_plugin_activation['status'] ) {
 	function mwb_wfw_plugin_action_links( $links ) {
 
 		$plugin_links = array(
-			'<a href="' . admin_url( 'admin.php?page=wfw-config-portal' ) .'">' . esc_html__( 'Settings', 'wishlist-for-woo' ) . '</a>',
+			'<a href="' . admin_url( 'admin.php?page=wfw-config-portal' ) . '">' . esc_html__( 'Settings', 'wishlist-for-woo' ) . '</a>',
 		);
 
 		return array_merge( $plugin_links, $links );
@@ -157,13 +156,13 @@ if ( true === $mwb_wfw_plugin_activation['status'] ) {
 
 	register_activation_hook( __FILE__, 'activate_wishlist_for_woo' );
 	register_deactivation_hook( __FILE__, 'deactivate_wishlist_for_woo' );
-	
+
 	/**
 	 * The core plugin class that is used to define internationalization,
 	 * admin-specific hooks, and public-facing site hooks.
 	 */
 	require plugin_dir_path( __FILE__ ) . 'includes/class-wishlist-for-woo.php';
-	
+
 	/**
 	 * Begins execution of the plugin.
 	 *
@@ -174,10 +173,10 @@ if ( true === $mwb_wfw_plugin_activation['status'] ) {
 	 * @since    1.0.0
 	 */
 	function run_wishlist_for_woo() {
-	
+
 		$plugin = new Wishlist_For_Woo();
 		$plugin->run();
-	
+
 	}
 	run_wishlist_for_woo();
 

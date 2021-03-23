@@ -53,8 +53,8 @@ class Wishlist_For_Woo_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of the plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -84,7 +84,6 @@ class Wishlist_For_Woo_Public {
 		 */
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-public.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'wp-jquery-ui-dialog' );
-		
 
 	}
 
@@ -107,7 +106,7 @@ class Wishlist_For_Woo_Public {
 		 * class.
 		 */
 		$settings = Wishlist_For_Woo_Helper::get_settings();
-		$settings = 200 == $settings[ 'status' ] ? $settings[ 'message' ] : $settings;
+		$settings = 200 == $settings['status'] ? $settings['message'] : $settings;
 
 		$strings = Wishlist_For_Woo_Helper::get_strings();
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-public.js', array( 'jquery' ), $this->version, false );
@@ -118,9 +117,9 @@ class Wishlist_For_Woo_Public {
 				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 				'mobile_view'   => wp_is_mobile(),
 				'auth_nonce'    => wp_create_nonce( 'mwb_wfw_nonce' ),
-				'strings'   	=> $strings ? $strings : array(),
-				'settings'    	=> $settings ? $settings : array(),
-				'user'    		=> get_current_user_id(),
+				'strings'       => $strings ? $strings : array(),
+				'settings'      => $settings ? $settings : array(),
+				'user'          => get_current_user_id(),
 				'permalink'     => ! empty( get_option( 'wfw-selected-page', '' ) ) ? get_page_link( get_option( 'wfw-selected-page', '' ) ) : false,
 			)
 		);
@@ -133,16 +132,16 @@ class Wishlist_For_Woo_Public {
 	}
 
 	/**
- 	 *  Initiate all functionalities after woocommerce is initiated.
-	 * 
+	 *  Initiate all functionalities after woocommerce is initiated.
+	 *
 	 * @throws Some_Exception_Class If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 */
 	public function wishlist_init() {
-		
+
 		// Check if plugin enabled.
 		$is_plugin_enabled = get_option( 'wfw-enable-plugin', 'yes' );
-		if( is_admin() || 'yes' !== $is_plugin_enabled ) {
+		if ( is_admin() || 'yes' !== $is_plugin_enabled ) {
 			return;
 		}
 
@@ -158,15 +157,15 @@ class Wishlist_For_Woo_Public {
 	}
 
 	/**
- 	 *  Enable a wishlist dynamic popup to manage newly added items.
-	 * 
+	 *  Enable a wishlist dynamic popup to manage newly added items.
+	 *
 	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 */
 	public function enable_wishlist_popup() {
-	
-		if( 'yes' == get_option( 'wfw-enable-popup', 'no' ) ) {
-			
+
+		if ( 'yes' == get_option( 'wfw-enable-popup', 'no' ) ) {
+
 			// Wishlist popup view html.
 			add_action( 'wp_footer', array( $this, 'render_wishlist_html' ) );
 		}
@@ -201,13 +200,13 @@ class Wishlist_For_Woo_Public {
 
 
 	/**
- 	 *  Adds a wishlist dynamic popup to manage newly added items.
-	 * 
+	 *  Adds a wishlist dynamic popup to manage newly added items.
+	 *
 	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 */
 	public function render_wishlist_html() {
-		
+
 		wc_get_template(
 			'partials/wishlist-for-woo-wishlist-processor.php',
 			array(),
@@ -217,17 +216,17 @@ class Wishlist_For_Woo_Public {
 	}
 
 	/**
- 	 *  Enable wishlist at Public View.
-	 * 
+	 *  Enable wishlist at Public View.
+	 *
 	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 */
 	public function enable_wishlist_on_site() {
-		
+
 		// Check if wishlist needs to be added on current view.
 		$is_wishlist_enabled = get_option( 'wfw-view-type', 'icon' );
 
-		if( empty( $is_wishlist_enabled ) ) {
+		if ( empty( $is_wishlist_enabled ) ) {
 			return;
 		}
 
@@ -235,7 +234,7 @@ class Wishlist_For_Woo_Public {
 		$single_hook = array();
 
 		switch ( $is_wishlist_enabled ) {
-			case 'icon' :
+			case 'icon':
 				$shop_hook = Wishlist_For_Woo_Renderer::get_icons_hooks( 'loop' );
 				$shop_func = 'return_wishlist_icon';
 
@@ -243,7 +242,7 @@ class Wishlist_For_Woo_Public {
 				$single_func = 'return_wishlist_icon';
 				break;
 
-			case 'button' :
+			case 'button':
 				$position = get_option( 'wfw-loop-button-view', 'before_product_name' );
 				$shop_hook = Wishlist_For_Woo_Renderer::get_button_hooks( 'loop', $position );
 				$shop_func = 'return_wishlist_button';
@@ -254,23 +253,23 @@ class Wishlist_For_Woo_Public {
 				break;
 		}
 
-		if( ! empty( $shop_hook ) && is_array( $shop_hook ) ) {
-			add_action( $shop_hook[ 'hook' ] , array( $this->render, $shop_func ),  $shop_hook[ 'priority' ] );
+		if ( ! empty( $shop_hook ) && is_array( $shop_hook ) ) {
+			add_action( $shop_hook['hook'], array( $this->render, $shop_func ), $shop_hook['priority'] );
 		}
 
-		if( ! empty( $single_hook ) && is_array( $single_hook ) ) {
-			add_action( $single_hook[ 'hook' ] , array( $this->render, $single_func ),  $single_hook[ 'priority' ] );
+		if ( ! empty( $single_hook ) && is_array( $single_hook ) ) {
+			add_action( $single_hook['hook'], array( $this->render, $single_func ), $single_hook['priority'] );
 		}
 	}
 
 	/**
- 	 *  Enable wishlist shortcodes.
-	 * 
+	 *  Enable wishlist shortcodes.
+	 *
 	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 */
 	public function init_shortcodes() {
-		
+
 		// Init shortcode class.
 		$shortcode = new Wishlist_For_Woo_Shortcode_Manager( $this->public_path );
 
@@ -279,92 +278,89 @@ class Wishlist_For_Woo_Public {
 	}
 
 	/**
- 	 *  Ajax Callback :: Adds a product to wishlist.
-	 * 
+	 *  Ajax Callback :: Adds a product to wishlist.
+	 *
 	 * @throws Exception If something interesting cannot happen.
 	 * @author MakeWebBetter <plugins@makewebbetter.com>
 	 */
 	public function UpdateWishlist() {
-		
+
 		// Nonce verification.
-		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );	
-		$formdata = ! empty( $_POST ) ?  map_deep( wp_unslash( $_POST ), 'sanitize_text_field' ) : array();
+		check_ajax_referer( 'mwb_wfw_nonce', 'nonce' );
+		$formdata = ! empty( $_POST ) ? map_deep( wp_unslash( $_POST ), 'sanitize_text_field' ) : array();
 
 		unset( $formdata['nonce'] );
 
 		$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance();
-		
-		if( 'add' == $formdata[ 'task' ] ) {
 
-			$pid = ! empty( $formdata[ 'productId' ] ) ? $formdata[ 'productId' ] : '';
-			if( empty( $pid ) ) {
+		if ( 'add' == $formdata['task'] ) {
+
+			$pid = ! empty( $formdata['productId'] ) ? $formdata['productId'] : '';
+			if ( empty( $pid ) ) {
 				$result = array(
-					'status'	=>	404,
-					'message'	=>	esc_html__( 'Invalid Request', 'wishlist_for_woo' )
+					'status'    => 404,
+					'message'   => esc_html__( 'Invalid Request', 'wishlist_for_woo' ),
 				);
-				return json_encode( $result );	
+				return json_encode( $result );
 			}
 
 			$user = wp_get_current_user();
 			$wishlist_query = $wishlist_manager->retrieve( 'owner', $user->user_email, array( 'properties' => array( 'default' => true ) ) );
 
 			// Wishlist Exists, Add product.
-			if( 200 == $wishlist_query[ 'status' ] && count( $wishlist_query[ 'message' ] ) ) {
+			if ( 200 == $wishlist_query['status'] && count( $wishlist_query['message'] ) ) {
 
-				$wishlist = reset( $wishlist_query[ 'message' ] );
+				$wishlist = reset( $wishlist_query['message'] );
 				$wid = ! empty( $wishlist['id'] ) ? $wishlist['id'] : '';
 
-				if( empty( $wid ) ) {
+				if ( empty( $wid ) ) {
 					$result = array(
-						'status'	=>	404,
-						'message'	=>	esc_html__( 'Invalid Request', 'wishlist_for_woo' )
+						'status'    => 404,
+						'message'   => esc_html__( 'Invalid Request', 'wishlist_for_woo' ),
 					);
 					return json_encode( $result );
-				}
-				else {
-					
+				} else {
+
 					$wishlist_manager->id = $wid;
 					$products = $wishlist_manager->get_prop( 'products' );
 					$products = $products ? $products : array();
 					$products = ! is_array( $products ) ? json_decode( json_encode( $products ), true ) : $products;
-			
+
 					array_push( $products, $pid );
 
 					// Update Products again.
-					$args[ 'products' ] = $products;
+					$args['products'] = $products;
 
 					$result = $wishlist_manager->update( $args );
 				}
 			}
-	
+
 			// Wishlist does not Exists, Create new and add product.
 			else {
-	
+
 				$args = array(
-					'title'			=> 'Wishlist #1',
-					'products'		=> array( $formdata[ 'productId' ] ),
-					'createdate'	=> date( "Y-m-d h:i:s" ),
-					'modifieddate' 	=> date( "Y-m-d h:i:s" ),
-					'owner' 		=> $user->user_email,
-					'status' 		=> 'private',
+					'title'         => 'Wishlist #1',
+					'products'      => array( $formdata['productId'] ),
+					'createdate'    => date( 'Y-m-d h:i:s' ),
+					'modifieddate'  => date( 'Y-m-d h:i:s' ),
+					'owner'         => $user->user_email,
+					'status'        => 'private',
 					'collaborators' => array(),
-					'properties' 	=> array( 'default' => true ),
+					'properties'    => array( 'default' => true ),
 				);
-	
+
 				$result = $wishlist_manager->create( $args );
 			}
+		} elseif ( 'remove' == $formdata['task'] ) {
 
-		}
-		elseif ( 'remove'  == $formdata[ 'task' ] ) {
+			$wid = ! empty( $formdata['wishlistId'] ) ? $formdata['wishlistId'] : '';
+			$pid = ! empty( $formdata['productId'] ) ? $formdata['productId'] : '';
 
-			$wid = ! empty( $formdata[ 'wishlistId' ] ) ? $formdata[ 'wishlistId' ] : '';
-			$pid = ! empty( $formdata[ 'productId' ] ) ? $formdata[ 'productId' ] : '';
-
-			if( empty( $wid ) || ! is_numeric( $wid ) ) {
+			if ( empty( $wid ) || ! is_numeric( $wid ) ) {
 
 				return array(
-					'status'	=>	404,
-					'message'	=>	esc_html__( 'Invalid Request', 'wishlist_for_woo' )
+					'status'    => 404,
+					'message'   => esc_html__( 'Invalid Request', 'wishlist_for_woo' ),
 				);
 			}
 
@@ -374,29 +370,28 @@ class Wishlist_For_Woo_Public {
 			$products = $wishlist_manager->get_prop( 'products' );
 			$products = ! empty( $products ) ? $products : array();
 			$products = ! is_array( $products ) ? json_decode( json_encode( $products ), true ) : $products;
-	
-			if( ! empty( $products ) ) {
+
+			if ( ! empty( $products ) ) {
 
 				$found = array_search( $pid, $products );
 
-				if( false !== $found ) {
+				if ( false !== $found ) {
 					unset( $products[ $found ] );
 				}
-				
+
 				// Update Products again.
-				$args[ 'products' ] = $products;
+				$args['products'] = $products;
 				$result = $wishlist_manager->update( $args );
-			}
-			else {
+			} else {
 				$result = array(
-					'status'	=>	403,
-					'message'	=>	esc_html__( 'Unable to access data.', 'wishlist_for_woo' ),
+					'status'    => 403,
+					'message'   => esc_html__( 'Unable to access data.', 'wishlist_for_woo' ),
 				);
 			}
 		}
 
 		// Add a flag that this Wishlist Id was updated.
-		$result[ 'id' ] = $wishlist_manager->id;
+		$result['id'] = $wishlist_manager->id;
 		echo json_encode( $result );
 		wp_die();
 	}
@@ -412,20 +407,20 @@ class Wishlist_For_Woo_Public {
 
 		$result = array();
 
-		$formdata = ! empty( $_POST['formData'] ) ?  map_deep( wp_unslash( $_POST['formData'] ), 'sanitize_text_field' ) : false;
+		$formdata = ! empty( $_POST['formData'] ) ? map_deep( wp_unslash( $_POST['formData'] ), 'sanitize_text_field' ) : false;
 
 		$formdata = $this->parse_serialised_data( $formdata );
 
 		$wishlist_manager = Wishlist_For_Woo_Crud_Manager::get_instance();
-		$wishlist_manager->id = $formdata[ 'wid' ] ? $formdata[ 'wid' ] : false;
+		$wishlist_manager->id = $formdata['wid'] ? $formdata['wid'] : false;
 		$properties = $wishlist_manager->get_prop( 'properties' );
 		$properties = ! is_array( $properties ) ? json_decode( json_encode( $properties ), true ) : $properties;
-		$properties[  'comments' ] = $properties[  'comments' ] ? $properties[  'comments' ] : array();
+		$properties['comments'] = $properties['comments'] ? $properties['comments'] : array();
 
-		$properties[  'comments' ][ $formdata[ 'product' ] ] = $formdata;
+		$properties['comments'][ $formdata['product'] ] = $formdata;
 
-		unset( $properties[  'comments' ][ $formdata[ 'wid' ] ][ 'wid' ] );
-		unset( $properties[  'comments' ][ $formdata[ 'wid' ] ][ 'product' ] );
+		unset( $properties['comments'][ $formdata['wid'] ]['wid'] );
+		unset( $properties['comments'][ $formdata['wid'] ]['product'] );
 
 		$args['properties'] = $properties;
 
@@ -505,7 +500,7 @@ class Wishlist_For_Woo_Public {
 				$subject,
 				$message,
 				array(
-					'From: ' . get_bloginfo( 'name' ) . ' <' . get_bloginfo( 'admin_email' ) . '>'
+					'From: ' . get_bloginfo( 'name' ) . ' <' . get_bloginfo( 'admin_email' ) . '>',
 				)
 			);
 
@@ -888,18 +883,18 @@ class Wishlist_For_Woo_Public {
 
 	/**
 	 * Parse Serialised data.
-	 * 
-	 * @param $array 	dataset to serialize.
+	 *
+	 * @param $array    dataset to serialize.
 	 */
-	public function parse_serialised_data( $array=array() ) {
+	public function parse_serialised_data( $array = array() ) {
 		$result = array();
-		if( ! empty( $array ) && is_array( $array ) ) {
+		if ( ! empty( $array ) && is_array( $array ) ) {
 			foreach ( $array as $key => $value ) {
-				$result[ $value[ 'name' ] ] = $value[ 'value' ];
+				$result[ $value['name'] ] = $value['value'];
 			}
 		}
 
 		return $result;
 	}
-// End of class.
+	// End of class.
 }

@@ -53,7 +53,7 @@ class Wishlist_For_Woo_Crud_Manager {
 	 * @since   1.0.0
 	 * @var Wishlist_For_Woo_Crud_Manager   The array type entries of the Wishlist Object.
 	 */
-	private $array_entries =  array( 'products', 'collaborators', 'properties'  );
+	private $array_entries = array( 'products', 'collaborators', 'properties' );
 
 	/**
 	 * Main Wishlist_For_Woo_Crud_Manager Instance.
@@ -61,11 +61,11 @@ class Wishlist_For_Woo_Crud_Manager {
 	 * Ensures only one instance of Wishlist_For_Woo_Crud_Manager is loaded or can be loaded.
 	 *
 	 * @since 1.0.0
-     * @param $id The id of wishlist.
+	 * @param $id The id of wishlist.
 	 * @static
 	 * @return Wishlist_For_Woo_Crud_Manager - Main instance.
 	 */
-	public static function get_instance( $id=null ) {
+	public static function get_instance( $id = null ) {
 
 		if ( is_null( self::$_instance ) ) {
 
@@ -75,332 +75,317 @@ class Wishlist_For_Woo_Crud_Manager {
 		return self::$_instance;
 	}
 
- 	/**
+	/**
 	 * The constructor of the object.
 	 *
 	 * @since 1.0.0
 	 * @static
-     * @param $id The id of wishlist.
+	 * @param $id The id of wishlist.
 	 * @return Wishlist_For_Woo_Crud_Manager - Retrieved instance.
 	 */
-	public function __construct( $id=null ) {
+	public function __construct( $id = null ) {
 
-        // Assign id property.
-        $this->id = $id;
-        global $wpdb;
-        $this->table_name = $wpdb->prefix.  'wishlist_datastore';
+		// Assign id property.
+		$this->id = $id;
+		global $wpdb;
+		$this->table_name = $wpdb->prefix . 'wishlist_datastore';
 	}
 
- 	/**
+	/**
 	 * Create new wishlist.
 	 *
 	 * @since 1.0.0
-     * @param $atts The attributes array of wishlist.
+	 * @param $atts The attributes array of wishlist.
 	 * @return array $result the result of insertion query.
 	 */
-    public function create( $atts=array() ) {
+	public function create( $atts = array() ) {
 
-        $args = self::parse_query_args( $atts );
+		$args = self::parse_query_args( $atts );
 
-        if( empty( $args ) ) {
-            return array(
-                'status'    => 404, 
-                'message'    => esc_html__( 'Invalid Arguments', 'wishlist-for-woo' ), 
-            );
-        }
+		if ( empty( $args ) ) {
+			return array(
+				'status'    => 404,
+				'message'    => esc_html__( 'Invalid Arguments', 'wishlist-for-woo' ),
+			);
+		}
 
-        global $wpdb;
-        $results = $wpdb->insert( $this->table_name, $args );
+		global $wpdb;
+		$results = $wpdb->insert( $this->table_name, $args );
 
-        if( ! empty( $wpdb->last_error ) ) {
+		if ( ! empty( $wpdb->last_error ) ) {
 
-            $result = array(
-                'status'    => 400, 
-                'message'    => $wpdb->last_error, 
-            );
-        }
+			$result = array(
+				'status'    => 400,
+				'message'    => $wpdb->last_error,
+			);
+		} else {
 
-        else {
+			// Assign id property.
+			$this->id = $wpdb->insert_id;
+			$result = array(
+				'status'    => 200,
+				'id'    => $wpdb->insert_id,
+			);
+		}
 
-            // Assign id property.
-            $this->id = $wpdb->insert_id;
-            $result = array(
-                'status'    => 200, 
-                'id'    => $wpdb->insert_id, 
-            );    
-        }
-
-        return $result;
-    }
+		return $result;
+	}
 
 
- 	/**
+	/**
 	 * Delete new wishlist.
 	 *
 	 * @since 1.0.0
 	 * @return array $result the result of deletion query.
 	 */
-    public function delete() {
+	public function delete() {
 
-        if( empty( $this->id ) || ! is_numeric( $this->id ) ) {
+		if ( empty( $this->id ) || ! is_numeric( $this->id ) ) {
 
-            $result = array(
-                'status'    => 404, 
-                'message'    => esc_html__( 'Invalid ID', 'wishlist-for-woo' ), 
-            );
+			$result = array(
+				'status'    => 404,
+				'message'    => esc_html__( 'Invalid ID', 'wishlist-for-woo' ),
+			);
 
-            return $result;
-        }
+			return $result;
+		}
 
-        global $wpdb;
-        $results = $wpdb->delete( $this->table_name, array( 'ID' => $this->id ) );
+		global $wpdb;
+		$results = $wpdb->delete( $this->table_name, array( 'ID' => $this->id ) );
 
-        if( ! empty( $wpdb->last_error ) ) {
+		if ( ! empty( $wpdb->last_error ) ) {
 
-            $result = array(
-                'status'    => 400, 
-                'message'    => $wpdb->last_error, 
-            );
-        }
+			$result = array(
+				'status'    => 400,
+				'message'    => $wpdb->last_error,
+			);
+		} else {
 
-        else {
+			$result = array(
+				'status'    => 200,
+				'message'    => $results,
+			);
+		}
 
-            $result = array(
-                'status'    => 200, 
-                'message'    => $results,
-            );    
-        }
-
-        return $result;
-    }
+		return $result;
+	}
 
 
- 	/**
+	/**
 	 * Create new wishlist.
 	 *
 	 * @since 1.0.0
-     * @param $atts The attributes array of wishlist.
+	 * @param $atts The attributes array of wishlist.
 	 * @return array $result the result of insertion query.
 	 */
-    public function update( $atts=array() ) {
+	public function update( $atts = array() ) {
 
-        if( empty( $this->id ) || ! is_numeric( $this->id ) ) {
+		if ( empty( $this->id ) || ! is_numeric( $this->id ) ) {
 
-            $result = array(
-                'status'    => 404, 
-                'message'    => esc_html__( 'Invalid ID', 'wishlist-for-woo' ), 
-            );
+			$result = array(
+				'status'    => 404,
+				'message'    => esc_html__( 'Invalid ID', 'wishlist-for-woo' ),
+			);
 
-            return $result;
-        }
+			return $result;
+		}
 
-        $is_row_exists = $this->retrieve();
-        
-        if ( 200 != $is_row_exists['status'] ) {
-            
-            return $is_row_exists;
-        }
+		$is_row_exists = $this->retrieve();
 
-        // Never update create date.
-        unset( $atts[ 'createdate' ] );
+		if ( 200 != $is_row_exists['status'] ) {
 
-        // Add last modified date.
-        $atts[ 'modifieddate' ] = gmdate( "Y-m-d h:i:s" );
+			return $is_row_exists;
+		}
 
-        $args = self::parse_query_args( $atts );
+		// Never update create date.
+		unset( $atts['createdate'] );
 
-        global $wpdb;
+		// Add last modified date.
+		$atts['modifieddate'] = gmdate( 'Y-m-d h:i:s' );
 
-        $response = $wpdb->update( 
-            $this->table_name, 
-            $args, 
-            array( 'ID' => $this->id )
-        );
-        
+		$args = self::parse_query_args( $atts );
 
-        // (int|false) The number of rows updated, or false on error.
-        if( ! empty( $wpdb->last_error ) || empty( $response ) ) {
+		global $wpdb;
 
-            $result = array(
-                'status'    => 400, 
-                'message'    => $wpdb->last_error, 
-            );
-        }
+		$response = $wpdb->update(
+			$this->table_name,
+			$args,
+			array( 'ID' => $this->id )
+		);
 
-        else {
+		// (int|false) The number of rows updated, or false on error.
+		if ( ! empty( $wpdb->last_error ) || empty( $response ) ) {
 
-            $result = array(
-                'status'    => 200, 
-                'message'    => $response, 
-            );    
-        }
+			$result = array(
+				'status'    => 400,
+				'message'    => $wpdb->last_error,
+			);
+		} else {
 
-        return $result;
-    }
+			$result = array(
+				'status'    => 200,
+				'message'    => $response,
+			);
+		}
 
-    /**
+		return $result;
+	}
+
+	/**
 	 * Parse data in required format.
 	 *
-     * @param $key string     The key for query.
-     * @param $value string   The value for query.
-     * @param $args array     The args for query optional.
+	 * @param $key string     The key for query.
+	 * @param $value string   The value for query.
+	 * @param $args array     The args for query optional.
 	 * @since 1.0.0
 	 * @return array $result the parsed data from query.
 	 */
-    public function retrieve( $key='', $value='', $additional = array() ) {
+	public function retrieve( $key = '', $value = '', $additional = array() ) {
 
-        global $wpdb;
+		global $wpdb;
 
-        // If required wishlist must have this parameters as properties.
-        if ( ! empty( $key ) && ! empty( $value ) ) {
+		// If required wishlist must have this parameters as properties.
+		if ( ! empty( $key ) && ! empty( $value ) ) {
 
-            $operator = in_array( $key, $this->array_entries ) ? 'REGEXP' : '=';
-            $get_query = $wpdb->prepare("SELECT id FROM `$this->table_name` WHERE `$key` $operator '$value'");
-            if (!empty($additional) && is_array($additional)) {
+			$operator = in_array( $key, $this->array_entries ) ? 'REGEXP' : '=';
+			$get_query = $wpdb->prepare( "SELECT id FROM `$this->table_name` WHERE `$key` $operator '$value'" );
+			if ( ! empty( $additional ) && is_array( $additional ) ) {
 
-                foreach ( $additional as $key => $value ) {
-                    $operator = in_array( $key, $this->array_entries ) ? 'REGEXP' : '=';
+				foreach ( $additional as $key => $value ) {
+					$operator = in_array( $key, $this->array_entries ) ? 'REGEXP' : '=';
 
-                    $value = 'properties' == $key ? json_encode( $value ) : $value;
-                    $value = str_replace( array( '{', '}' ), '', $value );
-                    $get_query .= " AND `$key` $operator '$value' ";
-                }
-            }
-        }
+					$value = 'properties' == $key ? json_encode( $value ) : $value;
+					$value = str_replace( array( '{', '}' ), '', $value );
+					$get_query .= " AND `$key` $operator '$value' ";
+				}
+			}
+		} else {
 
-        else {
+			if ( empty( $this->id ) ) {
+				return array(
+					'status'    => 404,
+					'message'    => esc_html__( 'Id Not Found', 'wishlist-for-woo' ),
+				);
+			}
 
-            if (empty($this->id)) {
-                return array(
-                    'status'    => 404, 
-                    'message'    => esc_html__( 'Id Not Found', 'wishlist-for-woo' ), 
-                );
-            }
+			// Get all current users wishlists.
+			$get_query = $wpdb->prepare( "SELECT * FROM `$this->table_name` WHERE `id` = '$this->id'" );
+		}
 
-            // Get all current users wishlists.
-            $get_query = $wpdb->prepare("SELECT * FROM `$this->table_name` WHERE `id` = '$this->id'");
-        }
+		if ( ! empty( $get_query ) ) {
+			$response = $wpdb->get_results( $get_query, ARRAY_A );
 
-        if (!empty($get_query)) {
-            $response = $wpdb->get_results( $get_query, ARRAY_A );
+			if ( ! empty( $wpdb->last_error ) || empty( $response ) ) {
+				$result = array(
+					'status'    => 400,
+					'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html__( 'Row Not Found', 'wishlist-for-woo' ),
+				);
+			} else {
+				$result = array(
+					'status'    => 200,
+					'message'    => $response,
+				);
+			}
 
-            if( ! empty( $wpdb->last_error ) || empty( $response ) ) {
-                $result = array(
-                    'status'    => 400, 
-                    'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html__( 'Row Not Found', 'wishlist-for-woo' ), 
-                );
-            }
-    
-            else {
-                $result = array(
-                    'status'    => 200, 
-                    'message'    => $response, 
-                );
-            }
+			return $result;
+		}
 
-            return $result;
-        }
+		return false;
+	}
 
-        return false;
-    }
-
-    /**
+	/**
 	 * Parse data in required format.
 	 *
-     * @param $args array  The arguments.
+	 * @param $args array  The arguments.
 	 * @since 1.0.0
 	 * @return array $result the parsed data form for query.
 	 */
-    private function parse_query_args( $args=array() ) {
+	private function parse_query_args( $args = array() ) {
 
-        if ( ! empty( $args ) && is_array( $args ) ) {
-            
-            $result = array();
-            foreach ( $args as $key => $arg ) {
-                $result[ $key ] = ! empty( $arg ) && is_array( $arg ) ? json_encode( array_unique( $arg ) ) : $arg;
-            }
+		if ( ! empty( $args ) && is_array( $args ) ) {
 
-            return $result;
-        }
+			$result = array();
+			foreach ( $args as $key => $arg ) {
+				$result[ $key ] = ! empty( $arg ) && is_array( $arg ) ? json_encode( array_unique( $arg ) ) : $arg;
+			}
 
-        return false;
-    }
+			return $result;
+		}
 
-    /**
+		return false;
+	}
+
+	/**
 	 * Get Selected data from Sql Query Obj.
 	 *
-     * @param $args     array   SQL result.
-     * @param $fetch    string  The key to fetch.
+	 * @param $args     array   SQL result.
+	 * @param $fetch    string  The key to fetch.
 	 * @since 1.0.0
 	 * @return array $result the parsed data form for query.
 	 */
-    public function get_prop( $fetch = '' ) {
+	public function get_prop( $fetch = '' ) {
 
-        // Get Wishlist object first.
-        $query_result = $this->retrieve();
-        if( 200 !== $query_result[ 'status' ] ) {
-            return $query_result;
-        }
-        else {
-            $obj = ! empty( $query_result[ 'message' ] ) ? $query_result[ 'message' ] : array();
-        }
+		// Get Wishlist object first.
+		$query_result = $this->retrieve();
+		if ( 200 !== $query_result['status'] ) {
+			return $query_result;
+		} else {
+			$obj = ! empty( $query_result['message'] ) ? $query_result['message'] : array();
+		}
 
-        if ( ! empty( $obj ) && is_array( $obj ) ) {
-            
-            foreach ( $obj as $key => $wishlist ) {
+		if ( ! empty( $obj ) && is_array( $obj ) ) {
 
-                if( empty( $fetch ) ) {
-                    return $wishlist;
-                }
-                else {
+			foreach ( $obj as $key => $wishlist ) {
 
-                    $value = $wishlist[ $fetch ] ? $wishlist[ $fetch ] : false;
-                    $result = array();
-                    if( ! empty( $value ) ) {
-                        $result = in_array( $fetch, $this->array_entries ) ? json_decode( $value ) : $value;
-                    }
-                    return $result;
-                }
-            }
-        }
-        return false;
-    }
+				if ( empty( $fetch ) ) {
+					return $wishlist;
+				} else {
 
-    /**
+					$value = $wishlist[ $fetch ] ? $wishlist[ $fetch ] : false;
+					$result = array();
+					if ( ! empty( $value ) ) {
+						$result = in_array( $fetch, $this->array_entries ) ? json_decode( $value ) : $value;
+					}
+					return $result;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Get all the wishlist for user.
 	 *
 	 * @since 1.0.0
 	 * @return array $result the parsed data form for query.
 	 */
-    public function get_all() {
+	public function get_all() {
 
-        if (! is_admin()) {
-            return false;
-        }
+		if ( ! is_admin() ) {
+			return false;
+		}
 
-        // Get all current users wishlists.
-        global $wpdb;
-        $get_query = $wpdb->prepare("SELECT * FROM `$this->table_name`");
-        $response = $wpdb->get_results($get_query, ARRAY_A);
+		// Get all current users wishlists.
+		global $wpdb;
+		$get_query = $wpdb->prepare( "SELECT * FROM `$this->table_name`" );
+		$response = $wpdb->get_results( $get_query, ARRAY_A );
 
-        if (!empty($wpdb->last_error)) {
+		if ( ! empty( $wpdb->last_error ) ) {
 
-            $result = array(
-                'status'    => 400, 
-                'message'    => $wpdb->last_error, 
-            );
-        }
+			$result = array(
+				'status'    => 400,
+				'message'    => $wpdb->last_error,
+			);
+		} else {
 
-        else {
+			$result = array(
+				'status'    => 200,
+				'response'    => apply_filters( 'mwb_wfw_all_wishlists', $response ),
+			);
+		}
 
-            $result = array(
-                'status'    => 200, 
-                'response'    => apply_filters( 'mwb_wfw_all_wishlists', $response ), 
-            ); 
-        }
+		return $result;
+	}
 
-        return $result;
-    }
-
-// End of Class.
+	// End of Class.
 }

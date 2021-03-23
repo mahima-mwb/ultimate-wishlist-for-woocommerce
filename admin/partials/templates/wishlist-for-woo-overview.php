@@ -15,7 +15,7 @@
 <ul class="wfw-overview_wrapper">
 	<li class="wfw-overview_banner">
 		<div class="wfw-overview_banner-image">
-			<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/bannerwish.bmp' ) ?>" alt="wfw-banner">
+			<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/bannerwish.bmp' ); ?>" alt="wfw-banner">
 		</div>
 	</li>
 	<li class="wfw-overview_content">
@@ -43,7 +43,7 @@
 		<h3>Free Features-</h3>
 			<ul>
 				<li class="wfw-overview_card-item">
-					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/Icons_Buyers.jpg' ) ?>" alt="wfw-icon">
+					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/Icons_Buyers.jpg' ); ?>" alt="wfw-icon">
 					<h4>
 						Buyers Can Create Wishlist
 					</h4>
@@ -52,7 +52,7 @@
 					</p>
 				</li>
 				<li class="wfw-overview_card-item">
-					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/Icons_Shareable.jpg' ) ?>" alt="wfw-icon">
+					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/Icons_Shareable.jpg' ); ?>" alt="wfw-icon">
 					<h4>
 						Shareable Wishlist
 					</h4>
@@ -61,7 +61,7 @@
 					</p>
 				</li>
 				<li class="wfw-overview_card-item">
-					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/Icons_Set.jpg' ) ?>" alt="wfw-icon">
+					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/Icons_Set.jpg' ); ?>" alt="wfw-icon">
 					<h4>
 						Set Wishlist Popup
 					</h4>
@@ -72,7 +72,7 @@
 			</ul>
 			<ul>
 				<li class="wfw-overview_card-item">
-					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/Icons_Customize.jpg' ) ?>" alt="wfw-icon">
+					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/Icons_Customize.jpg' ); ?>" alt="wfw-icon">
 					<h4>
 					Customize Wishlist Button/Icon</h4>
 					<p>
@@ -80,7 +80,7 @@
 					</p>
 				</li>
 				<li class="wfw-overview_card-item">
-					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/Icons_Purchase.jpg' ) ?>" alt="wfw-icon">
+					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/Icons_Purchase.jpg' ); ?>" alt="wfw-icon">
 					<h4>
 						Purchase Directly from Wishlist
 					</h4>
@@ -96,9 +96,8 @@
 			Receive dedicated 24*7 Phone, Email & Skype support. Our Support is ready to assist you regarding any query, issue, or feature request and if that doesn't help our Technical team will connect with you personally and have your query resolved.
 		</p>
 		<div class="wfw-overview_support-icon">
-			<a href="tel:+1(888)575-2397"><img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/phone-call.png' ) ?>" alt="phone"></a>
-			<a href="mailto:ticket@makewebbetter.com"><img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/mail.png' ) ?>" alt="mail"></a>
-			<a href="https://join.skype.com/invite/IKVeNkLHebpC"><img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/skype_logo.png' ) ?>" alt="wfw-skype"></a>
+			<a href="tel:+1(888)575-2397"><img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/phone-call.png' ); ?>" alt="phone"></a>
+			<a href="mailto:ticket@makewebbetter.com"><img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/mail.png' ); ?>" alt="mail"></a>
 		</div>
 	</li>
 </ul>

@@ -7,7 +7,6 @@
  *
  * @package    wishlist-for-woo
  * @subpackage Wishlist_For_Woo/includes
- * 
  */
 
 /**
@@ -35,7 +34,7 @@ class Wishlist_For_Woo_Shortcode_Manager {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $base_path       The name of the plugin.
+	 * @param      string $base_path       The name of the plugin.
 	 */
 	public function __construct( $base_path ) {
 		self::$base_path = $base_path;
@@ -53,35 +52,32 @@ class Wishlist_For_Woo_Shortcode_Manager {
 		$user = wp_get_current_user();
 
 		// Check for Wishlists by url id.
-		$current_ref = ! empty( $_GET[ 'wl-ref' ] ) ? sanitize_text_field( wp_unslash($_GET[ 'wl-ref' ]) ) : false;
+		$current_ref = ! empty( $_GET['wl-ref'] ) ? sanitize_text_field( wp_unslash( $_GET['wl-ref'] ) ) : false;
 		$current_id = ! empty( $current_ref ) ? Wishlist_For_Woo_Helper::encrypter( $current_ref, 'd' ) : false;
-		if( ! empty( $current_id ) ) {
+		if ( ! empty( $current_id ) ) {
 
-			$wishlist_manager->id = $current_id;	
+			$wishlist_manager->id = $current_id;
 			$owner = $wishlist_manager->get_prop( 'owner' );
 			$collaborators = $wishlist_manager->get_prop( 'collaborators' );
 
-			if( $owner == $user->user_email || ( is_array( $collaborators ) && in_array( $user->user_email, $collaborators ) ) ) {
+			if ( $owner == $user->user_email || ( is_array( $collaborators ) && in_array( $user->user_email, $collaborators ) ) ) {
 				$access = 'edit';
-			}
-			else {
+			} else {
 				$access = 'view';
 			}
 		}
 
-		if( ! empty( $access ) && 'view' == $access ) {
+		if ( ! empty( $access ) && 'view' == $access ) {
 			$get_wishlists = $wishlist_manager->retrieve();
-			if( 200 == $get_wishlists['status'] ) {
+			if ( 200 == $get_wishlists['status'] ) {
 				$owner_lists = ! empty( $get_wishlists['message'] ) ? $get_wishlists['message'] : array();
 			}
-		}
-
-		else {
+		} else {
 
 			// Check for Wishlists by owner email.
-			if( ! empty( $user->user_email ) && is_email( $user->user_email ) ) {
+			if ( ! empty( $user->user_email ) && is_email( $user->user_email ) ) {
 				$get_wishlists = $wishlist_manager->retrieve( 'owner', $user->user_email );
-				if( 200 == $get_wishlists['status'] ) {
+				if ( 200 == $get_wishlists['status'] ) {
 					$access = 'edit';
 					$owner_lists = ! empty( $get_wishlists['message'] ) ? $get_wishlists['message'] : array();
 				}
@@ -92,20 +88,20 @@ class Wishlist_For_Woo_Shortcode_Manager {
 		wc_get_template(
 			'partials/wishlist-for-woo-shortcode-view.php',
 			array(
-				'owner_lists'		=>	! empty( $owner_lists ) ? $owner_lists : array(),
-				'access'			=>	! empty( $access ) ? $access : false,
-				'wishlist_manager'	=>	$wishlist_manager,
-				'wid_to_show'		=>	$current_id
+				'owner_lists'       => ! empty( $owner_lists ) ? $owner_lists : array(),
+				'access'            => ! empty( $access ) ? $access : false,
+				'wishlist_manager'  => $wishlist_manager,
+				'wid_to_show'       => $current_id,
 			),
 			'',
 			self::$base_path
 		);
 
 		$output = ob_get_contents();
-		ob_end_clean();	
+		ob_end_clean();
 
 		return $output;
 	}
 
-// End of class.
+	// End of class.
 }

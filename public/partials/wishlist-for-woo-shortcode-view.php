@@ -27,7 +27,7 @@
 		<ul class="wfw_content-left">
 			<?php
 			// Wishlist Exists conditions start.
-			if ( ! empty( $owner_lists ) && is_array( $owner_lists ) ) : 
+			if ( ! empty( $owner_lists ) && is_array( $owner_lists ) ) :
 
 				$default = '';
 				foreach ( $owner_lists as $key => $obj ) :
@@ -57,13 +57,13 @@
 
 		<?php
 			// Wishlist to show content.
-			$default 			  = ! empty( $default ) ? $default : false;
+			$default              = ! empty( $default ) ? $default : false;
 			$wid_to_show          = ! empty( $wid_to_show ) ? $wid_to_show : $default;
 			$wishlist_manager->id = $wid_to_show;
 			$search               = $wishlist_manager->retrieve();
 
 			// Wishlist Not Found.
-			if ( 200 != $search['status'] ) :
+		if ( 200 != $search['status'] ) :
 			?>
 
 			<div class="error-404 not-found">
@@ -77,7 +77,8 @@
 				</div><!-- .page-content -->
 			</div><!-- .error-404 -->
 
-			<?php else :
+			<?php
+			else :
 
 				$wishlist_title  = $wishlist_manager->get_prop( 'title' );
 				$wishlist_status = $wishlist_manager->get_prop( 'status' );
@@ -94,7 +95,7 @@
 								<a href="?wl-ref=<?php echo esc_html( Wishlist_For_Woo_Helper::encrypter( $_id ) ); ?>"><?php echo esc_html( $wishlist_title ); ?></a>
 								<span><?php echo ( 'edit' == $access ) ? esc_html( $is_shared ) : ''; ?></span>
 							</div>
-							<?php if( 'edit' == $access ) : ?>
+							<?php if ( 'edit' == $access ) : ?>
 							<p class="wfw_invite-icon">
 								<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="wfw_user">
 								<path d="M11 0C4.92339 0 0 4.92339 0 11C0 17.0766 4.92339 22 11 22C17.0766 22 22 17.0766 22 11C22 4.92339 17.0766 0 11 0ZM11 4.25806C13.1556 4.25806 14.9032 6.00565 14.9032 8.16129C14.9032 10.3169 13.1556 12.0645 11 12.0645C8.84435 12.0645 7.09677 10.3169 7.09677 8.16129C7.09677 6.00565 8.84435 4.25806 11 4.25806ZM11 19.5161C8.39637 19.5161 6.06331 18.3363 4.50202 16.4911C5.33589 14.921 6.96814 13.8387 8.87097 13.8387C8.97742 13.8387 9.08387 13.8565 9.18589 13.8875C9.7625 14.0738 10.3657 14.1935 11 14.1935C11.6343 14.1935 12.2419 14.0738 12.8141 13.8875C12.9161 13.8565 13.0226 13.8387 13.129 13.8387C15.0319 13.8387 16.6641 14.921 17.498 16.4911C15.9367 18.3363 13.6036 19.5161 11 19.5161Z" fill="black"/>
@@ -113,10 +114,11 @@
 
 								</div>
 							</div>
-							<?php endif;?>
+							<?php endif; ?>
 						</div>
 						<div class="wfw_more_links">
-						<?php if ( 'edit' == $access ) :
+						<?php
+						if ( 'edit' == $access ) :
 
 							$page_link = get_permalink( get_option( 'wfw-selected-page', '' ) );
 
@@ -185,7 +187,7 @@
 					<?php if ( ! empty( $products ) && count( $products ) ) : ?>
 						<?php foreach ( $products as $key => $_id ) : ?>
 							<?php
-								$_product      = wc_get_product( $_id  );
+								$_product      = wc_get_product( $_id );
 								$image_id      = $_product->get_image_id();
 								$image_url     = wp_get_attachment_image_url( $image_id );
 								$product_url   = $_product->get_permalink();
@@ -200,7 +202,7 @@
 							<li class="wfw_content-right_item wfw_list_item_<?php echo esc_html( $_id ); ?>">
 								<div class="wfw_content-right_item-img">
 									<a class="mwb-wfw-product-img" href="<?php echo esc_url( $product_url ); ?>">
-										<?php if( ! empty( $image_url ) ) : ?>
+										<?php if ( ! empty( $image_url ) ) : ?>
 											<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_html( $name ); ?>">
 										<?php else : ?>
 											<i class="fas fa-file-image"></i>
@@ -225,7 +227,7 @@
 										</span> 
 									</p>
 									<p class="item_desc">
-										<?php echo esc_html( strlen( $description ) > 50 ? substr( $description,0,50 )."..." : $description ); ?>
+										<?php echo esc_html( strlen( $description ) > 50 ? substr( $description, 0, 50 ) . '...' : $description ); ?>
 									</p>
 								</div>
 								<div class="wfw_content-right_item-action">
@@ -237,7 +239,7 @@
 									</p> 
 
 
-									<?php if( 'edit' == $access ) : ?>
+									<?php if ( 'edit' == $access ) : ?>
 									<p class="action_delete" id="wfw_del_prod_frm_wishlist" data-wId="<?php echo esc_html( $wid_to_show ); ?>" data-prod="<?php echo esc_html( $_id ); ?>"  >
 										<?php esc_html_e( 'Delete', 'wishlist-for-woo' ); ?>
 									</p>
@@ -246,7 +248,7 @@
 								</div>
 							</li>
 						<?php endforeach; ?>
-						<?php else: ?>
+						<?php else : ?>
 						<span class="data-missing"><?php esc_html_e( 'No Products Added', 'wishlist-for-woo' ); ?></span>
 					<?php endif; ?>
 					</ul>
@@ -291,6 +293,6 @@
 				</div>
 				<?php
 			endif;
-		?>
+			?>
 	</section>
 </main>

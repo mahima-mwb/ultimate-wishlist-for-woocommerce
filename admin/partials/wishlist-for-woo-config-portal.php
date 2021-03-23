@@ -17,4 +17,3 @@
 <?php do_action( 'mwb_wfw_nav_tab' ); ?>
 <?php do_action( 'mwb_wfw_output_screen' ); ?>
 <?php do_action( 'mwb_wfw_header_end' ); ?>
-
