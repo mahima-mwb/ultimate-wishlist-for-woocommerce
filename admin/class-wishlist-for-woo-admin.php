@@ -491,5 +491,40 @@ class Wishlist_For_Woo_Admin {
         wp_send_json( $result );
     }
 
+    /**
+	 * Get all valid screens to add scripts and templates.
+	 *
+	 * @since    1.0.0
+	 */
+	public function add_mwb_frontend_screens( $valid_screens=array() ) {
+
+		if ( is_array( $valid_screens ) ) {
+			
+			// Push your screen here.
+			array_push( $valid_screens, 'toplevel_page_wfw-config-portal' );
+			array_push( $valid_screens, 'wishlist-for-woocommerce_page_wfw-performance-reporting' );
+			array_push( $valid_screens, 'wishlist-for-woocommerce_page_wfw-plugin-overview' );
+		}
+		return $valid_screens;	
+    }
+
+	/**
+	 * Get all valid slugs to add deactivate popup.
+	 *
+	 * @since    1.0.0
+	 */
+	public function add_mwb_deactivation_screens( $valid_screens=array() ) {
+
+		if ( is_array( $valid_screens ) ) {
+			
+			// Push your screen here.
+			array_push( $valid_screens, 'wishlist-for-woo' );
+		}
+
+		return $valid_screens;
+	}
+
+
+
 // End of class.
 }

@@ -149,6 +149,10 @@ class Wishlist_For_Woo {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wishlist-for-woo-public.php';
 
 		$this->loader = new Wishlist_For_Woo_Loader();
+
+		! class_exists( 'Makewebbetter_Onboarding_Helper' ) && require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-makewebbetter-onboarding-helper.php';
+		$this->onboard = new Makewebbetter_Onboarding_Helper();
+		
 	}
 
 	/**
@@ -192,6 +196,13 @@ class Wishlist_For_Woo {
 		$this->loader->add_action( 'wp_ajax_getCurrentScreen', $plugin_admin, 'getCurrentScreen' );
 		$this->loader->add_action( 'wp_ajax_saveFormOutput', $plugin_admin, 'saveFormOutput' );
 		$this->loader->add_action( 'wp_ajax_MoveFiletoRoot', $plugin_admin, 'MoveFiletoRoot' );
+	
+		// Add your screen.
+		$this->loader->add_filter( 'mwb_helper_valid_frontend_screens', $plugin_admin, 'add_mwb_frontend_screens' );
+		
+		// Add Deactivation screen.
+		$this->loader->add_filter( 'mwb_deactivation_supported_slug', $plugin_admin, 'add_mwb_deactivation_screens' );
+		
 	}
 
 	/**
