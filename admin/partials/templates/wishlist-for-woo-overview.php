@@ -15,7 +15,7 @@
 <ul class="wfw-overview_wrapper">
 	<li class="wfw-overview_banner">
 		<div class="wfw-overview_banner-image">
-			<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/bannerwish.bmp' ); ?>" alt="wfw-banner">
+			<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/bannerwish.jpg' ); ?>" alt="wfw-banner">
 		</div>
 	</li>
 	<li class="wfw-overview_content">
