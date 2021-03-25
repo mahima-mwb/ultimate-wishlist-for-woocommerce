@@ -12,7 +12,7 @@
  * @package           wishlist-for-woo
  *
  * @wordpress-plugin
- * Plugin Name:             Wishlist for Woocommerce
+ * Plugin Name:             Wishlist for WooCommerce
  * Plugin URI:              https://wordpress.org/plugins/wishlist-for-woo/
  * Description:             Wishes and purchases are like ZERO and ONE of the shopping journeys respectively. This plugin helps you to turn this ZERO into ONE.
  * Version:                 1.0.0
@@ -217,7 +217,7 @@ if ( true === $mwb_wfw_plugin_activation['status'] ) {
 		<?php if ( 'woo_inactive' == $mwb_wfw_plugin_activation['message'] ) : ?>
 
 			<div class="notice notice-error is-dismissible mwb-notice">
-				<p><strong><?php esc_html_e( 'WooCommerce', 'wishlist-for-woo' ); ?></strong><?php esc_html_e( ' is not activated, Please activate WooCommerce first to activate ', 'wishlist-for-woo' ); ?><strong><?php esc_html_e( 'Wishlist For Woocommerce', 'wishlist-for-woo' ); ?></strong><?php esc_html_e( '.', 'wishlist-for-woo' ); ?></p>
+				<p><strong><?php esc_html_e( 'WooCommerce', 'wishlist-for-woo' ); ?></strong><?php esc_html_e( ' is not activated, Please activate WooCommerce first to activate ', 'wishlist-for-woo' ); ?><strong><?php esc_html_e( 'Wishlist For WooCommerce', 'wishlist-for-woo' ); ?></strong><?php esc_html_e( '.', 'wishlist-for-woo' ); ?></p>
 			</div>
 
 			<?php

@@ -97,7 +97,7 @@ img.mwb-wfw-processing-icon {
             Wishlist Icon Styles at Loops
 ==============================================*/
 .add-to-wishlist.mwb-wfw-loop-text-button {
-    background-color: #9b5c8f;
+    background-color: #59B0F6;
     border: 2px solid #ffffff;
     border-radius: 5px;
     padding: 5px;
@@ -110,7 +110,7 @@ img.mwb-wfw-processing-icon {
 }
 
 .processing-button {
-    background-color: #9b5c8f;
+    background-color: #59B0F6;
     border: 2px solid #ffffff;
     border-radius: 5px;
     color: #ffffff;
@@ -123,8 +123,8 @@ img.mwb-wfw-processing-icon {
 
 .add-to-wishlist.mwb-wfw-loop-text-button:hover {
     background-color: inherit;
-    border: 2px solid #9b5c8f;
-    color: #9b5c8f;
+    border: 2px solid #59B0F6;
+    color: #59B0F6;
 }
 
 /*============================================== 
@@ -147,7 +147,7 @@ img.mwb-wfw-processing-icon {
         Wishlist Button Styles at Single
 ==============================================*/
 .add-to-wishlist.mwb-wfw-single-text-button {
-    background-color: #9b5c8f;
+    background-color: #59B0F6;
     padding: 5px 50px;
     border: 2px solid #ffffff;
     border-radius: 5px;
@@ -160,8 +160,8 @@ img.mwb-wfw-processing-icon {
 
 .add-to-wishlist.mwb-wfw-single-text-button:hover {
     background-color: inherit;
-    border: 2px solid #9b5c8f;
-    color: #9b5c8f;
+    border: 2px solid #59B0F6;
+    color: #59B0F6;
 }
 
 /*============================================== 
@@ -180,7 +180,7 @@ img.mwb-wfw-processing-icon {
 /*============================================== 
            Wishlist front page
 ==============================================*/
-/*colors - #f2f2f2, #000000, #cccccc, #ffffff, #9b5c8f, #0071a1*/
+/*colors - #f2f2f2, #000000, #cccccc, #ffffff, #59B0F6, #0071a1*/
 main ul,
 main li,
 main p,
@@ -260,14 +260,14 @@ main button:focus,
 .wfw_navlink {
     padding: 10px;
     font-weight: 600;
-    color: #9b5c8f;
+    color: #59B0F6;
     cursor: pointer;
 }
 
 .wfw_navlink.active {
     background-color: #ffffff;
-    border-top: 2px solid #9b5c8f;
-    color: #9b5c8f;
+    border-top: 2px solid #59B0F6;
+    color: #59B0F6;
 }
 
 .wfw_navbar_button {
@@ -411,32 +411,32 @@ main button:focus,
 
 .action_button,
 .action_delete {
-    border: 1px solid #9b5c8f;
+    border: 1px solid #59B0F6;
     padding: 3px 5px;
     display: block;
     text-align: center;
     font-weight: 600;
     margin: 3px 0px;
     border-radius: 3px;
-    color: #9b5c8f;
+    color: #59B0F6;
     cursor: pointer;
 }
 
 .action_button {
-    background-color: #9b5c8f;
-    border: 1px solid #9b5c8f;
+    background-color: #59B0F6;
+    border: 1px solid #59B0F6;
     color: #ffffff;
 }
 
 .action_button:hover {
     background-color: #ffffff;
-    border: 1px solid #9b5c8f;
-    color: #9b5c8f;
+    border: 1px solid #59B0F6;
+    color: #59B0F6;
 }
 
 .action_delete:hover {
-    background-color: #9b5c8f;
-    border: 1px solid #9b5c8f;
+    background-color: #59B0F6;
+    border: 1px solid #59B0F6;
     color: #ffffff;
 }
 
@@ -458,7 +458,7 @@ main button:focus,
 }
 
 .item_stars {
-    color: #9b5c8f;
+    color: #59B0F6;
 }
 
 .price_value {

@@ -163,7 +163,7 @@ class Wishlist_For_Woo_Admin {
 	}
 
 	/**
-	 * Register page IDs for Woocommerce.
+	 * Register page IDs for WooCommerce.
 	 *
 	 * @param array $screen Screen ID.
 	 */
@@ -188,8 +188,8 @@ class Wishlist_For_Woo_Admin {
 	public function add_config_menu() {
 
 		add_menu_page(
-			esc_html__( 'Wishlist For Woocommerce', 'wishlist-for-woo' ),
-			esc_html__( 'Wishlist For Woocommerce', 'wishlist-for-woo' ),
+			esc_html__( 'Wishlist For WooCommerce', 'wishlist-for-woo' ),
+			esc_html__( 'Wishlist For WooCommerce', 'wishlist-for-woo' ),
 			'manage_woocommerce',
 			'wfw-config-portal',
 			array( $this, 'add_config_screen' ),

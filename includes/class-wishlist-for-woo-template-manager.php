@@ -30,7 +30,7 @@ class Wishlist_For_Woo_Template_Manager {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<main class="mwb-wfw-main">
 			<header class="mwb-wfw-header">
-				<h1 class="mwb-wfw-header__title"><?php esc_html_e( 'Wishlist for Woocommerce', 'wishlist-for-woo' ); ?></h1>
+				<h1 class="mwb-wfw-header__title"><?php esc_html_e( 'Wishlist for WooCommerce', 'wishlist-for-woo' ); ?></h1>
 				<span class="mwb-wfw-version"><?php echo sprintf( 'v%s', esc_html( WISHLIST_FOR_WOO_VERSION ) ); ?></span>
 			</header>
 			<!-- End of Header Section -->
