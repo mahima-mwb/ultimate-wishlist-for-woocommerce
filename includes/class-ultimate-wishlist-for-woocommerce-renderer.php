@@ -186,7 +186,7 @@ class Wishlist_For_Woo_Renderer {
 		?>
 		<a href="javascript:void(0);" data-wishlist-id="<?php echo esc_attr( $wid ); ?>" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr['style'] ); ?>" class="add-to-wishlist <?php echo esc_attr( $is_active ); ?> mwb-wfw-loop-text-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-loop <?php echo esc_attr( $default_attr['extra_class'] ); ?>"><?php echo esc_attr( $default_attr['text'] ); ?></a>
 		<input type="hidden" class="mwb-wfw-product-image" value="<?php echo esc_url( $image_url ); ?>">
-		<a href="javascript:void(0);"class="processing-button"><img class="mwb-wfw-processing-icon" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'public/icons/processing.gif' ); ?>"></a>
+		<a href="javascript:void(0);"class="processing-button"><img class="mwb-wfw-processing-icon" src="<?php echo esc_url( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'public/icons/processing.gif' ); ?>"></a>
 		<?php
 	}
 
@@ -232,7 +232,7 @@ class Wishlist_For_Woo_Renderer {
 
 		?>
 			<input type="hidden" class="mwb-wfw-product-image" value="<?php echo esc_url( $image_url ); ?>">
-			<a href="javascript:void(0);" data-wishlist-id="<?php echo esc_attr( $wid ); ?>" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr['style'] ); ?>" class="add-to-wishlist <?php echo esc_attr( $is_active ); ?> mwb-wfw-loop-icon-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-icon <?php echo esc_attr( $default_attr['extra_class'] ); ?>"><img class="mwb-wfw-icon" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'public/icons/' . $default_attr['text'] . '.svg' ); ?>"></a>
+			<a href="javascript:void(0);" data-wishlist-id="<?php echo esc_attr( $wid ); ?>" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" style="<?php echo esc_attr( $default_attr['style'] ); ?>" class="add-to-wishlist <?php echo esc_attr( $is_active ); ?> mwb-wfw-loop-icon-button mwb-<?php echo esc_html( str_replace( '_', '-', current_action() ) ); ?>-icon <?php echo esc_attr( $default_attr['extra_class'] ); ?>"><img class="mwb-wfw-icon" src="<?php echo esc_url( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'public/icons/' . $default_attr['text'] . '.svg' ); ?>"></a>
 		<?php
 	}
 

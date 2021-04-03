@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Fired during plugin deactivation
  *
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
- * @package    wishlist-for-woo
- * @subpackage Wishlist_For_Woo/includes
+ * @package    Ultimate_Wishlist_For_Woocommerce
+ * @subpackage Ultimate_Wishlist_For_Woocommerce/includes
  */
 
 /**
@@ -15,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    wishlist-for-woo
- * @subpackage Wishlist_For_Woo/includes
- * @author     MakeWebBetter <https://makewebbetter.com>
+ * @package    Ultimate_Wishlist_For_Woocommerce
+ * @subpackage Ultimate_Wishlist_For_Woocommerce/includes
+ * @author     MakeWebBetter <plugins@makewebbetter.com>
  */
-class Wishlist_For_Woo_Deactivator {
+class Ultimate_Wishlist_For_Woocommerce_Deactivator {
 
 	/**
 	 * Short Description. (use period)

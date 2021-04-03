@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The file that defines the core plugin class
  *
@@ -8,8 +9,8 @@
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
- * @package    wishlist-for-woo
- * @subpackage Wishlist_For_Woo/includes
+ * @package    Ultimate_Wishlist_For_Woocommerce
+ * @subpackage Ultimate_Wishlist_For_Woocommerce/includes
  */
 
 /**
@@ -22,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    wishlist-for-woo
- * @subpackage Wishlist_For_Woo/includes
- * @author     MakeWebBetter <https://makewebbetter.com>
+ * @package    Ultimate_Wishlist_For_Woocommerce
+ * @subpackage Ultimate_Wishlist_For_Woocommerce/includes
+ * @author     MakeWebBetter <plugins@makewebbetter.com>
  */
-class Wishlist_For_Woo {
+class Ultimate_Wishlist_For_Woocommerce {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -34,7 +35,7 @@ class Wishlist_For_Woo {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Wishlist_For_Woo_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Ultimate_Wishlist_For_Woocommerce_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -56,7 +57,6 @@ class Wishlist_For_Woo {
 	 */
 	protected $version;
 
-
 	/**
 	 * Define the core functionality of the plugin.
 	 *
@@ -67,12 +67,12 @@ class Wishlist_For_Woo {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'WISHLIST_FOR_WOO_VERSION' ) ) {
-			$this->version = WISHLIST_FOR_WOO_VERSION;
+		if ( defined( 'ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_VERSION' ) ) {
+			$this->version = ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'wishlist-for-woo';
+		$this->plugin_name = 'ultimate-wishlist-for-woocommerce';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -86,10 +86,10 @@ class Wishlist_For_Woo {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Wishlist_For_Woo_Loader. Orchestrates the hooks of the plugin.
-	 * - Wishlist_For_Woo_I18n. Defines internationalization functionality.
-	 * - Wishlist_For_Woo_Admin. Defines all hooks for the admin area.
-	 * - Wishlist_For_Woo_Public. Defines all hooks for the public side of the site.
+	 * - Ultimate_Wishlist_For_Woocommerce_Loader. Orchestrates the hooks of the plugin.
+	 * - Ultimate_Wishlist_For_Woocommerce_i18n. Defines internationalization functionality.
+	 * - Ultimate_Wishlist_For_Woocommerce_Admin. Defines all hooks for the admin area.
+	 * - Ultimate_Wishlist_For_Woocommerce_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -103,51 +103,51 @@ class Wishlist_For_Woo {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ultimate-wishlist-for-woocommerce-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ultimate-wishlist-for-woocommerce-i18n.php';
 
 		/**
 		 * The class responsible for defining all helper functions.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-helper.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ultimate-wishlist-for-woocommerce-helper.php';
 
 		/**
 		 * The class responsible for defining all admin portal templates.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-template-manager.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ultimate-wishlist-for-woocommerce-template-manager.php';
 
 		/**
 		 * The class responsible for defining all public wishlist templates.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-renderer.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ultimate-wishlist-for-woocommerce-renderer.php';
 
 		/**
 		 * The class responsible for defining all wishlist operation.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-crud-manager.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ultimate-wishlist-for-woocommerce-crud-manager.php';
 
 		/**
 		 * The class responsible for defining all wishlist operation.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wishlist-for-woo-shortcode-manager.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ultimate-wishlist-for-woocommerce-shortcode-manager.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wishlist-for-woo-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-ultimate-wishlist-for-woocommerce-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wishlist-for-woo-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-ultimate-wishlist-for-woocommerce-public.php';
 
-		$this->loader = new Wishlist_For_Woo_Loader();
+		$this->loader = new Ultimate_Wishlist_For_Woocommerce_Loader();
 
 		! class_exists( 'Makewebbetter_Onboarding_Helper' ) && require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-makewebbetter-onboarding-helper.php';
 		$this->onboard = new Makewebbetter_Onboarding_Helper();
@@ -157,7 +157,7 @@ class Wishlist_For_Woo {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Wishlist_For_Woo_I18n class in order to set the domain and to register the hook
+	 * Uses the Ultimate_Wishlist_For_Woocommerce_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -165,7 +165,7 @@ class Wishlist_For_Woo {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Wishlist_For_Woo_I18n();
+		$plugin_i18n = new Ultimate_Wishlist_For_Woocommerce_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -180,11 +180,11 @@ class Wishlist_For_Woo {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Wishlist_For_Woo_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Ultimate_Wishlist_For_Woocommerce_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
+		
 		// Register woocommerce screens.
 		$this->loader->add_filter( 'woocommerce_screen_ids', $plugin_admin, 'set_wc_screen_ids' );
 
@@ -201,7 +201,6 @@ class Wishlist_For_Woo {
 
 		// Add Deactivation screen.
 		$this->loader->add_filter( 'mwb_deactivation_supported_slug', $plugin_admin, 'add_mwb_deactivation_screens' );
-
 	}
 
 	/**
@@ -213,7 +212,7 @@ class Wishlist_For_Woo {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Wishlist_For_Woo_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Ultimate_Wishlist_For_Woocommerce_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -288,7 +287,7 @@ class Wishlist_For_Woo {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Wishlist_For_Woo_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Ultimate_Wishlist_For_Woocommerce_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
@@ -303,4 +302,5 @@ class Wishlist_For_Woo {
 	public function get_version() {
 		return $this->version;
 	}
+
 }

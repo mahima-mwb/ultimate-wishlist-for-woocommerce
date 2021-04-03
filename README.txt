@@ -1,17 +1,16 @@
-===Wishlist for WooCommerce===
+===Ultimate Wishlist for WooCommerce===
 
 
 Contributors: MakeWebBetter
 Donate link: https://makewebbetter.com/
 Tags: wishlist, woocommerce wishlist, ecommerce wishlist, product wishlist
-Requires at least: 
-Tested up to: 
-WC requires at least: 
-WC tested up to: 
-Stable tag: 
-Requires PHP: 
-License: 
-License URL: 
+
+Requires at least:       4.4
+Tested up to:            5.7
+WC requires at least:    3.0
+WC tested up to:         5.1.0
+License:                 GPL-3.0
+License URL:             http://www.gnu.org/licenses/gpl-3.0.txt
 
 Wishes and purchases are like ZERO and ONE of the shopping journeys respectively. This plugin helps you to turn this ZERO into ONE.
 
@@ -20,7 +19,7 @@ Wishes and purchases are like ZERO and ONE of the shopping journeys respectively
 
 **TOP WISHLIST PLUGIN ON WORDPRESS**
 
-The "Wishlist for WooCommerce" plugin allows you to implement "wishlist strategies" to your WooCommerce store in a way that was not possible before. 
+The "Ultimate Wishlist for WooCommerce" plugin allows you to implement "wishlist strategies" to your WooCommerce store in a way that was not possible before. 
 
 Using this plugin, the admin lets the buyers give real meaning to their wishes; create and add products to their wishlists, edit and delete them, share them with family and friends, and purchase them directly from the wishlist, anytime.
 
@@ -34,11 +33,11 @@ This wishlist plugin for WordPress allows you to manage everything from one cent
 [Youtube Video]
 
 
-**Why "Wishlist for WooCommerce" Plugin?**
+**Why "Ultimate Wishlist for WooCommerce" Plugin?**
 
 This plugin is built with the goal to connect your store directly with buyer's hearts. It boosts the buyer's engagement rate, increases sales, improves the customer shopping experience, offers better targeting, etc. 
 
-The benefits are mutual to the buyers as well as to the sellers, hence "Wishlist for WooCommerce" is a fundamental plugin that every store must-have.
+The benefits are mutual to the buyers as well as to the sellers, hence "Ultimate Wishlist for WooCommerce" is a fundamental plugin that every store must-have.
 
  Let's check the major benefit that this plugin offers.
 
@@ -61,20 +60,20 @@ The benefits are mutual to the buyers as well as to the sellers, hence "Wishlist
 1.Buyers can save the product on their wishlist and purchase it when they find it feasible, without searching the product.
 2.Buyers can add as many products they want to their wishlist without and re-check all those products in their leisure time and decide better.  
 3.The buyers can invite their friends and family to view or edit their wishlist.
-4."Wishlist for WooCommerce " make the shopping experience better
+4."Ultimate Wishlist for WooCommerce " make the shopping experience better
 5.Gifting with a wishlist turns more convincing and easy.
 
-Overall, Wishlist for WooCommerce" helps buyers in the research stage to save all their product-finding, share or buy anytime.
+Overall, Ultimate Wishlist for WooCommerce" helps buyers in the research stage to save all their product-finding, share or buy anytime.
 
-To get in-depth details of how "Wishlist for WooCommerce" is capable of making your store the perfect place for buyers to wish for more and better; let's check the list of specific features of this plugin. 
+To get in-depth details of how "Ultimate Wishlist for WooCommerce" is capable of making your store the perfect place for buyers to wish for more and better; let's check the list of specific features of this plugin. 
 
 Overall, the WooCommerce Wishlist feature helps buyers in the research stage to save all their product-finding, share or buy anytime.
 
 
 
-**Features of Wishlist for WooCommerce**
+**Features of Ultimate Wishlist for WooCommerce**
 
-The free version of "Wishlist for WooCommerce" has all those features that are required for the basic implementation of a wishlist strategy in your WooCommerce store. 
+The free version of "Ultimate Wishlist for WooCommerce" has all those features that are required for the basic implementation of a wishlist strategy in your WooCommerce store. 
 
 However, to get all the advanced features and to step-up the level of benefit the plugin can offer, you would need to upgrade the plugin to the premium version. 
 
@@ -137,7 +136,7 @@ With the pro-version, users can create multiple wishlists, name them as per thei
 
 **2. Improved page layout and wishlist table**
 
-Choose modern & beautiful layouts for the wishlist page and tables with the pro version of the "Wishlist for WooCommerce" plugin. 
+Choose modern & beautiful layouts for the wishlist page and tables with the pro version of the "Ultimate Wishlist for WooCommerce" plugin. 
 
 **3. Track user's wishes**
 
@@ -145,7 +144,7 @@ Admin gets the details of wishes of each shopper and the list of products they a
 
 **4. Track the "most-wished" products**
 
-The admin can track the product that the majority of the shoppers have added to their wishlist, directly in the analytics panel of the pro-version of "Wishlist for WooCommerce". This makes it easy for the seller to decide and launch a targeted sale on that product. 
+The admin can track the product that the majority of the shoppers have added to their wishlist, directly in the analytics panel of the pro-version of "Ultimate Wishlist for WooCommerce". This makes it easy for the seller to decide and launch a targeted sale on that product. 
 
 **5. Engage unlogged users**
 
@@ -153,12 +152,12 @@ Admin can enable or disable unlogged users from viewing the shared wishlist. If 
 
 **6. Send customized and personalized push notifications**
 
-With pro versions of "Wishlist for WooCommerce," the admin can send personalized popup messages to selected buyers and re-target them for products that they have added to the wishlist and seem to forget it. 
+With pro versions of "Ultimate Wishlist for WooCommerce," the admin can send personalized popup messages to selected buyers and re-target them for products that they have added to the wishlist and seem to forget it. 
 
 
 **7. Integrate With CRM; extract the best use of analytics**
 
-Data can earn you; given that you use them intelligently. All the useful analytics gathered by the "Wishlist for WooCommerce" plugin can be exported to CRM such as HubSpot and Mautic through integration with the pro version of the plugin, and extract the best from the data.
+Data can earn you; given that you use them intelligently. All the useful analytics gathered by the "Ultimate Wishlist for WooCommerce" plugin can be exported to CRM such as HubSpot and Mautic through integration with the pro version of the plugin, and extract the best from the data.
 
 **8. Set Wishlist Visibility**
 
@@ -166,9 +165,9 @@ With this setting, you can allow users to set visibility options for each wishli
 
 **Other:**
 
-Check out [Wishlist For WooCommerce documentation ](link)to learn more about the features and working of the plugin.
+Check out [Ultimate Wishlist for WooCommerce documentation ](link)to learn more about the features and working of the plugin.
 
-Explore the LIVE DEMO for the “Wishlist for WooCommerce”
+Explore the LIVE DEMO for the “Ultimate Wishlist for WooCommerce”
 
 **Support:**
 

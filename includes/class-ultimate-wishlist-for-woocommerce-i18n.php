@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Define the internationalization functionality
  *
@@ -8,8 +9,8 @@
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
- * @package    wishlist-for-woo
- * @subpackage Wishlist_For_Woo/includes
+ * @package    Ultimate_Wishlist_For_Woocommerce
+ * @subpackage Ultimate_Wishlist_For_Woocommerce/includes
  */
 
 /**
@@ -19,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    wishlist-for-woo
- * @subpackage Wishlist_For_Woo/includes
- * @author     MakeWebBetter <https://makewebbetter.com>
+ * @package    Ultimate_Wishlist_For_Woocommerce
+ * @subpackage Ultimate_Wishlist_For_Woocommerce/includes
+ * @author     MakeWebBetter <plugins@makewebbetter.com>
  */
-class Wishlist_For_Woo_I18n {
+class Ultimate_Wishlist_For_Woocommerce_i18n {
 
 
 	/**
@@ -34,7 +35,7 @@ class Wishlist_For_Woo_I18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'wishlist-for-woo',
+			'ultimate-wishlist-for-woocommerce',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

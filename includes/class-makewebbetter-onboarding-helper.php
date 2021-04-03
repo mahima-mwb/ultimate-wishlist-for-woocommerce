@@ -139,10 +139,10 @@ class Makewebbetter_Onboarding_Helper {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_style( 'makewebbetter-onboarding-style', WISHLIST_FOR_WOO_URL . 'admin/css/makewebbetter-onboarding-admin.css', array(), '1.0.0', 'all' );
+			wp_enqueue_style( 'makewebbetter-onboarding-style', ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/css/makewebbetter-onboarding-admin.css', array(), '1.0.0', 'all' );
 
 			// Uncomment Only when your plugin doesn't uses the Select2.
-			wp_enqueue_style( 'makewebbetter-onboarding-select2-style', WISHLIST_FOR_WOO_URL . 'admin/css/select2.min.css', array(), '1.0.0', 'all' );
+			wp_enqueue_style( 'makewebbetter-onboarding-select2-style', ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/css/select2.min.css', array(), '1.0.0', 'all' );
 		}
 	}
 
@@ -166,7 +166,7 @@ class Makewebbetter_Onboarding_Helper {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_script( 'makewebbetter-onboarding-scripts', WISHLIST_FOR_WOO_URL . 'admin/js/makewebbetter-onboarding-admin.js', array( 'jquery' ), '1.0.0', true );
+			wp_enqueue_script( 'makewebbetter-onboarding-scripts', ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/js/makewebbetter-onboarding-admin.js', array( 'jquery' ), '1.0.0', true );
 
 			global $pagenow;
 			$current_slug = ! empty( explode( '/', plugin_basename( __FILE__ ) ) ) ? explode( '/', plugin_basename( __FILE__ ) )[0] : '';
@@ -182,7 +182,7 @@ class Makewebbetter_Onboarding_Helper {
 			);
 
 			// Uncomment Only when your plugin doesn't uses the Select2.
-			wp_enqueue_script( 'makewebbetter-onboarding-select2-script', WISHLIST_FOR_WOO_URL . 'admin/js/select2.min.js', array( 'jquery' ), '1.0.0', false );
+			wp_enqueue_script( 'makewebbetter-onboarding-select2-script', ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/js/select2.min.js', array( 'jquery' ), '1.0.0', false );
 		}
 	}
 

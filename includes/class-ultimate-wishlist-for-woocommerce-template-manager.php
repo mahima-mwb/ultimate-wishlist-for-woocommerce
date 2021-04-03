@@ -30,8 +30,8 @@ class Wishlist_For_Woo_Template_Manager {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<main class="mwb-wfw-main">
 			<header class="mwb-wfw-header">
-				<h1 class="mwb-wfw-header__title"><?php esc_html_e( 'Wishlist for WooCommerce', 'wishlist-for-woo' ); ?></h1>
-				<span class="mwb-wfw-version"><?php echo sprintf( 'v%s', esc_html( WISHLIST_FOR_WOO_VERSION ) ); ?></span>
+				<h1 class="mwb-wfw-header__title"><?php esc_html_e( 'Ultimate Wishlist for WooCommerce', 'wishlist-for-woo' ); ?></h1>
+				<span class="mwb-wfw-version"><?php echo sprintf( 'v%s', esc_html( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_VERSION ) ); ?></span>
 			</header>
 			<!-- End of Header Section -->
 		<?php
@@ -88,7 +88,7 @@ class Wishlist_For_Woo_Template_Manager {
 				<div class="mwb-wfw-desc">
 					<form method="post" action="#" class="mwb-wfw-output-form"></form>
 					<div class="mwb-wfw-desc--preloader">
-						<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/preloader.gif' ); ?>" alt="loader">
+						<img src="<?php echo esc_url( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/images/preloader.gif' ); ?>" alt="loader">
 						<h4><?php esc_html_e( 'Loading settings please wait...', 'wishlist-for-woo' ); ?></h4>
 					</div>
 				</div>
@@ -108,7 +108,7 @@ class Wishlist_For_Woo_Template_Manager {
 		?>
 		   <div class="mwb-wfw-sidebar">
 				<div class="mwb-wfw-helpdesk__icon">
-					<img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/customer-service-icon.jpg' ); ?>" class="mwb-wfw-helpdesk-btn" />
+					<img src="<?php echo esc_url( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/images/customer-service-icon.jpg' ); ?>" class="mwb-wfw-helpdesk-btn" />
 				</div>
 				<h2>help desk </h2>
 				<ul class="mwb-wfw-sidebar__items">
@@ -118,7 +118,7 @@ class Wishlist_For_Woo_Template_Manager {
 				</ul>
 				<div class="mwb-wfw-sidebar__connect">
 					<a href="javascript:void(0)"><?php esc_html_e( 'connect with us in one click', 'wishlist-for-woo' ); ?></a>
-					<a href="https://makewebbetter.com/submit-query/" class="mwb-wfw-skype__icon"><img src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/icons/mail.png' ); ?>" alt="mail"><span>connect</span></a>
+					<a href="https://makewebbetter.com/submit-query/" class="mwb-wfw-skype__icon"><img src="<?php echo esc_url( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/icons/mail.png' ); ?>" alt="mail"><span>connect</span></a>
 				</div>
 			</div>
 		<?php
@@ -651,7 +651,7 @@ class Wishlist_For_Woo_Template_Manager {
 				<div class="wfw_crm_config_options">
 					<div class="wfw_crm_config_options_icon simple">
 						<a href="<?php echo esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ); ?>">
-							<img class="wfw_crm_tool_mautic" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/mautic-logo.svg' ); ?>">
+							<img class="wfw_crm_tool_mautic" src="<?php echo esc_url( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/images/mautic-logo.svg' ); ?>">
 						</a>
 						<h3><?php esc_html_e( 'Mautic for WooCommerce', 'wishlist-for-woo' ); ?></h3>
 						<ul>
@@ -667,7 +667,7 @@ class Wishlist_For_Woo_Template_Manager {
 					</div>
 					<div class="wfw_crm_config_options_icon simple">
 						<a href="<?php echo esc_url( 'https://wordpress.org/plugins/makewebbetter-hubspot-for-woocommerce/' ); ?>">
-							<img class="wfw_crm_tool_hubspot" src="<?php echo esc_url( WISHLIST_FOR_WOO_URL . 'admin/images/hubspot-logo.svg' ); ?>">
+							<img class="wfw_crm_tool_hubspot" src="<?php echo esc_url( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/images/hubspot-logo.svg' ); ?>">
 						</a>
 						<h3><?php esc_html_e( 'HubSpot for WooCommerce', 'wishlist-for-woo' ); ?></h3>
 						<ul>
@@ -703,7 +703,7 @@ class Wishlist_For_Woo_Template_Manager {
 		if ( ! empty( $template_name ) ) {
 			ob_start();
 				wc_get_template(
-					'partials/templates/wishlist-for-woo-' . $template_name . '.php',
+					'partials/templates/ultimate-wishlist-for-woocommerce-' . $template_name . '.php',
 					array( $template_name => $template_name ),
 					'',
 					$base_path

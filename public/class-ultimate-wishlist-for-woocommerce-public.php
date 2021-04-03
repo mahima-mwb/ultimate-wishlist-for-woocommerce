@@ -6,8 +6,8 @@
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
- * @package    wishlist-for-woo
- * @subpackage Wishlist_For_Woo/public
+ * @package    Ultimate_Wishlist_For_Woocommerce
+ * @subpackage Ultimate_Wishlist_For_Woocommerce/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    wishlist-for-woo
- * @subpackage Wishlist_For_Woo/public
- * @author     MakeWebBetter <https://makewebbetter.com>
+ * @package    Ultimate_Wishlist_For_Woocommerce
+ * @subpackage Ultimate_Wishlist_For_Woocommerce/public
+ * @author     MakeWebBetter <plugins@makewebbetter.com>
  */
-class Wishlist_For_Woo_Public {
+class Ultimate_Wishlist_For_Woocommerce_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -41,7 +41,7 @@ class Wishlist_For_Woo_Public {
 	private $version;
 
 	/**
-	 * The version of this plugin.
+	 * The path of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   public
@@ -53,8 +53,8 @@ class Wishlist_For_Woo_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string $plugin_name       The name of the plugin.
-	 * @param      string $version    The version of this plugin.
+	 * @param      string    $plugin_name       The name of the plugin.
+	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -62,6 +62,7 @@ class Wishlist_For_Woo_Public {
 		$this->version     = $version;
 		$this->public_path = plugin_dir_path( __FILE__ );
 		$this->render      = Wishlist_For_Woo_Renderer::get_instance();
+
 	}
 
 	/**
@@ -75,16 +76,16 @@ class Wishlist_For_Woo_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Wishlist_For_Woo_Loader as all of the hooks are defined
+		 * defined in Ultimate_Wishlist_For_Woocommerce_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Wishlist_For_Woo_Loader will then create the relationship
+		 * The Ultimate_Wishlist_For_Woocommerce_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-public.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'wp-jquery-ui-dialog' );
 
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ultimate-wishlist-for-woocommerce-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'wp-jquery-ui-dialog' );
 	}
 
 	/**
@@ -98,10 +99,10 @@ class Wishlist_For_Woo_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Wishlist_For_Woo_Loader as all of the hooks are defined
+		 * defined in Ultimate_Wishlist_For_Woocommerce_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Wishlist_For_Woo_Loader will then create the relationship
+		 * The Ultimate_Wishlist_For_Woocommerce_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -109,7 +110,7 @@ class Wishlist_For_Woo_Public {
 		$settings = 200 == $settings['status'] ? $settings['message'] : $settings;
 
 		$strings = Wishlist_For_Woo_Helper::get_strings();
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ultimate-wishlist-for-woocommerce-public.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script(
 			$this->plugin_name,
 			'mwb_wfw_obj',
@@ -124,11 +125,12 @@ class Wishlist_For_Woo_Public {
 			)
 		);
 
-		wp_enqueue_script( $this->plugin_name . '-swal-alert', WISHLIST_FOR_WOO_URL . 'admin/js/swal.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name . '-swal-alert', ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/js/swal.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'jquery-ui-dialog' );
 		add_thickbox();
 
 		wp_enqueue_script( 'wfw-pushy-sdk', plugin_dir_url( __FILE__ ) . 'js/wishlist-pushy-sdk.js', array( 'jquery' ), $this->version, false );
+
 	}
 
 	/**
@@ -208,7 +210,7 @@ class Wishlist_For_Woo_Public {
 	public function render_wishlist_html() {
 
 		wc_get_template(
-			'partials/wishlist-for-woo-wishlist-processor.php',
+			'partials/ultimate-wishlist-for-woocommerce-processor.php',
 			array(),
 			'',
 			$this->public_path
@@ -896,5 +898,6 @@ class Wishlist_For_Woo_Public {
 
 		return $result;
 	}
+
 	// End of class.
 }

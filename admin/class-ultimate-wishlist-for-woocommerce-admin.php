@@ -1,12 +1,13 @@
 <?php
+
 /**
  * The admin-specific functionality of the plugin.
  *
  * @link       https://makewebbetter.com
  * @since      1.0.0
  *
- * @package    wishlist-for-woo
- * @subpackage Wishlist_For_Woo/admin
+ * @package    Ultimate_Wishlist_For_Woocommerce
+ * @subpackage Ultimate_Wishlist_For_Woocommerce/admin
  */
 
 /**
@@ -15,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    wishlist-for-woo
- * @subpackage Wishlist_For_Woo/admin
- * @author     MakeWebBetter <https://makewebbetter.com>
+ * @package    Ultimate_Wishlist_For_Woocommerce
+ * @subpackage Ultimate_Wishlist_For_Woocommerce/admin
+ * @author     MakeWebBetter <plugins@makewebbetter.com>
  */
-class Wishlist_For_Woo_Admin {
+class Ultimate_Wishlist_For_Woocommerce_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -40,25 +41,16 @@ class Wishlist_For_Woo_Admin {
 	private $version;
 
 	/**
-	 * The current version of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      string    $admin_path    The current version of the plugin.
-	 */
-	protected $admin_path;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string $plugin_name       The name of this plugin.
-	 * @param      string $version    The version of this plugin.
+	 * @param      string    $plugin_name       The name of this plugin.
+	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version     = $version;
+		$this->version = $version;
 		$this->admin_path  = plugin_dir_path( __FILE__ );
 	}
 
@@ -73,22 +65,19 @@ class Wishlist_For_Woo_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Wishlist_For_Woo_Loader as all of the hooks are defined
+		 * defined in Ultimate_Wishlist_For_Woocommerce_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Wishlist_For_Woo_Loader will then create the relationship
+		 * The Ultimate_Wishlist_For_Woocommerce_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		/**
-		 * Scripts and Stylesheets need to be accessed and enqueued on configuration panels only.
-		 */
 		if ( self::is_valid_screen() ) {
 			wp_enqueue_style( 'wp-color-picker' );
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wishlist-for-woo-admin.css', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ultimate-wishlist-for-woocommerce-admin.css', array(), $this->version, 'all' );
 			wp_enqueue_style( $this->plugin_name . '-select2', plugin_dir_url( __FILE__ ) . 'css/select2.min.css', array(), $this->version, 'all' );
 		}
+
 	}
 
 	/**
@@ -102,16 +91,17 @@ class Wishlist_For_Woo_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Wishlist_For_Woo_Loader as all of the hooks are defined
+		 * defined in Ultimate_Wishlist_For_Woocommerce_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Wishlist_For_Woo_Loader will then create the relationship
+		 * The Ultimate_Wishlist_For_Woocommerce_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+
 		if ( self::is_valid_screen() ) {
 
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wishlist-for-woo-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ultimate-wishlist-for-woocommerce-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
 			wp_enqueue_script( $this->plugin_name . '-swal-alert', plugin_dir_url( __FILE__ ) . 'js/swal.js', array( 'jquery' ), $this->version, false );
 			wp_enqueue_script( $this->plugin_name . '-select2', plugin_dir_url( __FILE__ ) . 'js/select2.min.js', array( 'jquery' ), $this->version, false );
 			wp_localize_script(
@@ -144,8 +134,8 @@ class Wishlist_For_Woo_Admin {
 
 		$valid_screens = array(
 			'toplevel_page_wfw-config-portal',
-			'wishlist-for-woocommerce_page_wfw-performance-reporting',
-			'wishlist-for-woocommerce_page_wfw-plugin-overview',
+			'ultimate-wishlist-for-woocommerce_page_wfw-performance-reporting',
+			'ultimate-wishlist-for-woocommerce_page_wfw-plugin-overview',
 		);
 
 		$screen = get_current_screen();
@@ -171,8 +161,8 @@ class Wishlist_For_Woo_Admin {
 
 		$screen_ids = array(
 			'toplevel_page_wfw-config-portal',
-			'wishlist-for-woocommerce_page_wfw-performance-reporting',
-			'wishlist-for-woocommerce_page_wfw-plugin-overview',
+			'ultimate-wishlist-for-woocommerce_page_wfw-performance-reporting',
+			'ultimate-wishlist-for-woocommerce_page_wfw-plugin-overview',
 		);
 
 		$screen = array_merge( $screen_ids, $screen );
@@ -188,8 +178,8 @@ class Wishlist_For_Woo_Admin {
 	public function add_config_menu() {
 
 		add_menu_page(
-			esc_html__( 'Wishlist For WooCommerce', 'wishlist-for-woo' ),
-			esc_html__( 'Wishlist For WooCommerce', 'wishlist-for-woo' ),
+			esc_html__( 'Ultimate Wishlist for WooCommerce', 'wishlist-for-woo' ),
+			esc_html__( 'Ultimate Wishlist for WooCommerce', 'wishlist-for-woo' ),
 			'manage_woocommerce',
 			'wfw-config-portal',
 			array( $this, 'add_config_screen' ),
@@ -223,7 +213,7 @@ class Wishlist_For_Woo_Admin {
 	public function add_config_screen() {
 
 		wc_get_template(
-			'partials/wishlist-for-woo-config-portal.php',
+			'partials/ultimate-wishlist-for-woocommerce-config-portal.php',
 			array(),
 			'',
 			$this->admin_path
@@ -239,7 +229,7 @@ class Wishlist_For_Woo_Admin {
 	public function add_reporting_screen() {
 
 		wc_get_template(
-			'partials/wishlist-for-woo-reporting-portal.php',
+			'partials/ultimate-wishlist-for-woocommerce-reporting-portal.php',
 			array(),
 			'',
 			$this->admin_path
@@ -255,7 +245,7 @@ class Wishlist_For_Woo_Admin {
 	public function add_overview_screen() {
 
 		wc_get_template(
-			'partials/wishlist-for-woo-reporting-portal.php',
+			'partials/ultimate-wishlist-for-woocommerce-reporting-portal.php',
 			array(),
 			'',
 			$this->admin_path
@@ -498,8 +488,8 @@ class Wishlist_For_Woo_Admin {
 
 			// Push your screen here.
 			array_push( $valid_screens, 'toplevel_page_wfw-config-portal' );
-			array_push( $valid_screens, 'wishlist-for-woocommerce_page_wfw-performance-reporting' );
-			array_push( $valid_screens, 'wishlist-for-woocommerce_page_wfw-plugin-overview' );
+			array_push( $valid_screens, 'ultimate-wishlist-for-woocommerce_page_wfw-performance-reporting' );
+			array_push( $valid_screens, 'ultimate-wishlist-for-woocommerce_page_wfw-plugin-overview' );
 		}
 		return $valid_screens;
 	}
@@ -520,7 +510,5 @@ class Wishlist_For_Woo_Admin {
 		return $valid_screens;
 	}
 
-
-
-	// End of class.
+// end of class.
 }
