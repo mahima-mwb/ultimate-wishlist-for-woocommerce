@@ -65,11 +65,11 @@
 	<table border="2px" id="mwb-table" width="100%" class="mwb-table">
 		<thead>
 			<tr>
-				<th><?php esc_html_e( 'Product Id', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Product Title', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Product Thumbnail', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Wishlists Count', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Wishlists', 'wishlist-for-woo' ); ?></th>
+				<th><?php esc_html_e( 'Product Id', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Product Title', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Product Thumbnail', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Wishlists Count', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Wishlists', 'ultimate-wishlist-for-woocommerce' ); ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -85,7 +85,7 @@
 				<?php endforeach; ?>
 			<?php else : ?>
 				<tr>
-					<td style="text-align:center;" colspan="10"><?php esc_html_e( 'No Wishlists Found.', 'wishlist-for-woo' ); ?></td>
+					<td style="text-align:center;" colspan="10"><?php esc_html_e( 'No Wishlists Found.', 'ultimate-wishlist-for-woocommerce' ); ?></td>
 				</tr>
 			<?php endif; ?>
 		</tbody>

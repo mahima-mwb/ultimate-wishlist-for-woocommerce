@@ -105,7 +105,7 @@ class Wishlist_For_Woo_Crud_Manager {
 		if ( empty( $args ) ) {
 			return array(
 				'status'    => 404,
-				'message'    => esc_html__( 'Invalid Arguments', 'wishlist-for-woo' ),
+				'message'    => esc_html__( 'Invalid Arguments', 'ultimate-wishlist-for-woocommerce' ),
 			);
 		}
 
@@ -144,7 +144,7 @@ class Wishlist_For_Woo_Crud_Manager {
 
 			$result = array(
 				'status'    => 404,
-				'message'    => esc_html__( 'Invalid ID', 'wishlist-for-woo' ),
+				'message'    => esc_html__( 'Invalid ID', 'ultimate-wishlist-for-woocommerce' ),
 			);
 
 			return $result;
@@ -184,7 +184,7 @@ class Wishlist_For_Woo_Crud_Manager {
 
 			$result = array(
 				'status'    => 404,
-				'message'    => esc_html__( 'Invalid ID', 'wishlist-for-woo' ),
+				'message'    => esc_html__( 'Invalid ID', 'ultimate-wishlist-for-woocommerce' ),
 			);
 
 			return $result;
@@ -264,7 +264,7 @@ class Wishlist_For_Woo_Crud_Manager {
 			if ( empty( $this->id ) ) {
 				return array(
 					'status'    => 404,
-					'message'    => esc_html__( 'Id Not Found', 'wishlist-for-woo' ),
+					'message'    => esc_html__( 'Id Not Found', 'ultimate-wishlist-for-woocommerce' ),
 				);
 			}
 
@@ -278,7 +278,7 @@ class Wishlist_For_Woo_Crud_Manager {
 			if ( ! empty( $wpdb->last_error ) || empty( $response ) ) {
 				$result = array(
 					'status'    => 400,
-					'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html__( 'Row Not Found', 'wishlist-for-woo' ),
+					'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html__( 'Row Not Found', 'ultimate-wishlist-for-woocommerce' ),
 				);
 			} else {
 				$result = array(

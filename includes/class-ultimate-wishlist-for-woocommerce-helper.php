@@ -42,7 +42,7 @@ class Wishlist_For_Woo_Helper {
 
 			$result = array(
 				'status'    => 400,
-				'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html( 'Settings Not Found. Please Save settings once again.', 'wishlist-for-woo' ),
+				'message'    => ! empty( $wpdb->last_error ) ? $wpdb->last_error : esc_html( 'Settings Not Found. Please Save settings once again.', 'ultimate-wishlist-for-woocommerce' ),
 			);
 		} else {
 
@@ -64,13 +64,13 @@ class Wishlist_For_Woo_Helper {
 	 */
 	public static function get_strings() {
 		return array(
-			'popup_title'   => apply_filters( 'wfw_popup_title', esc_html__( 'New Item Added in Wishlist', 'wishlist-for-woo' ) ),
-			'view_text' => apply_filters( 'mwf_view_text', esc_html__( 'View Wishlist', 'wishlist-for-woo' ) ),
-			'processing_text'   => apply_filters( 'mwf_processing_text', esc_html__( 'Processing', 'wishlist-for-woo' ) ),
-			'add_to_cart'   => apply_filters( 'mwf_add_to_cart', esc_html__( 'Buy Now', 'wishlist-for-woo' ) ),
-			'login_required'    => apply_filters( 'mwf_login_required', esc_html__( 'Please Login to your account first.', 'wishlist-for-woo' ) ),
-			'add_to_wishlist'   => apply_filters( 'mwb_wfw_wishlist_accept_text', esc_html__( 'Add to Wishlist', 'wishlist-for-woo' ) ),
-			'remove_from_wishlist'  => apply_filters( 'mwb_wfw_wishlist_remove_text', esc_html__( 'Remove from Wishlist', 'wishlist-for-woo' ) ),
+			'popup_title'   => apply_filters( 'wfw_popup_title', esc_html__( 'New Item Added in Wishlist', 'ultimate-wishlist-for-woocommerce' ) ),
+			'view_text' => apply_filters( 'mwf_view_text', esc_html__( 'View Wishlist', 'ultimate-wishlist-for-woocommerce' ) ),
+			'processing_text'   => apply_filters( 'mwf_processing_text', esc_html__( 'Processing', 'ultimate-wishlist-for-woocommerce' ) ),
+			'add_to_cart'   => apply_filters( 'mwf_add_to_cart', esc_html__( 'Buy Now', 'ultimate-wishlist-for-woocommerce' ) ),
+			'login_required'    => apply_filters( 'mwf_login_required', esc_html__( 'Please Login to your account first.', 'ultimate-wishlist-for-woocommerce' ) ),
+			'add_to_wishlist'   => apply_filters( 'mwb_wfw_wishlist_accept_text', esc_html__( 'Add to Wishlist', 'ultimate-wishlist-for-woocommerce' ) ),
+			'remove_from_wishlist'  => apply_filters( 'mwb_wfw_wishlist_remove_text', esc_html__( 'Remove from Wishlist', 'ultimate-wishlist-for-woocommerce' ) ),
 		);
 	}
 

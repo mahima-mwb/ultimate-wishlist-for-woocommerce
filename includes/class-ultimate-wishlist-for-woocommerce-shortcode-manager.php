@@ -86,7 +86,7 @@ class Wishlist_For_Woo_Shortcode_Manager {
 
 		ob_start();
 		wc_get_template(
-			'partials/wishlist-for-woo-shortcode-view.php',
+			'partials/ultimate-wishlist-for-woocommerce-shortcode-view.php',
 			array(
 				'owner_lists'       => ! empty( $owner_lists ) ? $owner_lists : array(),
 				'access'            => ! empty( $access ) ? $access : false,

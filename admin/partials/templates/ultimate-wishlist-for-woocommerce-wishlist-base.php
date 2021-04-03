@@ -18,15 +18,15 @@
 	<table border="2px" id="mwb-table" width="100%" class="mwb-table">
 		<thead>
 			<tr>
-				<th><?php esc_html_e( 'Id', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Title', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Products', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Create Date', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Last Modified', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Owner', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Status', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Collaborators', 'wishlist-for-woo' ); ?></th>
-				<th><?php esc_html_e( 'Properties', 'wishlist-for-woo' ); ?></th>
+				<th><?php esc_html_e( 'Id', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Title', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Products', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Create Date', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Last Modified', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Owner', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Status', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Collaborators', 'ultimate-wishlist-for-woocommerce' ); ?></th>
+				<th><?php esc_html_e( 'Properties', 'ultimate-wishlist-for-woocommerce' ); ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -73,9 +73,9 @@
 							<?php foreach ( $value['properties'] as $key => $prop ) : ?>
 								<?php if ( 'default' == $key ) : ?>
 									<?php if ( true == $prop ) : ?>
-										<span class="wfw-default-wishlist"><?php esc_html_e( 'Is Default', 'wishlist-for-woo' ); ?> <span class="wfw-tick">&#10003;</span></span>
+										<span class="wfw-default-wishlist"><?php esc_html_e( 'Is Default', 'ultimate-wishlist-for-woocommerce' ); ?> <span class="wfw-tick">&#10003;</span></span>
 										<?php else : ?>
-										<span class="wfw-default-wishlist"><?php esc_html_e( 'Is Default', 'wishlist-for-woo' ); ?> <span class="wfw-cross">&#10007;</span></span>
+										<span class="wfw-default-wishlist"><?php esc_html_e( 'Is Default', 'ultimate-wishlist-for-woocommerce' ); ?> <span class="wfw-cross">&#10007;</span></span>
 									<?php endif; ?>
 									
 								<?php elseif ( 'comments' == $key && ! empty( $prop ) ) : ?>
@@ -85,8 +85,8 @@
 										?>
 											<?php foreach ( $prop as $pid => $_comments ) : ?>
 												<p class="wfw-comments"><?php echo esc_html( get_the_title( $pid ) ); ?><p>
-												<span class="wfw-comments"> <span class="wfw-tick">&#10003;</span> <?php esc_html_e( 'Comment', 'wishlist-for-woo' ); ?> : <?php echo esc_html( $_comments['comment'] ); ?></span>
-												<span class="wfw-comments"> <span class="wfw-tick">&#10003;</span> <?php esc_html_e( 'Priority', 'wishlist-for-woo' ); ?> : <?php echo esc_html( $_comments['priority'] ); ?></span>
+												<span class="wfw-comments"> <span class="wfw-tick">&#10003;</span> <?php esc_html_e( 'Comment', 'ultimate-wishlist-for-woocommerce' ); ?> : <?php echo esc_html( $_comments['comment'] ); ?></span>
+												<span class="wfw-comments"> <span class="wfw-tick">&#10003;</span> <?php esc_html_e( 'Priority', 'ultimate-wishlist-for-woocommerce' ); ?> : <?php echo esc_html( $_comments['priority'] ); ?></span>
 											<?php endforeach; ?>
 										<?php endif; ?>
 								<?php endif; ?>
@@ -96,7 +96,7 @@
 				<?php endforeach; ?>
 			<?php else : ?>
 				<tr>
-					<td style="text-align:center;" colspan="10"><?php esc_html_e( 'No Wishlists Found.', 'wishlist-for-woo' ); ?></td>
+					<td style="text-align:center;" colspan="10"><?php esc_html_e( 'No Wishlists Found.', 'ultimate-wishlist-for-woocommerce' ); ?></td>
 				</tr>
 			<?php endif; ?>
 

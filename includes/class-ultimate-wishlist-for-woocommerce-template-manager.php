@@ -30,7 +30,7 @@ class Wishlist_For_Woo_Template_Manager {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<main class="mwb-wfw-main">
 			<header class="mwb-wfw-header">
-				<h1 class="mwb-wfw-header__title"><?php esc_html_e( 'Ultimate Wishlist for WooCommerce', 'wishlist-for-woo' ); ?></h1>
+				<h1 class="mwb-wfw-header__title"><?php esc_html_e( 'Ultimate Wishlist for WooCommerce', 'ultimate-wishlist-for-woocommerce' ); ?></h1>
 				<span class="mwb-wfw-version"><?php echo sprintf( 'v%s', esc_html( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_VERSION ) ); ?></span>
 			</header>
 			<!-- End of Header Section -->
@@ -89,7 +89,7 @@ class Wishlist_For_Woo_Template_Manager {
 					<form method="post" action="#" class="mwb-wfw-output-form"></form>
 					<div class="mwb-wfw-desc--preloader">
 						<img src="<?php echo esc_url( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/images/preloader.gif' ); ?>" alt="loader">
-						<h4><?php esc_html_e( 'Loading settings please wait...', 'wishlist-for-woo' ); ?></h4>
+						<h4><?php esc_html_e( 'Loading settings please wait...', 'ultimate-wishlist-for-woocommerce' ); ?></h4>
 					</div>
 				</div>
 			</div>
@@ -112,12 +112,12 @@ class Wishlist_For_Woo_Template_Manager {
 				</div>
 				<h2>help desk </h2>
 				<ul class="mwb-wfw-sidebar__items">
-					<li class="mwb-wfw-sidebar__links"><a href="javascript:void(0)"><?php esc_html_e( 'go pro', 'wishlist-for-woo' ); ?><span> &#8594;</span></a></li>
-					<li class="mwb-wfw-sidebar__links"><a href="https://docs.makewebbetter.com/wishlist-for-woo/"><?php esc_html_e( 'see docs', 'wishlist-for-woo' ); ?><span> &#8594;</span></a></li>
-					<li class="mwb-wfw-sidebar__links"><a href="https://demo.makewebbetter.com/wishlist-for-woo/"><?php esc_html_e( 'see demo', 'wishlist-for-woo' ); ?> <span> &#8594;</span></a></li>
+					<li class="mwb-wfw-sidebar__links"><a href="javascript:void(0)"><?php esc_html_e( 'go pro', 'ultimate-wishlist-for-woocommerce' ); ?><span> &#8594;</span></a></li>
+					<li class="mwb-wfw-sidebar__links"><a href="https://docs.makewebbetter.com/ultimate-wishlist-for-woocommerce/"><?php esc_html_e( 'see docs', 'ultimate-wishlist-for-woocommerce' ); ?><span> &#8594;</span></a></li>
+					<li class="mwb-wfw-sidebar__links"><a href="https://demo.makewebbetter.com/ultimate-wishlist-for-woocommerce/"><?php esc_html_e( 'see demo', 'ultimate-wishlist-for-woocommerce' ); ?> <span> &#8594;</span></a></li>
 				</ul>
 				<div class="mwb-wfw-sidebar__connect">
-					<a href="javascript:void(0)"><?php esc_html_e( 'connect with us in one click', 'wishlist-for-woo' ); ?></a>
+					<a href="javascript:void(0)"><?php esc_html_e( 'connect with us in one click', 'ultimate-wishlist-for-woocommerce' ); ?></a>
 					<a href="https://makewebbetter.com/submit-query/" class="mwb-wfw-skype__icon"><img src="<?php echo esc_url( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/icons/mail.png' ); ?>" alt="mail"><span>connect</span></a>
 				</div>
 			</div>
@@ -135,9 +135,9 @@ class Wishlist_For_Woo_Template_Manager {
 		?>
 		<!-- Header Section -->
 			<div class="mwb-wfw_save-wrapper is-hidden">
-				<span><a href="javascript:void(0);" class="mwb-wfw_save-link"><?php esc_html_e( 'SAVE', 'wishlist-for-woo' ); ?></a>
-				<a href="javascript:void(0);" class="mwb-wfw_cancel-link"><?php esc_html_e( 'CANCEL', 'wishlist-for-woo' ); ?></a></span>
-				<span class="mwb-wfw_save-text is-hidden"><?php esc_html_e( 'You have saved your data!', 'wishlist-for-woo' ); ?></span>
+				<span><a href="javascript:void(0);" class="mwb-wfw_save-link"><?php esc_html_e( 'SAVE', 'ultimate-wishlist-for-woocommerce' ); ?></a>
+				<a href="javascript:void(0);" class="mwb-wfw_cancel-link"><?php esc_html_e( 'CANCEL', 'ultimate-wishlist-for-woocommerce' ); ?></a></span>
+				<span class="mwb-wfw_save-text is-hidden"><?php esc_html_e( 'You have saved your data!', 'ultimate-wishlist-for-woocommerce' ); ?></span>
 			</div>
 		</main>
 		<!-- End of Header Section -->
@@ -156,18 +156,18 @@ class Wishlist_For_Woo_Template_Manager {
 		switch ( $current_screen ) {
 			case 'wfw-config-portal':
 				$tabs = array(
-					'general'           => esc_html__( 'General', 'wishlist-for-woo' ),
-					'social_sharing'    => esc_html__( 'Social Sharing', 'wishlist-for-woo' ),
-					'push_notify'       => esc_html__( 'Push Notification', 'wishlist-for-woo' ),
-					'advance_feature'   => esc_html__( 'Advance Features', 'wishlist-for-woo' ),
-					'crm'               => esc_html__( 'CRM Configuration', 'wishlist-for-woo' ),
+					'general'           => esc_html__( 'General', 'ultimate-wishlist-for-woocommerce' ),
+					'social_sharing'    => esc_html__( 'Social Sharing', 'ultimate-wishlist-for-woocommerce' ),
+					'push_notify'       => esc_html__( 'Push Notification', 'ultimate-wishlist-for-woocommerce' ),
+					'advance_feature'   => esc_html__( 'Advance Features', 'ultimate-wishlist-for-woocommerce' ),
+					'crm'               => esc_html__( 'CRM Configuration', 'ultimate-wishlist-for-woocommerce' ),
 				);
 				break;
 
 			case 'wfw-performance-reporting':
 				$tabs = array(
-					'wishlist_base'         => esc_html__( 'All Wishlists', 'wishlist-for-woo' ),
-					'product_base'          => esc_html__( 'Product Based Reporting', 'wishlist-for-woo' ),
+					'wishlist_base'         => esc_html__( 'All Wishlists', 'ultimate-wishlist-for-woocommerce' ),
+					'product_base'          => esc_html__( 'Product Based Reporting', 'ultimate-wishlist-for-woocommerce' ),
 				);
 				break;
 
@@ -191,47 +191,47 @@ class Wishlist_For_Woo_Template_Manager {
 
 		// Section start.
 		$settings[] = array(
-			'title' => esc_html__( 'General Settings', 'wishlist-for-woo' ),
+			'title' => esc_html__( 'General Settings', 'ultimate-wishlist-for-woocommerce' ),
 			'type'  => 'title',
 		);
 
 		// Toggle :: Enable/Disable Plugin.
 		$settings[] = array(
-			'title'                 => esc_html__( 'Enable /Disable Plugin', 'wishlist-for-woo' ),
+			'title'                 => esc_html__( 'Enable /Disable Plugin', 'ultimate-wishlist-for-woocommerce' ),
 			'class'                 => 'mwb-wfw-toggle-checkbox',
 			'type'                  => 'checkbox',
 			'desc_tip'              => true,
 			'value'                 => get_option( 'wfw-enable-plugin', 'yes' ),
 			'id'                    => 'wfw-enable-plugin',
-			'desc'                  => esc_html__( 'Enable/Disable the complete plugin functionality.', 'wishlist-for-woo' ),
+			'desc'                  => esc_html__( 'Enable/Disable the complete plugin functionality.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Toggle :: Enable Popup for Product added in wishlist Plugin.
 		$settings[] = array(
-			'title'                 => esc_html__( 'Enable Wishlist Popup', 'wishlist-for-woo' ),
+			'title'                 => esc_html__( 'Enable Wishlist Popup', 'ultimate-wishlist-for-woocommerce' ),
 			'class'                 => 'mwb-wfw-toggle-checkbox',
 			'type'                  => 'checkbox',
 			'desc_tip'              => true,
 			'value'                 => get_option( 'wfw-enable-popup', 'yes' ),
 			'id'                    => 'wfw-enable-popup',
-			'desc'                  => esc_html__( 'Show Item added in wishlist as popup after adding in list.', 'wishlist-for-woo' ),
+			'desc'                  => esc_html__( 'Show Item added in wishlist as popup after adding in list.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Subheading ::For Preview Settings.
 		$settings[]     = array(
 			'type'  => 'sub-heading',
-			'value' => esc_html__( 'Wishlist Position And Preview', 'wishlist-for-woo' ),
+			'value' => esc_html__( 'Wishlist Position And Preview', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Select :: How to show the wishlists on frontend.
 		$settings[] = array(
-			'title'             => esc_html__( 'Wishlist View Type', 'wishlist-for-woo' ),
+			'title'             => esc_html__( 'Wishlist View Type', 'ultimate-wishlist-for-woocommerce' ),
 			'type'              => 'select',
-			'desc'              => esc_html__( 'Select how you want to show the wishlist for customers.', 'wishlist-for-woo' ),
+			'desc'              => esc_html__( 'Select how you want to show the wishlist for customers.', 'ultimate-wishlist-for-woocommerce' ),
 			'options'           => array(
-				''          => esc_html__( 'No options Selected', 'wishlist-for-woo' ),
-				'icon'      => esc_html__( 'Icon over Product Image', 'wishlist-for-woo' ),
-				'button'    => esc_html__( 'Add to Wishlist button', 'wishlist-for-woo' ),
+				''          => esc_html__( 'No options Selected', 'ultimate-wishlist-for-woocommerce' ),
+				'icon'      => esc_html__( 'Icon over Product Image', 'ultimate-wishlist-for-woocommerce' ),
+				'button'    => esc_html__( 'Add to Wishlist button', 'ultimate-wishlist-for-woocommerce' ),
 			),
 			'desc_tip'          => true,
 			'class'             => 'mwb-wfw-select',
@@ -242,19 +242,19 @@ class Wishlist_For_Woo_Template_Manager {
 
 		// Select :: Which icon to use.
 		$settings[] = array(
-			'title'             => esc_html__( 'Wishlist Interface Icon', 'wishlist-for-woo' ),
+			'title'             => esc_html__( 'Wishlist Interface Icon', 'ultimate-wishlist-for-woocommerce' ),
 			'type'              => 'select',
-			'desc'              => esc_html__( 'Select which icon you want for the wishlist interface.', 'wishlist-for-woo' ),
+			'desc'              => esc_html__( 'Select which icon you want for the wishlist interface.', 'ultimate-wishlist-for-woocommerce' ),
 			'options'           => array(
-				''          => esc_html__( 'No options Selected', 'wishlist-for-woo' ),
-				'heart'     => esc_html__( 'Heart Icon', 'wishlist-for-woo' ),
-				'shopping'      => esc_html__( 'Shopping Icon', 'wishlist-for-woo' ),
-				'cart'      => esc_html__( 'Cart Icon', 'wishlist-for-woo' ),
-				'star'      => esc_html__( 'Star Icon', 'wishlist-for-woo' ),
-				'tag'       => esc_html__( 'Tag Icon', 'wishlist-for-woo' ),
-				'thumbsup'      => esc_html__( 'Like Icon', 'wishlist-for-woo' ),
-				'bell'      => esc_html__( 'Bell Icon', 'wishlist-for-woo' ),
-				'eye'       => esc_html__( 'Eye Icon', 'wishlist-for-woo' ),
+				''          => esc_html__( 'No options Selected', 'ultimate-wishlist-for-woocommerce' ),
+				'heart'     => esc_html__( 'Heart Icon', 'ultimate-wishlist-for-woocommerce' ),
+				'shopping'      => esc_html__( 'Shopping Icon', 'ultimate-wishlist-for-woocommerce' ),
+				'cart'      => esc_html__( 'Cart Icon', 'ultimate-wishlist-for-woocommerce' ),
+				'star'      => esc_html__( 'Star Icon', 'ultimate-wishlist-for-woocommerce' ),
+				'tag'       => esc_html__( 'Tag Icon', 'ultimate-wishlist-for-woocommerce' ),
+				'thumbsup'      => esc_html__( 'Like Icon', 'ultimate-wishlist-for-woocommerce' ),
+				'bell'      => esc_html__( 'Bell Icon', 'ultimate-wishlist-for-woocommerce' ),
+				'eye'       => esc_html__( 'Eye Icon', 'ultimate-wishlist-for-woocommerce' ),
 			),
 			'desc_tip'          => true,
 			'class'             => 'mwb-wfw-select wfw-view-type-dependent',
@@ -265,15 +265,15 @@ class Wishlist_For_Woo_Template_Manager {
 
 		// Select :: Where to show button on loops.
 		$settings[] = array(
-			'title'             => esc_html__( 'Wishlist on Loops', 'wishlist-for-woo' ),
+			'title'             => esc_html__( 'Wishlist on Loops', 'ultimate-wishlist-for-woocommerce' ),
 			'type'              => 'select',
-			'desc'              => esc_html__( 'Select where wishlist button should be shown on woocommerce loops or shops.', 'wishlist-for-woo' ),
+			'desc'              => esc_html__( 'Select where wishlist button should be shown on woocommerce loops or shops.', 'ultimate-wishlist-for-woocommerce' ),
 			'options'           => array(
-				''                      => esc_html__( 'No options Selected', 'wishlist-for-woo' ),
-				'before_product_name'   => esc_html__( 'Before Product Title', 'wishlist-for-woo' ),
-				'after_product_name'    => esc_html__( 'After Product Title', 'wishlist-for-woo' ),
-				'before_add_to_cart'    => esc_html__( 'Before Add To Cart Button', 'wishlist-for-woo' ),
-				'before_product_loop'   => esc_html__( 'Before Product Section', 'wishlist-for-woo' ),
+				''                      => esc_html__( 'No options Selected', 'ultimate-wishlist-for-woocommerce' ),
+				'before_product_name'   => esc_html__( 'Before Product Title', 'ultimate-wishlist-for-woocommerce' ),
+				'after_product_name'    => esc_html__( 'After Product Title', 'ultimate-wishlist-for-woocommerce' ),
+				'before_add_to_cart'    => esc_html__( 'Before Add To Cart Button', 'ultimate-wishlist-for-woocommerce' ),
+				'before_product_loop'   => esc_html__( 'Before Product Section', 'ultimate-wishlist-for-woocommerce' ),
 			),
 			'desc_tip'          => true,
 			'class'             => 'mwb-wfw-select wfw-view-type-dependent',
@@ -284,16 +284,16 @@ class Wishlist_For_Woo_Template_Manager {
 
 		// Select :: Where to show button on product pages.
 		$settings[] = array(
-			'title'             => esc_html__( 'Wishlist on Product Page', 'wishlist-for-woo' ),
+			'title'             => esc_html__( 'Wishlist on Product Page', 'ultimate-wishlist-for-woocommerce' ),
 			'type'              => 'select',
-			'desc'              => esc_html__( 'Select where wishlist button should be shown on woocommerce products page.', 'wishlist-for-woo' ),
+			'desc'              => esc_html__( 'Select where wishlist button should be shown on woocommerce products page.', 'ultimate-wishlist-for-woocommerce' ),
 			'options'           => array(
-				''                      => esc_html__( 'No options Selected', 'wishlist-for-woo' ),
-				'before_add_to_cart'    => esc_html__( 'Before Add To Cart Button', 'wishlist-for-woo' ),
-				'after_add_to_cart'     => esc_html__( 'After Add To Cart Button', 'wishlist-for-woo' ),
-				'before_product_name'   => esc_html__( 'Before Product Title', 'wishlist-for-woo' ),
-				'after_product_name'    => esc_html__( 'After Product Title', 'wishlist-for-woo' ),
-				'after_product_price'   => esc_html__( 'After Product Price', 'wishlist-for-woo' ),
+				''                      => esc_html__( 'No options Selected', 'ultimate-wishlist-for-woocommerce' ),
+				'before_add_to_cart'    => esc_html__( 'Before Add To Cart Button', 'ultimate-wishlist-for-woocommerce' ),
+				'after_add_to_cart'     => esc_html__( 'After Add To Cart Button', 'ultimate-wishlist-for-woocommerce' ),
+				'before_product_name'   => esc_html__( 'Before Product Title', 'ultimate-wishlist-for-woocommerce' ),
+				'after_product_name'    => esc_html__( 'After Product Title', 'ultimate-wishlist-for-woocommerce' ),
+				'after_product_price'   => esc_html__( 'After Product Price', 'ultimate-wishlist-for-woocommerce' ),
 			),
 			'desc_tip'          => true,
 			'class'             => 'mwb-wfw-select wfw-view-type-dependent',
@@ -305,7 +305,7 @@ class Wishlist_For_Woo_Template_Manager {
 		// Select :: Where to show button on product pages.
 		$settings[] = array(
 			'type'  => 'sub-heading',
-			'value' => esc_html__( 'Wishlist Page', 'wishlist-for-woo' ),
+			'value' => esc_html__( 'Wishlist Page', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		global $wpdb;
@@ -322,9 +322,9 @@ class Wishlist_For_Woo_Template_Manager {
 		}
 
 		$settings[] = array(
-			'title'    => esc_html__( 'Wishlist Page', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Wishlist Page', 'ultimate-wishlist-for-woocommerce' ),
 			'type'     => 'select',
-			'desc'     => esc_html__( 'Select the page where view wishlist button should redirect. Wishlist page requires shortcode as [mwb_wfw_wishlist]', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Select the page where view wishlist button should redirect. Wishlist page requires shortcode as [mwb_wfw_wishlist]', 'ultimate-wishlist-for-woocommerce' ),
 			'options'  => $page_option,
 			'desc_tip' => true,
 			'class'    => 'mwb-wfw-select mwb-wfw-select-page',
@@ -350,13 +350,13 @@ class Wishlist_For_Woo_Template_Manager {
 
 		// Section start.
 		$settings[] = array(
-			'title' => esc_html__( 'Push Notifications', 'wishlist-for-woo' ),
+			'title' => esc_html__( 'Push Notifications', 'ultimate-wishlist-for-woocommerce' ),
 			'type'  => 'title',
 		);
 
 		// Input :: icon size.
 		$settings[] = array(
-			'title'    => esc_html__( 'Icon size', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Icon size', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-select',
 			'type'     => 'select',
 			'options'  => array(
@@ -367,95 +367,95 @@ class Wishlist_For_Woo_Template_Manager {
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-enable-icon-size', '15px' ),
 			'id'       => 'wfw-enable-icon-size',
-			'desc'     => esc_html__( 'Input Pinterest icon size.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Input Pinterest icon size.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Toggle :: Enable/Disable Facebook share.
 		$settings[] = array(
-			'title'    => esc_html__( 'Facebook share', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Facebook share', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-enable-fb-share', 'yes' ),
 			'id'       => 'wfw-enable-fb-share',
-			'desc'     => esc_html__( 'Enable/Disable the Facebook share functionality.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enable/Disable the Facebook share functionality.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Input :: Facebook icon color.
 		$settings[] = array(
-			'title'    => esc_html__( 'Facebook Icon color', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Facebook Icon color', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-color',
 			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => '#' . get_option( 'wfw-enable-fb-color', '1877f2' ),
 			'id'       => 'wfw-enable-fb-color',
-			'desc'     => esc_html__( 'Input Facebook icon color.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Input Facebook icon color.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Toggle :: Enable/Disable Whatsapp share.
 		$settings[] = array(
-			'title'    => esc_html__( 'WhatsApp share', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'WhatsApp share', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-enable-whatsapp-share', 'yes' ),
 			'id'       => 'wfw-enable-whatsapp-share',
-			'desc'     => esc_html__( 'Enable/Disable the WhatsApp share functionality.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enable/Disable the WhatsApp share functionality.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Input :: Whatsapp icon color.
 		$settings[] = array(
-			'title'    => esc_html__( 'WhatsApp Icon color', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'WhatsApp Icon color', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-color',
 			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => '#' . get_option( 'wfw-enable-whatsapp-color', '25D366' ),
 			'id'       => 'wfw-enable-whatsapp-color',
-			'desc'     => esc_html__( 'Input WhatsApp icon color.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Input WhatsApp icon color.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Toggle :: Enable/Disable twitter share.
 		$settings[] = array(
-			'title'    => esc_html__( 'Twitter share', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Twitter share', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-enable-twitter-share', 'yes' ),
 			'id'       => 'wfw-enable-twitter-share',
-			'desc'     => esc_html__( 'Enable/Disable the Twitter share functionality.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enable/Disable the Twitter share functionality.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Input :: Twitter icon color.
 		$settings[] = array(
-			'title'    => esc_html__( 'Twitter Icon color', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Twitter Icon color', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-color',
 			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => '#' . get_option( 'wfw-enable-twitter-color', '1DA1F2' ),
 			'id'       => 'wfw-enable-twitter-color',
-			'desc'     => esc_html__( 'Input Twitter icon color.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Input Twitter icon color.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Toggle :: Enable/Disable pinterest share.
 		$settings[] = array(
-			'title'    => esc_html__( 'Pinterest share', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Pinterest share', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-enable-pinterest-share', 'yes' ),
 			'id'       => 'wfw-enable-pinterest-share',
-			'desc'     => esc_html__( 'Enable/Disable the Pinterest share functionality.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enable/Disable the Pinterest share functionality.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Input :: Pinterest icon color.
 		$settings[] = array(
-			'title'    => esc_html__( 'Pinterest Icon color', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Pinterest Icon color', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-color',
 			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => '#' . get_option( 'wfw-enable-pinterest-color', 'c8232c' ),
 			'id'       => 'wfw-enable-pinterest-color',
-			'desc'     => esc_html__( 'Input Pinterest icon color.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Input Pinterest icon color.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		$settings[] = array(
@@ -474,81 +474,81 @@ class Wishlist_For_Woo_Template_Manager {
 
 		// Section start.
 		$settings[] = array(
-			'title' => esc_html__( 'Push Notifications', 'wishlist-for-woo' ),
+			'title' => esc_html__( 'Push Notifications', 'ultimate-wishlist-for-woocommerce' ),
 			'type'  => 'title',
 		);
 
 		// Toggle :: Enable/Disable Plugin.
 		$settings[] = array(
-			'title'    => esc_html__( 'Push Notifications', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Push Notifications', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-enable-push-notif', '' ),
 			'id'       => 'wfw-enable-push-notif',
-			'desc'     => esc_html__( 'Enable/Disable the push notifications functionality.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enable/Disable the push notifications functionality.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Input :: Push notification client id.
 
 		$settings[] = array(
-			'title'    => esc_html__( 'Secret Key', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Secret Key', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-text',
 			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-push-notif-sk', '' ),
 			'id'       => 'wfw-push-notif-sk',
-			'desc'     => esc_html__( 'Note: A file "service-worker.js" needs to be stored on the root folder, else push notifications will not work. ', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Note: A file "service-worker.js" needs to be stored on the root folder, else push notifications will not work. ', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Subheading ::For Preview Settings.
 		$settings[] = array(
 			'type'  => 'sub-heading',
-			'value' => esc_html__( 'Send Custom notifications.', 'wishlist-for-woo' ),
+			'value' => esc_html__( 'Send Custom notifications.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Input :: Custom notfications title.
 		$settings[] = array(
-			'title'    => esc_html__( 'Title', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Title', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-text',
 			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-custom-notif-title', '' ),
 			'id'       => 'wfw-custom-notif-title',
-			'desc'     => esc_html__( 'Enter custom notification title. ', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enter custom notification title. ', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Input :: Custom notfications URL.
 		$settings[] = array(
-			'title'    => esc_html__( 'URL', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'URL', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-text',
 			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-custom-notif-url', '' ),
 			'id'       => 'wfw-custom-notif-url',
-			'desc'     => esc_html__( 'Enter custom notification URL. ', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enter custom notification URL. ', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Input :: Custom notfications Message.
 		$settings[] = array(
-			'title'    => esc_html__( 'Message', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Message', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-text',
 			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-custom-notif-msg', '' ),
 			'id'       => 'wfw-custom-notif-msg',
-			'desc'     => esc_html__( 'Enter custom notification message. ', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enter custom notification message. ', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Input :: Custom notfications Image.
 		$settings[] = array(
-			'title'    => esc_html__( 'Image', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Image', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-text',
 			'type'     => 'text',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-custom-notif-img', '' ),
 			'id'       => 'wfw-custom-notif-img',
-			'desc'     => esc_html__( 'Enter custom notification image. ', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enter custom notification image. ', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		$settings[] = array(
@@ -570,63 +570,63 @@ class Wishlist_For_Woo_Template_Manager {
 
 		// Section start.
 		$settings[] = array(
-			'title' => esc_html__( 'Advance Notifications', 'wishlist-for-woo' ),
+			'title' => esc_html__( 'Advance Notifications', 'ultimate-wishlist-for-woocommerce' ),
 			'type'  => 'title',
 		);
 
 		// Toggle :: Enable/Disable multiple wishlist.
 		$settings[] = array(
-			'title'    => esc_html__( 'Multiple Wishlist', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Multiple Wishlist', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-enable-multi-wishlist', '' ),
 			'id'       => 'wfw-enable-multi-wishlist',
-			'desc'     => esc_html__( 'Enable/Disable the multiple wishlist functionality.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enable/Disable the multiple wishlist functionality.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Toggle :: Enable/Disable create api routing.
 		$settings[] = array(
-			'title'    => esc_html__( 'Create API routing', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Create API routing', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-enable-api-route', '' ),
 			'id'       => 'wfw-enable-api-route',
-			'desc'     => esc_html__( 'Enable/Disable the API routing functionality.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enable/Disable the API routing functionality.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Toggle :: Enable/Disable Automated emails.
 		$settings[] = array(
-			'title'    => esc_html__( 'Automated Emails', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Automated Emails', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-enable-automated-mail', '' ),
 			'id'       => 'wfw-enable-automated-mail',
-			'desc'     => esc_html__( 'Send automated emails to wishlist owners.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Send automated emails to wishlist owners.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Toggle :: Enable/Disable instock notifications.
 		$settings[] = array(
-			'title'    => esc_html__( 'In-stock Notification', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'In-stock Notification', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-enable-instock-notif', '' ),
 			'id'       => 'wfw-enable-instock-notif',
-			'desc'     => esc_html__( 'Enable/Disable in-stock notifications functionality.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'Enable/Disable in-stock notifications functionality.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		// Toggle :: Enable/Disable instock notifications.
 		$settings[] = array(
-			'title'    => esc_html__( 'Delete Data/Wishlist at uninstall', 'wishlist-for-woo' ),
+			'title'    => esc_html__( 'Delete Data/Wishlist at uninstall', 'ultimate-wishlist-for-woocommerce' ),
 			'class'    => 'mwb-wfw-toggle-checkbox',
 			'type'     => 'checkbox',
 			'desc_tip' => true,
 			'value'    => get_option( 'wfw-enable-instock-notif', '' ),
 			'id'       => 'wfw-enable-instock-notif',
-			'desc'     => esc_html__( 'On uninstalling the plugin all the settings and users wishlist will be deleted.', 'wishlist-for-woo' ),
+			'desc'     => esc_html__( 'On uninstalling the plugin all the settings and users wishlist will be deleted.', 'ultimate-wishlist-for-woocommerce' ),
 		);
 
 		$settings[] = array(
@@ -647,38 +647,38 @@ class Wishlist_For_Woo_Template_Manager {
 		?>
 		<div id="mfw_crm_config_wrapper">
 			<div id="wfw_crm_configurations">
-				<h2 class="mwb-wfw-subheading"><?php esc_html_e( 'Supported CRM Tools - Premium Feature', 'wishlist-for-woo' ); ?></h2>
+				<h2 class="mwb-wfw-subheading"><?php esc_html_e( 'Supported CRM Tools - Premium Feature', 'ultimate-wishlist-for-woocommerce' ); ?></h2>
 				<div class="wfw_crm_config_options">
 					<div class="wfw_crm_config_options_icon simple">
 						<a href="<?php echo esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ); ?>">
 							<img class="wfw_crm_tool_mautic" src="<?php echo esc_url( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/images/mautic-logo.svg' ); ?>">
 						</a>
-						<h3><?php esc_html_e( 'Mautic for WooCommerce', 'wishlist-for-woo' ); ?></h3>
+						<h3><?php esc_html_e( 'Mautic for WooCommerce', 'ultimate-wishlist-for-woocommerce' ); ?></h3>
 						<ul>
-							<li><?php esc_html_e( 'Track and nurture your WooCommerce contacts', 'wishlist-for-woo' ); ?></li>
+							<li><?php esc_html_e( 'Track and nurture your WooCommerce contacts', 'ultimate-wishlist-for-woocommerce' ); ?></li>
 
-							<li><?php esc_html_e( 'Create over 20 predefined custom fields to segregate your contacts', 'wishlist-for-woo' ); ?></li>
-							<li><?php esc_html_e( 'Sync your contacts data in real-time', 'wishlist-for-woo' ); ?></li>
-							<li><?php esc_html_e( 'Assign custom tags to your contacts using Mautic', 'wishlist-for-woo' ); ?></li>
-							<li><?php esc_html_e( 'Create high-converting marketing campaigns', 'wishlist-for-woo' ); ?></li>
-							<li><?php esc_html_e( 'Segment your contacts on their Recency, Frequency, and Monetary ratings', 'wishlist-for-woo' ); ?></li>
+							<li><?php esc_html_e( 'Create over 20 predefined custom fields to segregate your contacts', 'ultimate-wishlist-for-woocommerce' ); ?></li>
+							<li><?php esc_html_e( 'Sync your contacts data in real-time', 'ultimate-wishlist-for-woocommerce' ); ?></li>
+							<li><?php esc_html_e( 'Assign custom tags to your contacts using Mautic', 'ultimate-wishlist-for-woocommerce' ); ?></li>
+							<li><?php esc_html_e( 'Create high-converting marketing campaigns', 'ultimate-wishlist-for-woocommerce' ); ?></li>
+							<li><?php esc_html_e( 'Segment your contacts on their Recency, Frequency, and Monetary ratings', 'ultimate-wishlist-for-woocommerce' ); ?></li>
 						</ul>
-						<a class="mwb-wfw-cta" target="_blank" href="<?php echo esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ); ?>"><?php esc_html_e( 'View Plugin Site', 'wishlist-for-woo' ); ?></a>
+						<a class="mwb-wfw-cta" target="_blank" href="<?php echo esc_url( 'https://wordpress.org/plugins/enhanced-woocommerce-mautic-integration/' ); ?>"><?php esc_html_e( 'View Plugin Site', 'ultimate-wishlist-for-woocommerce' ); ?></a>
 					</div>
 					<div class="wfw_crm_config_options_icon simple">
 						<a href="<?php echo esc_url( 'https://wordpress.org/plugins/makewebbetter-hubspot-for-woocommerce/' ); ?>">
 							<img class="wfw_crm_tool_hubspot" src="<?php echo esc_url( ULTIMATE_WISHLIST_FOR_WOOCOMMERCE_URL . 'admin/images/hubspot-logo.svg' ); ?>">
 						</a>
-						<h3><?php esc_html_e( 'HubSpot for WooCommerce', 'wishlist-for-woo' ); ?></h3>
+						<h3><?php esc_html_e( 'HubSpot for WooCommerce', 'ultimate-wishlist-for-woocommerce' ); ?></h3>
 						<ul>
-							<li><?php esc_html_e( 'Sync your WooCommerce store data to HubSpot', 'wishlist-for-woo' ); ?></li>
-							<li><?php esc_html_e( 'Manage your customers and their orders in an easy-to-use CRM', 'wishlist-for-woo' ); ?></li>
-							<li><?php esc_html_e( 'Track and recover customers’ abandoned carts', 'wishlist-for-woo' ); ?></li>
-							<li><?php esc_html_e( 'Create and send beautiful, responsive emails to your leads and customers', 'wishlist-for-woo' ); ?></li>
-							<li><?php esc_html_e( 'Build advertising campaigns on Facebook, Instagram, LinkedIn, and Google', 'wishlist-for-woo' ); ?></li>
+							<li><?php esc_html_e( 'Sync your WooCommerce store data to HubSpot', 'ultimate-wishlist-for-woocommerce' ); ?></li>
+							<li><?php esc_html_e( 'Manage your customers and their orders in an easy-to-use CRM', 'ultimate-wishlist-for-woocommerce' ); ?></li>
+							<li><?php esc_html_e( 'Track and recover customers’ abandoned carts', 'ultimate-wishlist-for-woocommerce' ); ?></li>
+							<li><?php esc_html_e( 'Create and send beautiful, responsive emails to your leads and customers', 'ultimate-wishlist-for-woocommerce' ); ?></li>
+							<li><?php esc_html_e( 'Build advertising campaigns on Facebook, Instagram, LinkedIn, and Google', 'ultimate-wishlist-for-woocommerce' ); ?></li>
 						</ul>
 						<a class="mwb-wfw-cta" target="_blank" href="<?php echo esc_url( 'https://wordpress.org/plugins/makewebbetter-hubspot-for-woocommerce/' ); ?>">
-							<?php esc_html_e( 'View Plugin Site', 'wishlist-for-woo' ); ?>
+							<?php esc_html_e( 'View Plugin Site', 'ultimate-wishlist-for-woocommerce' ); ?>
 						</a>
 					</div>
 				</div>

@@ -112,8 +112,8 @@ class Ultimate_Wishlist_For_Woocommerce_Admin {
 					'params'               => map_deep( wp_unslash( $_GET ), 'sanitize_text_field' ),
 					'mobileView'           => wp_is_mobile(),
 					'authNonce'            => wp_create_nonce( 'mwb_wfw_nonce' ),
-					'notfoundErrorMessage' => esc_html__( 'Settings Panel Not Found.', 'wishlist-for-woo' ),
-					'criticalErrorMessage' => esc_html__( 'Internal Server Error.', 'wishlist-for-woo' ),
+					'notfoundErrorMessage' => esc_html__( 'Settings Panel Not Found.', 'ultimate-wishlist-for-woocommerce' ),
+					'criticalErrorMessage' => esc_html__( 'Internal Server Error.', 'ultimate-wishlist-for-woocommerce' ),
 				)
 			);
 		}
@@ -178,8 +178,8 @@ class Ultimate_Wishlist_For_Woocommerce_Admin {
 	public function add_config_menu() {
 
 		add_menu_page(
-			esc_html__( 'Ultimate Wishlist for WooCommerce', 'wishlist-for-woo' ),
-			esc_html__( 'Ultimate Wishlist for WooCommerce', 'wishlist-for-woo' ),
+			esc_html__( 'Ultimate Wishlist for WooCommerce', 'ultimate-wishlist-for-woocommerce' ),
+			esc_html__( 'Ultimate Wishlist for WooCommerce', 'ultimate-wishlist-for-woocommerce' ),
 			'manage_woocommerce',
 			'wfw-config-portal',
 			array( $this, 'add_config_screen' ),
@@ -190,17 +190,17 @@ class Ultimate_Wishlist_For_Woocommerce_Admin {
 		/**
 		 * Add sub-menu for Configuration settings.
 		 */
-		add_submenu_page( 'wfw-config-portal', esc_html__( 'Configuration & Settings', 'wishlist-for-woo' ), esc_html__( 'Configuration & Settings', 'wishlist-for-woo' ), 'manage_options', 'wfw-config-portal' );
+		add_submenu_page( 'wfw-config-portal', esc_html__( 'Configuration & Settings', 'ultimate-wishlist-for-woocommerce' ), esc_html__( 'Configuration & Settings', 'ultimate-wishlist-for-woocommerce' ), 'manage_options', 'wfw-config-portal' );
 
 		/**
 		 * Add sub-menu for Reportings settings.
 		 */
-		add_submenu_page( 'wfw-config-portal', esc_html__( 'Performance Analytics', 'wishlist-for-woo' ), esc_html__( 'Performance Analytics', 'wishlist-for-woo' ), 'manage_options', 'wfw-performance-reporting', array( $this, 'add_reporting_screen' ) );
+		add_submenu_page( 'wfw-config-portal', esc_html__( 'Performance Analytics', 'ultimate-wishlist-for-woocommerce' ), esc_html__( 'Performance Analytics', 'ultimate-wishlist-for-woocommerce' ), 'manage_options', 'wfw-performance-reporting', array( $this, 'add_reporting_screen' ) );
 
 		/**
 		 * Add sub-menu for Plugin Overview.
 		 */
-		add_submenu_page( 'wfw-config-portal', esc_html__( 'Overview', 'wishlist-for-woo' ), esc_html__( 'Overview', 'wishlist-for-woo' ), 'manage_options', 'wfw-plugin-overview', array( $this, 'add_overview_screen' ) );
+		add_submenu_page( 'wfw-config-portal', esc_html__( 'Overview', 'ultimate-wishlist-for-woocommerce' ), esc_html__( 'Overview', 'ultimate-wishlist-for-woocommerce' ), 'manage_options', 'wfw-plugin-overview', array( $this, 'add_overview_screen' ) );
 	}
 
 
@@ -272,7 +272,7 @@ class Ultimate_Wishlist_For_Woocommerce_Admin {
 			if ( 404 == $content ) {
 				$result = array(
 					'status'  => 404,
-					'content' => esc_html__( 'Undefined Portal Encountered', 'wishlist-for-woo' ),
+					'content' => esc_html__( 'Undefined Portal Encountered', 'ultimate-wishlist-for-woocommerce' ),
 				);
 			} else {
 
@@ -504,7 +504,7 @@ class Ultimate_Wishlist_For_Woocommerce_Admin {
 		if ( is_array( $valid_screens ) ) {
 
 			// Push your screen here.
-			array_push( $valid_screens, 'wishlist-for-woo' );
+			array_push( $valid_screens, 'ultimate-wishlist-for-woocommerce' );
 		}
 
 		return $valid_screens;

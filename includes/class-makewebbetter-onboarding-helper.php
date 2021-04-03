@@ -867,7 +867,7 @@ class Makewebbetter_Onboarding_Helper {
 		if ( is_wp_error( $response ) ) {
 
 			$status_code = 500;
-			$_response    = esc_html__( 'Unexpected Error Occured', 'wishlist-for-woo' );
+			$_response    = esc_html__( 'Unexpected Error Occured', 'ultimate-wishlist-for-woocommerce' );
 			$errors      = $response;
 
 		} else {

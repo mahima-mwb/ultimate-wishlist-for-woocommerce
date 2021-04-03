@@ -99,7 +99,7 @@ class Ultimate_Wishlist_For_Woocommerce_Activator {
 
 		if ( empty( $quote_page ) ) {
 			$default_page = array(
-				'post_title'   => esc_html__( 'Wishlist', 'wishlist-for-woo' ),
+				'post_title'   => esc_html__( 'Wishlist', 'ultimate-wishlist-for-woocommerce' ),
 				'post_status'  => 'publish',
 				'post_content' => esc_html( '[mwb_wfw_wishlist]' ),
 				'post_author'  => get_current_user_id(),
