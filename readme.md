@@ -18,6 +18,8 @@ Using this plugin, the admin lets the buyers give real meaning to their wishes, 
 
 On the other side, the admin gets full analytics, what the buyer wishes for, which product is wished the most, etc. And, based on that, the admin can target the prospects, give offers or send push notifications, or implement other marketing strategies.This wishlist plugin for WordPress allows you to manage everything from one central panel.
 
+[Ultimate Wishlist for WooCommerce: Add Wishlist Plugin to Your WordPress Website & Delight Customers](https://youtu.be/Euq1BN7oZvI)
+
 ## Why Ultimate Wishlist for WooCommerce Plugin?
 This plugin is built with the goal to connect your store directly with buyer's hearts. It boosts the buyer's engagement rate, increases sales, improves the customer shopping experience, offers better targeting, etc. The benefits are mutual to the buyers as well as to the sellers, hence Wishlist is a fundamental plugin that every store must have.
 
